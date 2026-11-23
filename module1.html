@@ -1,0 +1,1386 @@
+
+<title>Module 1: The ABA Documentation Standard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+
+<style>
+:root {
+  --bg: #f8f7f4; --surface: #ffffff; --surface-raised: #f2f0ec;
+  --navy: #1a2744; --navy-mid: #2c3e6b;
+  --gold: #c8921a; --gold-light: #f5e6c3;
+  --teal: #0d7377; --teal-light: #d4f0f1;
+  --red: #c0392b; --red-light: #fcecea;
+  --green: #1e7e34; --green-light: #d4f4dd;
+  --amber: #d35400; --amber-light: #fef0e4;
+  --text: #1c1c1e; --text-secondary: #4a4a4a; --text-muted: #767676;
+  --border: #d8d5cf; --border-light: #ebe8e2;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+  --shadow-nav: 0 -4px 24px rgba(0,0,0,.10);
+  --radius-sm: 6px; --radius: 10px; --radius-lg: 16px;
+  --topbar-h: 56px; --progress-h: 38px; --bottomnav-h: 68px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --stage-h: calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#12151f; --surface:#1c2033; --surface-raised:#242840;
+    --navy:#3d5a99; --navy-mid:#5272b0; --gold:#e8a832; --gold-light:#3d2e0a;
+    --teal:#2ab7bb; --teal-light:#0a2d2e; --red:#e05c4d; --red-light:#3d1510;
+    --green:#40c060; --green-light:#0d2a14; --amber:#e87040; --amber-light:#2d1505;
+    --text:#f0ede8; --text-secondary:#c0bdb6; --text-muted:#888480;
+    --border:#343850; --border-light:#272b3e; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#12151f; --surface:#1c2033; --surface-raised:#242840;
+  --navy:#3d5a99; --navy-mid:#5272b0; --gold:#e8a832; --gold-light:#3d2e0a;
+  --teal:#2ab7bb; --teal-light:#0a2d2e; --red:#e05c4d; --red-light:#3d1510;
+  --green:#40c060; --green-light:#0d2a14; --amber:#e87040; --amber-light:#2d1505;
+  --text:#f0ede8; --text-secondary:#c0bdb6; --text-muted:#888480;
+  --border:#343850; --border-light:#272b3e; color-scheme:dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; color: var(--text); background: var(--bg); overflow: hidden; height: 100dvh; }
+
+/* ── TOP BAR ─────────────────────────────────────────── */
+.top-bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 100;
+  background: var(--navy); color: #fff; height: var(--topbar-h);
+  padding: 0 max(16px, env(safe-area-inset-left, 0px));
+  display: flex; align-items: center; gap: 12px;
+}
+.top-bar-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; color: #fff; letter-spacing: .02em; white-space: nowrap; }
+.top-bar-brand span { color: var(--gold); }
+.top-bar-divider { width: 1px; height: 20px; background: rgba(255,255,255,.25); flex-shrink: 0; }
+.top-bar-title { font-size: 13px; color: rgba(255,255,255,.75); font-weight: 500; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.top-bar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.top-bar-badge { font-size: 11px; font-weight: 600; padding: 3px 8px; background: rgba(255,255,255,.12); border-radius: 20px; color: rgba(255,255,255,.85); }
+
+/* ── PROGRESS ─────────────────────────────────────────── */
+.progress-wrapper {
+  position: sticky; top: var(--topbar-h); z-index: 99;
+  background: var(--navy-mid); height: var(--progress-h);
+  padding: 0 max(16px, env(safe-area-inset-left, 0px));
+  display: flex; align-items: center; gap: 12px;
+}
+.progress-label { font-size: 11px; color: rgba(255,255,255,.65); font-weight: 600; letter-spacing: .05em; white-space: nowrap; flex-shrink: 0; }
+.progress-bar-track { flex: 1; height: 5px; background: rgba(255,255,255,.18); border-radius: 10px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: var(--gold); border-radius: 10px; transition: width .5s ease; width: 2%; }
+.progress-pct { font-size: 11px; color: rgba(255,255,255,.65); font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+
+/* ── LAYOUT ───────────────────────────────────────────── */
+.layout { display: flex; height: var(--stage-h); overflow: hidden; min-height: 0; }
+
+/* Sidebar */
+.sidebar {
+  width: 220px; flex-shrink: 0;
+  height: var(--stage-h); overflow-y: auto;
+  padding: 20px 0;
+  border-right: 1px solid var(--border-light);
+  background: var(--surface);
+}
+.sidebar-title { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--text-muted); padding: 0 16px; margin-bottom: 8px; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 16px; font-size: 12.5px;
+  color: var(--text-secondary); text-decoration: none;
+  border-left: 2px solid transparent; transition: all .15s;
+  font-weight: 500; cursor: default;
+}
+.sidebar-nav a:hover { color: var(--text); background: var(--surface-raised); }
+.sidebar-nav a.active { color: var(--navy); border-left-color: var(--gold); background: var(--gold-light); font-weight: 600; }
+.sidebar-nav a.done { color: var(--green); }
+.sidebar-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1.5px solid var(--border); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--text-muted);
+  transition: all .2s;
+}
+.sidebar-nav a.active .sidebar-dot { border-color: var(--gold); background: var(--gold); color: #fff; }
+.sidebar-nav a.done .sidebar-dot { border-color: var(--green); background: var(--green); color: #fff; font-size: 10px; }
+@media (max-width: 900px) { .sidebar { display: none; } }
+
+/* Stage */
+.main { flex: 1; min-width: 0; position: relative; overflow: hidden; }
+.section-stage { position: relative; height: 100%; overflow: hidden; }
+
+/* ── SECTIONS ─────────────────────────────────────────── */
+.module-section {
+  position: absolute; inset: 0;
+  overflow-y: scroll; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+  padding: 36px max(16px, env(safe-area-inset-right, 0px)) 36px 36px;
+  transform: translateX(100%);
+  pointer-events: none;
+  transition: transform .36s cubic-bezier(.4,0,.2,1);
+  background: var(--bg);
+}
+@media (max-width: 700px) { .module-section { padding: 24px max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px)); } }
+.module-section.ms-active { transform: translateX(0); pointer-events: auto; }
+.module-section.ms-behind { transform: translateX(-100%); }
+.module-section.ms-exit-fwd { transform: translateX(-40px); opacity: 0; transition: transform .22s cubic-bezier(.4,0,1,1), opacity .18s ease; }
+.module-section.ms-exit-back { transform: translateX(40px); opacity: 0; transition: transform .22s cubic-bezier(.4,0,1,1), opacity .18s ease; }
+
+@keyframes msSlideUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+@keyframes msFadeIn { from { opacity:0; } to { opacity:1; } }
+.ms-entering .section-eyebrow { animation: msSlideUp .32s .02s ease both; }
+.ms-entering h2 { animation: msSlideUp .34s .09s ease both; }
+.ms-entering .hook-card { animation: msFadeIn .4s .12s ease both; }
+.ms-entering .objectives-box { animation: msFadeIn .4s .15s ease both; }
+
+/* ── BOTTOM NAV ───────────────────────────────────────── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  height: var(--bottomnav-h);
+  padding: 0 max(20px, env(safe-area-inset-left, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--surface); border-top: 1px solid var(--border);
+  box-shadow: var(--shadow-nav);
+  display: flex; align-items: center; gap: 12px;
+}
+.btn-back {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 18px; border: 1.5px solid var(--border);
+  border-radius: var(--radius); background: transparent;
+  color: var(--text-secondary); font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: all .15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn-back:hover:not(:disabled) { border-color: var(--navy); color: var(--navy); background: var(--surface-raised); }
+.btn-back:disabled { opacity: .35; cursor: default; }
+.nav-info { flex: 1; text-align: center; min-width: 0; }
+.nav-counter { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: .06em; }
+.nav-title { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav-dots { display: flex; justify-content: center; gap: 5px; margin-top: 4px; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); transition: all .2s; }
+.nav-dot.done { background: var(--green); }
+.nav-dot.active { background: var(--gold); transform: scale(1.3); }
+.btn-next {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 20px; border: none; border-radius: var(--radius);
+  background: var(--gold); color: #fff;
+  font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all .15s; white-space: nowrap; flex-shrink: 0;
+}
+.btn-next:hover:not(:disabled) { background: #b07d14; transform: translateY(-1px); }
+.btn-next:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; transform: none; }
+.btn-next.gated { background: var(--surface-raised); border: 1.5px solid var(--border); color: var(--text-muted); font-size: 12px; padding: 10px 14px; }
+.btn-next.quiz-submit { background: var(--navy); }
+.btn-next.quiz-submit:hover:not(:disabled) { background: var(--navy-mid); }
+.btn-next.module-complete { background: var(--green); cursor: default; }
+@media (max-width: 500px) {
+  .btn-back { padding: 10px 12px; font-size: 13px; }
+  .btn-next { padding: 10px 14px; font-size: 13px; }
+  .nav-title { font-size: 12px; }
+}
+@media (max-width: 480px) {
+  .nav-dots { display: none; }
+  .btn-next.gated { font-size: 11px; padding: 10px 10px; }
+}
+
+/* ── TYPOGRAPHY ───────────────────────────────────────── */
+h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; color: var(--text); text-wrap: balance; }
+h1 { font-size: 26px; font-weight: 700; line-height: 1.25; }
+h2 { font-size: 21px; font-weight: 600; line-height: 1.3; margin-bottom: 16px; }
+h3 { font-size: 17px; font-weight: 600; line-height: 1.4; margin-bottom: 10px; }
+p { margin-bottom: 16px; color: var(--text-secondary); }
+p:last-child { margin-bottom: 0; }
+strong { font-weight: 700; color: var(--text); }
+.section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 8px; }
+
+/* ── HOOK CARD ────────────────────────────────────────── */
+.hook-card { background:var(--navy); color:#fff; border-radius:var(--radius-lg); padding:28px 32px; margin:20px 0 28px; position:relative; overflow:hidden; }
+.hook-card::before { content:''; position:absolute; top:0; right:0; width:180px; height:180px; background:radial-gradient(circle, rgba(200,146,26,.3) 0%, transparent 70%); pointer-events:none; }
+.hook-label { font-size:10px; font-weight:700; letter-spacing:.12em; color:rgba(255,255,255,.5); margin-bottom:10px; }
+.hook-card h1 { color:#fff; margin-bottom:18px; line-height:1.3; }
+.hook-card p { color:rgba(255,255,255,.8); margin-bottom:12px; }
+.hook-stat { display:flex; gap:24px; margin-top:22px; flex-wrap:wrap; }
+.hook-stat-item { text-align:center; }
+.hook-stat-item .num { font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700; color:var(--gold); }
+.hook-stat-item .lbl { font-size:11px; color:rgba(255,255,255,.55); font-weight:500; }
+
+/* ── CALLOUTS ─────────────────────────────────────────── */
+.callout { border-radius:var(--radius); padding:14px 18px; margin:18px 0; border-left:4px solid; }
+.callout.warning { background:var(--amber-light); border-color:var(--amber); }
+.callout.info { background:var(--teal-light); border-color:var(--teal); }
+.callout.danger { background:var(--red-light); border-color:var(--red); }
+.callout.success { background:var(--green-light); border-color:var(--green); }
+.callout .callout-label { font-size:11px; font-weight:700; letter-spacing:.08em; margin-bottom:5px; }
+.callout.warning .callout-label { color:var(--amber); }
+.callout.info .callout-label { color:var(--teal); }
+.callout.danger .callout-label { color:var(--red); }
+.callout.success .callout-label { color:var(--green); }
+.callout p { margin-bottom:0; font-size:14px; }
+
+/* ── OBJECTIVES ───────────────────────────────────────── */
+.objectives-box { background:var(--teal-light); border-left:4px solid var(--teal); border-radius:0 var(--radius) var(--radius) 0; padding:18px 22px; margin:18px 0; }
+.objectives-box h3 { color:var(--teal); font-size:12px; letter-spacing:.05em; margin-bottom:10px; }
+.objectives-box ol { padding-left:20px; }
+.objectives-box li { color:var(--text-secondary); font-size:14.5px; margin-bottom:8px; }
+.objectives-box li:last-child { margin-bottom:0; }
+
+/* ── KNOWLEDGE CHECKS ─────────────────────────────────── */
+.knowledge-check { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:22px; margin:24px 0; box-shadow:var(--shadow-sm); }
+.kc-label { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--navy); background:var(--gold-light); padding:4px 10px; border-radius:20px; margin-bottom:12px; }
+.kc-question { font-size:15px; font-weight:600; color:var(--text); margin-bottom:14px; line-height:1.5; }
+.kc-options { display:flex; flex-direction:column; gap:7px; }
+.kc-option { display:flex; align-items:flex-start; gap:10px; padding:11px 14px; border:1.5px solid var(--border); border-radius:var(--radius); cursor:pointer; transition:all .15s; background:var(--bg); font-size:14px; color:var(--text-secondary); }
+.kc-option:hover:not(.kc-answered .kc-option) { border-color:var(--navy-mid); background:var(--surface-raised); }
+.knowledge-check.kc-answered .kc-option { pointer-events:none; }
+.kc-letter { min-width:22px; height:22px; border-radius:50%; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; margin-top:1px; }
+.kc-option.correct { border-color:var(--green); background:var(--green-light); }
+.kc-option.correct .kc-letter { border-color:var(--green); background:var(--green); color:#fff; }
+.kc-option.incorrect { border-color:var(--red); background:var(--red-light); box-shadow: inset 0 0 0 1px var(--red); }
+.kc-option.incorrect .kc-letter { border-color:var(--red); background:var(--red); color:#fff; }
+.kc-option.incorrect > div:last-child { color:var(--red); font-weight:600; }
+.kc-option.reveal-correct { border-color:var(--green); }
+.kc-option.reveal-correct .kc-letter { border-color:var(--green); color:var(--green); }
+.kc-rationale { margin-top:14px; padding:12px 15px; background:var(--surface-raised); border-radius:var(--radius); font-size:13.5px; color:var(--text-secondary); line-height:1.6; display:none; }
+.kc-rationale .rationale-label { font-weight:700; color:var(--text); font-size:12px; letter-spacing:.04em; margin-bottom:5px; }
+.kc-restart-btn {
+  display: none; margin-top: 12px; padding: 6px 14px;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  background: transparent; color: var(--text-muted);
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  letter-spacing: .03em; transition: all .15s; font-family: 'Space Grotesk', sans-serif;
+}
+.kc-restart-btn:hover { border-color: var(--navy-mid); color: var(--navy); background: var(--surface-raised); }
+.knowledge-check.kc-answered .kc-restart-btn { display: inline-flex; align-items: center; gap: 5px; }
+
+/* ── CHAIN DIAGRAM ────────────────────────────────────── */
+.chain { display:flex; align-items:center; gap:0; margin:22px 0; flex-wrap:wrap; }
+.chain-step { background:var(--navy); color:#fff; padding:12px 18px; border-radius:var(--radius); font-size:13px; font-weight:600; text-align:center; flex:1; min-width:100px; }
+.chain-arrow { color:var(--gold); font-size:20px; padding:0 6px; font-weight:700; flex-shrink:0; }
+
+/* ── CPT TABLE ────────────────────────────────────────── */
+.cpt-table { width:100%; border-collapse:collapse; margin:18px 0; font-size:13.5px; overflow-x:auto; display:block; }
+.cpt-table th { background:var(--navy); color:#fff; padding:10px 14px; text-align:left; font-size:12px; font-weight:600; white-space:nowrap; }
+.cpt-table td { padding:10px 14px; border-bottom:1px solid var(--border-light); vertical-align:top; color:var(--text-secondary); }
+.cpt-table tr:last-child td { border-bottom:none; }
+.cpt-table tr:nth-child(even) td { background:var(--surface-raised); }
+.cpt-code { font-family:monospace; font-weight:700; color:var(--navy); font-size:14px; }
+
+/* ── ERROR LIST ───────────────────────────────────────── */
+.error-list { list-style:none; padding:0; margin:18px 0; }
+.error-item { display:flex; gap:14px; padding:14px 16px; border-radius:var(--radius); margin-bottom:8px; background:var(--surface); border:1px solid var(--border); align-items:flex-start; }
+.error-num { min-width:28px; height:28px; background:var(--red); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; margin-top:2px; }
+.error-title { font-weight:700; font-size:14px; color:var(--text); margin-bottom:3px; }
+.error-desc { font-size:13.5px; color:var(--text-secondary); }
+
+/* ── WORKED EXAMPLE ───────────────────────────────────── */
+.example-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0; }
+@media (max-width:600px) { .example-grid { grid-template-columns:1fr; } }
+.example-card { border-radius:var(--radius-lg); overflow:hidden; border:1.5px solid var(--border); }
+.example-header { padding:14px 18px; font-size:13px; font-weight:700; display:flex; align-items:center; gap:8px; }
+.example-fail .example-header { background:var(--red); color:#fff; }
+.example-pass .example-header { background:var(--green); color:#fff; }
+.example-body { padding:16px 18px; background:var(--surface); font-size:13px; color:var(--text-secondary); line-height:1.65; min-height:260px; }
+.example-body .note-field { margin-bottom:7px; }
+.example-body .note-label { font-weight:700; color:var(--text); font-size:11.5px; letter-spacing:.03em; }
+.example-body .err { background:var(--red-light); padding:1px 4px; border-radius:3px; color:var(--red); font-weight:600; }
+.example-body .ok { background:var(--green-light); padding:1px 4px; border-radius:3px; color:var(--green); font-weight:600; }
+
+/* ── SCENARIO ─────────────────────────────────────────── */
+.scenario-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; margin:18px 0; }
+.scenario-header { background:var(--navy); color:#fff; padding:16px 22px; }
+.scenario-header h3 { font-size:15px; color:#fff; margin:0; }
+.scenario-header p { font-size:12px; color:rgba(255,255,255,.65); margin:3px 0 0; }
+.scenario-body { padding:22px; }
+.scenario-body p { font-size:14.5px; }
+.decision-point { margin:18px 0; border:1.5px solid var(--gold); border-radius:var(--radius); overflow:hidden; }
+.decision-label { background:var(--gold); color:#fff; padding:7px 16px; font-size:12px; font-weight:700; letter-spacing:.05em; }
+.decision-question { padding:12px 16px 8px; font-weight:600; font-size:14.5px; }
+.decision-answer { padding:0 16px 12px; font-size:13.5px; color:var(--text-secondary); }
+.decision-answer .answer-label { color:var(--teal); font-weight:700; font-size:12px; letter-spacing:.04em; margin-bottom:4px; }
+
+/* ── JOB AID ──────────────────────────────────────────── */
+.job-aid-box { background:var(--surface); border:2px solid var(--navy); border-radius:var(--radius-lg); overflow:hidden; margin:18px 0; }
+.job-aid-header { background:var(--navy); color:#fff; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; }
+.job-aid-header h3 { font-size:15px; color:#fff; margin:0; }
+.job-aid-header .print-hint { font-size:11px; color:rgba(255,255,255,.55); }
+.job-aid-section { padding:14px 20px; border-bottom:1px solid var(--border-light); }
+.job-aid-section:last-child { border-bottom:none; }
+.job-aid-section-label { font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--text-muted); margin-bottom:8px; }
+.checklist { list-style:none; padding:0; }
+.checklist li { display:flex; align-items:flex-start; gap:10px; padding:5px 0; font-size:13.5px; color:var(--text-secondary); border-bottom:1px solid var(--border-light); }
+.checklist li:last-child { border-bottom:none; }
+.check-box { width:16px; height:16px; border:1.5px solid var(--border); border-radius:3px; flex-shrink:0; margin-top:2px; }
+.job-aid-footer { background:var(--red-light); padding:10px 20px; font-size:12.5px; color:var(--red); font-weight:600; border-top:1px solid rgba(192,57,43,.2); }
+
+/* ── QUIZ ─────────────────────────────────────────────── */
+.quiz-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; margin:16px 0; box-shadow:var(--shadow-md); }
+.quiz-header { background:var(--navy); padding:18px 22px; }
+.quiz-header h2 { color:#fff; font-size:18px; margin:0; }
+.quiz-header p { color:rgba(255,255,255,.65); font-size:13px; margin:3px 0 0; }
+.quiz-body { padding:22px; }
+.quiz-q { margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid var(--border-light); }
+.quiz-q:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.quiz-q-num { font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--text-muted); margin-bottom:7px; }
+.quiz-q-text { font-size:15px; font-weight:600; color:var(--text); margin-bottom:12px; line-height:1.5; }
+.quiz-options { display:flex; flex-direction:column; gap:7px; }
+.quiz-option { display:flex; align-items:flex-start; gap:10px; padding:11px 14px; border:1.5px solid var(--border); border-radius:var(--radius); cursor:pointer; transition:all .15s; background:var(--bg); text-align:left; width:100%; font-family:inherit; }
+.quiz-option:hover:not([disabled]) { border-color:var(--navy-mid); background:var(--surface-raised); }
+.quiz-option[disabled] { cursor:default; }
+.quiz-option.selected { border-color:var(--navy); background:var(--surface-raised); }
+.quiz-option.correct { border-color:var(--green); background:var(--green-light); }
+.quiz-option.incorrect { border-color:var(--red); background:var(--red-light); box-shadow: inset 0 0 0 1px var(--red); }
+.quiz-opt-letter { min-width:24px; height:24px; border-radius:50%; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; color:var(--text-secondary); transition:all .15s; }
+.quiz-option.selected .quiz-opt-letter { border-color:var(--navy); background:var(--navy); color:#fff; }
+.quiz-option.correct .quiz-opt-letter { border-color:var(--green); background:var(--green); color:#fff; }
+.quiz-option.incorrect .quiz-opt-letter { border-color:var(--red); background:var(--red); color:#fff; }
+.quiz-option-text { font-size:14px; color:var(--text-secondary); line-height:1.5; padding-top:2px; }
+.quiz-option.correct .quiz-option-text { color:var(--text); }
+.quiz-option.incorrect .quiz-option-text { color:var(--red); font-weight:600; }
+.quiz-rationale { margin-top:10px; padding:11px 14px; background:var(--surface-raised); border-radius:var(--radius-sm); font-size:13px; color:var(--text-secondary); line-height:1.6; display:none; }
+.quiz-rationale .rat-label { font-weight:700; color:var(--text); font-size:11.5px; letter-spacing:.04em; margin-bottom:4px; }
+.quiz-result { display:none; margin-top:20px; padding:24px; border-radius:var(--radius-lg); text-align:center; }
+.quiz-result.pass { background:var(--green-light); border:1.5px solid var(--green); }
+.quiz-result.fail { background:var(--amber-light); border:1.5px solid var(--amber); }
+.result-score { font-family:'Space Grotesk',sans-serif; font-size:40px; font-weight:700; margin-bottom:6px; }
+.quiz-result.pass .result-score { color:var(--green); }
+.quiz-result.fail .result-score { color:var(--amber); }
+.result-label { font-size:16px; font-weight:700; color:var(--text); }
+.result-sub { font-size:13px; color:var(--text-secondary); margin-top:4px; }
+.result-actions { margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.result-retry { padding:10px 20px; background:var(--surface-raised); color:var(--text-secondary); border:1.5px solid var(--border); border-radius:var(--radius); font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; cursor:pointer; transition:all .15s; }
+.result-retry:hover { border-color:var(--navy); color:var(--navy); background:var(--surface); }
+.result-retake { padding:10px 20px; background:var(--navy); color:#fff; border:none; border-radius:var(--radius); font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; cursor:pointer; transition:all .15s; }
+.result-retake:hover { background:var(--navy-mid); transform:translateY(-1px); }
+.study-suggestions { margin-top:16px; text-align:left; padding:14px 16px; background:var(--surface-raised); border-radius:var(--radius); border-left:3px solid var(--amber); }
+.study-label { font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--amber); margin-bottom:8px; }
+.study-item { font-size:14px; color:var(--text-secondary); padding:3px 0; font-weight:500; }
+
+/* ── CONFETTI ─────────────────────────────────────────── */
+@keyframes confettiFall {
+  0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(calc(100vh + 60px)) rotate(540deg); }
+}
+</style>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-brand">Care<span>Guard</span> CADA</div>
+  <div class="top-bar-divider"></div>
+  <div class="top-bar-title">Module 1 of 6</div>
+  <div class="top-bar-right">
+    <span class="top-bar-badge" id="topBadge">In Progress</span>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrapper">
+  <span class="progress-label">MODULE PROGRESS</span>
+  <div class="progress-bar-track">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+  <span class="progress-pct" id="progressPct">2%</span>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-title">MODULE CONTENTS</div>
+    <div class="sidebar-nav" id="sidebarNav">
+      <a><span class="sidebar-dot" id="sd-0">1</span>Introduction</a>
+      <a><span class="sidebar-dot" id="sd-1">2</span>Learning Objectives</a>
+      <a><span class="sidebar-dot" id="sd-2">3</span>What Documentation Is</a>
+      <a><span class="sidebar-dot" id="sd-3">4</span>Documentation Chain</a>
+      <a><span class="sidebar-dot" id="sd-4">5</span>Required Elements</a>
+      <a><span class="sidebar-dot" id="sd-5">6</span>The 9 Common Errors</a>
+      <a><span class="sidebar-dot" id="sd-6">7</span>Signatures and Timing</a>
+      <a><span class="sidebar-dot" id="sd-7">8</span>Worked Example</a>
+      <a><span class="sidebar-dot" id="sd-8">9</span>Module Scenario</a>
+      <a><span class="sidebar-dot" id="sd-9">10</span>Job Aid</a>
+      <a><span class="sidebar-dot" id="sd-10">11</span>Module Quiz</a>
+    </div>
+  </nav>
+
+  <!-- SECTION STAGE -->
+  <main class="main">
+    <div class="section-stage">
+
+      <!-- 0: HOOK -->
+      <section class="module-section ms-active ms-entering" id="sec-0">
+        <div class="section-eyebrow">MODULE 1 — CONSEQUENCE HOOK</div>
+        <div class="hook-card">
+          <div class="hook-label">REAL AUDIT SCENARIO</div>
+          <h1>The ABA Documentation Standard</h1>
+          <p>In 2024, a mid-sized ABA clinic in Colorado received a Medicaid post-payment audit covering 18 months of services. The clinic employed four RBTs and two BCBAs. By every visible measure, it was a functioning, well-run operation.</p>
+          <p>The auditor reviewed 97153 session notes across a sample of clients. What she found was not fraud. No one fabricated sessions. Every client was present. Every RBT showed up and did their job.</p>
+          <p>What she found was that more than half of the session notes did not contain a specific, named target program description. Notes said things like "worked on DTT targets" and "practiced communication skills." None of those phrases tell an auditor which target program from the treatment plan was addressed. None of them create a verifiable link between the session delivered and the authorized treatment plan on file.</p>
+          <p><strong>The documentation coordinator had been with the clinic for two years. She was not negligent. She was untrained.</strong></p>
+          <div class="hook-stat">
+            <div class="hook-stat-item"><div class="num">4</div><div class="lbl">states audited by OIG</div></div>
+            <div class="hook-stat-item"><div class="num">100%</div><div class="lbl">error rate across all 4</div></div>
+            <div class="hook-stat-item"><div class="num">$500M+</div><div class="lbl">improper payments found</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1: OBJECTIVES -->
+      <section class="module-section" id="sec-1">
+        <div class="section-eyebrow">WHAT YOU WILL LEARN</div>
+        <h2>Learning Objectives</h2>
+        <p>After completing this module you will be able to:</p>
+        <div class="objectives-box">
+          <h3>OBJECTIVES</h3>
+          <ol>
+            <li>Explain what ABA session documentation is in a legal and billing context, and why it functions as evidence rather than a clinical record</li>
+            <li>Identify the required elements of a defensible session note for CPT codes 97153, 97154, 97155, 97156, 97157, and 97158</li>
+            <li>Trace the documentation chain from session note through treatment plan through authorization through billed claim, and identify where a break generates an audit finding</li>
+            <li>Recognize the nine most common RBT documentation errors that appear in federal OIG audit findings and explain why each one creates billing exposure</li>
+          </ol>
+        </div>
+        <div class="callout info">
+          <div class="callout-label">HOW TO USE THIS MODULE</div>
+          <p>Each section ends with knowledge checks. Answer them to unlock the next section. The module quiz at the end is graded and requires 80% to pass. Use the Next and Back buttons below to move through the module at your own pace.</p>
+        </div>
+      </section>
+
+      <!-- 2: SECTION 1 (KCs 0, 1) -->
+      <section class="module-section" id="sec-2">
+        <div class="section-eyebrow">SECTION 1 OF 5</div>
+        <h2>What Documentation Actually Is</h2>
+        <p>Most people working in ABA think of session notes as a clinical record. Something a BCBA reviews to track progress. A log of what happened in the session.</p>
+        <p>That understanding is not wrong. But it is incomplete in a way that creates enormous financial risk for every clinic where it goes uncorrected.</p>
+        <div class="callout danger">
+          <div class="callout-label">AUDIT REALITY</div>
+          <p>In a Medicaid billing context, a session note is <strong>legal documentation of a commercial transaction</strong>. It is evidence that a service was delivered, that the person who delivered it was qualified, that the service matched what was authorized, and that the documentation meets the regulatory requirements of the payer.</p>
+        </div>
+        <p>When a Medicaid auditor reviews a session note, she is not asking whether it is a good clinical record. She is asking whether it constitutes sufficient evidence that a reimbursable service was delivered as billed. Those are different questions, and the answer to one does not guarantee the answer to the other.</p>
+        <p>A session note can be clinically detailed, clearly written, and genuinely useful to the BCBA — and still generate an audit finding because it is missing a required element the payer defines as necessary proof of service.</p>
+        <div class="callout info">
+          <div class="callout-label">OIG CONTEXT</div>
+          <p>The HHS Office of Inspector General audited ABA Medicaid billing in Indiana, Wisconsin, Maine, and Colorado. Across all four states, every sampled review period showed at least one improper or potentially improper payment. The most common finding was not fraud — it was documentation that did not meet payer requirements.</p>
+        </div>
+
+        <div class="knowledge-check" data-kc-idx="0">
+          <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+          <div class="kc-question">A well-written clinical session note describes a client's progress in detail but does not include the specific target program name from the treatment plan. It is submitted with a 97153 claim. What is the most likely audit outcome?</div>
+          <div class="kc-options" id="kc-opts-0"></div>
+          <div class="kc-rationale" id="kc-rat-0"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+
+        <div class="knowledge-check" data-kc-idx="1">
+          <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+          <div class="kc-question">Which of the following best describes the primary function of a session note in an ABA Medicaid billing context?</div>
+          <div class="kc-options" id="kc-opts-1"></div>
+          <div class="kc-rationale" id="kc-rat-1"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+      </section>
+
+      <!-- 3: SECTION 2 (KCs 2, 3) -->
+      <section class="module-section" id="sec-3">
+        <div class="section-eyebrow">SECTION 2 OF 5</div>
+        <h2>The Documentation Chain</h2>
+        <p>ABA billing works as a chain. Each link must exist and must connect to the next. When any link is broken or missing, the chain fails — and in a Medicaid audit, a broken chain means the payment for that service is not supported.</p>
+        <div class="chain">
+          <div class="chain-step">Treatment<br>Plan</div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-step">Authorization</div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-step">Session<br>Note</div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-step">Billed<br>Claim</div>
+        </div>
+        <p><strong>The Treatment Plan</strong> establishes what services have been clinically recommended. It identifies the specific target programs, goals, intervention strategies, and authorized providers.</p>
+        <p><strong>The Authorization</strong> is the payer's approval to deliver and bill for those services. It specifies the CPT codes covered, units approved, the date range, and eligible providers.</p>
+        <p><strong>The Session Note</strong> documents what was actually delivered. It must connect backward to the treatment plan (by naming the specific target programs) and to the authorization (by being delivered within the authorized date range).</p>
+        <p><strong>The Billed Claim</strong> is the financial transaction submitted to the payer. The payer matches the claim against the authorization and may review the session note.</p>
+        <div class="callout warning">
+          <div class="callout-label">MOST COMMON CHAIN BREAKS</div>
+          <p>Session note does not name specific target programs from the treatment plan · Session delivered after authorization expiration · Billed code does not match the documented service · Session note references a target not in the current treatment plan</p>
+        </div>
+
+        <div class="knowledge-check" data-kc-idx="2">
+          <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+          <div class="kc-question">A session note for a 97153 service is submitted on September 15. The client's authorization covers 97153 units through August 31. What is the documentation issue?</div>
+          <div class="kc-options" id="kc-opts-2"></div>
+          <div class="kc-rationale" id="kc-rat-2"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+
+        <div class="knowledge-check" data-kc-idx="3">
+          <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+          <div class="kc-question">Which of the following session note entries best demonstrates a clean link to the treatment plan?</div>
+          <div class="kc-options" id="kc-opts-3"></div>
+          <div class="kc-rationale" id="kc-rat-3"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+      </section>
+
+      <!-- 4: SECTION 3 (KCs 4, 5) -->
+      <section class="module-section" id="sec-4">
+        <div class="section-eyebrow">SECTION 3 OF 5</div>
+        <h2>Required Elements by CPT Code</h2>
+        <p>Each ABA CPT code has specific documentation requirements tied to what that code represents. The requirements are not interchangeable.</p>
+        <div style="overflow-x:auto">
+          <table class="cpt-table">
+            <thead><tr><th>Code</th><th>Description</th><th>Key Documentation Requirement</th></tr></thead>
+            <tbody>
+              <tr><td><span class="cpt-code">97153</span></td><td>Adaptive Behavior Treatment by Protocol, Direct</td><td>Named target programs + objective trial data + prompt levels + start/end times + provider and supervisor identified</td></tr>
+              <tr><td><span class="cpt-code">97154</span></td><td>Group Adaptive Behavior Treatment by Protocol</td><td>All 97153 elements PLUS names and identifiers of all group members present</td></tr>
+              <tr><td><span class="cpt-code">97155</span></td><td>Adaptive Behavior Treatment with Protocol Modification</td><td>All 97153 elements PLUS the specific protocol modification made AND clinical rationale AND BCBA direct participation documented</td></tr>
+              <tr><td><span class="cpt-code">97156</span></td><td>Family Adaptive Behavior Treatment Guidance</td><td>Family member name and relationship + specific strategies trained + caregiver demonstration or practice + implementation plan</td></tr>
+              <tr><td><span class="cpt-code">97157</span></td><td>Multiple-Family Group Treatment Guidance</td><td>All 97156 elements PLUS names of all families present</td></tr>
+              <tr><td><span class="cpt-code">97158</span></td><td>Group Adaptive Behavior Treatment</td><td>All 97155 elements PLUS group member documentation</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout danger">
+          <div class="callout-label">97155 OVERBILLING ALERT</div>
+          <p>97155 requires in-session <strong>protocol modification</strong> — not just BCBA presence, not supervision, specifically a modification to the treatment protocol with documented clinical reasoning. If a BCBA is present and supervising but no protocol modification occurs, the service is 97153 not 97155. This is one of the most commonly misbilled codes in ABA.</p>
+        </div>
+
+        <div class="knowledge-check" data-kc-idx="4">
+          <div class="kc-label">KNOWLEDGE CHECK — NOTE ON CLINICAL AMBIGUITY</div>
+          <div class="kc-question">A BCBA is present during a session and verbally redirects the RBT to increase the prompt level. The session is billed as 97155. Is this correct?</div>
+          <div class="kc-options" id="kc-opts-4"></div>
+          <div class="kc-rationale" id="kc-rat-4"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+
+        <div class="knowledge-check" data-kc-idx="5">
+          <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+          <div class="kc-question">A 97156 session note reads: "BCBA met with mother for one hour. Discussed client's current progress and upcoming IEP meeting." Is this note sufficient?</div>
+          <div class="kc-options" id="kc-opts-5"></div>
+          <div class="kc-rationale" id="kc-rat-5"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+      </section>
+
+      <!-- 5: SECTION 4 (KCs 6, 7) -->
+      <section class="module-section" id="sec-5">
+        <div class="section-eyebrow">SECTION 4 OF 5</div>
+        <h2>The Nine Most Common Errors</h2>
+        <p>These nine errors appear repeatedly across OIG audit findings. A documentation coordinator who can identify all nine — and catch them before submission — prevents the category of financial loss that ends clinics.</p>
+        <ul class="error-list">
+          <li class="error-item"><div class="error-num">1</div><div class="error-content"><div class="error-title">Vague target program description</div><div class="error-desc">"Worked on communication targets" is not a target program description. "Addressed Vocal Manding for Preferred Items (Target 3B)" is. The note must name the specific target from the treatment plan. This is the single most common finding across all four OIG audit states.</div></div></li>
+          <li class="error-item"><div class="error-num">2</div><div class="error-content"><div class="error-title">Missing or estimated start and end times</div><div class="error-desc">All ABA codes are billed in 15-minute units. "Afternoon session" or "approximately 2:00 to 4:00" is not sufficient. If documented time does not support units billed, the claim is unsupported.</div></div></li>
+          <li class="error-item"><div class="error-num">3</div><div class="error-content"><div class="error-title">Narrative data instead of objective data</div><div class="error-desc">"Client did great today" is not data. "Client achieved 85% accuracy across 20 trials with no prompting" is data. Notes that describe performance narratively cannot demonstrate treatment plan implementation occurred.</div></div></li>
+          <li class="error-item"><div class="error-num">4</div><div class="error-content"><div class="error-title">Session note written significantly after the service date</div><div class="error-desc">Notes timestamped days after service raise credibility questions and can expand a focused audit into a full retrospective review. Best practice is same-day completion.</div></div></li>
+          <li class="error-item"><div class="error-num">5</div><div class="error-content"><div class="error-title">Missing technician signature</div><div class="error-desc">An unsigned session note is legally incomplete regardless of its content. The signature establishes who delivered the service and attests to the accuracy of documented information.</div></div></li>
+          <li class="error-item"><div class="error-num">6</div><div class="error-content"><div class="error-title">Missing or inadequate supervising BCBA documentation</div><div class="error-desc">97153 services require the supervising BCBA to be identified by name and credential. "Supervision provided" without a name and credential is insufficient.</div></div></li>
+          <li class="error-item"><div class="error-num">7</div><div class="error-content"><div class="error-title">Session note references programs not in the current treatment plan</div><div class="error-desc">When a treatment plan is updated, some targets are retired. If an RBT addresses a retired target, the session note references a program not authorized under the current clinical plan. The documentation chain breaks.</div></div></li>
+          <li class="error-item"><div class="error-num">8</div><div class="error-content"><div class="error-title">Billing code documented on the note does not match the service delivered</div><div class="error-desc">When a note documents one code and the claim is submitted under another, the discrepancy is a red flag in any audit. Verify the CPT code on the note matches the actual service delivered.</div></div></li>
+          <li class="error-item"><div class="error-num">9</div><div class="error-content"><div class="error-title">Undocumented behavioral incidents</div><div class="error-desc">When a client engages in a significant behavioral incident during a session and that incident is not documented, the documentation is incomplete. If it happened, it belongs in the note — factually, without interpretation.</div></div></li>
+        </ul>
+
+        <div class="knowledge-check" data-kc-idx="6">
+          <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+          <div class="kc-question">A note reads: "Marcus worked on his programs. He had a great session and made good progress. RBT signature: J. Smith." Which errors does this note exhibit?</div>
+          <div class="kc-options" id="kc-opts-6"></div>
+          <div class="kc-rationale" id="kc-rat-6"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+
+        <div class="knowledge-check" data-kc-idx="7">
+          <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+          <div class="kc-question">An RBT submits a session note for a Monday session. The EHR timestamp shows the note was finalized Friday — four days later. The content is otherwise complete. What is the concern?</div>
+          <div class="kc-options" id="kc-opts-7"></div>
+          <div class="kc-rationale" id="kc-rat-7"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+      </section>
+
+      <!-- 6: SECTION 5 (KCs 8, 9) -->
+      <section class="module-section" id="sec-6">
+        <div class="section-eyebrow">SECTION 5 OF 5</div>
+        <h2>Signatures, Timestamps, and State Deadlines</h2>
+        <p>Documentation requirements have three dimensions that vary: who must sign, when the note must be completed, and what the state-specific Medicaid rules require.</p>
+        <div class="callout success">
+          <div class="callout-label">SIGNATURE STANDARD</div>
+          <p>Every ABA session note requires at minimum the signature of the person who delivered the service, with their printed name and credential. For services delivered by an RBT, most payers also require the supervising BCBA to be identified by name and credential. Some require a co-signature from the supervising BCBA on individual RBT notes.</p>
+        </div>
+        <p><strong>Timestamps matter.</strong> Electronic health records generate system timestamps when notes are created, edited, and finalized. These are visible to auditors and are compared against the documented service time. A note whose timestamp shows it was created three days after the documented service date will be questioned regardless of content.</p>
+        <div class="callout info">
+          <div class="callout-label">STATE DEADLINE VARIATION</div>
+          <p>Medicaid documentation deadline requirements are set at the state level. The range across states goes from same-day to 30 days. Most states fall in the 24-hour to 7-day range. <strong>Best practice: same-day completion regardless of payer or state.</strong> This eliminates timeliness risk entirely and produces a timestamp pattern that reflects professional documentation practices.</p>
+        </div>
+
+        <div class="knowledge-check" data-kc-idx="8">
+          <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+          <div class="kc-question">A clinic's state Medicaid deadline is 7 days. A commercial payer contract requires notes within 48 hours. For a client with both coverages, what is the effective deadline?</div>
+          <div class="kc-options" id="kc-opts-8"></div>
+          <div class="kc-rationale" id="kc-rat-8"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+
+        <div class="knowledge-check" data-kc-idx="9">
+          <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+          <div class="kc-question">Which of the following represents best practice for session note completion timing?</div>
+          <div class="kc-options" id="kc-opts-9"></div>
+          <div class="kc-rationale" id="kc-rat-9"></div>
+          <button class="kc-restart-btn" onclick="restartKC(this)">↺ Try again</button>
+        </div>
+      </section>
+
+      <!-- 7: WORKED EXAMPLE -->
+      <section class="module-section" id="sec-7">
+        <div class="section-eyebrow">PART 4 — WORKED EXAMPLE</div>
+        <h2>Side by Side: Note A vs. Note B</h2>
+        <p>Two 97153 session notes from the same clinic, same RBT, same week. One survives an audit. One generates a finding.</p>
+        <div class="example-grid">
+          <div class="example-card example-fail">
+            <div class="example-header">✗ NOTE A — Generates a Finding</div>
+            <div class="example-body">
+              <div class="note-field"><span class="note-label">Date:</span> November 18, 2026</div>
+              <div class="note-field"><span class="note-label">Provider:</span> J. Rivera, RBT</div>
+              <div class="note-field"><span class="note-label">Session time:</span> <span class="err">Afternoon</span></div>
+              <div class="note-field"><span class="note-label">Client:</span> D.M.</div><br>
+              <div class="note-field"><span class="err">Worked on communication and behavior programs today.</span> Client had a good session overall. <span class="err">Some challenging behavior in the first part of session but he calmed down.</span> <span class="err">Good progress on targets.</span> Will continue next session.</div><br>
+              <div class="note-field"><span class="note-label">Signature:</span> J. Rivera</div><br>
+              <div style="font-size:11.5px;color:var(--red);border-top:1px solid var(--red-light);padding-top:8px;margin-top:4px;">
+                ✗ No exact times → units unsupported<br>
+                ✗ No target names → chain to plan broken<br>
+                ✗ Narrative only → no objective data<br>
+                ✗ Incident undocumented → Error 9<br>
+                ✗ No supervising BCBA identified
+              </div>
+            </div>
+          </div>
+          <div class="example-card example-pass">
+            <div class="example-header">✓ NOTE B — Survives an Audit</div>
+            <div class="example-body">
+              <div class="note-field"><span class="note-label">Date:</span> November 18, 2026</div>
+              <div class="note-field"><span class="note-label">Start:</span> <span class="ok">2:00 PM</span> <span class="note-label">End:</span> <span class="ok">4:00 PM (8 units, 97153)</span></div>
+              <div class="note-field"><span class="note-label">Client:</span> D.M. (ID: 00147)</div>
+              <div class="note-field"><span class="note-label">BCBA:</span> <span class="ok">A. Chen, BCBA — direct observation 2:45 to 3:30 PM</span></div><br>
+              <div class="note-field"><span class="ok">Target 1: Vocal Manding for Preferred Items (Target 3B, TP 09/01/2026)</span></div>
+              <div class="note-field"><span class="ok">Data: 14/20 correct (70%), FP ×4, PP ×2, NP ×14</span></div><br>
+              <div class="note-field"><span class="ok">Target 2: Listener Responding by FFC (Target 5A, TP 09/01/2026)</span></div>
+              <div class="note-field"><span class="ok">Data: 8/12 correct (67%), independent ×8, gestural ×4</span></div><br>
+              <div class="note-field"><span class="ok">Behavioral note: Table slapping at 2:12 PM (~5 occurrences, 90 sec). Planned ignoring per BIP. Ceased by 2:14 PM. No injury. BCBA notified at 2:45 PM.</span></div><br>
+              <div style="font-size:11.5px;color:var(--green);border-top:1px solid var(--green-light);padding-top:8px;margin-top:4px;">
+                ✓ Exact times → all 8 units verified<br>
+                ✓ Named targets + TP reference → chain intact<br>
+                ✓ Trial data with prompt levels → standard met<br>
+                ✓ Incident documented per BIP → complete<br>
+                ✓ BCBA identified with supervision details
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8: SCENARIO -->
+      <section class="module-section" id="sec-8">
+        <div class="section-eyebrow">PART 5 — MODULE SCENARIO</div>
+        <h2>Documentation Coordinator: Friday Submission Review</h2>
+        <div class="scenario-card">
+          <div class="scenario-header">
+            <h3>The Situation</h3>
+            <p>California ABA clinic, 48 clients, Friday claim submission deadline</p>
+          </div>
+          <div class="scenario-body">
+            <p>You are a newly hired documentation coordinator. The clinic serves 48 active clients across three BCBAs and nine RBTs. You are starting your second week and have been asked to review last week's 97153 notes before Friday claim submission. You pull them up in PrioraCare EHR.</p>
+            <div class="decision-point">
+              <div class="decision-label">DECISION POINT 1</div>
+              <div class="decision-question">RBT Marcus Thompson submitted 12 notes. All reference "worked on Marcus's behavior programs" without naming specific targets. Times, signatures, and BCBA documentation are all present. Notes were completed within 24 hours. Do you submit?</div>
+              <div class="decision-answer"><div class="answer-label">CORRECT ACTION</div>Flag for Marcus to correct before Friday. The supervision and timing documentation is correct, but the missing target program names are a documentation deficiency that creates audit exposure. Submitting as-is passes the financial risk to the clinic. Contact Marcus, ask him to add specific target names and trial data, verify corrections, then submit.</div>
+            </div>
+            <div class="decision-point">
+              <div class="decision-label">DECISION POINT 2</div>
+              <div class="decision-question">RBT Amelia Torres submitted two notes referencing "Target 7: Requesting with an AAC Device." You pull the current treatment plan. Target 7 was discontinued in the September 1 update. Notes are otherwise complete. Can you submit?</div>
+              <div class="decision-answer"><div class="answer-label">CORRECT ACTION</div>Do not submit. The notes reference a target not in the current treatment plan. Even with complete documentation otherwise, the chain between the session note and the treatment plan is broken. Contact the supervising BCBA to review whether services were delivered to the current Target 7a protocol. Do not submit until the treatment plan link is verified and corrected.</div>
+            </div>
+            <div class="decision-point">
+              <div class="decision-label">DECISION POINT 3</div>
+              <div class="decision-question">The BCBA tells you two clients had their authorizations expire November 15. Sessions were delivered November 16, 17, and 18. Notes are complete and accurate. Do you submit the claims?</div>
+              <div class="decision-answer"><div class="answer-label">CORRECT ACTION</div>Do not submit. Services delivered after authorization expiration are not covered regardless of documentation quality. Hold the November 16 through 18 claims, document the authorization status issue, and work with the BCBA and billing team to pursue an emergency authorization renewal. If a retroactive renewal is approved covering those dates, submit at that time with the renewal authorization number.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9: JOB AID -->
+      <section class="module-section" id="sec-9">
+        <div class="section-eyebrow">PART 6 — JOB AID</div>
+        <h2>CADA Session Note Audit Checklist</h2>
+        <p>Use this checklist before every claim submission. Available as a printable PDF in your dashboard.</p>
+        <div class="job-aid-box">
+          <div class="job-aid-header"><h3>CADA Session Note Audit Checklist</h3><span class="print-hint">Download PDF from your dashboard</span></div>
+          <div class="job-aid-section">
+            <div class="job-aid-section-label">SECTION A — UNIVERSAL REQUIRED ELEMENTS (all codes)</div>
+            <ul class="checklist">
+              <li><div class="check-box"></div>Date of service documented</li>
+              <li><div class="check-box"></div>Exact start time and exact end time documented</li>
+              <li><div class="check-box"></div>Client name and identifier present</li>
+              <li><div class="check-box"></div>CPT code documented on the note</li>
+              <li><div class="check-box"></div>At least one specific named target program from the current treatment plan</li>
+              <li><div class="check-box"></div>Objective data for each target program (trials, accuracy, prompt level)</li>
+              <li><div class="check-box"></div>Provider signature with printed name and credential</li>
+              <li><div class="check-box"></div>Supervising BCBA identified by printed name and credential</li>
+              <li><div class="check-box"></div>Behavioral incidents (if any) documented factually with time, description, intervention, and outcome</li>
+              <li><div class="check-box"></div>Note completed within payer deadline</li>
+            </ul>
+          </div>
+          <div class="job-aid-section">
+            <div class="job-aid-section-label">SECTION B — CODE-SPECIFIC CHECKS</div>
+            <ul class="checklist">
+              <li><div class="check-box"></div><strong>97154 / 97158:</strong> Group member names and identifiers documented</li>
+              <li><div class="check-box"></div><strong>97155:</strong> Specific protocol modification documented with clinical rationale; BCBA direct participation noted</li>
+              <li><div class="check-box"></div><strong>97156 / 97157:</strong> Family member names and relationships; strategies trained; caregiver demonstration; implementation plan; group members (97157 only)</li>
+            </ul>
+          </div>
+          <div class="job-aid-footer">⚠ If any element in Section A is missing — do not submit. Return for correction before claim submission.</div>
+        </div>
+      </section>
+
+      <!-- 10: QUIZ -->
+      <section class="module-section" id="sec-10">
+        <div class="section-eyebrow">PART 7 — GRADED ASSESSMENT</div>
+        <h2>Module 1 Quiz</h2>
+        <p>5 questions · Answers shuffle on every attempt · Select the best answer for each, then submit when ready.</p>
+        <div class="quiz-card">
+          <div class="quiz-header"><h2>Module 1 Quiz</h2><p>5 questions · Select one answer per question · Submit when ready</p></div>
+          <div class="quiz-body">
+            <div id="quizQuestionsContainer"></div>
+            <div class="quiz-result" id="quizResult">
+              <div class="result-score" id="resultScore"></div>
+              <div class="result-label" id="resultLabel"></div>
+              <div class="result-sub" id="resultSub"></div>
+              <div id="studySuggestionsContainer"></div>
+              <div class="result-actions">
+                <button class="result-retake" id="resultRetake" onclick="retakeQuiz()" style="display:none">↺ Retake Quiz</button>
+                <button class="result-retry" id="resultRetry" onclick="retryModule()" style="display:none">Review Module from Beginning</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="btn-back" id="btnBack" disabled>← Back</button>
+  <div class="nav-info">
+    <div class="nav-counter" id="navCounter">1 of 11</div>
+    <div class="nav-title" id="navTitle">Introduction</div>
+    <div class="nav-dots" id="navDots"></div>
+  </div>
+  <button class="btn-next" id="btnNext">Next →</button>
+</div>
+
+<script>
+// ── CONSTANTS ─────────────────────────────────────────
+const TOTAL = 11;
+const SECTION_NAMES = [
+  'Introduction','Learning Objectives','What Documentation Is',
+  'The Documentation Chain','Required Elements by Code',
+  'The 9 Common Errors','Signatures and Timing',
+  'Worked Example','Module Scenario','Job Aid','Module Quiz'
+];
+const SECTION_KCS = { 2:[0,1], 3:[2,3], 4:[4,5], 5:[6,7], 6:[8,9] };
+const LETTERS = ['A','B','C','D'];
+
+// ── KC DATA ───────────────────────────────────────────
+// Correct answers intentionally placed at varied source positions:
+// KC0=idx0(A) KC1=idx3(D) KC2=idx2(C) KC3=idx1(B) KC4=idx3(D)
+// KC5=idx0(A) KC6=idx1(B) KC7=idx3(D) KC8=idx2(C) KC9=idx0(A)
+// Fisher-Yates shuffle further randomizes on every load/retake/restart.
+// On restart, the previous correct letter is excluded so the answer
+// always lands on a different letter than last time.
+const KC_DATA = [
+  { // KC 0
+    answers: [
+      { text: `The note may be flagged because it cannot link the delivered service to the authorized treatment plan`, correct: true,
+        rationale: `Correct. Medicaid auditors verify that documented services link directly to authorized treatment plan goals. Without naming the specific target program, the note cannot establish that link — regardless of how detailed the clinical description is.` },
+      { text: `The note will be accepted because the clinical detail demonstrates service was delivered`, correct: false,
+        rationale: `Clinical detail is not a substitute for the required billing elements. An auditor needs a verifiable link to the authorized treatment plan, which requires naming specific target programs.` },
+      { text: `The note will be accepted as long as the BCBA reviewed it`, correct: false,
+        rationale: `BCBA review does not change the payer's documentation requirements. Even a BCBA-reviewed note must contain the payer-required elements to survive an audit.` },
+      { text: `The note will be flagged only if the total billing exceeds the authorized units`, correct: false,
+        rationale: `Unit count is a separate issue from note content requirements. A note can be within authorized units and still fail an audit because required content elements are missing.` }
+    ]
+  },
+  { // KC 1
+    answers: [
+      { text: `A clinical record of client progress for the supervising BCBA`, correct: false,
+        rationale: `Clinical progress tracking is one purpose, but not the primary function in a billing context. Notes that are excellent clinical records can still fail an audit if they are missing payer-required elements.` },
+      { text: `A communication tool between the technician and the clinical team`, correct: false,
+        rationale: `Team communication is a secondary function. A note useful for clinical communication but missing required billing elements creates financial risk.` },
+      { text: `A record maintained for accreditation and licensing compliance`, correct: false,
+        rationale: `Accreditation compliance uses documentation but defines its requirements differently from Medicaid billing requirements. These are separate frameworks.` },
+      { text: `Legal evidence that a reimbursable service was delivered as billed`, correct: true,
+        rationale: `Correct. Session notes serve multiple purposes, but in the billing and audit context, their primary function is to constitute legal evidence of a reimbursable service delivery. This framing determines what a "complete" note means.` }
+    ]
+  },
+  { // KC 2
+    answers: [
+      { text: `There is no issue — a valid session note is sufficient for billing regardless of authorization dates`, correct: false,
+        rationale: `A valid session note is not sufficient for billing when authorization has expired. Services must be delivered within an active, approved authorization period.` },
+      { text: `There is no issue as long as a renewal authorization was submitted before September 15`, correct: false,
+        rationale: `A submitted renewal does not create authorization — only an approved renewal does. Services cannot be delivered against a pending renewal request.` },
+      { text: `The session note breaks the chain at the authorization link because the service was delivered outside the authorized date range`, correct: true,
+        rationale: `Correct. Authorization expiration dates are hard limits. Services delivered after expiration are not covered regardless of documentation quality. This is one of the most commonly flagged issues in OIG audits.` },
+      { text: `The session note breaks the chain at the treatment plan link because the target programs are not referenced`, correct: false,
+        rationale: `The issue here is authorization expiration, not treatment plan linkage. The question states nothing about missing target programs — these are separate chain links and separate audit findings.` }
+    ]
+  },
+  { // KC 3
+    answers: [
+      { text: `Addressed DTT program. Client showed improvement.`, correct: false,
+        rationale: `"DTT program" is a category, not a named target. It does not name a specific target program, cannot be traced to the treatment plan, and contains no objective data.` },
+      { text: `Addressed Vocal Manding for Preferred Items (Target 3B from current treatment plan dated 09/01/2026). Client achieved 7/10 correct responses across 3 trial sets.`, correct: true,
+        rationale: `Correct. This is the only entry that names a specific target, references its treatment plan location and date, and includes objective data. An auditor can trace every element of this entry to the clinical record on file.` },
+      { text: `Client worked on communication targets. Good participation today.`, correct: false,
+        rationale: `"Communication targets" is a category, not a named target. An auditor cannot trace this entry to a specific program in the treatment plan on file.` },
+      { text: `RBT delivered 97153 services per BCBA supervision plan.`, correct: false,
+        rationale: `This documents the billing code and supervision structure but contains no information about what was actually addressed in the session. The chain to the treatment plan is completely missing.` }
+    ]
+  },
+  { // KC 4
+    answers: [
+      { text: `Yes, because the BCBA was present during the session`, correct: false,
+        rationale: `BCBA presence alone does not support 97155. The defining element is in-session protocol modification, not observation or supervision.` },
+      { text: `No, because 97155 requires the BCBA to deliver the entire session directly`, correct: false,
+        rationale: `97155 is not a BCBA-only code. The BCBA modifies the protocol while the technician continues direct service delivery.` },
+      { text: `Yes, as long as BCBA presence duration is documented`, correct: false,
+        rationale: `Duration of presence is relevant but does not substitute for the modification documentation that defines this code.` },
+      { text: `This depends on how the payer defines protocol modification — a prompt level adjustment within the existing protocol may not qualify`, correct: true,
+        rationale: `Correct. This is a genuinely debated scenario in the field. Most payer definitions require modification to the written treatment protocol, not just a session-level instructional adjustment. When in doubt, bill 97153 and document thoroughly. Module 6 covers payer-specific rules.` }
+    ]
+  },
+  { // KC 5
+    answers: [
+      { text: `No — the note is missing strategies trained, caregiver demonstration, and an implementation plan`, correct: true,
+        rationale: `Correct. 97156 specifically requires documentation of skills or strategies trained, caregiver demonstration or practice, and a plan for implementation between sessions. A general conversation about progress is not billable under 97156.` },
+      { text: `Yes, because the BCBA met with the family for the full session duration`, correct: false,
+        rationale: `Meeting duration does not establish that billable family guidance training occurred.` },
+      { text: `Yes, because progress was discussed and target programs were reviewed`, correct: false,
+        rationale: `"Discussed" and "reviewed" do not establish that training occurred. 97156 requires documented skills trained, caregiver demonstration, and an implementation plan.` },
+      { text: `No, because 97156 requires the client to be present`, correct: false,
+        rationale: `97156 does not require client presence. It is specifically for caregiver-only training sessions.` }
+    ]
+  },
+  { // KC 6
+    answers: [
+      { text: `Error 1 and Error 3 only`, correct: false,
+        rationale: `Errors 1 and 3 are present, but Error 6 is also present — no supervising BCBA is documented anywhere in this note.` },
+      { text: `Error 1, Error 3, Error 5, and Error 6`, correct: true,
+        rationale: `Correct. Error 1: "his programs" is not a specific target. Error 3: "great session and made good progress" is narrative, not objective data. Error 5: printed name without credential may be insufficient. Error 6: no supervising BCBA identified anywhere in the note.` },
+      { text: `Error 1, Error 3, and Error 5`, correct: false,
+        rationale: `Close — but Error 6 (missing supervising BCBA by name and credential) is also present and is a separate finding from Error 5.` },
+      { text: `The note is acceptable because it is signed and the client name is included`, correct: false,
+        rationale: `Including a client name and a signature does not compensate for the missing required elements. This note has multiple documentation deficiencies.` }
+    ]
+  },
+  { // KC 7
+    answers: [
+      { text: `No concern — the content is complete and accurate`, correct: false,
+        rationale: `Late notes are a real and documented audit risk. The accuracy and credibility of documentation completed significantly after service delivery is questioned in audit contexts.` },
+      { text: `The session cannot be billed because the note was not completed same-day`, correct: false,
+        rationale: `There is no universal same-day requirement, though best practice is same-day. Payers have varying deadline requirements, and late completion creates risk even when it does not automatically disqualify the note.` },
+      { text: `The note is acceptable as long as the BCBA reviewed it before Friday`, correct: false,
+        rationale: `BCBA review does not resolve the timeliness concern. The timestamp on the note reflects when it was written, not when it was reviewed.` },
+      { text: `The late submission raises questions about documentation accuracy and may trigger payer scrutiny`, correct: true,
+        rationale: `Correct. Late documentation raises credibility concerns. Auditors look at timestamp patterns — a clinic where notes are routinely completed 3 to 5 days after service suggests reconstruction from memory, which undermines their value as evidence. Many payers have explicit note completion deadlines in their contracts.` }
+    ]
+  },
+  { // KC 8
+    answers: [
+      { text: `7 days, because the state Medicaid rule governs all billing in that state`, correct: false,
+        rationale: `Payer requirements are met individually, not by the least restrictive standard. The state Medicaid rule governs Medicaid claims, not commercial claims.` },
+      { text: `Same-day, because the most restrictive requirement governs all payers`, correct: false,
+        rationale: `Same-day is best practice but not universally mandated. The most restrictive payer's deadline applies to that payer's claims only.` },
+      { text: `48 hours for commercial payer claims, 7 days for Medicaid claims — meet each payer independently`, correct: true,
+        rationale: `Correct. Each payer's requirements must be met independently. The commercial payer's 48-hour requirement applies to that payer's claims. The practical solution is to complete all notes within 48 hours as a clinic standard, which satisfies both requirements simultaneously.` },
+      { text: `There is no universal deadline — each note can be submitted on the schedule of whichever payer is being billed`, correct: false,
+        rationale: `Each payer has its own requirements. Notes cannot be submitted on different schedules to different payers without risk. Each payer's deadline applies to that payer's claims.` }
+    ]
+  },
+  { // KC 9
+    answers: [
+      { text: `Complete notes on the day of service or within 24 hours, regardless of payer deadlines`, correct: true,
+        rationale: `Correct. Same-day or within-24-hour completion maximizes documentation accuracy, eliminates timeliness risk across all payer contracts, and produces a timestamp pattern that reflects professional standards. Payer deadlines are the minimum, not the target.` },
+      { text: `Complete all notes by the end of the billing week before claims are submitted`, correct: false,
+        rationale: `Completing notes by end of billing week creates a pattern of delayed documentation that raises audit scrutiny.` },
+      { text: `Complete notes within the most permissive payer deadline to maximize time flexibility`, correct: false,
+        rationale: `Payer deadlines are the minimum acceptable standard, not the target. Building clinic practice around the most permissive deadline maximizes risk.` },
+      { text: `Complete notes when the supervising BCBA has time to review them before submission`, correct: false,
+        rationale: `BCBA availability is not the controlling factor for note completion timing. RBTs complete their own notes; BCBA review is a separate step that happens after.` }
+    ]
+  }
+];
+
+// ── QUIZ DATA ─────────────────────────────────────────
+// Correct answers at source positions: 0(A), 3(D), 2(C), 1(B), 3(D)
+const QUIZ_DATA = [
+  {
+    text: `In a Medicaid billing context, what is the primary function of an ABA session note?`,
+    answers: [
+      { text: `Legal evidence that a reimbursable service was delivered as billed`, correct: true },
+      { text: `A clinical record of client progress for the BCBA's use in treatment planning`, correct: false },
+      { text: `A communication tool between the technician and the clinical supervision team`, correct: false },
+      { text: `A record maintained for accreditation and licensing compliance purposes`, correct: false }
+    ],
+    rationale: `B: Clinical progress tracking is one purpose, but not the primary function in a billing context. C: Communication is a secondary function. D: Accreditation compliance uses documentation but defines requirements differently from Medicaid billing requirements.`,
+    reviewSection: 2
+  },
+  {
+    text: `The documentation chain in ABA billing runs in which order?`,
+    answers: [
+      { text: `Authorization → Treatment Plan → Session Note → Billed Claim`, correct: false },
+      { text: `Session Note → Treatment Plan → Authorization → Billed Claim`, correct: false },
+      { text: `Treatment Plan → Session Note → Authorization → Billed Claim`, correct: false },
+      { text: `Treatment Plan → Authorization → Session Note → Billed Claim`, correct: true }
+    ],
+    rationale: `A: Authorization comes after the treatment plan, not before. B: Session notes document services already authorized. C: Authorization must exist before services are delivered and billed.`,
+    reviewSection: 3
+  },
+  {
+    text: `A 97155 session note states: "BCBA supervised treatment delivery and provided feedback to technician for 45 minutes." Is this note sufficient to support the 97155 claim?`,
+    answers: [
+      { text: `Yes, because the BCBA was present and providing supervision`, correct: false },
+      { text: `Yes, because the BCBA presence duration is documented`, correct: false },
+      { text: `No — 97155 requires documentation of a specific protocol modification and clinical rationale, not just BCBA presence`, correct: true },
+      { text: `No — 97155 requires the BCBA to deliver the entire session without technician involvement`, correct: false }
+    ],
+    rationale: `A: BCBA presence alone does not support 97155. The defining element is in-session protocol modification. B: Duration of presence is relevant but does not substitute for the modification documentation. D: 97155 is not a BCBA-only code — the technician continues direct service delivery while the BCBA modifies the protocol.`,
+    reviewSection: 4
+  },
+  {
+    text: `You review a 97156 session note that reads: "BCBA met with client's mother for one hour. Reviewed target programs and discussed client's progress at school." What is the most accurate assessment?`,
+    answers: [
+      { text: `The note is complete — family contact and topic coverage are documented`, correct: false },
+      { text: `The note is missing documentation of specific strategies trained, caregiver demonstration or practice, and an implementation plan`, correct: true },
+      { text: `The note is missing the client's name and cannot be submitted`, correct: false },
+      { text: `The note is acceptable because the duration is documented and no concerns were raised`, correct: false }
+    ],
+    rationale: `A: Family contact and discussion are not sufficient for 97156. The code covers family guidance training — the note must document what was trained and the plan for implementation. C: Client name would be a separate issue, but the primary deficiency here is the missing training documentation. D: Duration and absence of concerns are not the primary documentation requirements for 97156.`,
+    reviewSection: 4
+  },
+  {
+    text: `An OIG auditor finds that every 97153 note for one RBT describes performance as "good," "making progress," or "working hard" — with no trial data, accuracy percentages, or prompt level documentation. Times, targets, signatures, and supervisor documentation are all present. What is the most likely audit outcome?`,
+    answers: [
+      { text: `The notes will be accepted because the required structural elements are present`, correct: false },
+      { text: `The notes will be accepted because only the most flagrant documentation errors trigger audit findings`, correct: false },
+      { text: `The notes will be escalated to the BCBA for clinical review before an audit determination is made`, correct: false },
+      { text: `The notes will be flagged because narrative performance descriptions do not meet the objective data standard for 97153`, correct: true }
+    ],
+    rationale: `A: Structural elements are necessary but not sufficient. The objective data requirement is a substantive documentation standard. B: Narrative data in place of objective data is specifically identified as a common finding in OIG audit reports across multiple states. C: OIG auditors do not refer notes to BCBAs during an audit. The determination is based on documentation as submitted.`,
+    reviewSection: 5
+  }
+];
+
+// ── STATE ─────────────────────────────────────────────
+let currentIdx = 0;
+const completed = new Set();
+const kcAnswered = Array(10).fill(false);
+const kcCurrentLetter = {};   // which letter is currently correct for each KC
+const kcLastLetter = {};      // last correct letter — excluded on restart
+let quizSelections = {};
+let quizSubmitted = false;
+let quizCorrectLetters = {};
+
+// ── SHUFFLE ───────────────────────────────────────────
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ── BUILD KC OPTIONS ──────────────────────────────────
+// excludeLetter: if set, guarantee the correct answer does NOT land on that letter
+function buildKCOptions(kcIdx, excludeLetter) {
+  const container = document.getElementById('kc-opts-' + kcIdx);
+  if (!container) return;
+
+  const data = KC_DATA[kcIdx];
+  const indexed = data.answers.map((a, origIdx) => ({ ...a, origIdx }));
+
+  let shuffled;
+  let tries = 0;
+  do {
+    shuffled = shuffle(indexed);
+    tries++;
+  } while (
+    excludeLetter &&
+    tries < 30 &&
+    LETTERS[shuffled.findIndex(a => a.correct)] === excludeLetter
+  );
+
+  const correctPos = shuffled.findIndex(a => a.correct);
+  kcCurrentLetter[kcIdx] = LETTERS[correctPos];
+
+  container.innerHTML = shuffled.map((ans, pos) => `
+    <div class="kc-option" onclick="answerKC(this,${kcIdx},${ans.origIdx})" data-correct="${ans.correct}">
+      <div class="kc-letter">${LETTERS[pos]}</div>
+      <div>${ans.text}</div>
+    </div>
+  `).join('');
+}
+
+// ── ANSWER KC ─────────────────────────────────────────
+function answerKC(el, kcIdx, origIdx) {
+  const kc = el.closest('.knowledge-check');
+  if (kc.classList.contains('kc-answered')) return;
+  kc.classList.add('kc-answered');
+  kcAnswered[kcIdx] = true;
+  kcLastLetter[kcIdx] = kcCurrentLetter[kcIdx];
+
+  const isCorrect = el.dataset.correct === 'true';
+
+  kc.querySelectorAll('.kc-option').forEach(opt => {
+    if (opt.dataset.correct === 'true') {
+      opt.classList.add(isCorrect ? 'correct' : 'reveal-correct');
+    }
+    if (opt === el && !isCorrect) opt.classList.add('incorrect');
+  });
+
+  const ratEl = kc.querySelector('.kc-rationale');
+  if (ratEl) {
+    const rationale = KC_DATA[kcIdx].answers[origIdx].rationale;
+    ratEl.innerHTML = `<div class="rationale-label">${isCorrect ? '✓ CORRECT' : '✗ INCORRECT'}</div>${rationale}`;
+    ratEl.style.display = 'block';
+  }
+
+  updateNav();
+  updateProgress();
+  updateDots();
+}
+
+// ── RESTART KC ────────────────────────────────────────
+function restartKC(btn) {
+  const kc = btn.closest('.knowledge-check');
+  const kcIdx = parseInt(kc.dataset.kcIdx);
+  kc.classList.remove('kc-answered');
+  kcAnswered[kcIdx] = false;
+
+  const ratEl = kc.querySelector('.kc-rationale');
+  if (ratEl) { ratEl.style.display = 'none'; ratEl.innerHTML = ''; }
+
+  // Rebuild with shuffle, guaranteed different letter than last time
+  buildKCOptions(kcIdx, kcLastLetter[kcIdx]);
+
+  updateNav();
+  updateProgress();
+  updateDots();
+}
+
+// ── NAVIGATION ────────────────────────────────────────
+function getSections() { return document.querySelectorAll('.module-section'); }
+
+function canGoNext() {
+  if (currentIdx === 10) return false;
+  const kcs = SECTION_KCS[currentIdx];
+  if (!kcs) return true;
+  return kcs.every(i => kcAnswered[i]);
+}
+
+function navigate(dir) {
+  if (dir === 'next' && !canGoNext()) return;
+  const newIdx = dir === 'next' ? currentIdx + 1 : currentIdx - 1;
+  if (newIdx < 0 || newIdx >= TOTAL) return;
+
+  const sections = getSections();
+  const leaving = sections[currentIdx];
+  const arriving = sections[newIdx];
+
+  if (dir === 'next' && !completed.has(currentIdx)) {
+    completed.add(currentIdx);
+    markSidebarDone(currentIdx);
+  }
+
+  leaving.classList.remove('ms-active', 'ms-entering');
+  leaving.classList.add(dir === 'next' ? 'ms-exit-fwd' : 'ms-exit-back');
+
+  arriving.classList.remove('ms-behind');
+  arriving.scrollTop = 0;
+  arriving.offsetHeight;
+  arriving.classList.add('ms-active', 'ms-entering');
+
+  setTimeout(() => {
+    leaving.classList.remove('ms-exit-fwd', 'ms-exit-back');
+    arriving.classList.remove('ms-entering');
+    if (dir === 'next') leaving.classList.add('ms-behind');
+  }, 420);
+
+  currentIdx = newIdx;
+  updateNav();
+  updateProgress();
+  updateSidebarActive();
+  updateDots();
+}
+
+function handleNext() {
+  if (currentIdx === 10) {
+    if (quizSubmitted && !completed.has(10)) {
+      retakeQuiz();
+    } else if (!quizSubmitted) {
+      submitQuiz();
+    }
+  } else {
+    navigate('next');
+  }
+}
+
+function retryModule() {
+  const sections = getSections();
+  sections.forEach((s, i) => {
+    s.classList.remove('ms-active','ms-behind','ms-entering','ms-exit-fwd','ms-exit-back');
+    if (i === 0) s.classList.add('ms-active');
+  });
+  currentIdx = 0;
+  updateNav(); updateProgress(); updateSidebarActive(); updateDots();
+}
+
+// ── BUILD QUIZ ────────────────────────────────────────
+function buildQuizHTML() {
+  const container = document.getElementById('quizQuestionsContainer');
+  container.innerHTML = '';
+
+  QUIZ_DATA.forEach((question, qIdx) => {
+    const shuffled = shuffle(question.answers);
+    const correctPos = shuffled.findIndex(a => a.correct);
+    quizCorrectLetters[qIdx] = LETTERS[correctPos];
+
+    const qDiv = document.createElement('div');
+    qDiv.className = 'quiz-q';
+    qDiv.innerHTML = `
+      <div class="quiz-q-num">QUESTION ${qIdx + 1} OF ${QUIZ_DATA.length}</div>
+      <div class="quiz-q-text">${question.text}</div>
+      <div class="quiz-options">
+        ${shuffled.map((ans, pos) => `
+          <button class="quiz-option" onclick="selectQuizOption(this)" data-letter="${LETTERS[pos]}">
+            <span class="quiz-opt-letter">${LETTERS[pos]}</span>
+            <span class="quiz-option-text">${ans.text}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="quiz-rationale" id="qr-${qIdx}"><div class="rat-label">WHY THE OTHERS ARE WRONG</div>${question.rationale}</div>
+    `;
+    container.appendChild(qDiv);
+  });
+}
+
+function selectQuizOption(btn) {
+  if (quizSubmitted) return;
+  const qDiv = btn.closest('.quiz-q');
+  const qIdx = [...document.querySelectorAll('.quiz-q')].indexOf(qDiv);
+  qDiv.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+  quizSelections[qIdx] = btn.dataset.letter;
+  updateNav(); updateDots();
+}
+
+function submitQuiz() {
+  if (Object.keys(quizSelections).length < QUIZ_DATA.length) return;
+  if (quizSubmitted) return;
+  quizSubmitted = true;
+
+  let score = 0;
+  const wrongSections = new Set();
+
+  document.querySelectorAll('.quiz-q').forEach((qDiv, idx) => {
+    const correct = quizCorrectLetters[idx];
+    const chosen = quizSelections[idx];
+
+    qDiv.querySelectorAll('.quiz-option').forEach(opt => {
+      opt.disabled = true;
+      opt.classList.remove('selected');
+      if (opt.dataset.letter === correct) opt.classList.add('correct');
+      else if (opt.dataset.letter === chosen && chosen !== correct) opt.classList.add('incorrect');
+    });
+
+    if (chosen === correct) {
+      score++;
+    } else {
+      const rat = document.getElementById('qr-' + idx);
+      if (rat) rat.style.display = 'block';
+      const reviewSec = QUIZ_DATA[idx].reviewSection;
+      if (reviewSec != null) wrongSections.add(reviewSec);
+    }
+  });
+
+  const passed = score >= 4;
+  const pct = Math.round(score / QUIZ_DATA.length * 100);
+  const result = document.getElementById('quizResult');
+  result.className = 'quiz-result ' + (passed ? 'pass' : 'fail');
+  result.style.display = 'block';
+  document.getElementById('resultScore').textContent = score + '/' + QUIZ_DATA.length;
+  document.getElementById('resultLabel').textContent = passed ? 'Module Complete ✓' : 'Review Recommended';
+  document.getElementById('resultSub').textContent = passed
+    ? `You scored ${pct}%. You have demonstrated understanding of ABA documentation standards. Your progress has been saved.`
+    : `You scored ${pct}%. Review the flagged sections and retake the quiz when ready.`;
+
+  if (!passed) {
+    if (wrongSections.size > 0) {
+      const items = [...wrongSections].sort().map(sec =>
+        `<div class="study-item">→ ${SECTION_NAMES[sec]}</div>`
+      ).join('');
+      document.getElementById('studySuggestionsContainer').innerHTML =
+        `<div class="study-suggestions"><div class="study-label">REVIEW THESE SECTIONS</div>${items}</div>`;
+    }
+    document.getElementById('resultRetake').style.display = 'inline-block';
+    document.getElementById('resultRetry').style.display = 'inline-block';
+  }
+
+  if (passed) {
+    launchConfetti();
+    completed.add(10);
+    markSidebarDone(10);
+    document.getElementById('topBadge').textContent = 'Complete ✓';
+    document.getElementById('topBadge').style.background = 'rgba(30,126,52,.5)';
+  }
+
+  updateNav(); updateProgress(); updateSidebarActive(); updateDots();
+}
+
+function retakeQuiz() {
+  quizSubmitted = false;
+  quizSelections = {};
+  quizCorrectLetters = {};
+
+  const result = document.getElementById('quizResult');
+  result.style.display = 'none';
+  result.className = 'quiz-result';
+  document.getElementById('studySuggestionsContainer').innerHTML = '';
+  document.getElementById('resultRetake').style.display = 'none';
+  document.getElementById('resultRetry').style.display = 'none';
+
+  buildQuizHTML();
+  document.getElementById('sec-10').scrollTop = 0;
+  updateNav(); updateDots();
+}
+
+// ── CONFETTI ─────────────────────────────────────────
+function launchConfetti() {
+  const colors = ['#c8921a','#1a2744','#0d7377','#1e7e34','#d35400','#e8c06a','#ffffff'];
+  for (let i = 0; i < 55; i++) {
+    const p = document.createElement('div');
+    const size = 5 + Math.random() * 7;
+    Object.assign(p.style, {
+      position:'fixed', top:'-12px',
+      left:`${Math.random()*100}vw`,
+      width:`${size}px`, height:`${size}px`,
+      background:colors[Math.floor(Math.random()*colors.length)],
+      borderRadius:Math.random()>.5?'50%':'2px',
+      zIndex:'9999', pointerEvents:'none',
+      animation:`confettiFall ${1.4+Math.random()*1.6}s ease ${Math.random()*.7}s forwards`,
+    });
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),3200);
+  }
+}
+
+// ── UI UPDATES ────────────────────────────────────────
+function updateNav() {
+  const btnBack = document.getElementById('btnBack');
+  const btnNext = document.getElementById('btnNext');
+
+  btnBack.disabled = currentIdx === 0;
+  document.getElementById('navCounter').textContent = `${currentIdx + 1} of ${TOTAL}`;
+  document.getElementById('navTitle').textContent = SECTION_NAMES[currentIdx];
+
+  btnNext.className = 'btn-next';
+  btnNext.disabled = false;
+
+  if (currentIdx === 10) {
+    if (quizSubmitted && completed.has(10)) {
+      btnNext.textContent = 'Module Complete ✓';
+      btnNext.className = 'btn-next module-complete';
+      btnNext.disabled = true;
+    } else if (quizSubmitted && !completed.has(10)) {
+      btnNext.textContent = '↺ Retake Quiz';
+      btnNext.className = 'btn-next quiz-submit';
+    } else {
+      const allSelected = Object.keys(quizSelections).length === QUIZ_DATA.length;
+      if (allSelected) {
+        btnNext.textContent = 'Submit Quiz →';
+        btnNext.className = 'btn-next quiz-submit';
+      } else {
+        btnNext.textContent = 'Select all answers';
+        btnNext.disabled = true;
+      }
+    }
+  } else {
+    const enabled = canGoNext();
+    if (enabled) {
+      btnNext.textContent = currentIdx === TOTAL - 2 ? 'Module Quiz →' : 'Next →';
+    } else {
+      btnNext.textContent = 'Complete checks first';
+      btnNext.className = 'btn-next gated';
+    }
+  }
+}
+
+function updateProgress() {
+  const kcDone = kcAnswered.filter(Boolean).length;
+  const pct = Math.min(100, Math.round(
+    (completed.size / TOTAL) * 65 +
+    (kcDone / 10) * 25 +
+    (quizSubmitted ? 10 : 0)
+  ));
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+
+function markSidebarDone(idx) {
+  const dot = document.getElementById('sd-' + idx);
+  if (!dot) return;
+  dot.textContent = '✓';
+  const link = dot.closest('a');
+  if (link) link.classList.add('done');
+}
+
+function updateSidebarActive() {
+  const links = document.querySelectorAll('.sidebar-nav a');
+  links.forEach((a, i) => {
+    if (i === currentIdx) a.classList.add('active');
+    else a.classList.remove('active');
+  });
+}
+
+function buildDots() {
+  const container = document.getElementById('navDots');
+  container.innerHTML = '';
+  for (let i = 0; i < TOTAL; i++) {
+    const d = document.createElement('div');
+    d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    d.id = 'dot-' + i;
+    container.appendChild(d);
+  }
+}
+
+function updateDots() {
+  document.querySelectorAll('.nav-dot').forEach((d, i) => {
+    d.className = 'nav-dot' + (completed.has(i) ? ' done' : '') + (i === currentIdx ? ' active' : '');
+  });
+}
+
+// ── KEYBOARD ─────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); handleNext(); updateDots(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); navigate('back'); updateDots(); }
+  if (e.key === ' ') { e.preventDefault(); handleNext(); updateDots(); }
+});
+
+document.getElementById('btnBack').onclick = () => { navigate('back'); };
+document.getElementById('btnNext').onclick = () => { handleNext(); };
+
+// ── INIT ──────────────────────────────────────────────
+buildDots();
+buildQuizHTML();
+for (let i = 0; i < 10; i++) buildKCOptions(i);
+updateNav();
+updateSidebarActive();
+updateDots();
+</script>

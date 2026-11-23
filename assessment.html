@@ -1,0 +1,1115 @@
+<title>CADA Final Assessment</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+  --navy:#1a2744;--navy-mid:#2c3e6b;
+  --gold:#c8921a;--gold-light:#f5e6c3;
+  --teal:#0d7377;--teal-light:#d4f0f1;
+  --red:#c0392b;--red-light:#fcecea;
+  --green:#1e7e34;--green-light:#d4f4dd;
+  --amber:#d35400;--amber-light:#fef0e4;
+  --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
+  --border:#d8d5cf;--border-light:#ebe8e2;
+  --radius:12px;--topbar-h:56px;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
+    --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
+    --border:#2e2b26;--border-light:#252320;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
+  --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
+  --border:#2e2b26;--border-light:#252320;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+
+/* Top bar */
+.topbar{
+  position:sticky;top:env(safe-area-inset-top,0px);
+  height:var(--topbar-h);background:var(--navy);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(16px,env(safe-area-inset-left,0px));
+  z-index:100;
+}
+.logo-link{text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff}
+.logo-badge{
+  background:var(--gold);color:#fff;
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  padding:2px 7px;border-radius:4px;letter-spacing:.05em;
+}
+.topnav{display:flex;gap:6px}
+.nav-link{
+  color:rgba(255,255,255,.75);text-decoration:none;
+  font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;
+  transition:background .15s;
+}
+.nav-link:hover{background:rgba(255,255,255,.1);color:#fff}
+
+/* Views */
+.view{min-height:calc(100dvh - var(--topbar-h));width:100%}
+.view-inner{
+  max-width:720px;margin:0 auto;
+  padding:36px max(16px,env(safe-area-inset-left,0px)) 60px;
+}
+.view-centered{text-align:center}
+
+/* Intro */
+.assessment-icon{
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--navy),var(--navy-mid));
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;
+  box-shadow:0 4px 20px rgba(26,39,68,.25);
+}
+.assessment-icon svg{width:40px;height:40px}
+
+h1.page-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(24px,5vw,34px);font-weight:700;
+  color:var(--navy);margin-bottom:14px;text-wrap:balance;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) h1.page-title{color:var(--text)}}
+:root[data-theme="dark"] h1.page-title{color:var(--text)}
+
+.intro-meta{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px;
+}
+.intro-meta-item{
+  background:var(--navy);color:#fff;
+  font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
+  padding:5px 14px;border-radius:20px;letter-spacing:.03em;
+}
+.instructions-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px 28px;margin-bottom:32px;text-align:left;
+}
+.instructions-box h2{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;
+}
+.instructions-box ul{padding-left:18px}
+.instructions-box li{
+  font-size:14px;color:var(--text-secondary);
+  margin-bottom:10px;line-height:1.55;
+}
+.instructions-box li:last-child{margin-bottom:0}
+
+.btn-start{
+  background:var(--navy);color:#fff;border:none;
+  font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;
+  padding:14px 40px;border-radius:8px;cursor:pointer;
+  transition:background .2s;display:inline-block;
+  box-shadow:0 4px 16px rgba(26,39,68,.25);
+}
+.btn-start:hover{background:var(--navy-mid)}
+
+/* Exam progress */
+.exam-progress-bar{
+  position:sticky;top:var(--topbar-h);
+  background:var(--surface);border-bottom:1px solid var(--border);
+  z-index:90;overflow:hidden;
+}
+.epb-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px max(16px,env(safe-area-inset-left,0px));
+  position:relative;z-index:1;
+}
+.epb-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:12px;font-weight:700;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase;
+}
+.epb-count{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:14px;font-weight:700;color:var(--navy);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .epb-count{color:var(--gold)}}
+:root[data-theme="dark"] .epb-count{color:var(--gold)}
+.epb-fill{
+  position:absolute;bottom:0;left:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--amber));
+  transition:width .3s ease;
+}
+
+/* Question cards */
+.questions-wrap{
+  max-width:720px;margin:0 auto;
+  padding:24px max(16px,env(safe-area-inset-left,0px)) 12px;
+  display:flex;flex-direction:column;gap:20px;
+}
+.q-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--radius);padding:24px;
+  transition:border-color .2s;
+}
+.q-card.answered{border-color:var(--gold)}
+
+.q-header{
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.q-num{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--navy);color:#fff;
+  font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.q-module-badge{
+  background:var(--gold-light);color:var(--gold);
+  font-size:11px;font-weight:700;font-family:'Space Grotesk',sans-serif;
+  letter-spacing:.05em;padding:3px 8px;border-radius:4px;
+}
+.q-stem{font-size:15px;line-height:1.65;color:var(--text);margin-bottom:16px;font-weight:500}
+.q-options{display:flex;flex-direction:column;gap:8px}
+
+.q-option{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;border:1.5px solid var(--border);
+  border-radius:8px;cursor:pointer;transition:all .15s;user-select:none;
+}
+.q-option:hover{border-color:var(--navy);background:var(--surface-raised)}
+.q-option.selected{border-color:var(--navy);background:rgba(26,39,68,.06)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .q-option.selected{background:rgba(44,62,107,.25)}}
+:root[data-theme="dark"] .q-option.selected{background:rgba(44,62,107,.25)}
+
+.q-option.graded{cursor:default;pointer-events:none}
+.q-option.correct-ans{border-color:var(--green)!important;background:var(--green-light)!important}
+.q-option.wrong-sel{border-color:var(--red)!important;background:var(--red-light)!important}
+
+.opt-letter{
+  width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);
+  font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--text-muted);transition:all .15s;
+}
+.q-option.selected .opt-letter{background:var(--navy);border-color:var(--navy);color:#fff}
+.q-option.correct-ans .opt-letter{background:var(--green);border-color:var(--green);color:#fff}
+.q-option.wrong-sel .opt-letter{background:var(--red);border-color:var(--red);color:#fff}
+.opt-text{font-size:14px;line-height:1.55;color:var(--text);padding-top:2px}
+
+.q-rationale{
+  margin-top:16px;padding:14px 16px;
+  background:var(--surface-raised);border-radius:8px;
+  border-left:3px solid var(--navy);
+  font-size:14px;line-height:1.65;color:var(--text-secondary);
+}
+.q-rationale strong{
+  display:block;margin-bottom:5px;
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--navy);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .q-rationale strong{color:var(--gold)}}
+:root[data-theme="dark"] .q-rationale strong{color:var(--gold)}
+
+/* Submit */
+.submit-wrap{
+  max-width:720px;margin:0 auto;
+  padding:16px max(16px,env(safe-area-inset-left,0px)) 56px;
+  text-align:center;
+}
+.btn-submit{
+  background:var(--navy);color:#fff;border:none;
+  font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;
+  padding:14px 40px;border-radius:8px;cursor:pointer;transition:all .2s;
+}
+.btn-submit:hover:not(:disabled){background:var(--navy-mid)}
+.btn-submit:disabled{opacity:.35;cursor:not-allowed}
+.submit-hint{margin-top:10px;font-size:13px;color:var(--text-muted)}
+
+/* Results */
+.score-banner{
+  border-radius:var(--radius);padding:28px 24px;
+  display:flex;align-items:center;gap:24px;
+  margin-bottom:28px;border:2px solid;
+}
+.score-banner.pass{background:var(--green-light);border-color:var(--green)}
+.score-banner.fail{background:var(--amber-light);border-color:var(--amber)}
+
+.score-circle{
+  width:84px;height:84px;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:3px solid;flex-shrink:0;
+}
+.score-banner.pass .score-circle{border-color:var(--green);color:var(--green)}
+.score-banner.fail .score-circle{border-color:var(--amber);color:var(--amber)}
+.score-num{
+  font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;line-height:1;
+}
+.score-den{font-size:12px;font-weight:600;opacity:.8}
+
+.score-pct{
+  font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin-bottom:4px;
+}
+.score-label{font-size:15px;font-weight:600}
+.score-banner.pass .score-pct,.score-banner.pass .score-label{color:var(--green)}
+.score-banner.fail .score-pct,.score-banner.fail .score-label{color:var(--amber)}
+
+/* Credential card */
+.credential-card{
+  background:linear-gradient(135deg,var(--navy) 0%,#243460 100%);
+  border-radius:var(--radius);padding:32px;
+  margin:0 auto 28px;max-width:540px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.credential-card::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:rgba(200,146,26,.1);pointer-events:none;
+}
+.credential-card::after{
+  content:'';position:absolute;bottom:-40px;left:-40px;
+  width:140px;height:140px;border-radius:50%;
+  background:rgba(200,146,26,.06);pointer-events:none;
+}
+.cred-issuer{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:11px;font-weight:700;color:var(--gold);
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;
+}
+.cred-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--gold);color:#fff;
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 14px;border-radius:4px;margin-bottom:16px;
+}
+.cred-title-line{
+  font-size:11px;color:rgba(255,255,255,.45);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;
+}
+.cred-name{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:17px;font-weight:700;color:rgba(255,255,255,.45);
+  font-style:italic;margin-bottom:14px;
+}
+.cred-desc{
+  font-size:13px;color:rgba(255,255,255,.6);line-height:1.55;
+  margin-bottom:20px;max-width:420px;margin-left:auto;margin-right:auto;
+}
+.cred-id{
+  display:inline-block;
+  background:rgba(255,255,255,.08);border:1px solid rgba(200,146,26,.35);
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  color:var(--gold);letter-spacing:.06em;
+  padding:9px 22px;border-radius:6px;margin-bottom:10px;
+}
+.cred-valid{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.03em}
+
+/* Cooldown */
+.cooldown-icon{font-size:52px;display:block;margin:0 auto 16px}
+.cooldown-desc{
+  font-size:15px;color:var(--text-secondary);
+  max-width:480px;margin:0 auto 28px;line-height:1.65;
+}
+.countdown-box{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:var(--radius);padding:24px 28px;
+  display:inline-block;margin:0 auto 32px;text-align:center;min-width:260px;
+}
+.countdown-label{
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:10px;
+}
+.countdown-display{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:40px;font-weight:700;color:var(--amber);
+  letter-spacing:.04em;line-height:1;
+}
+
+/* Review module links */
+.review-links{margin-top:28px;text-align:left;max-width:500px;margin-left:auto;margin-right:auto}
+.review-links h3{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.review-module-links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.review-module-link{
+  display:block;padding:10px 14px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;text-decoration:none;
+  font-size:13px;font-weight:600;color:var(--navy);
+  transition:all .15s;
+}
+.review-module-link:hover{border-color:var(--navy);background:var(--surface-raised)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .review-module-link{color:var(--gold)}}
+:root[data-theme="dark"] .review-module-link{color:var(--gold)}
+
+/* Weak areas */
+.weak-areas{margin:0 0 28px}
+.weak-areas h3{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);
+  margin-bottom:12px;
+}
+.weak-area-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 16px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  margin-bottom:8px;gap:12px;
+}
+.weak-area-module{font-size:14px;font-weight:600;color:var(--text);min-width:0}
+.weak-area-score{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.weak-score-pill{
+  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
+  padding:3px 10px;border-radius:12px;
+}
+.score-miss{background:var(--red-light);color:var(--red)}
+.score-ok{background:var(--green-light);color:var(--green)}
+.weak-area-link{
+  font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;
+  padding:5px 10px;border:1px solid var(--navy);border-radius:6px;
+  transition:all .15s;white-space:nowrap;
+}
+.weak-area-link:hover{background:var(--navy);color:#fff}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .weak-area-link{color:var(--gold);border-color:var(--gold)}
+  :root:not([data-theme="light"]) .weak-area-link:hover{background:var(--gold);color:var(--navy)}
+}
+:root[data-theme="dark"] .weak-area-link{color:var(--gold);border-color:var(--gold)}
+:root[data-theme="dark"] .weak-area-link:hover{background:var(--gold);color:var(--navy)}
+
+/* Q Review */
+.q-review{margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
+.q-review>h3{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;
+}
+.q-review-list{display:flex;flex-direction:column;gap:16px}
+
+/* Buttons */
+.btn-primary{
+  display:inline-block;
+  background:var(--navy);color:#fff;border:none;
+  font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;
+  padding:14px 32px;border-radius:8px;text-decoration:none;
+  cursor:pointer;transition:background .2s;
+}
+.btn-primary:hover{background:var(--navy-mid)}
+.btn-secondary{
+  display:inline-block;
+  background:transparent;color:var(--navy);border:2px solid var(--navy);
+  font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;
+  padding:12px 28px;border-radius:8px;text-decoration:none;cursor:pointer;
+  transition:all .2s;
+}
+.btn-secondary:hover{background:var(--navy);color:#fff}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .btn-secondary{color:var(--gold);border-color:var(--gold)}
+  :root:not([data-theme="light"]) .btn-secondary:hover{background:var(--gold);color:var(--navy)}
+}
+:root[data-theme="dark"] .btn-secondary{color:var(--gold);border-color:var(--gold)}
+:root[data-theme="dark"] .btn-secondary:hover{background:var(--gold);color:var(--navy)}
+
+.btn-group{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px;margin-top:4px}
+
+.pass-message{
+  font-size:15px;line-height:1.65;color:var(--text-secondary);
+  max-width:520px;margin:0 auto 24px;text-align:center;
+}
+.already-passed-msg{
+  font-size:15px;color:var(--text-secondary);
+  text-align:center;margin:0 auto 28px;max-width:480px;line-height:1.65;
+}
+
+/* Countdown box inline in fail section */
+.countdown-block{
+  text-align:center;margin-bottom:28px;
+}
+
+@media(max-width:600px){
+  .score-banner{flex-direction:column;text-align:center}
+  .review-module-links{grid-template-columns:1fr}
+  .weak-area-item{flex-direction:column;align-items:flex-start}
+  .btn-secondary{margin-left:0}
+  .instructions-box{padding:20px}
+}
+</style>
+
+<div id="app">
+  <!-- Top bar -->
+  <header class="topbar">
+    <a href="index.html" class="logo-link">
+      <span class="logo-text">CareGuard</span>
+      <span class="logo-badge">CADA</span>
+    </a>
+    <nav class="topnav">
+      <a href="practice-exam.html" class="nav-link">← Practice</a>
+      <a href="module1.html" class="nav-link">Modules</a>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       INTRO VIEW
+  ============================================================ -->
+  <div id="view-intro" class="view">
+    <div class="view-inner view-centered">
+      <div class="assessment-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 3L5 10v9c0 9.94 6.42 19.24 15 21.56C29.58 38.24 36 28.94 36 19v-9L20 3z" fill="rgba(200,146,26,.18)" stroke="#c8921a" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M14 20l4.5 4.5L27 15" stroke="#c8921a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1 class="page-title">CADA Final Assessment</h1>
+      <div class="intro-meta">
+        <span class="intro-meta-item">15 Questions</span>
+        <span class="intro-meta-item">80% to Pass &mdash; 12 of 15</span>
+        <span class="intro-meta-item">72-Hour Retake Wait</span>
+        <span class="intro-meta-item">All 6 Modules</span>
+      </div>
+      <div class="instructions-box">
+        <h2>Instructions</h2>
+        <ul>
+          <li>Read each question carefully before selecting your answer</li>
+          <li>All 15 questions must be answered before you can submit</li>
+          <li>Once submitted, answers cannot be changed</li>
+          <li>You need at least 12 correct answers (80%) to earn your CADA credential</li>
+          <li>If you do not pass, a 72-hour waiting period is required before retaking</li>
+          <li>Passing earns your Credential ID and eligibility to enroll</li>
+        </ul>
+      </div>
+      <button class="btn-start" onclick="startExam()">Begin Assessment</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       COOLDOWN VIEW
+  ============================================================ -->
+  <div id="view-cooldown" class="view" hidden>
+    <div class="view-inner view-centered">
+      <span class="cooldown-icon">⏱</span>
+      <h1 class="page-title">Retake Cooldown Active</h1>
+      <p class="cooldown-desc">You did not pass the assessment on your last attempt. The 72-hour waiting period ensures you have time to review and reinforce the material before retaking.</p>
+      <div class="countdown-box">
+        <div class="countdown-label">Time Remaining</div>
+        <div class="countdown-display" id="cooldown-display">72:00:00</div>
+      </div>
+      <div class="review-links">
+        <h3>Use this time to review</h3>
+        <div class="review-module-links">
+          <a href="module1.html" class="review-module-link">Module 1 &mdash; Documentation</a>
+          <a href="module2.html" class="review-module-link">Module 2 &mdash; Prior Auth</a>
+          <a href="module3.html" class="review-module-link">Module 3 &mdash; Billing</a>
+          <a href="module4.html" class="review-module-link">Module 4 &mdash; Compliance</a>
+          <a href="module5.html" class="review-module-link">Module 5 &mdash; CPT 2027</a>
+          <a href="module6.html" class="review-module-link">Module 6 &mdash; Payer Rules</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ALREADY PASSED VIEW
+  ============================================================ -->
+  <div id="view-passed" class="view" hidden>
+    <div class="view-inner view-centered">
+      <h1 class="page-title">You Are CADA Certified</h1>
+      <div class="credential-card" id="passed-credential-card"></div>
+      <p class="already-passed-msg">You have already passed the CADA Final Assessment and earned your credential. Complete or manage your enrollment below to receive your official certificate.</p>
+      <div class="btn-group">
+        <a href="enroll.html" class="btn-primary">Manage Enrollment</a>
+        <a href="verify.html" class="btn-secondary">Verify Credential</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       EXAM VIEW
+  ============================================================ -->
+  <div id="view-exam" class="view" hidden>
+    <div class="exam-progress-bar">
+      <div class="epb-inner">
+        <span class="epb-title">CADA Final Assessment</span>
+        <span class="epb-count" id="epb-count">0 of 15 answered</span>
+      </div>
+      <div class="epb-fill" id="epb-fill" style="width:0%"></div>
+    </div>
+    <div class="questions-wrap" id="questions-wrap"></div>
+    <div class="submit-wrap">
+      <button class="btn-submit" id="btn-submit" onclick="submitExam()" disabled>Submit Assessment</button>
+      <p class="submit-hint" id="submit-hint">Answer all 15 questions to submit</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       RESULTS VIEW
+  ============================================================ -->
+  <div id="view-results" class="view" hidden>
+    <div class="view-inner">
+      <!-- Score banner -->
+      <div class="score-banner" id="score-banner">
+        <div class="score-circle" id="score-circle">
+          <span class="score-num" id="score-num"></span>
+          <span class="score-den">/15</span>
+        </div>
+        <div class="score-info">
+          <div class="score-pct" id="score-pct"></div>
+          <div class="score-label" id="score-label"></div>
+        </div>
+      </div>
+
+      <!-- Pass content -->
+      <div id="pass-content" hidden>
+        <div class="credential-card" id="pass-credential-card"></div>
+        <p class="pass-message">Congratulations! You have passed the CADA Final Assessment. Complete your enrollment to receive your official credential certificate with your name and issue date.</p>
+        <div class="btn-group">
+          <a href="enroll.html" class="btn-primary">Complete Enrollment &rarr;</a>
+          <a href="verify.html" class="btn-secondary">View Verifier</a>
+        </div>
+      </div>
+
+      <!-- Fail content -->
+      <div id="fail-content" hidden>
+        <div class="countdown-block">
+          <div class="countdown-box" style="display:inline-block">
+            <div class="countdown-label">Retake Available In</div>
+            <div class="countdown-display" id="results-countdown">72:00:00</div>
+          </div>
+        </div>
+        <div class="weak-areas">
+          <h3>Module Breakdown</h3>
+          <div id="weak-areas-list"></div>
+        </div>
+        <div class="btn-group" style="margin-top:8px">
+          <a href="practice-exam.html" class="btn-primary">&larr; Return to Practice Exam</a>
+        </div>
+      </div>
+
+      <!-- Q Review (always shown after grading) -->
+      <div class="q-review" id="q-review">
+        <h3>Your Answers</h3>
+        <div class="q-review-list" id="q-review-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =============================================
+   CONSTANTS
+============================================= */
+const LETTERS = ['A','B','C','D'];
+const PASS_THRESHOLD = 12;
+const TOTAL = 15;
+const RETAKE_MS = 72 * 60 * 60 * 1000;
+const KEY_FAIL = 'cada_last_fail';
+const KEY_PASS = 'cada_passed';
+const KEY_CRED = 'cada_credential_id';
+
+const MODULE_NAMES = {
+  1:'ABA Documentation Standard',
+  2:'Prior Authorization',
+  3:'ABA Billing Fundamentals',
+  4:'Medicaid Compliance',
+  5:'The 2027 CPT Transition',
+  6:'Payer Rules and Variations'
+};
+const MODULE_URLS = {
+  1:'module1.html',2:'module2.html',3:'module3.html',
+  4:'module4.html',5:'module5.html',6:'module6.html'
+};
+
+/* =============================================
+   QUESTION BANK (15 questions, all 6 modules)
+============================================= */
+const QUESTIONS = [
+  /* ---- Module 1: ABA Documentation Standard ---- */
+  {
+    module:1,
+    stem:"A session note is flagged during a Medi-Cal audit because the reviewer cannot determine why the client's ABA treatment was medically necessary. Which documentation element is most likely missing?",
+    rationale:"Medical necessity requires a clear written link between the client's ABA treatment and their diagnosed disability or functional impairment. Without this connection, payers cannot determine that the service was clinically appropriate and may deny or recoup the claim — even if the note is otherwise complete.",
+    options:[
+      {text:"The RBT's credential number",correct:false},
+      {text:"A statement connecting the client's ABA goals to their diagnosed functional impairments",correct:true},
+      {text:"The session start and end time",correct:false},
+      {text:"The BCBA supervisor's name",correct:false}
+    ]
+  },
+  {
+    module:1,
+    stem:"A session note for a Medi-Cal client is completed and electronically signed 30 hours after the session ends. What is the documentation status of this note?",
+    rationale:"Medi-Cal requires ABA session notes to be completed and signed within 24 hours of service delivery. A note completed at 30 hours fails this requirement and constitutes a documentation deficiency that can trigger claim denial or audit findings.",
+    options:[
+      {text:"Acceptable, within the standard 48-hour completion window",correct:false},
+      {text:"Non-compliant; Medi-Cal requires notes completed within 24 hours of service",correct:true},
+      {text:"Acceptable, within the 72-hour window for Medi-Cal services",correct:false},
+      {text:"Non-compliant only if the note contains factual errors",correct:false}
+    ]
+  },
+  {
+    module:1,
+    stem:"An RBT writes the following in a session note: 'Client did a great job and was motivated throughout the session.' What is the documentation deficiency?",
+    rationale:"ABA documentation must use objective, measurable, behavioral language. Terms like 'great job' and 'motivated' are subjective and cannot be audited, do not demonstrate treatment response, and cannot support medical necessity. Every behavioral observation must describe what the client actually did in observable, measurable terms.",
+    options:[
+      {text:"Missing prior authorization number",correct:false},
+      {text:"Missing service location code",correct:false},
+      {text:"Non-behavioral, subjective language that cannot be audited or verified",correct:true},
+      {text:"Missing BCBA co-signature",correct:false}
+    ]
+  },
+
+  /* ---- Module 2: Prior Authorization ---- */
+  {
+    module:2,
+    stem:"A client's Medi-Cal prior authorization covers 480 units and expires in 10 days. Processing time for Medi-Cal authorization renewals averages 25 days. What action is required?",
+    rationale:"When the average processing time (25 days) exceeds the remaining authorization days (10 days), there is a service gap risk. The documentation coordinator must submit the renewal immediately. Even so, a temporary gap may still occur, and the submission date should be documented to protect the renewal period.",
+    options:[
+      {text:"Continue services and submit the renewal before the authorization expiration date",correct:false},
+      {text:"Submit the renewal application immediately because processing time exceeds remaining authorization days",correct:true},
+      {text:"Reduce the client's weekly hours to extend the authorization through its expiration",correct:false},
+      {text:"Contact the BCBA to request clinical justification before beginning the renewal",correct:false}
+    ]
+  },
+  {
+    module:2,
+    stem:"A documentation coordinator discovers that 168 units were billed against an authorization capped at 150 units. What is the most appropriate next step?",
+    rationale:"Billing beyond authorized units constitutes a compliance violation and potential fraud risk. The correct sequence is: immediately halt additional billing, flag all overage units for review, and initiate an internal audit to determine how the overage occurred before taking any corrective or recovery action.",
+    options:[
+      {text:"Write off the 18 excess units and prevent future overbilling going forward",correct:false},
+      {text:"Immediately halt all additional billing, flag the overage units, and initiate an internal audit",correct:true},
+      {text:"Request retroactive authorization for the excess 18 units from the payer",correct:false},
+      {text:"Submit a correction claim to reclassify the extra units under a different CPT code",correct:false}
+    ]
+  },
+
+  /* ---- Module 3: ABA Billing Fundamentals ---- */
+  {
+    module:3,
+    stem:"An RBT is implementing a behavior reduction protocol developed by the supervising BCBA. The BCBA is not physically present but is available by phone. Which CPT code describes the RBT's direct service?",
+    rationale:"CPT 97153 (Adaptive Behavior Treatment by Protocol) covers direct ABA treatment by an RBT when the BCBA is not physically present. The RBT is implementing — not modifying — an existing protocol, which is the defining characteristic of this code. 97155 applies only when the BCBA is physically present and directly modifying the protocol.",
+    options:[
+      {text:"97155 (Adaptive Behavior Treatment with Protocol Modification)",correct:false},
+      {text:"97151 (Behavior Identification Assessment)",correct:false},
+      {text:"97153 (Adaptive Behavior Treatment by Protocol)",correct:true},
+      {text:"97158 (Adaptive Behavior Treatment Group)",correct:false}
+    ]
+  },
+  {
+    module:3,
+    stem:"A clinic provides ABA services at a client's home. What Place of Service (POS) code should appear on claims for these sessions?",
+    rationale:"Place of Service code 12 designates the client's home as the service location. Using an incorrect POS code, such as 11 (Office), is a common billing error that triggers claim rejection, audit flags, and potential compliance concerns when the clinical record indicates home-based services.",
+    options:[
+      {text:"11 (Office)",correct:false},
+      {text:"12 (Home)",correct:true},
+      {text:"23 (Emergency Room)",correct:false},
+      {text:"99 (Other Unlisted)",correct:false}
+    ]
+  },
+
+  /* ---- Module 4: Medicaid Compliance ---- */
+  {
+    module:4,
+    stem:"A Medi-Cal audit request letter dated November 5 is received by the clinic on November 9. The letter states the provider has 30 days from the date of the letter to submit records. What is the documentation deadline?",
+    rationale:"Medi-Cal audit timelines run from the date of the letter, not the date of receipt. The deadline is 30 days from November 5, which is December 5. Using the receipt date (December 9) instead of the letter date creates a risk of missing the actual deadline and forfeiting appeal rights.",
+    options:[
+      {text:"December 5 — 30 days from the letter date of November 5",correct:true},
+      {text:"December 9 — 30 days from the receipt date of November 9",correct:false},
+      {text:"November 30 — end of the calendar month",correct:false},
+      {text:"December 14 — 30 days from receipt with a 5-day mail allowance added",correct:false}
+    ]
+  },
+  {
+    module:4,
+    stem:"Medi-Cal auditors review a sample of 50 session notes and find documentation deficiencies in 8 of them (a 16% error rate). They apply this rate to the full 2,400 notes billed during the audit period. This technique is called:",
+    rationale:"Statistical extrapolation projects the deficiency rate from a sampled population to the entire billing universe. A 16% deficiency rate found in 50 notes can generate a recovery demand applied to all 2,400 claims, far exceeding the actual 8 deficient notes. This is why consistent documentation quality across every individual session note is critical.",
+    options:[
+      {text:"Targeted audit review",correct:false},
+      {text:"Statistical extrapolation",correct:true},
+      {text:"Proportional recovery assessment",correct:false},
+      {text:"Random sampling adjustment",correct:false}
+    ]
+  },
+  {
+    module:4,
+    stem:"Which documentation practice most effectively protects an ABA provider from adverse Medi-Cal audit outcomes?",
+    rationale:"Auditors evaluate each session note independently on its own merits. Even if 95% of notes are perfect, a session note that cannot individually demonstrate medical necessity for that specific service date creates a claim deficiency. Every session note must stand alone and justify the clinical appropriateness of that specific session.",
+    options:[
+      {text:"Submitting all claims electronically to minimize data entry errors",correct:false},
+      {text:"Ensuring every session note individually demonstrates medical necessity for that specific service date",correct:true},
+      {text:"Keeping backup copies of all prior authorization letters on file",correct:false},
+      {text:"Using BCBA-approved templates for each session type",correct:false}
+    ]
+  },
+
+  /* ---- Module 5: The 2027 CPT Transition ---- */
+  {
+    module:5,
+    stem:"Effective January 1, 2027, CPT code 97155 is split into two codes. Which new code applies when the BCBA is physically present during the direct treatment session?",
+    rationale:"97173 replaces 97155 for sessions where the BCBA is physically present and directly involved in treatment. 97160 applies when the BCBA is NOT physically present and is directing treatment remotely. The physical presence distinction is the critical factor in selecting the correct code after the 2027 transition.",
+    options:[
+      {text:"97148",correct:false},
+      {text:"97149",correct:false},
+      {text:"97160 — BCBA directing treatment but not physically present",correct:false},
+      {text:"97173 — BCBA physically present during treatment",correct:true}
+    ]
+  },
+  {
+    module:5,
+    stem:"A clinic holds a valid prior authorization for CPT code 0362T through March 2027. What action is required before January 1, 2027?",
+    rationale:"CPT code 0362T is deleted effective January 1, 2027. Claims submitted with this code after that date will be automatically rejected regardless of the authorization expiration date. Any authorization for 0362T must be amended to the replacing code before the deletion date, with the amendment documented and confirmed in writing by the payer.",
+    options:[
+      {text:"No action needed — the authorization transfers to the replacement code automatically",correct:false},
+      {text:"Contact the payer to amend the authorization to the replacing CPT code before 0362T is deleted",correct:true},
+      {text:"Continue using 0362T until the authorization expires in March 2027",correct:false},
+      {text:"Rebill all prior 0362T claims retroactively under the replacement code",correct:false}
+    ]
+  },
+
+  /* ---- Module 6: Payer Rules and Variations ---- */
+  {
+    module:6,
+    stem:"United Healthcare's ABA documentation policies uniquely require which element in every session note, in addition to standard documentation requirements?",
+    rationale:"United Healthcare explicitly requires supervisor cosignature AND the supervisor's NPI number on every ABA session note. This is distinct from Medi-Cal and most commercial payers, which do not universally require the NPI on each note. Missing the supervisor NPI is the most common United-specific denial trigger for ABA claims.",
+    options:[
+      {text:"FBA date and assessment title on every session note",correct:false},
+      {text:"Specific reinforcer type used during the session",correct:false},
+      {text:"Supervisor cosignature and NPI number on every session note",correct:true},
+      {text:"ABC-formatted behavioral incident summary for all disruptive behavior",correct:false}
+    ]
+  },
+  {
+    module:6,
+    stem:"A documentation coordinator has three outstanding appeals: Medi-Cal with 85 days remaining (90-day window), United Healthcare with 100 days remaining (120-day window), and BlueCross with 165 days remaining (180-day window). All are for similar dollar amounts. Which should be prioritized?",
+    rationale:"Appeals are prioritized by remaining days until the deadline, not total window length or payer name. With 85 days remaining, the Medi-Cal appeal expires first and must be filed first. Missing an appeal deadline permanently forfeits the revenue with no recovery option available.",
+    options:[
+      {text:"BlueCross — most time remaining, lowest urgency",correct:false},
+      {text:"United Healthcare — 100 days remaining",correct:false},
+      {text:"Medi-Cal — fewest days remaining before the deadline",correct:true},
+      {text:"All three should be submitted simultaneously",correct:false}
+    ]
+  },
+  {
+    module:6,
+    stem:"A documentation coordinator receives multiple CO-57 denials from United Healthcare, all from notes written by the same RBT. Reviewing the notes reveals nearly identical language across consecutive sessions. What is the most effective response?",
+    rationale:"CO-57 denials from United for copy-forward notes require three simultaneous responses: (1) identify and immediately stop the copy-forward practice, which United explicitly prohibits; (2) build individualized note templates to prevent recurrence; and (3) appeal all affected claims within United's 120-day appeal window. Writing off the denials without appealing abandons recoverable revenue.",
+    options:[
+      {text:"Resubmit all denied claims with an attached cover letter explaining the note similarity",correct:false},
+      {text:"Identify and stop the copy-forward practice, retrain the RBT, build individualized templates, then appeal within the 120-day window",correct:true},
+      {text:"Request a formal payer audit to document that the services were actually delivered",correct:false},
+      {text:"Write off the denials and implement new documentation policies without appealing",correct:false}
+    ]
+  }
+];
+
+/* =============================================
+   STATE
+============================================= */
+let shuffledQ = [];
+let selected = [];
+let graded = false;
+let cdInterval = null;
+
+/* =============================================
+   UTILITY
+============================================= */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function ls(key) {
+  try { return localStorage.getItem(key); } catch(e) { return null; }
+}
+function lsSet(key, val) {
+  try { localStorage.setItem(key, val); } catch(e) {}
+}
+function fmtTime(ms) {
+  if (ms <= 0) return '00:00:00';
+  const s = Math.floor(ms / 1000);
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  return [h,m,sec].map(n => String(n).padStart(2,'0')).join(':');
+}
+function showView(id) {
+  ['view-intro','view-cooldown','view-passed','view-exam','view-results'].forEach(v => {
+    const el = document.getElementById(v);
+    if (el) el.hidden = (v !== id);
+  });
+}
+
+/* =============================================
+   CREDENTIAL
+============================================= */
+function getCredentialId() {
+  let id = ls(KEY_CRED);
+  if (id) return id;
+  const num = Math.floor(Math.random() * 99) + 1;
+  id = 'CADA-2027-' + String(num).padStart(4, '0');
+  lsSet(KEY_CRED, id);
+  return id;
+}
+function credHTML(credId) {
+  return `
+    <div class="cred-issuer">CareGuard Institute</div>
+    <div class="cred-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5l3 3 5-6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Certified
+    </div>
+    <div class="cred-title-line">Certified ABA Documentation Advocate</div>
+    <div class="cred-name">[ Name confirmed at enrollment ]</div>
+    <div class="cred-desc">Has demonstrated competency in ABA documentation standards, prior authorization management, billing compliance, Medicaid audit defense, and the 2027 CPT code transition.</div>
+    <div class="cred-id">${credId}</div>
+    <div class="cred-valid">Valid January 1 through December 31, 2027 &nbsp;&middot;&nbsp; Issued by CareGuard Institute</div>
+  `;
+}
+
+/* =============================================
+   INIT
+============================================= */
+function init() {
+  if (ls(KEY_PASS)) {
+    document.getElementById('passed-credential-card').innerHTML = credHTML(getCredentialId());
+    showView('view-passed');
+    return;
+  }
+  const lastFail = ls(KEY_FAIL);
+  if (lastFail) {
+    const remaining = RETAKE_MS - (Date.now() - parseInt(lastFail, 10));
+    if (remaining > 0) {
+      showView('view-cooldown');
+      runCountdown('cooldown-display', remaining);
+      return;
+    }
+  }
+  showView('view-intro');
+}
+
+/* =============================================
+   COUNTDOWN
+============================================= */
+function runCountdown(elId, initialMs) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  el.textContent = fmtTime(initialMs);
+  let rem = initialMs;
+  if (cdInterval) clearInterval(cdInterval);
+  cdInterval = setInterval(() => {
+    rem -= 1000;
+    if (rem <= 0) {
+      clearInterval(cdInterval);
+      if (elId === 'cooldown-display') showView('view-intro');
+      else el.textContent = '00:00:00';
+    } else {
+      el.textContent = fmtTime(rem);
+    }
+  }, 1000);
+}
+
+/* =============================================
+   START EXAM
+============================================= */
+function startExam() {
+  graded = false;
+  shuffledQ = shuffle(QUESTIONS).map(q => ({
+    ...q,
+    shuffledOptions: shuffle(q.options)
+  }));
+  selected = new Array(shuffledQ.length).fill(null);
+  renderQuestions();
+  showView('view-exam');
+  window.scrollTo(0,0);
+}
+
+function renderQuestions() {
+  const wrap = document.getElementById('questions-wrap');
+  wrap.innerHTML = shuffledQ.map((q, qi) => {
+    const opts = q.shuffledOptions.map((opt, oi) => `
+      <div class="q-option" id="opt-${qi}-${oi}" onclick="selectOption(${qi},${oi})">
+        <span class="opt-letter">${LETTERS[oi]}</span>
+        <span class="opt-text">${opt.text}</span>
+      </div>
+    `).join('');
+    return `
+      <div class="q-card" id="qcard-${qi}">
+        <div class="q-header">
+          <span class="q-num">${qi + 1}</span>
+          <span class="q-module-badge">Module ${q.module}</span>
+        </div>
+        <div class="q-stem">${q.stem}</div>
+        <div class="q-options">${opts}</div>
+        <div class="q-rationale" id="rat-${qi}" hidden>
+          <strong>Explanation</strong>
+          ${q.rationale}
+        </div>
+      </div>
+    `;
+  }).join('');
+  updateProgress();
+}
+
+function selectOption(qi, oi) {
+  if (graded) return;
+  if (selected[qi] !== null) {
+    document.getElementById(`opt-${qi}-${selected[qi]}`)?.classList.remove('selected');
+    document.getElementById(`qcard-${qi}`)?.classList.remove('answered');
+  }
+  selected[qi] = oi;
+  document.getElementById(`opt-${qi}-${oi}`)?.classList.add('selected');
+  document.getElementById(`qcard-${qi}`)?.classList.add('answered');
+  updateProgress();
+}
+
+function updateProgress() {
+  const answered = selected.filter(s => s !== null).length;
+  const total = shuffledQ.length;
+  const pct = total ? (answered / total * 100) : 0;
+  document.getElementById('epb-count').textContent = `${answered} of ${total} answered`;
+  document.getElementById('epb-fill').style.width = `${pct}%`;
+  const btn = document.getElementById('btn-submit');
+  const hint = document.getElementById('submit-hint');
+  const rem = total - answered;
+  if (answered === total) {
+    btn.disabled = false;
+    hint.textContent = 'All questions answered. Ready to submit.';
+  } else {
+    btn.disabled = true;
+    hint.textContent = `${rem} question${rem !== 1 ? 's' : ''} remaining`;
+  }
+}
+
+/* =============================================
+   SUBMIT
+============================================= */
+function submitExam() {
+  if (graded) return;
+  graded = true;
+
+  let score = 0;
+  const moduleResults = {};
+  for (let m = 1; m <= 6; m++) moduleResults[m] = {correct:0, total:0};
+
+  shuffledQ.forEach((q, qi) => {
+    const selIdx = selected[qi];
+    const selOpt = q.shuffledOptions[selIdx];
+    if (selOpt?.correct) score++;
+    moduleResults[q.module].total++;
+    if (selOpt?.correct) moduleResults[q.module].correct++;
+  });
+
+  const passed = score >= PASS_THRESHOLD;
+  const pct = Math.round(score / shuffledQ.length * 100);
+
+  // Apply grading styles
+  shuffledQ.forEach((q, qi) => {
+    const selIdx = selected[qi];
+    q.shuffledOptions.forEach((opt, oi) => {
+      const el = document.getElementById(`opt-${qi}-${oi}`);
+      if (!el) return;
+      el.classList.add('graded');
+      if (opt.correct) el.classList.add('correct-ans');
+      if (oi === selIdx && !opt.correct) el.classList.add('wrong-sel');
+    });
+    document.getElementById(`rat-${qi}`).hidden = false;
+  });
+
+  // Build score banner
+  const banner = document.getElementById('score-banner');
+  banner.className = `score-banner ${passed ? 'pass' : 'fail'}`;
+  document.getElementById('score-num').textContent = score;
+  document.getElementById('score-pct').textContent = `${pct}%`;
+  document.getElementById('score-label').textContent = passed
+    ? '✓ Assessment Passed'
+    : `${PASS_THRESHOLD - score} more correct answer${(PASS_THRESHOLD - score) !== 1 ? 's' : ''} needed to pass`;
+
+  if (passed) {
+    lsSet(KEY_PASS, '1');
+    const credId = getCredentialId();
+    document.getElementById('pass-credential-card').innerHTML = credHTML(credId);
+    document.getElementById('pass-content').hidden = false;
+  } else {
+    const now = Date.now();
+    lsSet(KEY_FAIL, String(now));
+    buildWeakAreas(moduleResults);
+    document.getElementById('fail-content').hidden = false;
+    runCountdown('results-countdown', RETAKE_MS);
+  }
+
+  buildQReview();
+  showView('view-results');
+  window.scrollTo(0,0);
+}
+
+/* =============================================
+   WEAK AREAS
+============================================= */
+function buildWeakAreas(moduleResults) {
+  const list = document.getElementById('weak-areas-list');
+  // Sort: missed first, then alphabetical by module
+  const entries = Object.entries(moduleResults).sort((a, b) => {
+    const missA = a[1].total - a[1].correct;
+    const missB = b[1].total - b[1].correct;
+    if (missB !== missA) return missB - missA;
+    return a[0] - b[0];
+  });
+  list.innerHTML = entries.map(([mod, res]) => {
+    const missed = res.total - res.correct;
+    const cls = missed > 0 ? 'score-miss' : 'score-ok';
+    return `
+      <div class="weak-area-item">
+        <span class="weak-area-module">Module ${mod} &mdash; ${MODULE_NAMES[mod]}</span>
+        <div class="weak-area-score">
+          <span class="weak-score-pill ${cls}">${res.correct}/${res.total}</span>
+          ${missed > 0 ? `<a href="${MODULE_URLS[mod]}" class="weak-area-link">Review &rarr;</a>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* =============================================
+   Q REVIEW
+============================================= */
+function buildQReview() {
+  const list = document.getElementById('q-review-list');
+  list.innerHTML = shuffledQ.map((q, qi) => {
+    const selIdx = selected[qi];
+    const opts = q.shuffledOptions.map((opt, oi) => {
+      let cls = 'graded';
+      if (opt.correct) cls += ' correct-ans';
+      else if (oi === selIdx) cls += ' wrong-sel';
+      return `
+        <div class="q-option ${cls}">
+          <span class="opt-letter">${LETTERS[oi]}</span>
+          <span class="opt-text">${opt.text}</span>
+        </div>
+      `;
+    }).join('');
+    return `
+      <div class="q-card">
+        <div class="q-header">
+          <span class="q-num">${qi + 1}</span>
+          <span class="q-module-badge">Module ${q.module}</span>
+        </div>
+        <div class="q-stem">${q.stem}</div>
+        <div class="q-options">${opts}</div>
+        <div class="q-rationale">
+          <strong>Explanation</strong>
+          ${q.rationale}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* =============================================
+   BOOT
+============================================= */
+init();
+</script>

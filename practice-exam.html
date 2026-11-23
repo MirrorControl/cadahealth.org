@@ -1,0 +1,547 @@
+<title>CADA Practice Exam | CareGuard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+  --navy:#1a2744;--navy-mid:#2c3e6b;
+  --gold:#c8921a;--gold-light:#f5e6c3;
+  --teal:#0d7377;--teal-light:#d4f0f1;
+  --red:#c0392b;--red-light:#fcecea;
+  --green:#1e7e34;--green-light:#d4f4dd;
+  --amber:#d35400;--amber-light:#fef0e4;
+  --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
+  --border:#d8d5cf;--border-light:#ebe8e2;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:0 4px 16px rgba(0,0,0,.10);
+  --radius-sm:6px;--radius:10px;--radius-lg:16px;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
+    --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
+    --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
+    --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
+    --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
+    --border:#343850;--border-light:#272b3e;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
+  --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
+  --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
+  --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
+  --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
+  --border:#343850;--border-light:#272b3e;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--text);background:var(--bg);min-height:100dvh}
+
+.topbar{background:var(--navy);padding:0 max(20px,env(safe-area-inset-left,0px));height:56px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100}
+.topbar-back{background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:var(--radius-sm);padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.topbar-back:hover{background:rgba(255,255,255,.2)}
+.topbar-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;flex:1;text-align:center}
+.topbar-badge{background:var(--gold);color:#fff;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.04em}
+.theme-btn{background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:var(--radius-sm);padding:6px 10px;cursor:pointer;font-size:14px}
+
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:40px max(24px,env(safe-area-inset-left,0px));text-align:center}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--gold);margin-bottom:10px}
+.hero-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,4vw,32px);font-weight:700;color:#fff;margin-bottom:12px;text-wrap:balance}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.75);max-width:560px;margin:0 auto 20px}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--gold)}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+
+.progress-strip{background:var(--surface);border-bottom:1px solid var(--border-light);padding:12px max(24px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:12px;position:sticky;top:56px;z-index:90}
+.progress-track{flex:1;height:7px;background:var(--surface-raised);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .4s ease}
+.progress-label{font-size:12px;font-weight:700;color:var(--text-muted);min-width:60px;text-align:right}
+
+.exam-body{max-width:760px;margin:0 auto;padding:32px max(24px,env(safe-area-inset-left,0px)) 80px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.15em;color:var(--gold);margin-bottom:10px}
+
+.module-group{margin-bottom:36px}
+.module-group-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.module-group-num{background:var(--navy);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;flex-shrink:0}
+.module-group-name{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--text)}
+.module-group-status{margin-left:auto;font-size:11px;font-weight:700;color:var(--text-muted);background:var(--surface-raised);border-radius:20px;padding:2px 10px}
+.module-group-status.done{background:var(--green-light);color:var(--green)}
+
+.question-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:16px;transition:border-color .2s}
+.question-card.answered{border-color:var(--teal)}
+.q-num{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.q-text{font-size:15px;font-weight:600;color:var(--text);margin-bottom:14px;line-height:1.5}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius);cursor:pointer;font-size:14px;color:var(--text-secondary);transition:all .15s;user-select:none}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light)}
+.q-opt.selected{border-color:var(--gold);background:var(--gold-light);color:var(--text)}
+.q-opt.correct{border-color:var(--green);background:var(--green-light)}
+.q-opt.incorrect{border-color:var(--red);background:var(--red-light)}
+.q-opt.reveal{border-color:var(--green);background:var(--green-light)}
+.q-letter{width:22px;height:22px;border-radius:50%;background:var(--surface-raised);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-muted);flex-shrink:0}
+.q-opt.selected .q-letter{background:var(--gold);border-color:var(--gold);color:#fff}
+.q-rationale{display:none;margin-top:12px;padding:12px 14px;background:var(--surface-raised);border-radius:var(--radius-sm);font-size:13.5px;color:var(--text-secondary);line-height:1.6}
+
+.submit-zone{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:24px 28px;margin-top:8px;text-align:center}
+.submit-zone h3{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px}
+.submit-zone p{font-size:14px;color:var(--text-secondary);margin-bottom:16px}
+.btn-submit{background:var(--navy);color:#fff;border:none;border-radius:var(--radius);padding:13px 36px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-submit:hover:not(:disabled){background:var(--navy-mid);transform:translateY(-1px)}
+.btn-submit:disabled{opacity:.4;cursor:default}
+.answer-count{font-size:13px;color:var(--text-muted);margin-top:10px}
+
+.results-panel{display:none;margin-top:36px}
+.score-banner{border-radius:var(--radius-lg);padding:28px 32px;text-align:center;margin-bottom:28px}
+.score-banner.pass{background:linear-gradient(135deg,var(--green) 0%,#28a745 100%);color:#fff}
+.score-banner.fail{background:linear-gradient(135deg,var(--amber) 0%,#b8440f 100%);color:#fff}
+.score-num{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;line-height:1}
+.score-out{font-size:18px;opacity:.85;margin-top:4px;margin-bottom:12px}
+.score-msg{font-size:15px;opacity:.9;max-width:480px;margin:0 auto}
+
+.weak-areas{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:24px}
+.weak-areas-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:14px}
+.weak-module-row{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--border-light)}
+.weak-module-row:last-child{border-bottom:none}
+.weak-module-num{background:var(--red-light);border:1.5px solid var(--red);color:var(--red);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;flex-shrink:0}
+.weak-module-num.ok{background:var(--green-light);border-color:var(--green);color:var(--green)}
+.weak-module-info{flex:1}
+.weak-module-name{font-size:14px;font-weight:600;color:var(--text)}
+.weak-module-score{font-size:12px;color:var(--text-muted);margin-top:2px}
+.weak-module-link{font-size:12px;font-weight:700;color:var(--teal);text-decoration:none;padding:4px 10px;border:1.5px solid var(--teal);border-radius:var(--radius-sm);white-space:nowrap;transition:all .15s}
+.weak-module-link:hover{background:var(--teal);color:#fff}
+
+.action-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.btn-action{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;padding:12px 28px;border-radius:var(--radius);border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-action.primary{background:var(--navy);color:#fff}
+.btn-action.primary:hover{background:var(--navy-mid)}
+.btn-action.secondary{background:var(--surface-raised);color:var(--text);border:1.5px solid var(--border)}
+.btn-action.secondary:hover{border-color:var(--navy);color:var(--navy)}
+</style>
+
+<div class="topbar">
+  <a href="index.html" class="topbar-back">← Home</a>
+  <div class="topbar-title">CADA Full-Length Practice Exam</div>
+  <div class="topbar-badge">PRACTICE</div>
+  <button class="theme-btn" onclick="toggleTheme()">◐</button>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">CADA CREDENTIAL PREP</div>
+  <div class="hero-title">Full-Length Practice Exam</div>
+  <div class="hero-sub">12 questions drawn from all six CADA modules. See your score by module so you know exactly where to focus before the final assessment.</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">12</div><div class="hero-stat-label">Questions</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">Modules covered</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">80%</div><div class="hero-stat-label">Pass score on final assessment</div></div>
+  </div>
+</div>
+
+<div class="progress-strip">
+  <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="progress-label" id="progressLabel">0 / 12</div>
+</div>
+
+<div class="exam-body">
+  <div id="examContainer"></div>
+
+  <div class="submit-zone" id="submitZone">
+    <h3>Ready to see your score?</h3>
+    <p>Answer all 12 questions, then submit to get your module-by-module breakdown and weak areas review.</p>
+    <button class="btn-submit" id="btnSubmit" disabled onclick="submitExam()">Submit Practice Exam</button>
+    <div class="answer-count" id="answerCount">0 of 12 answered</div>
+  </div>
+
+  <div class="results-panel" id="resultsPanel">
+    <div class="score-banner" id="scoreBanner">
+      <div class="score-num" id="scoreNum">—</div>
+      <div class="score-out" id="scoreOut">out of 12</div>
+      <div class="score-msg" id="scoreMsg"></div>
+    </div>
+    <div class="weak-areas">
+      <div class="weak-areas-title">Module Performance Breakdown</div>
+      <div id="weakAreasList"></div>
+    </div>
+    <div class="action-buttons" id="actionButtons"></div>
+  </div>
+</div>
+
+<script>
+const LETTERS = ['A','B','C','D'];
+
+const QUESTIONS = [
+  // Module 1 — ABA Documentation Standard
+  {module:1,
+   q:'A BCBA reviews a session note written by an RBT and finds that the note documents what the client did during the session but does not explain why those services were medically necessary for the client\'s autism-related treatment goals. What is the most likely audit consequence?',
+   answers:[
+    {text:'No consequence — medical necessity is established by the diagnosis code on the claim, not in the session note.',correct:false,
+     rationale:'Diagnosis codes identify what condition is present, but they do not establish medical necessity for the specific services billed on a specific date. The session note must independently document how the services delivered connect to the client\'s treatment goals and why they were medically necessary. A note that documents activity without medical necessity language is a documentation deficiency.'},
+    {text:'The note may be flagged as deficient and the claim denied — medical necessity must be documented in the note, not assumed from the diagnosis.',correct:true,
+     rationale:'Correct. Medical necessity is a documentation element, not a billing element. A session note that describes what happened without explaining why those services were clinically indicated for the client\'s goals gives an auditor no basis for confirming that the service was medically necessary. This is one of the most common reasons ABA session notes are found deficient in Medicaid and commercial payer audits.'},
+    {text:'The claim will be paid, but the note will be flagged for BCBA review at the next supervision cycle.',correct:false,
+     rationale:'Payer audits do not wait for internal supervision cycles. A deficient note can result in a claim denial or recoupment demand at any point within the payer\'s audit window, which may be two to five years from the date of service.'},
+    {text:'The RBT will receive a correction notice and the note will be corrected within 30 days.',correct:false,
+     rationale:'Internal correction processes do not protect a note from audit findings if the correction happens after the note was submitted with the claim. The payer evaluates the note as submitted.'}
+   ]
+  },
+  {module:1,
+   q:'A documentation coordinator receives a note from an RBT that is complete, clearly written, and properly signed — but it was submitted in PrioraCare 36 hours after the session was delivered. The payer is Medi-Cal. What is the documentation risk?',
+   answers:[
+    {text:'No risk — Medi-Cal does not audit note submission timing, only content.',correct:false,
+     rationale:'Medi-Cal does audit note timing. The Medi-Cal ABA provider manual requires session notes to be completed within 24 hours of service delivery. A note submitted 36 hours after service falls outside that window and can be flagged as a documentation deficiency on audit.'},
+    {text:'Moderate risk — late notes can be corrected by adding the note completion date as a separate field.',correct:false,
+     rationale:'Adding a note completion date does not change when the note was actually created in the system. If PrioraCare logs the timestamp of creation, that timestamp is what an auditor sees. A claimed completion time that differs from the system timestamp creates an inconsistency that is itself a documentation problem.'},
+    {text:'The note may be flagged as deficient on a Medi-Cal audit — the program requires notes to be completed within 24 hours of service, and 36 hours exceeds that window.',correct:true,
+     rationale:'Correct. Medi-Cal\'s ABA documentation standard requires notes to be completed within 24 hours of service delivery. A note submitted 36 hours after service is outside that window. While a single late note may not trigger a full audit, a pattern of late note submission is a consistent audit finding in Medi-Cal ABA reviews and can result in claim denials for affected dates of service.'},
+    {text:'No risk — the 24-hour rule applies to signed notes, not entered notes. The RBT signed within 24 hours.',correct:false,
+     rationale:'The 24-hour requirement under Medi-Cal applies to note completion and entry into the documentation system, not only to signature. The purpose of the requirement is to ensure notes are contemporaneous — written close in time to when the service was delivered — so that the documentation reflects what actually happened.'}
+   ]
+  },
+
+  // Module 2 — Prior Authorization
+  {module:2,
+   q:'A documentation coordinator checks the authorization tracker in PrioraCare on a Friday and finds that an active client\'s Medi-Cal authorization expires in 11 days, on the following Wednesday. What is the correct next action?',
+   answers:[
+    {text:'Wait until Monday — 11 days is sufficient time, and weekend action is not typical for authorization management.',correct:false,
+     rationale:'Authorization renewal requests can take anywhere from 7 to 21 days with Medi-Cal, and managed care plans may take longer. With 11 days remaining, initiating renewal immediately is the correct action. Waiting until Monday loses two days of that window with no benefit.'},
+    {text:'Begin the renewal process immediately — submit the renewal request today, before the weekend, since Medi-Cal authorization processing can take 7 to 21 days and there is no buffer if the request is delayed.',correct:true,
+     rationale:'Correct. With only 11 days before expiration and a typical processing window of 7 to 21 days, the documentation coordinator has no time to spare. Beginning the renewal process Friday morning — before the weekend causes further delay — is the correct response. If the authorization expires before the renewal is approved, services delivered after the expiration date will not be covered, creating both a revenue loss and a potential compliance issue.'},
+    {text:'Notify the BCBA to pause services until the renewal is confirmed — it is safer to interrupt services than to deliver unauthorized services.',correct:false,
+     rationale:'Pausing services 11 days before expiration when no renewal has been requested yet is premature and clinically unnecessary. The correct action is to initiate renewal immediately and track the request. Services should not be paused until and unless the authorization actually expires without a renewal in place.'},
+    {text:'Check whether the authorization can be extended retroactively — Medi-Cal allows 30-day extensions for active clients.',correct:false,
+     rationale:'Medi-Cal does not automatically allow 30-day extensions for active clients. Retroactive authorization requests are processed case-by-case and are not guaranteed. The documentation coordinator\'s job is to prevent this situation by initiating renewal well before expiration, not to request retroactive coverage after the fact.'}
+   ]
+  },
+  {module:2,
+   q:'A documentation coordinator discovers that a client received 180 units of 97153 during November but the Medi-Cal authorization for that period only covered 160 units. Services are still ongoing in December. What is the most important immediate action?',
+   answers:[
+    {text:'Do nothing until billing month closes — the overage may be absorbed in the next authorization period.',correct:false,
+     rationale:'Authorization overruns cannot be "absorbed" into future authorization periods. Units delivered beyond what was authorized are not covered by the authorization for the period in which they were delivered, and cannot be retroactively covered by a future authorization. This is a known Medicaid compliance issue in states like Wisconsin and Colorado, where audit programs specifically look for unit overruns.'},
+    {text:'Flag the 20-unit overage, halt additional 97153 billing for this client until a new or amended authorization is in place, and document the overage with the date it was identified and the action taken.',correct:true,
+     rationale:'Correct. The documentation coordinator must flag the overage immediately — before any additional units are billed. Services can continue only if a new authorization is requested and approved for December. The 20-unit overage in November cannot be recovered through additional authorization; it must be documented and addressed with the billing team to determine whether recoupment or write-off is necessary. Continuing to bill without an authorization in place compounds the problem.'},
+    {text:'Request a retroactive authorization amendment to cover the November overage — Medi-Cal will approve it if the clinical documentation supports the additional units.',correct:false,
+     rationale:'Retroactive authorization amendments are not guaranteed and are not a standard Medi-Cal process. Submitting claims for services that exceeded authorization is a compliance risk regardless of clinical justification. The correct response is to identify and flag the overage, stop additional billing without authorization, and work with the billing team on how to address the November units.'},
+    {text:'Bill only 160 units for November and discard documentation for the remaining 20 — billing the authorization maximum is the safest approach.',correct:false,
+     rationale:'Destroying or discarding documentation for delivered services is never acceptable. Services that were delivered must be documented. The issue is that those 20 units may not be billable because they were not authorized — but that is a billing decision, not a documentation decision. All delivered services must be documented regardless of whether they can be billed.'}
+   ]
+  },
+
+  // Module 3 — ABA Billing Fundamentals
+  {module:3,
+   q:'A clinic is billing 97153 for a 2-hour session delivered by an RBT. The session was supervised by a BCBA who was available by phone but was not present at the service location. Which billing scenario is correct?',
+   answers:[
+    {text:'97153 cannot be billed for phone-supervised sessions — the BCBA must be physically present.',correct:false,
+     rationale:'97153 covers ABA treatment by a technician (RBT) under a behavior analyst\'s direction. Phone supervision is a form of indirect supervision and is generally acceptable for 97153, depending on payer-specific supervision ratio and contact requirements. Physical BCBA presence at the session is required for 97155 (adaptive behavior treatment with protocol modification), not 97153 (direct treatment by technician).'},
+    {text:'97153 is correctly billed for direct 1:1 ABA treatment delivered by the RBT — phone supervision is an appropriate supervision modality for 97153 under most payer contracts.',correct:true,
+     rationale:'Correct. CPT code 97153 (Adaptive Behavior Treatment by Protocol, each 15 minutes) covers direct ABA treatment delivered by a technician under a qualified behavior analyst\'s direction. Phone supervision satisfies the indirect supervision component for 97153. Physical BCBA presence is required for 97155 (which involves protocol modification) and for the new 2027 code 97173 (direct BCBA presence during tech delivery). The documentation must note the BCBA\'s supervision, including the form of supervision contact.'},
+    {text:'97155 should be billed instead — any BCBA supervision makes the session billable as a behavior analyst code.',correct:false,
+     rationale:'97155 (Adaptive Behavior Treatment with Protocol Modification) requires the qualified behavior analyst to be present and actively modifying the protocol during the session. A BCBA available by phone is not present. Billing 97155 when the BCBA was not physically present is a billing error that is a common audit finding — particularly now with the 2027 CPT split distinguishing 97160 (analyst not present) from 97173 (analyst physically present).'},
+    {text:'The session cannot be billed at all unless the BCBA documents physical presence.',correct:false,
+     rationale:'Physical presence is not a billing requirement for 97153. This is a common misconception. 97153 covers technician-delivered treatment under a behavior analyst\'s oversight — which may be indirect supervision including phone contact, within payer-specific supervision ratio requirements.'}
+   ]
+  },
+  {module:3,
+   q:'What is the primary function of a prior authorization in ABA billing, and what happens to claims submitted without one when a payer requires it?',
+   answers:[
+    {text:'Prior authorization verifies that the client is enrolled in the payer\'s plan. Claims submitted without one are returned with a request for enrollment verification.',correct:false,
+     rationale:'Prior authorization is not an enrollment verification step. Enrollment verification is handled through eligibility checks before the first claim. Prior authorization specifically approves coverage for a category of services for a defined period, based on medical necessity review.'},
+    {text:'Prior authorization is payer approval that the services to be delivered are medically necessary and covered under the client\'s plan. Claims submitted without required authorization are denied as PR-204 (Service Not Authorized).',correct:true,
+     rationale:'Correct. Prior authorization is the payer\'s advance approval that a specific service category is medically necessary for a specific client for a specific period. It is not simply a notification — it is a gate on coverage. When a payer requires prior authorization and a claim is submitted without it, the claim is denied with denial code PR-204 (Service Not Authorized). The service may have been delivered correctly and documented perfectly, but without the authorization, it is not covered.'},
+    {text:'Prior authorization is an internal clinic approval process. Claims submitted without one are pended for internal clinical review before submission to the payer.',correct:false,
+     rationale:'Prior authorization is a payer-driven process, not an internal clinic process. Some clinics have internal authorization tracking workflows, but the prior authorization itself is issued by the payer after a medical necessity review. It is a payer approval, not an internal approval.'},
+    {text:'Prior authorization ensures the treating BCBA is credentialed with the payer. Claims submitted without one trigger a credentialing review.',correct:false,
+     rationale:'Provider credentialing is a separate process from prior authorization. Prior authorization is specific to a service category for a client. BCBA credentialing determines whether the provider is eligible to bill the payer at all — but an authorized client can have a claim denied for missing prior authorization regardless of whether the BCBA is credentialed.'}
+   ]
+  },
+
+  // Module 4 — Medicaid Compliance and Audit Defense
+  {module:4,
+   q:'A documentation coordinator at a California ABA clinic receives a Medi-Cal records request for 15 client files. The letter is dated October 1 and arrived on October 5. The deadline stated in the letter is "30 days from the date of this letter." When must the documentation package be submitted?',
+   answers:[
+    {text:'November 5 — 30 days from the date of arrival.',correct:false,
+     rationale:'Medi-Cal records request deadlines run from the date on the letter, not the date of arrival. The letter is dated October 1. 30 days from October 1 is October 31. The documentation coordinator must count from October 1 to calculate the deadline correctly.'},
+    {text:'November 4 — 30 days from arrival, plus a 1-day mail processing allowance.',correct:false,
+     rationale:'There is no standard "mail processing allowance" that extends Medi-Cal records request deadlines. The deadline runs from the date on the letter. Mail delays that cause records requests to arrive late are a risk that documentation coordinators manage by checking the state audit tracker and monitoring for requests, not by assuming grace periods.'},
+    {text:'October 31 — 30 days from the date on the letter, which is October 1.',correct:true,
+     rationale:'Correct. Medicaid records request deadlines run from the date on the letter, not the postmark or the date of receipt. The letter is dated October 1. 30 days from October 1 is October 31. The documentation coordinator has 26 days from the date of arrival to assemble and submit the documentation package. This is a critical calculation error that can result in a clinic missing its response deadline — producing a presumption of non-compliance — when the team counts from the wrong date.'},
+    {text:'October 15 — Medi-Cal gives only 15 days for initial response, with a 15-day extension available on request.',correct:false,
+     rationale:'The standard Medi-Cal records request window stated in the letter controls — 30 days from the letter date in this scenario. The 15-day initial response with extension option is not a standard Medi-Cal format. The deadline is what the letter says, calculated from the date on the letter.'}
+   ]
+  },
+  {module:4,
+   q:'During a Medi-Cal post-payment audit, an auditor finds that a clinic billed 97153 for 10 sessions where the session note is missing the "outcome of previous session" field required by Medi-Cal. The auditor extrapolates the finding across all 97153 billing in the audit period — 400 sessions — and demands recoupment of 40% of billed charges. What does "extrapolation" mean in this context, and what should the documentation coordinator do?',
+   answers:[
+    {text:'Extrapolation means the auditor billed the clinic for the 10 deficient sessions multiplied by 40. The documentation coordinator should pay the demand.',correct:false,
+     rationale:'Extrapolation is not a simple multiplication of deficient sessions. It is a statistical method in which a deficiency rate found in a sample is applied to the entire population of claims in the audit period. 10 deficient sessions out of 25 sampled = 40% deficiency rate → applied to 400 total sessions → demand covers 160 sessions worth of billing, not just the 10 that were audited.'},
+    {text:'Extrapolation projects the error rate from a sample to the full audit period. The documentation coordinator should work with a Medicaid billing attorney or consultant to challenge the sample methodology, present additional documentation for the sampled sessions, and determine whether the extrapolation was statistically valid.',correct:true,
+     rationale:'Correct. Extrapolation is a statistical method: the auditor samples a subset of claims, finds a deficiency rate, and projects that rate across the full audit period. The resulting demand can far exceed the actual number of deficient claims. Clinics have the right to challenge extrapolation on methodological grounds — specifically, whether the sample was statistically valid, whether the extrapolation methodology met federal guidelines, and whether additional documentation can reduce the deficiency rate in the sampled claims. This is high-stakes work that typically requires a healthcare attorney or Medicaid billing consultant.'},
+    {text:'Extrapolation means the auditor reviewed all 400 sessions. The documentation coordinator should audit the remaining 390 sessions herself before the deadline.',correct:false,
+     rationale:'Extrapolation means the auditor did NOT review all 400 sessions. That is the point of extrapolation — a sample is reviewed and the findings are projected. Auditing the remaining 390 sessions internally after the fact does not change the extrapolated demand, though it may help the clinic understand the scope of its documentation issue.'},
+    {text:'Extrapolation is not legally permitted in Medi-Cal audits. The documentation coordinator should refuse the demand and cite the prohibition.',correct:false,
+     rationale:'Extrapolation is legally permitted in Medicaid audits under federal guidance (CMS) and is widely used in California DHCS ABA audits. It is not a prohibited practice. Challenging an extrapolation requires showing that the methodology was statistically flawed or that the sample was not representative — not that extrapolation is impermissible.'}
+   ]
+  },
+
+  // Module 5 — 2027 CPT Code Transition
+  {module:5,
+   q:'Effective January 1, 2027, the existing CPT code 97155 (Adaptive Behavior Treatment with Protocol Modification) is replaced by two new codes: 97160 and 97173. What is the key clinical distinction between them?',
+   answers:[
+    {text:'97160 covers protocol modification by a BCBA when the BCBA is physically present; 97173 covers protocol modification when the BCBA is working remotely.',correct:false,
+     rationale:'This reverses the distinction. 97160 (Adaptive Behavior Treatment with Protocol Modification, each 15 min) is for sessions where the qualified behavior analyst is NOT physically present — such as when the BCBA reviews data remotely and updates the protocol without being at the service location. 97173 (Adaptive Behavior Treatment with Protocol Modification, analyst physically present) is for sessions where the BCBA IS physically present during the protocol modification and technician delivery.'},
+    {text:'97160 covers protocol modification when the BCBA is NOT physically present during service delivery; 97173 covers protocol modification when the BCBA IS physically present.',correct:true,
+     rationale:'Correct. The 2027 split of 97155 into two codes is based on the physical presence of the behavior analyst. 97160 (Adaptive Behavior Treatment with Protocol Modification) applies when the BCBA is not physically present — remote data review, indirect supervision, off-site protocol modification. 97173 (Adaptive Behavior Treatment with Protocol Modification, analyst physically present) applies when the BCBA is at the service location, present during the session. The documentation must clearly reflect the BCBA\'s physical location to support the correct code.'},
+    {text:'97160 covers caregiver training without the client present; 97173 covers caregiver training with the client present.',correct:false,
+     rationale:'Caregiver training is covered by the new code 97149 (Caregiver Training Without Client Present) and by existing codes — not by 97160 or 97173. Those two codes are specifically about adaptive behavior treatment with protocol modification by a qualified behavior analyst.'},
+    {text:'97160 covers treatment by a technician; 97173 covers treatment directly delivered by a BCBA without a technician.',correct:false,
+     rationale:'Direct treatment by a technician is covered by 97153. Direct treatment by a BCBA without a technician is covered by 97151 and 97152. The 97160/97173 split is about protocol modification by a behavior analyst — the distinction is whether the analyst is physically present, not who is delivering the direct treatment.'}
+   ]
+  },
+  {module:5,
+   q:'A clinic\'s authorization for 0362T (a deleted Category III code for group adaptive behavior treatment by technician) runs through February 28, 2027. Services are scheduled to continue through February. What must the documentation coordinator do before January 1, 2027?',
+   answers:[
+    {text:'Nothing — authorizations approved before January 1 are grandfathered under the old codes through their expiration date.',correct:false,
+     rationale:'CPT code deletions are not subject to authorization grandfathering. The code 0362T will not be accepted by payers after December 31, 2026 — including for claims with an authorization that extends past that date. The authorization must be amended to reflect the replacement CPT code before services continue in 2027.'},
+    {text:'Begin submitting claims under the nearest new code immediately — the transition does not require authorization amendment.',correct:false,
+     rationale:'Submitting a claim under a CPT code that was not authorized is a billing error regardless of the transition. If the authorization lists 0362T and the claim is submitted under a different code, the payer will deny the claim because the new code is not on the authorization. The authorization must be amended before the claim under the new code can be submitted.'},
+    {text:'Contact each payer to verify their transition timeline, then amend the authorization to replace 0362T with the applicable new code, and ensure the amendment is approved before January 1, 2027 — services after that date must be billed under the new code and covered by an amended authorization.',correct:true,
+     rationale:'Correct. The documentation coordinator must take two actions before January 1, 2027: (1) Contact each payer to confirm their specific timeline for accepting the new codes, since payers set their own transition timelines and may begin accepting new codes in November or December 2026. (2) Submit an authorization amendment to replace 0362T with the applicable new code for the February sessions. If the amendment is not approved before services continue in January 2027, those sessions will be delivered without valid authorization for the new code — producing PR-204 denials.'},
+    {text:'Delay services until March 1, 2027 — the safest approach is to let the authorization expire and start fresh under the new codes.',correct:false,
+     rationale:'Pausing services until March 1 is not a clinical option — the client needs services. The correct approach is to amend the authorization before January 1 to cover the new code for the period through February 28. Delaying services when authorization management can resolve the issue is not an acceptable documentation strategy.'}
+   ]
+  },
+
+  // Module 6 — Payer Rules, State Variations
+  {module:6,
+   q:'A documentation coordinator at a California ABA clinic serves 40 Medi-Cal clients and 15 United Healthcare clients. She discovers that United Healthcare has been denying claims because session notes do not include the supervisor\'s NPI number — a field that is in the Medi-Cal template but mapped to a different location than United requires. What is the best solution?',
+   answers:[
+    {text:'Add the supervisor NPI field to the existing universal template — one template update resolves both payers at once.',correct:false,
+     rationale:'Adding a field to a universal template is a step in the right direction, but it does not solve the structural problem. The template must not only include the NPI field but also ensure RBTs know which payer requires it, where to place it, and in what format. A single field addition to a universal template risks continued inconsistency as payer-specific requirements evolve.'},
+    {text:'Use PrioraCare to build separate session note templates for Medi-Cal and United Healthcare, ensuring each template includes that payer\'s specific required fields in the appropriate format, and train RBTs on which template to use for each client.',correct:true,
+     rationale:'Correct. The solution to multi-payer documentation deficiency is payer-specific templates, not a universal template with more fields. Each payer\'s template should include exactly the fields that payer requires, in the format that payer audits for, so that RBTs complete the note correctly by default rather than by memorizing which fields apply to which client. The documentation coordinator builds the templates in PrioraCare and trains staff on the mapping of client to template.'},
+    {text:'Ask United Healthcare to accept Medi-Cal-format notes — the two templates are substantially similar and United should accommodate the overlap.',correct:false,
+     rationale:'Commercial payers do not negotiate documentation format accommodations with individual clinics. The clinic\'s obligation is to meet United Healthcare\'s stated documentation requirements. United Healthcare\'s supervisor NPI requirement is in its published clinical policy and provider contract — it is the clinic\'s responsibility to comply, not United\'s responsibility to relax its standard.'},
+    {text:'Have BCBAs add the supervisor NPI to United Healthcare notes manually after the RBT completes the note — this is a supervisory review function.',correct:false,
+     rationale:'Having BCBAs manually add required fields to submitted notes after the fact is an operational risk and a documentation integrity concern. The BCBA\'s role is to review notes for clinical accuracy, not to complete documentation fields that should be built into the template. Manual field addition after note completion is also a potential source of inconsistency and may not satisfy the payer\'s timing requirements.'}
+   ]
+  },
+  {module:6,
+   q:'A documentation coordinator receives a United Healthcare denial with code CO-57, citing "documentation does not reflect objective measurable data for the services billed." She reviews the note and finds it contains strong behavioral descriptions but no numerical trial data. The note was written 45 days ago. What is the best course of action?',
+   answers:[
+    {text:'The appeal cannot succeed without numerical data — accept the denial and write off the claim.',correct:false,
+     rationale:'Before accepting a denial, the documentation coordinator should assess whether the note can be supplemented with an addendum. Many payers allow addenda within 60 to 90 days of service. If the RBT has the original trial data from the session, that data can be added as a properly labeled addendum, and the appeal can be filed with the addendum attached. Writing off the claim after 45 days without attempting to supplement the note and appeal is premature.'},
+    {text:'Ask the RBT to rewrite the note with trial data included, and resubmit it as the original note.',correct:false,
+     rationale:'Rewriting and resubmitting a note as if it were the original is document alteration — a compliance violation. The original note was submitted as evidence of service. The correct process is to add an addendum that supplements the original note with the missing data, clearly labeled with the date it was added and the reason for the addendum.'},
+    {text:'Determine whether the RBT retained the original trial data from the session; if so, prepare a properly labeled addendum to the note, file the appeal within United Healthcare\'s 120-day window, and attach both the original note and the addendum to the appeal.',correct:true,
+     rationale:'Correct. The note was written 45 days ago. United Healthcare\'s appeal window is 120 days from the denial date. The documentation coordinator has time to act. The first step is determining whether the RBT\'s original trial data still exists — session data recorded at the time of service can be added to the note as an addendum. The addendum must be clearly labeled as an addendum (not the original note), include the date it was added, and reference the original session date. The appeal is then filed with both documents attached, citing United Healthcare\'s clinical policy and explaining how the addendum supplies the missing measurable data.'},
+    {text:'File the appeal using only the original note, arguing that behavioral descriptions satisfy United Healthcare\'s documentation standard.',correct:false,
+     rationale:'United Healthcare\'s denial specifically cited missing "objective measurable data." An appeal that argues the behavioral description satisfies this standard — without supplying the missing data — is unlikely to succeed. The appeal must address the specific denial reason, not argue that the reason is wrong without evidence. Supplying the actual trial data is a stronger appeal strategy than contesting the payer\'s documentation standard.'}
+   ]
+  }
+];
+
+const MODULES = [
+  {num:1, name:'The ABA Documentation Standard', link:'module1.html'},
+  {num:2, name:'Prior Authorization — The Approval Lifecycle', link:'module2.html'},
+  {num:3, name:'ABA Billing Fundamentals for Non-Clinical Staff', link:'module3.html'},
+  {num:4, name:'Medicaid Compliance and Audit Defense', link:'module4.html'},
+  {num:5, name:'The 2027 CPT Code Transition', link:'module5.html'},
+  {num:6, name:'Payer Rules, State Variations, and Real-World Scenarios', link:'module6.html'}
+];
+
+let answers = {};
+let submitted = false;
+let shuffledQuestions = [];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function buildExam() {
+  shuffledQuestions = shuffle(QUESTIONS);
+
+  // Group by module for display
+  const byModule = {};
+  shuffledQuestions.forEach((q, globalIdx) => {
+    if(!byModule[q.module]) byModule[q.module] = [];
+    byModule[q.module].push({q, globalIdx});
+  });
+
+  const container = document.getElementById('examContainer');
+  let questionNumber = 1;
+
+  MODULES.forEach(mod => {
+    const group = byModule[mod.num] || [];
+    if(!group.length) return;
+
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'module-group';
+    groupDiv.id = 'mg-' + mod.num;
+
+    let qs = '';
+    group.forEach(({q, globalIdx}) => {
+      const shuffledAnswers = shuffle(q.answers.map((a,i)=>({...a, origIdx:i})));
+      qs += buildQuestion(q, shuffledAnswers, globalIdx, questionNumber++);
+    });
+
+    groupDiv.innerHTML = `
+      <div class="module-group-header">
+        <div class="module-group-num">M${mod.num}</div>
+        <div class="module-group-name">${mod.name}</div>
+        <div class="module-group-status" id="mgs-${mod.num}">0/2</div>
+      </div>
+      ${qs}
+    `;
+    container.appendChild(groupDiv);
+  });
+}
+
+function buildQuestion(q, shuffledAnswers, globalIdx, displayNum) {
+  const opts = shuffledAnswers.map((a, pos) => {
+    return `<div class="q-opt" id="opt-${globalIdx}-${pos}" data-gidx="${globalIdx}" data-pos="${pos}" data-orig="${a.origIdx}" data-correct="${a.correct?'1':'0'}" onclick="selectAnswer(this)">
+      <div class="q-letter">${LETTERS[pos]}</div>
+      <span>${a.text}</span>
+    </div>`;
+  }).join('');
+
+  return `<div class="question-card" id="qc-${globalIdx}">
+    <div class="q-num">QUESTION ${displayNum} · MODULE ${q.module}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="q-opts">${opts}</div>
+    <div class="q-rationale" id="qrat-${globalIdx}"></div>
+  </div>`;
+}
+
+function selectAnswer(el) {
+  if(submitted) return;
+  const globalIdx = parseInt(el.dataset.gidx);
+  const q = shuffledQuestions[globalIdx];
+
+  el.closest('.q-opts').querySelectorAll('.q-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[globalIdx] = {pos: parseInt(el.dataset.pos), orig: parseInt(el.dataset.orig), correct: el.dataset.correct === '1'};
+
+  document.getElementById('qc-' + globalIdx).classList.add('answered');
+  updateProgress();
+  updateModuleStatus(q.module);
+
+  const answered = Object.keys(answers).length;
+  document.getElementById('btnSubmit').disabled = answered < 12;
+  document.getElementById('answerCount').textContent = `${answered} of 12 answered`;
+}
+
+function updateProgress() {
+  const answered = Object.keys(answers).length;
+  const pct = Math.round((answered / 12) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = answered + ' / 12';
+}
+
+function updateModuleStatus(modNum) {
+  const modQs = shuffledQuestions
+    .map((q,i) => ({q,i}))
+    .filter(({q}) => q.module === modNum);
+
+  const answeredCount = modQs.filter(({i}) => answers[i] !== undefined).length;
+  const el = document.getElementById('mgs-' + modNum);
+  el.textContent = `${answeredCount}/2`;
+  if(answeredCount === 2) el.classList.add('done');
+}
+
+function submitExam() {
+  if(submitted) return;
+  submitted = true;
+  document.getElementById('btnSubmit').disabled = true;
+
+  let totalCorrect = 0;
+  const moduleScores = {};
+  MODULES.forEach(m => { moduleScores[m.num] = {correct:0, total:0}; });
+
+  shuffledQuestions.forEach((q, globalIdx) => {
+    const ans = answers[globalIdx];
+    const isCorrect = ans && ans.correct;
+    if(isCorrect) totalCorrect++;
+    moduleScores[q.module].total++;
+    if(isCorrect) moduleScores[q.module].correct++;
+
+    const opts = document.querySelectorAll(`[id^="opt-${globalIdx}-"]`);
+    opts.forEach(opt => {
+      const pos = parseInt(opt.dataset.pos);
+      if(ans && pos === ans.pos && isCorrect) opt.classList.add('correct');
+      else if(ans && pos === ans.pos && !isCorrect) opt.classList.add('incorrect');
+      else if(opt.dataset.correct === '1') opt.classList.add('reveal');
+    });
+
+    const ratDiv = document.getElementById('qrat-' + globalIdx);
+    const selectedAns = shuffledQuestions[globalIdx].answers[ans ? ans.orig : 0];
+    ratDiv.style.display = 'block';
+    ratDiv.innerHTML = `<strong style="color:${isCorrect?'var(--green)':'var(--red)'}">${isCorrect?'Correct:':'Incorrect:'}</strong> ${selectedAns.rationale}`;
+  });
+
+  // Show results
+  const pct = Math.round((totalCorrect / 12) * 100);
+  const passed = pct >= 80;
+
+  const banner = document.getElementById('scoreBanner');
+  banner.className = 'score-banner ' + (passed ? 'pass' : 'fail');
+  document.getElementById('scoreNum').textContent = totalCorrect;
+  document.getElementById('scoreOut').textContent = `out of 12 (${pct}%)`;
+  document.getElementById('scoreMsg').textContent = passed
+    ? 'Strong score. You are ready to take the final assessment. Aim for 80% or higher (12 of 15) to earn your CADA credential.'
+    : 'Review the modules where you missed questions, then retake this practice exam before attempting the final assessment. Focus on the weak areas highlighted below.';
+
+  // Module breakdown
+  const weakList = document.getElementById('weakAreasList');
+  let weakHTML = '';
+  let hasWeak = false;
+  MODULES.forEach(mod => {
+    const sc = moduleScores[mod.num];
+    const isWeak = sc.correct < sc.total;
+    if(isWeak) hasWeak = true;
+    weakHTML += `<div class="weak-module-row">
+      <div class="weak-module-num ${sc.correct === sc.total ? 'ok' : ''}">${sc.correct === sc.total ? '✓' : sc.correct + '/' + sc.total}</div>
+      <div class="weak-module-info">
+        <div class="weak-module-name">Module ${mod.num}: ${mod.name}</div>
+        <div class="weak-module-score">${sc.correct} of ${sc.total} correct${isWeak ? ' — review recommended' : ' — good'}</div>
+      </div>
+      ${isWeak ? `<a href="${mod.link}" class="weak-module-link">Review →</a>` : ''}
+    </div>`;
+  });
+  weakList.innerHTML = weakHTML;
+
+  // Action buttons
+  const btnContainer = document.getElementById('actionButtons');
+  if(passed) {
+    btnContainer.innerHTML = `<a href="assessment.html" class="btn-action primary">Take Final Assessment →</a>
+      <a href="index.html" class="btn-action secondary">← Return Home</a>`;
+  } else {
+    btnContainer.innerHTML = `<button onclick="restartExam()" class="btn-action primary">Retake Practice Exam</button>
+      <a href="index.html" class="btn-action secondary">← Return Home</a>`;
+  }
+
+  document.getElementById('resultsPanel').style.display = 'block';
+  document.getElementById('resultsPanel').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function restartExam() {
+  answers = {};
+  submitted = false;
+  document.getElementById('examContainer').innerHTML = '';
+  document.getElementById('resultsPanel').style.display = 'none';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('progressLabel').textContent = '0 / 12';
+  document.getElementById('btnSubmit').disabled = true;
+  document.getElementById('answerCount').textContent = '0 of 12 answered';
+  buildExam();
+  window.scrollTo(0,0);
+}
+
+function toggleTheme() {
+  const r = document.documentElement;
+  r.setAttribute('data-theme', r.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+
+buildExam();
+</script>

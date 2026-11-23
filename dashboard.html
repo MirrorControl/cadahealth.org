@@ -1,0 +1,595 @@
+<title>CADA Dashboard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+  --navy:#1a2744;--navy-mid:#2c3e6b;
+  --gold:#c8921a;--gold-light:#f5e6c3;--gold-muted:#e8d49a;
+  --teal:#0d7377;--teal-light:#d4f0f1;
+  --red:#c0392b;--red-light:#fcecea;
+  --green:#1e7e34;--green-light:#d4f4dd;
+  --amber:#d35400;--amber-light:#fef0e4;
+  --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
+  --border:#d8d5cf;--border-light:#ebe8e2;
+  --radius:12px;--topbar-h:56px;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
+    --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
+    --border:#2e2b26;--border-light:#252320;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
+  --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
+  --border:#2e2b26;--border-light:#252320;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+
+/* Topbar */
+.topbar{
+  position:sticky;top:env(safe-area-inset-top,0px);
+  height:var(--topbar-h);background:var(--navy);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(16px,env(safe-area-inset-left,0px));z-index:100;
+}
+.logo-link{text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff}
+.logo-badge{
+  background:var(--gold);color:#fff;
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  padding:2px 7px;border-radius:4px;letter-spacing:.05em;
+}
+.topnav{display:flex;gap:6px}
+.nav-link{
+  color:rgba(255,255,255,.75);text-decoration:none;
+  font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:background .15s;
+}
+.nav-link:hover{background:rgba(255,255,255,.1);color:#fff}
+
+/* Layout */
+.page-wrap{
+  max-width:960px;margin:0 auto;
+  padding:36px max(16px,env(safe-area-inset-left,0px)) 80px;
+}
+
+/* Welcome bar */
+.welcome-bar{
+  background:linear-gradient(135deg,var(--navy) 0%,#243460 100%);
+  border-radius:var(--radius);padding:28px 32px;margin-bottom:28px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+  flex-wrap:wrap;position:relative;overflow:hidden;
+}
+.welcome-bar::before{
+  content:'';position:absolute;top:-40px;right:40px;
+  width:200px;height:200px;border-radius:50%;
+  background:rgba(200,146,26,.07);pointer-events:none;
+}
+.welcome-left{}
+.welcome-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.welcome-title{
+  font-family:'Space Grotesk',sans-serif;font-size:clamp(18px,3vw,24px);font-weight:700;
+  color:#fff;margin-bottom:6px;
+}
+.welcome-subtitle{font-size:14px;color:rgba(255,255,255,.65);max-width:460px;line-height:1.5}
+
+.welcome-cred{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:16px 20px;text-align:center;min-width:180px;flex-shrink:0;
+}
+.welcome-cred-label{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.welcome-cred-id{
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  color:var(--gold);letter-spacing:.04em;margin-bottom:8px;
+}
+.welcome-cred-status{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:600;padding:4px 10px;border-radius:12px;
+}
+.status-active{background:rgba(30,126,52,.25);color:#5de68d}
+.status-pending{background:rgba(211,84,0,.2);color:#f5a05a}
+.status-locked{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
+
+/* Overall progress */
+.progress-overview{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;margin-bottom:28px;
+}
+.stat-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:18px 20px;
+}
+.stat-label{font-size:12px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.stat-num{
+  font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
+  color:var(--navy);line-height:1;margin-bottom:4px;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .stat-num{color:var(--gold)}}
+:root[data-theme="dark"] .stat-num{color:var(--gold)}
+.stat-desc{font-size:12px;color:var(--text-muted);line-height:1.4}
+
+/* Progress bar */
+.progress-bar-wrap{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:18px 20px;margin-bottom:28px;
+}
+.progress-bar-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.progress-bar-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--text)}
+.progress-bar-pct{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--navy)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .progress-bar-pct{color:var(--gold)}}
+:root[data-theme="dark"] .progress-bar-pct{color:var(--gold)}
+.progress-track{
+  height:10px;background:var(--surface-raised);border-radius:5px;overflow:hidden;
+}
+.progress-fill{
+  height:100%;border-radius:5px;transition:width .6s ease;
+  background:linear-gradient(90deg,var(--navy),var(--navy-mid));
+}
+.progress-fill.complete{background:linear-gradient(90deg,var(--green),#28a745)}
+
+/* Two-column layout */
+.main-cols{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+@media(max-width:760px){.main-cols{grid-template-columns:1fr}}
+
+/* Module list */
+.module-list-section{}
+.section-heading{
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);
+  margin-bottom:14px;
+}
+
+.module-card{
+  background:var(--surface);border:1.5px solid var(--border);
+  border-radius:10px;margin-bottom:10px;overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+  text-decoration:none;display:block;
+}
+.module-card:hover{border-color:var(--navy);box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.module-card.done{border-color:var(--green)}
+.module-card.in-progress{border-color:var(--gold)}
+.module-card.locked{opacity:.55;pointer-events:none}
+
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .module-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.2)}
+}
+:root[data-theme="dark"] .module-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.2)}
+
+.module-card-inner{display:flex;align-items:center;gap:14px;padding:14px 18px}
+
+.module-status-icon{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.icon-done{background:var(--green-light)}
+.icon-next{background:var(--gold-light)}
+.icon-locked{background:var(--surface-raised)}
+
+.module-info{flex:1;min-width:0}
+.module-num{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px}
+.module-title{
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.module-desc{font-size:12px;color:var(--text-muted);line-height:1.4}
+
+.module-action{
+  font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
+  padding:6px 14px;border-radius:6px;white-space:nowrap;
+}
+.action-review{background:var(--green-light);color:var(--green)}
+.action-start{background:var(--gold-light);color:var(--amber)}
+.action-begin{background:var(--navy);color:#fff}
+.action-locked{background:var(--surface-raised);color:var(--text-muted)}
+
+/* Sidebar */
+.sidebar{}
+
+/* Next step card */
+.next-step-card{
+  background:var(--navy);border-radius:var(--radius);
+  padding:24px;margin-bottom:16px;position:relative;overflow:hidden;
+}
+.next-step-card::before{
+  content:'';position:absolute;bottom:-30px;right:-30px;
+  width:120px;height:120px;border-radius:50%;
+  background:rgba(200,146,26,.08);
+}
+.next-eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.next-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;text-wrap:balance}
+.next-desc{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;margin-bottom:16px}
+.next-btn{
+  display:block;text-align:center;text-decoration:none;
+  background:var(--gold);color:#fff;border:none;
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  padding:11px 20px;border-radius:7px;cursor:pointer;transition:background .2s;
+}
+.next-btn:hover{background:#a97415}
+
+/* Credential card sidebar */
+.cred-sidebar{
+  background:linear-gradient(135deg,var(--navy) 0%,#243460 100%);
+  border-radius:var(--radius);padding:22px;margin-bottom:16px;
+}
+.cred-sb-issuer{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.cred-sb-title{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:12px}
+.cred-sb-id{
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  color:var(--gold);letter-spacing:.04em;margin-bottom:4px;
+}
+.cred-sb-valid{font-size:11px;color:rgba(255,255,255,.35)}
+.cred-sb-status{
+  margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);
+  font-size:12px;color:rgba(255,255,255,.5);
+}
+.cred-sb-status strong{color:#5de68d}
+
+.sidebar-link-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:16px 18px;margin-bottom:12px;
+  text-decoration:none;display:flex;align-items:center;gap:12px;
+  transition:border-color .15s;
+}
+.sidebar-link-card:hover{border-color:var(--navy)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .sidebar-link-card:hover{border-color:var(--gold)}}
+:root[data-theme="dark"] .sidebar-link-card:hover{border-color:var(--gold)}
+.sidebar-link-icon{font-size:20px;flex-shrink:0}
+.sidebar-link-info{}
+.sidebar-link-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
+.sidebar-link-desc{font-size:12px;color:var(--text-muted)}
+.sidebar-link-arrow{font-size:14px;color:var(--text-muted);margin-left:auto;flex-shrink:0}
+
+/* Reset button */
+.reset-link{
+  display:block;text-align:center;
+  font-size:12px;color:var(--text-muted);cursor:pointer;
+  margin-top:20px;padding:8px;text-decoration:underline;
+}
+.reset-link:hover{color:var(--red)}
+
+/* Celebration banner */
+.celebration{
+  background:linear-gradient(135deg,var(--green) 0%,#28a745 100%);
+  border-radius:var(--radius);padding:24px 28px;margin-bottom:24px;
+  text-align:center;
+}
+.celebration-icon{font-size:36px;margin-bottom:10px}
+.celebration-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:6px}
+.celebration-desc{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:16px;line-height:1.5}
+.celebration-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-white{
+  background:#fff;color:var(--green);border:none;
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  padding:10px 20px;border-radius:7px;text-decoration:none;cursor:pointer;
+}
+.btn-outline-white{
+  background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  padding:9px 20px;border-radius:7px;text-decoration:none;cursor:pointer;
+}
+</style>
+
+<div id="app">
+  <header class="topbar">
+    <a href="index.html" class="logo-link">
+      <span class="logo-text">CareGuard</span>
+      <span class="logo-badge">CADA</span>
+    </a>
+    <nav class="topnav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="verify.html" class="nav-link">Verify</a>
+    </nav>
+  </header>
+
+  <div class="page-wrap" id="page-wrap">
+    <!-- Dynamically rendered by JS -->
+  </div>
+</div>
+
+<script>
+const KEY_PASS   = 'cada_passed';
+const KEY_FAIL   = 'cada_last_fail';
+const KEY_CRED   = 'cada_credential_id';
+const KEY_ENROLLED = 'cada_enrolled';
+
+// Module quiz completion keys — set by each module's submitQuiz()
+const MODULE_KEYS = [
+  'cada_m1_quiz_done',
+  'cada_m2_quiz_done',
+  'cada_m3_quiz_done',
+  'cada_m4_quiz_done',
+  'cada_m5_quiz_done',
+  'cada_m6_quiz_done',
+];
+const PRACTICE_KEY = 'cada_practice_done';
+const RETAKE_MS = 72 * 60 * 60 * 1000;
+
+const MODULES = [
+  { num:1, file:'module1.html', title:'The ABA Documentation Standard',           desc:'Medical necessity, behavioral objectives, session note compliance' },
+  { num:2, file:'module2.html', title:'Prior Authorization — The Approval Lifecycle', desc:'Auth submission, unit tracking, expiration management' },
+  { num:3, file:'module3.html', title:'ABA Billing Fundamentals',                 desc:'CPT codes, place of service, RBT vs BCBA billing distinctions' },
+  { num:4, file:'module4.html', title:'Medicaid Compliance and Audit Defense',    desc:'RAC audits, statistical extrapolation, appeal rights' },
+  { num:5, file:'module5.html', title:'The 2027 CPT Code Transition',             desc:'97155 split, 0362T/0373T deletion, payer-specific timelines' },
+  { num:6, file:'module6.html', title:'Payer Rules, State Variations, and Real-World Scenarios', desc:'Payer-specific documentation, multi-payer prioritization, capstone' },
+];
+
+function ls(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsDel(k){ try{ localStorage.removeItem(k); }catch(e){} }
+
+function getProgress(){
+  const modulesDone = MODULE_KEYS.filter(k => ls(k) === '1').length;
+  const practiceDone = ls(PRACTICE_KEY) === '1';
+  const passed = ls(KEY_PASS) === '1';
+  const enrolled = ls(KEY_ENROLLED) === '1';
+  const lastFail = ls(KEY_FAIL);
+  const credId = ls(KEY_CRED);
+  const inCooldown = lastFail && !passed && (Date.now() - parseInt(lastFail,10)) < RETAKE_MS;
+
+  // Steps: 6 modules + practice + assessment + enrollment = 9 total steps
+  let completedSteps = modulesDone + (practiceDone?1:0) + (passed?1:0) + (enrolled?1:0);
+  const totalSteps = 9;
+  const pct = Math.round((completedSteps / totalSteps) * 100);
+
+  return { modulesDone, practiceDone, passed, enrolled, credId, inCooldown, lastFail, pct, completedSteps, totalSteps };
+}
+
+function nextAction(p){
+  if (!p.passed && !p.inCooldown) {
+    // Find first incomplete module
+    for (let i=0; i<6; i++){
+      if (!ls(MODULE_KEYS[i])){
+        return { label:'Continue Learning', href: MODULES[i].file, desc:`Start Module ${i+1}: ${MODULES[i].title}` };
+      }
+    }
+    if (!p.practiceDone) return { label:'Take Practice Exam', href:'practice-exam.html', desc:'12-question timed practice across all 6 modules' };
+    return { label:'Take Final Assessment', href:'assessment.html', desc:'15-question CADA Final Assessment — pass at 80% to earn your credential' };
+  }
+  if (p.inCooldown) return { label:'Review Weak Areas', href:'practice-exam.html', desc:'Use the 72-hour wait to review practice questions and reinforce weak areas' };
+  if (p.passed && !p.enrolled) return { label:'Complete Enrollment', href:'enroll.html', desc:'Submit your enrollment to receive your CADA certificate PDF' };
+  if (p.passed && p.enrolled) return { label:'Verify My Credential', href:'verify.html', desc:'Share or confirm your CADA credential with employers and payers' };
+  return null;
+}
+
+function moduleCardHtml(mod, done, isNext, isLocked){
+  const stateClass = done ? 'done' : isNext ? 'in-progress' : isLocked ? 'locked' : '';
+  const iconClass = done ? 'icon-done' : isNext ? 'icon-next' : 'icon-locked';
+  const icon = done ? '✓' : isNext ? '→' : '🔒';
+  const actionClass = done ? 'action-review' : isNext ? 'action-start' : isLocked ? 'action-locked' : 'action-begin';
+  const actionText = done ? 'Review' : isNext ? 'Start' : 'Locked';
+  const href = isLocked ? '#' : mod.file;
+
+  return `
+    <a class="module-card ${stateClass}" href="${href}">
+      <div class="module-card-inner">
+        <div class="module-status-icon ${iconClass}">${icon}</div>
+        <div class="module-info">
+          <div class="module-num">Module ${mod.num}</div>
+          <div class="module-title">${mod.title}</div>
+          <div class="module-desc">${mod.desc}</div>
+        </div>
+        <span class="module-action ${actionClass}">${actionText}</span>
+      </div>
+    </a>`;
+}
+
+function render(){
+  const p = getProgress();
+  const next = nextAction(p);
+  const wrap = document.getElementById('page-wrap');
+
+  // Build module cards
+  let firstIncomplete = -1;
+  for(let i=0; i<6; i++){
+    if(!ls(MODULE_KEYS[i])){ firstIncomplete=i; break; }
+  }
+
+  const moduleCards = MODULES.map((mod,i) => {
+    const done = ls(MODULE_KEYS[i]) === '1';
+    const isNext = !done && i === firstIncomplete;
+    // Lock modules after first incomplete (optional: allow free navigation)
+    const isLocked = false; // Allow open navigation — don't gate modules
+    return moduleCardHtml(mod, done, isNext, isLocked);
+  }).join('');
+
+  // Practice exam card
+  const pracDone = p.practiceDone;
+  const pracCard = `
+    <a class="module-card ${pracDone?'done':''}" href="practice-exam.html">
+      <div class="module-card-inner">
+        <div class="module-status-icon ${pracDone?'icon-done':'icon-next'}">${pracDone?'✓':'📝'}</div>
+        <div class="module-info">
+          <div class="module-num">Practice Exam</div>
+          <div class="module-title">Full 12-Question Practice</div>
+          <div class="module-desc">2 questions per module, unlimited retakes, rationales revealed on submit</div>
+        </div>
+        <span class="module-action ${pracDone?'action-review':'action-begin'}">${pracDone?'Retake':'Take Exam'}</span>
+      </div>
+    </a>`;
+
+  // Assessment card
+  const assessDone = p.passed;
+  const assessCard = `
+    <a class="module-card ${assessDone?'done':p.inCooldown?'in-progress':''}" href="assessment.html">
+      <div class="module-card-inner">
+        <div class="module-status-icon ${assessDone?'icon-done':'icon-next'}">${assessDone?'✓':'🎯'}</div>
+        <div class="module-info">
+          <div class="module-num">Final Assessment</div>
+          <div class="module-title">CADA Certification Exam</div>
+          <div class="module-desc">15 questions, 80% required to pass, 72-hour retake wait on fail${p.inCooldown?' — retake unlocks soon':''}</div>
+        </div>
+        <span class="module-action ${assessDone?'action-review':p.inCooldown?'action-start':'action-begin'}">${assessDone?'Passed':p.inCooldown?'Cooling Down':'Take Assessment'}</span>
+      </div>
+    </a>`;
+
+  // Welcome bar
+  const credDisplay = p.credId || 'Not Yet Issued';
+  const credStatusHtml = p.passed && p.enrolled
+    ? '<span class="welcome-cred-status status-active">✓ Active</span>'
+    : p.passed
+    ? '<span class="welcome-cred-status status-pending">Enrollment Pending</span>'
+    : '<span class="welcome-cred-status status-locked">Assessment Incomplete</span>';
+
+  const welcomeBar = `
+    <div class="welcome-bar">
+      <div class="welcome-left">
+        <div class="welcome-eyebrow">CADA Learning Dashboard</div>
+        <div class="welcome-title">Your Path to Certification</div>
+        <div class="welcome-subtitle">Complete all 6 modules, pass the practice exam, then take the final assessment to earn your CADA credential valid for the full 2027 certification year.</div>
+      </div>
+      <div class="welcome-cred">
+        <div class="welcome-cred-label">Credential ID</div>
+        <div class="welcome-cred-id">${p.credId || 'Pending'}</div>
+        ${credStatusHtml}
+      </div>
+    </div>`;
+
+  // Stats
+  const statsRow = `
+    <div class="progress-overview">
+      <div class="stat-card">
+        <div class="stat-label">Modules Done</div>
+        <div class="stat-num">${p.modulesDone}<span style="font-size:16px;color:var(--text-muted)">/6</span></div>
+        <div class="stat-desc">Training modules completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Practice Exam</div>
+        <div class="stat-num">${p.practiceDone?'✓':'—'}</div>
+        <div class="stat-desc">${p.practiceDone?'Completed':'Not yet taken'}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Assessment</div>
+        <div class="stat-num">${p.passed?'✓':p.inCooldown?'⏳':'—'}</div>
+        <div class="stat-desc">${p.passed?'Passed — 2027':'Not yet passed'}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Overall Progress</div>
+        <div class="stat-num">${p.pct}%</div>
+        <div class="stat-desc">${p.completedSteps} of ${p.totalSteps} steps complete</div>
+      </div>
+    </div>`;
+
+  // Progress bar
+  const progressBar = `
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-header">
+        <span class="progress-bar-title">Certification Progress</span>
+        <span class="progress-bar-pct">${p.pct}%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill ${p.pct===100?'complete':''}" style="width:${p.pct}%"></div>
+      </div>
+    </div>`;
+
+  // Celebration banner (shown when fully enrolled)
+  const celebrationBanner = p.passed && p.enrolled ? `
+    <div class="celebration">
+      <div class="celebration-icon">🎉</div>
+      <div class="celebration-title">CADA Certified for 2027!</div>
+      <div class="celebration-desc">Your credential is active. Share your Credential ID with employers, billing teams, and payer auditors to demonstrate CADA certification.</div>
+      <div class="celebration-btns">
+        <a href="verify.html" class="btn-white">Verify My Credential</a>
+        <a href="index.html" class="btn-outline-white">Return Home</a>
+      </div>
+    </div>` : '';
+
+  // Sidebar next step card
+  const nextStepCard = next ? `
+    <div class="next-step-card">
+      <div class="next-eyebrow">Up Next</div>
+      <div class="next-title">${next.label}</div>
+      <div class="next-desc">${next.desc}</div>
+      <a href="${next.href}" class="next-btn">${next.label} →</a>
+    </div>` : '';
+
+  // Sidebar credential card
+  const credSidebar = p.passed ? `
+    <div class="cred-sidebar">
+      <div class="cred-sb-issuer">CareGuard Institute</div>
+      <div class="cred-sb-title">Certified ABA Documentation Advocate</div>
+      <div class="cred-sb-id">${p.credId || 'CADA-2027-PENDING'}</div>
+      <div class="cred-sb-valid">Valid January 1 through December 31, 2027</div>
+      <div class="cred-sb-status">Status: <strong>Active 2027</strong></div>
+    </div>` : '';
+
+  // Sidebar links
+  const sidebarLinks = `
+    <a class="sidebar-link-card" href="practice-exam.html">
+      <span class="sidebar-link-icon">📝</span>
+      <div class="sidebar-link-info">
+        <div class="sidebar-link-title">Practice Exam</div>
+        <div class="sidebar-link-desc">12 questions, unlimited retakes</div>
+      </div>
+      <span class="sidebar-link-arrow">→</span>
+    </a>
+    <a class="sidebar-link-card" href="assessment.html">
+      <span class="sidebar-link-icon">🎯</span>
+      <div class="sidebar-link-info">
+        <div class="sidebar-link-title">Final Assessment</div>
+        <div class="sidebar-link-desc">15 questions, 80% to pass, CADA credential on pass</div>
+      </div>
+      <span class="sidebar-link-arrow">→</span>
+    </a>
+    <a class="sidebar-link-card" href="enroll.html">
+      <span class="sidebar-link-icon">🛡️</span>
+      <div class="sidebar-link-info">
+        <div class="sidebar-link-title">Enrollment</div>
+        <div class="sidebar-link-desc">Complete enrollment to receive certificate PDF</div>
+      </div>
+      <span class="sidebar-link-arrow">→</span>
+    </a>
+    <a class="sidebar-link-card" href="verify.html">
+      <span class="sidebar-link-icon">🔍</span>
+      <div class="sidebar-link-info">
+        <div class="sidebar-link-title">Credential Verifier</div>
+        <div class="sidebar-link-desc">Public CADA-2027-XXXX ID lookup</div>
+      </div>
+      <span class="sidebar-link-arrow">→</span>
+    </a>`;
+
+  const resetLink = `<div class="reset-link" onclick="confirmReset()">Reset all progress (testing only)</div>`;
+
+  wrap.innerHTML = `
+    ${welcomeBar}
+    ${celebrationBanner}
+    ${statsRow}
+    ${progressBar}
+    <div class="main-cols">
+      <div class="module-list-section">
+        <div class="section-heading">Training Modules</div>
+        ${moduleCards}
+        <div class="section-heading" style="margin-top:20px">Assessments</div>
+        ${pracCard}
+        ${assessCard}
+      </div>
+      <div class="sidebar">
+        ${nextStepCard}
+        ${credSidebar}
+        ${sidebarLinks}
+        ${resetLink}
+      </div>
+    </div>`;
+}
+
+function confirmReset(){
+  if(!confirm('Reset ALL CADA progress? This clears modules, assessment, and credential from this browser. This cannot be undone.')) return;
+  const keys = [...MODULE_KEYS, PRACTICE_KEY, KEY_PASS, KEY_FAIL, KEY_CRED, KEY_ENROLLED];
+  keys.forEach(k => lsDel(k));
+  render();
+}
+
+render();
+</script>

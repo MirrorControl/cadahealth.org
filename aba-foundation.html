@@ -1,0 +1,725 @@
+<title>ABA Access Project</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+/* Layout: document-style foundation brief with strong typographic hierarchy */
+:root {
+  --bg: #FAFAF9;
+  --bg-alt: #F2EEF9;
+  --bg-card: #FFFFFF;
+  --fg: #111118;
+  --fg-soft: #4A4760;
+  --fg-muted: #7C7A96;
+  --accent: #6639A6;
+  --accent-deep: #1E0A3C;
+  --accent-mid: #9068CC;
+  --accent-soft: #EDE8F8;
+  --gold: #B8831A;
+  --gold-soft: #FDF4E3;
+  --green: #1A7A54;
+  --green-soft: #E6F5EE;
+  --rule: #E0DBEE;
+  --stat-bg: #F5F0FE;
+  --shadow: 0 2px 12px rgba(30, 10, 60, 0.07);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D0818;
+    --bg-alt: #160E28;
+    --bg-card: #1C1333;
+    --fg: #F0EBF8;
+    --fg-soft: #B0A6CC;
+    --fg-muted: #7A70A0;
+    --accent: #9B70D8;
+    --accent-deep: #C8A8F0;
+    --accent-mid: #7A52B8;
+    --accent-soft: #261848;
+    --gold: #D4A03A;
+    --gold-soft: #231800;
+    --green: #3DC48A;
+    --green-soft: #0A2518;
+    --rule: #2A1E48;
+    --stat-bg: #1E1240;
+    --shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0D0818;
+  --bg-alt: #160E28;
+  --bg-card: #1C1333;
+  --fg: #F0EBF8;
+  --fg-soft: #B0A6CC;
+  --fg-muted: #7A70A0;
+  --accent: #9B70D8;
+  --accent-deep: #C8A8F0;
+  --accent-mid: #7A52B8;
+  --accent-soft: #261848;
+  --gold: #D4A03A;
+  --gold-soft: #231800;
+  --green: #3DC48A;
+  --green-soft: #0A2518;
+  --rule: #2A1E48;
+  --stat-bg: #1E1240;
+  --shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+  color: var(--fg);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: -0.015em; }
+h3 { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; }
+h4 { font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+
+p { max-width: 68ch; color: var(--fg-soft); margin: 0 0 1em; }
+
+a { color: var(--accent); text-decoration: none; }
+
+/* Layout containers */
+.page-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding-block: 56px 80px;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(145deg, var(--accent-deep) 0%, #3D1878 60%, var(--accent) 100%);
+  margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  padding: 56px max(32px, env(safe-area-inset-left, 0px)) 52px;
+  margin-bottom: 0;
+}
+
+.hero-eyebrow {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  color: #FFFFFF;
+  max-width: 14ch;
+  margin-bottom: 20px;
+}
+
+.hero-sub {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.1rem;
+  max-width: 56ch;
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+.hero-mission {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 10px;
+  padding: 20px 24px;
+  max-width: 60ch;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+/* Section */
+.section {
+  padding-block: 52px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section:last-child { border-bottom: none; }
+
+.section-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.section h2 { margin-bottom: 20px; }
+
+/* Stat grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.stat-card {
+  background: var(--stat-bg);
+  border: 1px solid var(--accent-soft);
+  border-radius: 12px;
+  padding: 22px 20px;
+}
+
+.stat-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  font-size: 0.88rem;
+  color: var(--fg-soft);
+  line-height: 1.45;
+}
+
+.stat-source {
+  font-size: 0.72rem;
+  color: var(--fg-muted);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* Evidence callout */
+.evidence-callout {
+  background: var(--gold-soft);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  padding: 18px 20px;
+  margin: 24px 0;
+  max-width: 68ch;
+}
+
+.evidence-callout p {
+  color: var(--fg);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.evidence-callout .source {
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* Track blocks */
+.track-block {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 28px 28px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.track-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+  margin-bottom: 8px;
+}
+
+.track-block h3 {
+  font-size: 1.25rem;
+  color: var(--accent-deep);
+  margin-bottom: 14px;
+}
+
+:root[data-theme="dark"] .track-block h3,
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .track-block h3 { color: var(--accent-deep); } }
+
+.track-block .track-desc { max-width: none; }
+
+.track-bullets {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.track-bullets li {
+  padding-left: 20px;
+  position: relative;
+  font-size: 0.93rem;
+  color: var(--fg-soft);
+  line-height: 1.55;
+}
+
+.track-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Ethics block */
+.ethics-block {
+  background: var(--green-soft);
+  border: 1px solid rgba(26, 122, 84, 0.2);
+  border-radius: 14px;
+  padding: 28px;
+  margin-top: 28px;
+}
+
+.ethics-block h3 {
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.ethics-block p { max-width: none; }
+
+/* Grant table */
+.grant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.grant-item {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: start;
+  box-shadow: var(--shadow);
+}
+
+.grant-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+
+.grant-desc {
+  font-size: 0.85rem;
+  color: var(--fg-soft);
+  line-height: 1.5;
+}
+
+.grant-amt {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--accent);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 32px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--accent-soft);
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 18px;
+  padding-bottom: 32px;
+}
+
+.tl-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: white;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.tl-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+
+.tl-body {
+  font-size: 0.88rem;
+  color: var(--fg-soft);
+  line-height: 1.6;
+  max-width: none;
+  margin: 0;
+}
+
+/* Founder block */
+.founder-block {
+  background: var(--accent-soft);
+  border-radius: 14px;
+  padding: 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.founder-block h3 {
+  color: var(--accent-deep);
+  margin: 0;
+}
+
+:root[data-theme="dark"] .founder-block h3 { color: var(--accent-deep); }
+
+.founder-block p { max-width: none; color: var(--fg-soft); margin: 0; }
+
+/* Footer */
+.doc-footer {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .grant-item { grid-template-columns: 1fr; }
+  .grant-amt { text-align: left; }
+  .track-block { padding: 22px 18px; }
+  .founder-block { padding: 22px 18px; }
+}
+
+@media (max-width: 400px) {
+  .stat-grid { grid-template-columns: 1fr; }
+}
+
+/* Dark mode fix for track block headings */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .track-block h3 {
+    color: var(--accent-deep);
+  }
+  :root:not([data-theme="light"]) .founder-block h3 {
+    color: var(--accent-deep);
+  }
+}
+</style>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-eyebrow">Foundation Brief &bull; 2026</div>
+  <h1>ABA Access Project</h1>
+  <p class="hero-sub">A health equity initiative addressing the systems failures that deny Black and Brown families equal access to autism behavioral health services.</p>
+  <div class="hero-mission">
+    "Every child with autism deserves the full benefit of the services they were authorized to receive. Right now, the families with the least power are the most likely to lose them. We are here to change that."
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- The Crisis -->
+  <div class="section">
+    <div class="section-label">The Problem</div>
+    <h2>An authorization crisis hiding inside a care crisis</h2>
+    <p>Applied Behavior Analysis is the gold standard treatment for autism spectrum disorder, endorsed by the American Academy of Pediatrics and covered by Medicaid and most commercial insurers under the Mental Health Parity Act. And yet the gap between coverage and actual delivered care is enormous — and growing. The families with the greatest need are navigating a system designed, in practice, to exhaust them.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">1 in 31</div>
+        <div class="stat-label">children in America have autism, up from 1 in 36 in 2023</div>
+        <div class="stat-source">CDC, 2026</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">73%</div>
+        <div class="stat-label">of families placed on a waitlist after ABA authorization</div>
+        <div class="stat-source">Multiple studies, 2024 to 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6 to 18</div>
+        <div class="stat-label">months from diagnosis to first ABA session for most families</div>
+        <div class="stat-source">ABA Access Research, 2026</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">50,000+</div>
+        <div class="stat-label">unfilled BCBA positions nationally</div>
+        <div class="stat-source">Behavior Analyst Certification Board</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$62K</div>
+        <div class="stat-label">to $250K per year for ABA without insurance coverage</div>
+        <div class="stat-source">National ABA cost benchmarks</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$2M &rarr; $505M</div>
+        <div class="stat-label">growth in North Carolina Medicaid ABA spending in 5 years</div>
+        <div class="stat-source">NC Medicaid Data, 2019 to 2024</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Health Equity -->
+  <div class="section">
+    <div class="section-label">Who Is Being Left Behind</div>
+    <h2>Black and Brown families face compounded barriers</h2>
+    <p>The ABA access crisis is not distributed evenly. Black and Hispanic children are diagnosed later, receive fewer authorized hours, and encounter more institutional barriers than white children at every stage of the process. This is not a gap in availability — it is a gap in power.</p>
+
+    <div class="evidence-callout">
+      <p><strong>22% of Black parents reported experiencing direct racism from professionals</strong> during the autism diagnosis and treatment process — having their concerns dismissed, being pushed toward misdiagnosis, or being told their child did not qualify for services they were entitled to.</p>
+      <div class="source">Vanderbilt University and Meharry Medical College study, cited in SPARK for Autism research, 2024</div>
+    </div>
+
+    <div class="evidence-callout">
+      <p><strong>"There are zero ABA providers in communities of color."</strong> This is not an exaggeration. It reflects the lived reality reported directly by Black and Brown parents in research on autism service disparities.</p>
+      <div class="source">Parent testimony, SPARK for Autism community research, 2024</div>
+    </div>
+
+    <div class="evidence-callout">
+      <p>ProPublica documented that UnitedHealth Group's mental health division Optum was using internal cost-cutting protocols to deliberately limit ABA access for Medicaid enrolled children — strategies that could affect up to <strong>1 in 5 children currently receiving ABA therapy</strong> and disproportionately impact Medi-Cal families.</p>
+      <div class="source">ProPublica investigative report, 2025</div>
+    </div>
+
+    <p>Children's behavioral outcomes measurably worsen the longer they wait on ABA waitlists. Research published in the Journal of Applied Behavior Analysis in 2025 documented the direct relationship between authorization gaps and behavioral deterioration. These are not abstract statistics. These are children whose development regressed because a paperwork system failed them.</p>
+  </div>
+
+  <!-- Documentation Gap -->
+  <div class="section">
+    <div class="section-label">The Core Mechanism</div>
+    <h2>The documentation gap no one is teaching around</h2>
+    <p>ABA authorizations are renewed based on clinical documentation submitted by therapists and reviewed by payers. The quality and precision of that documentation directly determines whether a child keeps their authorized hours at renewal. This is not widely understood at the frontline therapist level — where most of the documentation is actually written.</p>
+    <p>Frontline Registered Behavior Technicians complete the majority of session documentation in ABA. They are trained rigorously on therapy technique and behavioral intervention. They receive almost no training on how their notes function inside the payer authorization system — what language demonstrates medical necessity, what documentation supports renewal, and what documentation inadvertently triggers a denial.</p>
+    <p>The families most likely to lose services due to documentation failures are the families at Medi-Cal only clinics — smaller, under-resourced providers serving the lowest income and most marginalized communities. Large corporate ABA providers have full compliance teams built around this knowledge. Small Medi-Cal clinics often do not. This is an information equity problem with direct consequences for real children.</p>
+  </div>
+
+  <!-- The Solution -->
+  <div class="section">
+    <div class="section-label">The Initiative</div>
+    <h2>Two tracks. One system of accountability.</h2>
+    <p>The ABA Access Project addresses authorization equity through two interconnected tracks. The therapist-facing track builds documentation competency inside the clinical system. The family-facing track builds advocacy capacity outside it. Together, they create a more accountable pipeline at every point where authorizations can be lost.</p>
+
+    <div class="track-block">
+      <div class="track-num">Track 1</div>
+      <h3>ABA Authorization Documentation Certificate</h3>
+      <p class="track-desc">A professional certification for frontline ABA therapists covering authorization documentation standards, session note quality, and the downstream payer impact of clinical records. Free for therapists at Medi-Cal only clinics, funded through grant support. Market rate for all others.</p>
+      <ul class="track-bullets">
+        <li>Five module curriculum covering the full authorization lifecycle, documentation standards, and payer communication</li>
+        <li>Direct focus on CPT codes 97151 through 97158 and medical necessity language across Medi-Cal and commercial payer frameworks</li>
+        <li>Ethics module establishing the therapist's fiduciary obligation to their client, not the payer</li>
+        <li>Certificate valid for two years, renewable — a professional credential therapists carry on their profiles</li>
+        <li>Free access funded by health equity grants for therapists at Medi-Cal serving clinics</li>
+        <li>Creates a parent-readable signal: families can ask "Does your therapist hold the ABA authorization documentation certification?"</li>
+      </ul>
+    </div>
+
+    <div class="track-block">
+      <div class="track-num">Track 2</div>
+      <h3>ABA Insurance Navigation Resources for Families</h3>
+      <p class="track-desc">Free, plain language guides and tools for families navigating ABA authorization, benefits verification, denial appeals, and payer transitions. Specifically centered on Black and Brown families and Medi-Cal populations who face the highest barriers and have the fewest existing resources.</p>
+      <ul class="track-bullets">
+        <li>ABA Insurance Navigation Guide: what families are entitled to, how to check authorization status, and how to appeal a denial</li>
+        <li>ABA Authorization Appeal Toolkit: fillable appeal letter templates citing Mental Health Parity Act rights and clinical necessity standards</li>
+        <li>Red flags resource: what to do when something feels wrong, including the right to request all clinical records</li>
+        <li>Payer transition guide: how to protect service continuity when insurance changes</li>
+        <li>Distributed through Autism Society chapters, FEAT, disability rights organizations, and community health organizations</li>
+      </ul>
+    </div>
+
+    <div class="ethics-block">
+      <h3>Built-in Ethics Framework</h3>
+      <p>Any knowledge system can be misused. The certification explicitly addresses this. The ethics module teaches that documentation written to sabotage a client's authorization is a clinical ethics violation, a potential HIPAA violation, and in some cases insurance fraud. Certificate holders sign a code of ethics as a condition of issuance — creating a documented professional standard and an accountability mechanism when families file complaints. The family navigation resources include explicit guidance on requesting clinical records, filing board complaints, and accessing Medi-Cal fair hearings. The two tracks work together: the certification creates accountability at the therapist level; the family resources create oversight from the outside.</p>
+    </div>
+  </div>
+
+  <!-- Grant Landscape -->
+  <div class="section">
+    <div class="section-label">Funding Landscape</div>
+    <h2>Grant-ready from the start</h2>
+    <p>This initiative addresses documented health equity gaps, produces measurable community resources, and targets the Medicaid population that federal and state behavioral health equity programs are specifically designed to serve. The funding landscape is well-matched to this work.</p>
+
+    <div class="grant-list">
+      <div class="grant-item">
+        <div>
+          <div class="grant-name">Robert Wood Johnson Foundation</div>
+          <div class="grant-desc">Health equity initiatives addressing racial disparities in access to care. Strong fit for the Black and Brown family navigation track and the Medi-Cal therapist certification program.</div>
+        </div>
+        <div class="grant-amt">$10K to $50K</div>
+      </div>
+      <div class="grant-item">
+        <div>
+          <div class="grant-name">W.K. Kellogg Foundation</div>
+          <div class="grant-desc">Dedicated to improving conditions for vulnerable children, with a specific focus on Black family and child health equity. Direct alignment with the core mission.</div>
+        </div>
+        <div class="grant-amt">$10K to $75K</div>
+      </div>
+      <div class="grant-item">
+        <div>
+          <div class="grant-name">Autism Society of America</div>
+          <div class="grant-desc">Formal grant program for community advocacy and family navigation projects. Strong fit for the family-facing resource track.</div>
+        </div>
+        <div class="grant-amt">$5K to $25K</div>
+      </div>
+      <div class="grant-item">
+        <div>
+          <div class="grant-name">HRSA Behavioral Health Workforce Grant</div>
+          <div class="grant-desc">Federal funding specifically for training programs serving Medicaid enrolled populations. The therapist certification program is a strong match for workforce development grants.</div>
+        </div>
+        <div class="grant-amt">$25K to $150K</div>
+      </div>
+      <div class="grant-item">
+        <div>
+          <div class="grant-name">California DHCS Behavioral Health Equity</div>
+          <div class="grant-desc">State-level grants targeting Medi-Cal gaps in behavioral health access. The California-specific documentation and navigation resources qualify directly.</div>
+        </div>
+        <div class="grant-amt">$10K to $50K</div>
+      </div>
+      <div class="grant-item">
+        <div>
+          <div class="grant-name">Mental Health America</div>
+          <div class="grant-desc">Funds community advocacy addressing insurance parity for mental and behavioral health. The appeal toolkit and family navigation resources are highly relevant.</div>
+        </div>
+        <div class="grant-amt">$5K to $20K</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Founder -->
+  <div class="section">
+    <div class="section-label">The Founder</div>
+    <h2>Insider knowledge, community commitment</h2>
+    <div class="founder-block">
+      <h3>Ameer Mullen Jr., BSHA</h3>
+      <p>Bachelor of Science in Healthcare Administration, Western Governors University, October 2026. Former Behavioral Health ABA Therapist and Documentation Specialist at Behavior Frontiers, where he tracked authorization status and maintained clinical records in PrioraCare EHR across active caseloads in Medi-Cal and commercial payer frameworks. Prior authorization and benefits verification experience at Aveanna Healthcare, including direct payer communication, coverage lapse resolution, and payer transition navigation.</p>
+      <p>The ABA Access Project is built from two years of sitting inside the authorization system as a frontline therapist and understanding exactly where and how families lose services they are entitled to. That is not a credential an institution can produce. It is lived operational knowledge directed toward community benefit.</p>
+    </div>
+  </div>
+
+  <!-- Year One Timeline -->
+  <div class="section">
+    <div class="section-label">Roadmap</div>
+    <h2>Year one, concrete and sequenced</h2>
+    <p>This initiative is designed to produce a completed, working resource before the first grant application is submitted — not a proposal for something that might exist, but evidence of something that already does.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <div>
+          <div class="tl-label">Weeks 1 to 3</div>
+          <div class="tl-title">Build the Core Resource</div>
+          <p class="tl-body">Develop the ABA Insurance Navigation Guide and the first three modules of the therapist certification curriculum. Completed working resource in hand before any outreach begins.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div>
+          <div class="tl-label">Week 4</div>
+          <div class="tl-title">First Cohort Outreach</div>
+          <p class="tl-body">Contact five small Medi-Cal only ABA clinics in California. Offer the therapist certification free in exchange for testimonials. Document outcomes. Begin distributing the family navigation guide through Autism Society chapters.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div>
+          <div class="tl-label">Month 2</div>
+          <div class="tl-title">First Grant Applications</div>
+          <p class="tl-body">Submit grant proposals to the Autism Society of America, California DHCS, and one additional funder with the completed resource, documented distribution, and initial testimonials as evidence of impact. First income from paid certification enrollments and family workshops.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div>
+          <div class="tl-label">Months 3 to 4</div>
+          <div class="tl-title">First Grant Decisions</div>
+          <p class="tl-body">First grant decisions arrive. Partner formalization with advocacy organizations. Expand certification distribution to neighboring states. Stability achieved through workshop income plus grant funding operating in parallel.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">5</div>
+        <div>
+          <div class="tl-label">Month 6 to Year 1</div>
+          <div class="tl-title">Organizational Foundation</div>
+          <p class="tl-body">Formal nonprofit or fiscal sponsorship established. HRSA workforce grant application submitted. The credential becomes a recognized professional standard in the ABA documentation field. The family resources become a standard distribution item for Autism Society chapters in California.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <p>ABA Access Project &bull; Foundation Brief &bull; November 2026</p>
+    <p>All statistics cited from publicly available sources including the CDC, ProPublica, the Behavior Analyst Certification Board, SPARK for Autism, and peer-reviewed behavioral health research. This document represents a framework for a proposed initiative and is not a final organizational or legal filing.</p>
+  </div>
+
+</div>
