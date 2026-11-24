@@ -1,3 +1,16 @@
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+(function(){
+  function initAuth(){
+    var ni=window.netlifyIdentity;
+    if(!ni||typeof ni.on!=='function'){setTimeout(initAuth,80);return;}
+    ni.on('init',function(u){if(!u){window.location.replace('enroll.html');}});
+    ni.on('logout',function(){window.location.replace('enroll.html');});
+    ni.init();
+  }
+  initAuth();
+})();
+</script>
 <title>CADA Practice Exam | CareGuard</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
@@ -124,6 +137,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
   <a href="index.html" class="topbar-back">← Home</a>
   <div class="topbar-title">CADA Full-Length Practice Exam</div>
   <div class="topbar-badge">PRACTICE</div>
+  <a href="dashboard.html" style="font-size:11px;font-weight:700;color:rgba(255,255,255,.85);text-decoration:none;padding:5px 10px;border:1px solid rgba(255,255,255,.22);border-radius:5px;white-space:nowrap;letter-spacing:.02em">My Dashboard</a>
   <button class="theme-btn" onclick="toggleTheme()">◐</button>
 </div>
 
@@ -342,7 +356,7 @@ const QUESTIONS = [
 
 const MODULES = [
   {num:1, name:'The ABA Documentation Standard', link:'module1.html'},
-  {num:2, name:'Prior Authorization — The Approval Lifecycle', link:'module2.html'},
+  {num:2, name:'Prior Authorization: The Approval Lifecycle', link:'module2.html'},
   {num:3, name:'ABA Billing Fundamentals for Non-Clinical Staff', link:'module3.html'},
   {num:4, name:'Medicaid Compliance and Audit Defense', link:'module4.html'},
   {num:5, name:'The 2027 CPT Code Transition', link:'module5.html'},

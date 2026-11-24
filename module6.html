@@ -1,3 +1,16 @@
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+(function(){
+  function initAuth(){
+    var ni=window.netlifyIdentity;
+    if(!ni||typeof ni.on!=='function'){setTimeout(initAuth,80);return;}
+    ni.on('init',function(u){if(!u){window.location.replace('enroll.html');}});
+    ni.on('logout',function(){window.location.replace('enroll.html');});
+    ni.init();
+  }
+  initAuth();
+})();
+</script>
 <title>Module 6, Payer Rules, State Variations, and Real-World Scenarios | CareGuard CADA</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
@@ -295,6 +308,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
   <a href="index.html" class="topbar-back">← Home</a>
   <div class="topbar-title">Module 6, Payer Rules, State Variations &amp; Real-World Scenarios</div>
   <div class="topbar-badge">CADA</div>
+  <a href="dashboard.html" style="font-size:11px;font-weight:700;color:rgba(255,255,255,.85);text-decoration:none;padding:5px 10px;border:1px solid rgba(255,255,255,.22);border-radius:5px;white-space:nowrap;letter-spacing:.02em">My Dashboard</a>
   <button class="theme-btn" onclick="toggleTheme()">◐</button>
 </div>
 
@@ -800,7 +814,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="capstone-banner" style="margin-top:28px">
-        <div class="capstone-icon">🎓</div>
+        <div class="capstone-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
         <h3>You have completed all six modules.</h3>
         <p>You are ready for the full-length practice exam, 12 questions drawn from all six modules, with a weak areas summary that tells you exactly which sections to review before the final assessment. Take it when you are ready.</p>
         <a href="practice-exam.html" class="capstone-link">Take Practice Exam →</a>
@@ -943,7 +957,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="quiz-result" id="quizResult"></div>
       <div id="quizAfter" style="display:none;margin-top:24px">
         <div class="capstone-banner">
-          <div class="capstone-icon">✅</div>
+          <div class="capstone-icon">&#10003;</div>
           <h3>Module 6 complete. All six modules done.</h3>
           <p>You have completed the full CADA curriculum. The practice exam is 12 questions drawn from all six modules, with a weak areas summary. Take it when you are ready, then proceed to the final assessment.</p>
           <a href="practice-exam.html" class="capstone-link">Take Practice Exam →</a>

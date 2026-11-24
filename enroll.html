@@ -1,3 +1,4 @@
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <title>CADA Enrollment</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -425,7 +426,7 @@ h1.page-title{
       <span class="logo-badge">CADA</span>
     </a>
     <nav class="topnav">
-      <a href="assessment.html" class="nav-link">← Assessment</a>
+      
       <a href="verify.html" class="nav-link">Verify</a>
     </nav>
   </header>
@@ -443,16 +444,16 @@ h1.page-title{
 
       <!-- Alert: assessment check -->
       <div class="alert-banner info" id="alert-no-pass" hidden>
-        <span class="alert-icon">🛡️</span>
+        <span class="alert-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
         <div class="alert-text">
           <strong>Assessment Required</strong>
-          You must pass the CADA Final Assessment before completing enrollment. <a href="assessment.html">Take the assessment &rarr;</a>
+          You must pass the CADA Final Assessment before completing enrollment.
         </div>
       </div>
 
       <!-- Alert: already enrolled -->
       <div class="alert-banner success" id="alert-enrolled" hidden>
-        <span class="alert-icon">✅</span>
+        <span class="alert-icon">&#10003;</span>
         <div class="alert-text">
           <strong>You Are Already Enrolled</strong>
           Your CADA credential is active. Check your confirmation email or <a href="verify.html">verify your credential &rarr;</a>
@@ -461,7 +462,7 @@ h1.page-title{
 
       <!-- Founding cohort alert -->
       <div class="alert-banner warning" id="alert-founding">
-        <span class="alert-icon">🌟</span>
+        <span class="alert-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
         <div class="alert-text">
           <strong>Founding Cohort / December 2026</strong>
           The first 20 members who complete the assessment in December 2026 enroll free in exchange for feedback and a testimonial. Founding slots are limited and issued in the order assessments are passed.
@@ -604,7 +605,7 @@ h1.page-title{
         <div class="payment-box" id="payment-box-paid">
           <div class="payment-header">
             <span class="payment-title">Payment Details</span>
-            <span class="payment-secure"><span class="lock-icon">🔒</span> Secured by Stripe</span>
+            <span class="payment-secure"><span class="lock-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span> Secured by Stripe</span>
           </div>
           <div class="stripe-placeholder">
             <div class="stripe-logo">stripe</div>
@@ -614,7 +615,7 @@ h1.page-title{
                 <div class="mock-field-label">Card Number</div>
                 <div class="mock-field">
                   <span>•••• •••• •••• ••••</span>
-                  <span style="font-size:18px">💳</span>
+                  <span style="font-size:18px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
                 </div>
               </div>
               <div class="mock-field-row">
@@ -632,7 +633,7 @@ h1.page-title{
         </div>
         <div class="payment-box" id="payment-box-free" hidden>
           <div class="alert-banner success" style="border-radius:8px;margin-bottom:0">
-            <span class="alert-icon">🎉</span>
+            <span class="alert-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
             <div class="alert-text">
               <strong>No Payment Required</strong>
               <span id="free-tier-reason">Your selected enrollment tier is free. No credit card is needed.</span>

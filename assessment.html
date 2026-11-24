@@ -1,3 +1,16 @@
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+(function(){
+  function initAuth(){
+    var ni=window.netlifyIdentity;
+    if(!ni||typeof ni.on!=='function'){setTimeout(initAuth,80);return;}
+    ni.on('init',function(u){if(!u){window.location.replace('enroll.html');}});
+    ni.on('logout',function(){window.location.replace('enroll.html');});
+    ni.init();
+  }
+  initAuth();
+})();
+</script>
 <title>CADA Final Assessment</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -449,8 +462,8 @@ h1.page-title{
       <span class="logo-text">CareGuard</span>
       <span class="logo-badge">CADA</span>
     </a>
-    <nav class="topnav">
-      <a href="practice-exam.html" class="nav-link">← Practice</a>
+    <nav class="topnav" style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <a href="practice-exam.html" class="nav-link">← Practice</a><a href="dashboard.html" style="font-size:11px;font-weight:700;color:rgba(255,255,255,.85);text-decoration:none;padding:5px 10px;border:1px solid rgba(255,255,255,.22);border-radius:5px;margin-left:auto">My Dashboard</a>
     </nav>
   </header>
 

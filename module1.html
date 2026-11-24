@@ -1,3 +1,16 @@
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+(function(){
+  function initAuth(){
+    var ni=window.netlifyIdentity;
+    if(!ni||typeof ni.on!=='function'){setTimeout(initAuth,80);return;}
+    ni.on('init',function(u){if(!u){window.location.replace('enroll.html');}});
+    ni.on('logout',function(){window.location.replace('enroll.html');});
+    ni.init();
+  }
+  initAuth();
+})();
+</script>
 
 <title>Module 1: The ABA Documentation Standard</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -379,7 +392,8 @@ strong { font-weight: 700; color: var(--text); }
   <div class="top-bar-brand">Care<span>Guard</span> CADA</div>
   <div class="top-bar-divider"></div>
   <div class="top-bar-title">Module 1 of 6</div>
-  <div class="top-bar-right">
+  <div class="top-bar-right"><a href="dashboard.html" style="font-size:11px;font-weight:700;color:rgba(255,255,255,.85);text-decoration:none;padding:5px 10px;border:1px solid rgba(255,255,255,.22);border-radius:5px;white-space:nowrap;letter-spacing:.02em">My Dashboard</a>
+    
     <span class="top-bar-badge" id="topBadge">In Progress</span>
   </div>
 </div>
@@ -744,7 +758,7 @@ strong { font-weight: 700; color: var(--text); }
               <li><div class="check-box"></div><strong>97156 / 97157:</strong> Family member names and relationships; strategies trained; caregiver demonstration; implementation plan; group members (97157 only)</li>
             </ul>
           </div>
-          <div class="job-aid-footer">⚠ If any element in Section A is missing, do not submit. Return for correction before claim submission.</div>
+          <div class="job-aid-footer">! If any element in Section A is missing, do not submit. Return for correction before claim submission.</div>
         </div>
       </section>
 

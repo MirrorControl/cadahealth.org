@@ -1,3 +1,4 @@
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <title>Verify CADA Credential</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -254,7 +255,7 @@ h1.page-title{
   background:var(--surface);border:1.5px solid var(--border);
   border-radius:var(--radius);padding:40px 28px;text-align:center;
 }
-.not-found-icon{font-size:40px;margin-bottom:16px}
+.not-found-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:40px;margin-bottom:16px}
 .not-found-title{
   font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;
   color:var(--text);margin-bottom:10px;
@@ -275,7 +276,7 @@ h1.page-title{
   border-radius:var(--radius);padding:20px 24px;
   display:flex;align-items:center;gap:14px;
 }
-.invalid-icon{font-size:20px;flex-shrink:0}
+.invalid-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:20px;flex-shrink:0}
 .invalid-text{font-size:14px;color:var(--text);line-height:1.6}
 
 /* Info section */
@@ -291,7 +292,7 @@ h1.page-title{
   background:var(--surface);border:1px solid var(--border);
   border-radius:10px;padding:20px;
 }
-.info-card-icon{font-size:24px;margin-bottom:10px}
+.info-card-icon{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:24px;margin-bottom:10px}
 .info-card-title{
   font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
   color:var(--text);margin-bottom:6px;
@@ -306,7 +307,7 @@ h1.page-title{
   flex-wrap:wrap;
 }
 .own-cred-left{display:flex;align-items:center;gap:10px}
-.own-cred-icon{font-size:20px}
+.own-cred-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:20px}
 .own-cred-text{font-size:14px;color:var(--text)}
 .own-cred-text strong{font-weight:700;font-family:'Space Grotesk',sans-serif}
 .btn-load-own{
@@ -338,7 +339,7 @@ h1.page-title{
     <!-- Own credential shortcut (shown if localStorage has credential) -->
     <div class="own-cred-banner" id="own-cred-banner" hidden>
       <div class="own-cred-left">
-        <span class="own-cred-icon">🛡️</span>
+        <span class="own-cred-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
         <div class="own-cred-text">
           Your Credential ID: <strong id="own-cred-id"></strong>
         </div>
@@ -379,22 +380,22 @@ h1.page-title{
       <h2>What Does CADA Verification Confirm?</h2>
       <div class="info-grid">
         <div class="info-card">
-          <div class="info-card-icon">📋</div>
+          <div class="info-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></div>
           <div class="info-card-title">Documentation Standards</div>
           <div class="info-card-desc">The credential holder has demonstrated competency in ABA session note requirements, medical necessity language, and behavioral objective documentation.</div>
         </div>
         <div class="info-card">
-          <div class="info-card-icon">📅</div>
+          <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
           <div class="info-card-title">Prior Authorization</div>
           <div class="info-card-desc">Training in the full authorization lifecycle, unit tracking, and submission timing to prevent coverage lapses for ABA clients.</div>
         </div>
         <div class="info-card">
-          <div class="info-card-icon">💊</div>
+          <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="4" rx="2" transform="rotate(-45,12,12)"/><line x1="8" y1="8" x2="16" y2="16"/></svg></div>
           <div class="info-card-title">2027 CPT Transition</div>
           <div class="info-card-desc">Specific preparation for the 97155 split into 97160 and 97173, deletion of 0362T and 0373T, and place-of-service code requirements effective January 1, 2027.</div>
         </div>
         <div class="info-card">
-          <div class="info-card-icon">🔍</div>
+          <div class="info-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
           <div class="info-card-title">Audit Defense</div>
           <div class="info-card-desc">Knowledge of Medicaid RAC audit procedures, statistical extrapolation, appeal rights, and documentation practices that withstand payer scrutiny.</div>
         </div>
@@ -467,7 +468,7 @@ function runVerify(){
   if (!/^CADA-\d{4}-\d{4}$/.test(raw)) {
     area.innerHTML = `
       <div class="result-invalid">
-        <span class="invalid-icon">⚠️</span>
+        <span class="invalid-icon">!</span>
         <div class="invalid-text">
           <strong>Invalid format.</strong> Credential IDs follow the pattern
           <strong>CADA-2027-XXXX</strong> where XXXX is a four-digit number.
@@ -498,7 +499,7 @@ function runVerify(){
   if (!entry) {
     area.innerHTML = `
       <div class="result-not-found">
-        <div class="not-found-icon">🔍</div>
+        <div class="not-found-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
         <div class="not-found-title">Credential Not Found</div>
         <p class="not-found-desc">
           No active CADA credential was found for this ID. The credential may not yet be issued,

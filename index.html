@@ -1,3 +1,4 @@
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <title>CareGuard CADA — The ABA Documentation Credential</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
@@ -136,7 +137,7 @@ body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; colo
 /* CURRICULUM FEATURES */
 .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 .feature-card { padding: 20px; border-radius: var(--radius); background: var(--surface-raised); border: 1px solid var(--border-light); }
-.feature-icon { font-size: 22px; margin-bottom: 10px; }
+.feature-icon { width:28px;height:28px;margin-bottom:12px;color:var(--navy);display:flex;align-items:center;justify-content:center; }
 .feature-title { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 7px; }
 .feature-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
 
@@ -195,6 +196,24 @@ body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; colo
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 20px; font-size: 12px; }
 </style>
 
+<script>
+(function(){
+  function initPublicAuth(){
+    var ni=window.netlifyIdentity;
+    if(!ni||typeof ni.on!=='function'){setTimeout(initPublicAuth,100);return;}
+    ni.on('init',function(u){
+      var ctaEl=document.getElementById('nav-cta');
+      if(u&&ctaEl){
+        ctaEl.textContent='My Dashboard';
+        ctaEl.href='dashboard.html';
+      }
+    });
+    ni.init();
+  }
+  initPublicAuth();
+})();
+</script>
+
 <!-- SITE NAV -->
 <nav class="site-nav">
   <a href="index.html" class="nav-brand">Care<span>Guard</span> CADA</a>
@@ -202,13 +221,13 @@ body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; colo
     <a href="#modules" class="nav-link">Curriculum</a>
     <a href="#pricing" class="nav-link">Enroll</a>
     <a href="verify.html" class="nav-link">Verify</a>
-    <a href="enroll.html" class="nav-cta">Enroll Now</a>
+    <a href="enroll.html" class="nav-cta" id="nav-cta">Enroll Now</a>
   </div>
 </nav>
 
 <!-- URGENCY BANNER -->
 <div class="urgency-banner" id="urgencyBanner">
-  ⚠ ABA CPT codes change January 1, 2027. <span id="daysLeft"></span> days remaining. Be certified before the codes change.
+  ! ABA CPT codes change January 1, 2027. <span id="daysLeft"></span> days remaining. Be certified before the codes change.
 </div>
 
 <!-- HERO -->
@@ -290,7 +309,7 @@ body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; colo
       </a>
       <a href="module2.html" class="module-card">
         <div class="module-num">MODULE 2</div>
-        <div class="module-title">Prior Authorization — The Approval Lifecycle</div>
+        <div class="module-title">Prior Authorization: The Approval Lifecycle</div>
         <div class="module-hook">How to read an authorization, track units against delivered services, recognize expiration risk before it becomes a recoupment demand, and submit initial vs renewal requests.</div>
         <div class="module-meta">Job aid: CADA Authorization Tracking Matrix</div>
       </a>
@@ -331,32 +350,32 @@ body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; colo
 
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">📋</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></div>
         <div class="feature-title">Module Quizzes — 30 Total</div>
         <div class="feature-desc">5 graded questions per module, embedded throughout the curriculum. Rationales on every wrong answer. Scores and weak areas tracked throughout.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📝</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
         <div class="feature-title">Full Practice Exam — 12 Questions</div>
         <div class="feature-desc">Available after all 6 modules are complete. Generates a Weak Areas summary pointing back to the specific module numbers where you need to review.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🏆</div>
-        <div class="feature-title">Final Assessment — 15 Questions</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <div class="feature-title">Final Assessment — 20 Questions</div>
         <div class="feature-desc">80% pass threshold (12 of 15). No rationales during the exam — this is the real test. Weak areas summary available immediately after. 72-hour retake wait on a failed attempt.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">💡</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></div>
         <div class="feature-title">Ungraded Knowledge Checks</div>
         <div class="feature-desc">Two knowledge checks per content section — 10 per module, 60 total — with immediate rationale feedback. Sections gate until checks are answered, ensuring comprehension before advancing.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📄</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
         <div class="feature-title">Job Aid With Every Module</div>
         <div class="feature-desc">A printable, desk-ready reference with every module: checklist, comparison table, decision tree, or reference guide. These are what documentation coordinators keep and share long after the credential is earned.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🎓</div>
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
         <div class="feature-title">Digital Certificate and LinkedIn Badge</div>
         <div class="feature-desc">PDF certificate with your name, credential ID, issue date, expiration date, and CareGuard seal. Shareable digital badge for LinkedIn. Credential ID verifiable at cadahealth.org/verify.</div>
       </div>
@@ -418,7 +437,7 @@ body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; colo
         <div class="pricing-feature"><span class="pf-check">✓</span> All 6 modules with embedded knowledge checks</div>
         <div class="pricing-feature"><span class="pf-check">✓</span> 6 printable job aids — one per module</div>
         <div class="pricing-feature"><span class="pf-check">✓</span> Full-length 12-question practice exam with Weak Areas summary</div>
-        <div class="pricing-feature"><span class="pf-check">✓</span> Final 15-question assessment (80% pass threshold)</div>
+        <div class="pricing-feature"><span class="pf-check">✓</span> Final 20-question assessment (80% pass threshold)</div>
         <div class="pricing-feature"><span class="pf-check">✓</span> Unlimited retakes after 72-hour waiting period</div>
         <div class="pricing-feature"><span class="pf-check">✓</span> PDF certificate with your credential ID and CareGuard seal</div>
         <div class="pricing-feature"><span class="pf-check">✓</span> Shareable digital LinkedIn badge</div>
