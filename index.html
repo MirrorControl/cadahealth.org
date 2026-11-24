@@ -203,10 +203,19 @@ body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; colo
     if(!ni||typeof ni.on!=='function'){setTimeout(initPublicAuth,100);return;}
     ni.on('init',function(u){
       var ctaEl=document.getElementById('nav-cta');
-      if(u&&ctaEl){
-        ctaEl.textContent='My Dashboard';
-        ctaEl.href='dashboard.html';
+      var loginEl=document.getElementById('nav-login');
+      if(u){
+        if(ctaEl){ ctaEl.textContent='My Dashboard'; ctaEl.href='dashboard.html'; }
+        if(loginEl){ loginEl.style.display='none'; }
+      } else {
+        if(loginEl){ loginEl.style.display=''; }
       }
+    });
+    ni.on('logout',function(){
+      var ctaEl=document.getElementById('nav-cta');
+      var loginEl=document.getElementById('nav-login');
+      if(ctaEl){ ctaEl.textContent='Enroll Now'; ctaEl.href='enroll.html'; }
+      if(loginEl){ loginEl.style.display=''; }
     });
     ni.init();
   }
@@ -221,6 +230,7 @@ body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; colo
     <a href="#modules" class="nav-link">Curriculum</a>
     <a href="#pricing" class="nav-link">Enroll</a>
     <a href="verify.html" class="nav-link">Verify</a>
+    <a href="#" id="nav-login" class="nav-link" style="display:none" onclick="window.netlifyIdentity&&window.netlifyIdentity.open();return false;">Log In</a>
     <a href="enroll.html" class="nav-cta" id="nav-cta">Enroll Now</a>
   </div>
 </nav>
