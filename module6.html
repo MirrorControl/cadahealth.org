@@ -1,8 +1,44 @@
-<title>Module 6 — Payer Rules, State Variations, and Real-World Scenarios | CareGuard CADA</title>
+<title>Module 6, Payer Rules, State Variations, and Real-World Scenarios | CareGuard CADA</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
+  --bg:#111827;--surface:#1f2937;--surface-raised:#374151;
+  --navy:#0d1b2e;--navy-mid:#1e3a5f;
+  --gold:#d97706;--gold-light:#451a03;
+  --teal:#2dd4bf;--teal-light:#0d3534;
+  --red:#ef4444;--red-light:#450a0a;
+  --green:#22c55e;--green-light:#052e16;
+  --amber:#fb923c;--amber-light:#431407;
+  --purple:#a78bfa;--purple-light:#1e1030;
+  --text:#f9fafb;--text-secondary:#d1d5db;--text-muted:#9ca3af;
+  --border:#374151;--border-light:#4b5563;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.3);
+  --shadow-md:0 4px 16px rgba(0,0,0,.4);
+  --shadow-nav:0 -4px 24px rgba(0,0,0,.4);
+  --radius-sm:6px;--radius:10px;--radius-lg:16px;
+  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
+  color-scheme:dark;
+}
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+    --navy:#1a2744;--navy-mid:#2c3e6b;
+    --gold:#c8921a;--gold-light:#f5e6c3;
+    --teal:#0d7377;--teal-light:#d4f0f1;
+    --red:#c0392b;--red-light:#fcecea;
+    --green:#1e7e34;--green-light:#d4f4dd;
+    --amber:#d35400;--amber-light:#fef0e4;
+    --purple:#6b3fa0;--purple-light:#ede5f8;
+    --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
+    --border:#d8d5cf;--border-light:#ebe8e2;
+    --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
   --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
   --navy:#1a2744;--navy-mid:#2c3e6b;
   --gold:#c8921a;--gold-light:#f5e6c3;
@@ -13,33 +49,8 @@
   --purple:#6b3fa0;--purple-light:#ede5f8;
   --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
   --border:#d8d5cf;--border-light:#ebe8e2;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
-  --shadow-md:0 4px 16px rgba(0,0,0,.10);
-  --shadow-nav:0 -4px 24px rgba(0,0,0,.10);
-  --radius-sm:6px;--radius:10px;--radius-lg:16px;
-  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
-}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
-    --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
-    --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
-    --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
-    --purple:#a07ad0;--purple-light:#1e1030;
-    --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
-    --border:#343850;--border-light:#272b3e;color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
-  --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
-  --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
-  --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
-  --purple:#a07ad0;--purple-light:#1e1030;
-  --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
-  --border:#343850;--border-light:#272b3e;color-scheme:dark;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
+  color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
@@ -282,7 +293,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
 <div class="topbar">
   <a href="index.html" class="topbar-back">← Home</a>
-  <div class="topbar-title">Module 6 — Payer Rules, State Variations &amp; Real-World Scenarios</div>
+  <div class="topbar-title">Module 6, Payer Rules, State Variations &amp; Real-World Scenarios</div>
   <div class="topbar-badge">CADA</div>
   <button class="theme-btn" onclick="toggleTheme()">◐</button>
 </div>
@@ -317,15 +328,15 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-label">CONSEQUENCE HOOK</div>
       <div class="section-title">Two payers. Two rule sets. One template. $89,000.</div>
       <div class="hook-box">
-        <div class="hook-eyebrow">CALIFORNIA CLINIC — REAL COST OF TEMPLATE UNIFORMITY</div>
+        <div class="hook-eyebrow">CALIFORNIA CLINIC, REAL COST OF TEMPLATE UNIFORMITY</div>
         <div class="hook-stat">$89,000</div>
-        <div class="hook-stat-label">in denied claims — two payers, two different rule sets, one template used for all</div>
-        <p style="margin-top:16px">A documentation coordinator at a California clinic handled 60 clients across three payers. She had been using the same session note template for all of them. What she did not know was that Medi-Cal requires a specific "outcome of previous session" field that United Healthcare does not require — and that United Healthcare requires a specific supervisor signature field that Medi-Cal does not require. When the Medi-Cal audit arrived, 40% of her notes were deficient on the "outcome" field. When the United appeal was filed, 30% were rejected on supervisor signature grounds. Two payers. Two different rule sets. One template. Total cost: $89,000.</p>
-        <p style="margin-top:12px">She was not careless. She was uninformed. No one had told her the two payers had different requirements. The clinic's billing vendor had never flagged it. The BCBAs who reviewed notes were reviewing for clinical accuracy, not payer-specific documentation compliance. The documentation coordinator was the person responsible for knowing — and no training had covered it.</p>
+        <div class="hook-stat-label">in denied claims, two payers, two different rule sets, one template used for all</div>
+        <p style="margin-top:16px">A documentation coordinator at a California clinic handled 60 clients across three payers. She had been using the same session note template for all of them. What she did not know was that Medi-Cal requires a specific "outcome of previous session" field that United Healthcare does not require, and that United Healthcare requires a specific supervisor signature field that Medi-Cal does not require. When the Medi-Cal audit arrived, 40% of her notes were deficient on the "outcome" field. When the United appeal was filed, 30% were rejected on supervisor signature grounds. Two payers. Two different rule sets. One template. Total cost: $89,000.</p>
+        <p style="margin-top:12px">She was not careless. She was uninformed. No one had told her the two payers had different requirements. The clinic's billing vendor had never flagged it. The BCBAs who reviewed notes were reviewing for clinical accuracy, not payer-specific documentation compliance. The documentation coordinator was the person responsible for knowing, and no training had covered it.</p>
       </div>
       <div class="section-body">
-        <p>This is the capstone module. Everything you have learned in Modules 1 through 5 applies here — but now it applies across multiple payers, multiple state rule sets, and a clinic environment where no two clients may have the same coverage. The documentation coordinator who can navigate that complexity is the one clinics cannot afford to lose.</p>
-        <p>Module 6 covers why payer rules diverge, what the specific documentation requirements are for Medi-Cal, major commercial payers, and TRICARE, how to manage denials and appeals, and how to build a documentation system that serves every client regardless of payer. The capstone scenario walks through a full month in the life of a new documentation coordinator at a 60-client California clinic — a real-world test of everything you have built.</p>
+        <p>This is the capstone module. Everything you have learned in Modules 1 through 5 applies here, but now it applies across multiple payers, multiple state rule sets, and a clinic environment where no two clients may have the same coverage. The documentation coordinator who can navigate that complexity is the one clinics cannot afford to lose.</p>
+        <p>Module 6 covers why payer rules diverge, what the specific documentation requirements are for Medi-Cal, major commercial payers, and TRICARE, how to manage denials and appeals, and how to build a documentation system that serves every client regardless of payer. The capstone scenario walks through a full month in the life of a new documentation coordinator at a 60-client California clinic, a real-world test of everything you have built.</p>
       </div>
     </section>
 
@@ -336,9 +347,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-body">
         <ul class="obj-list">
           <li><span class="obj-num">1</span>Explain why Medi-Cal and commercial payers have different documentation requirements and identify at least three documentation elements that differ between them.</li>
-          <li><span class="obj-num">2</span>Describe the documentation requirements for Medi-Cal, BlueCross, Aetna, Cigna, United Healthcare, and TRICARE — specifically which fields each payer requires that others do not.</li>
-          <li><span class="obj-num">3</span>Execute a first-level denial appeal as a documentation coordinator — identifying the denial code, pulling the supporting documentation, and drafting appeal language that addresses the specific denial reason.</li>
-          <li><span class="obj-num">4</span>Build a payer rule reference system for a multi-payer clinic — a living document that tells every RBT and BCBA what each payer requires before a note is submitted.</li>
+          <li><span class="obj-num">2</span>Describe the documentation requirements for Medi-Cal, BlueCross, Aetna, Cigna, United Healthcare, and TRICARE, specifically which fields each payer requires that others do not.</li>
+          <li><span class="obj-num">3</span>Execute a first-level denial appeal as a documentation coordinator, identifying the denial code, pulling the supporting documentation, and drafting appeal language that addresses the specific denial reason.</li>
+          <li><span class="obj-num">4</span>Build a payer rule reference system for a multi-payer clinic, a living document that tells every RBT and BCBA what each payer requires before a note is submitted.</li>
         </ul>
       </div>
     </section>
@@ -346,15 +357,15 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 2: WHY PAYER RULES DIFFER (KCs 0,1) -->
     <section class="module-section" id="sec-2">
       <div class="section-label">PART 1 OF CORE CONTENT</div>
-      <div class="section-title">Why payer rules differ — and what that means for documentation coordinators managing multiple payers.</div>
+      <div class="section-title">Why payer rules differ, and what that means for documentation coordinators managing multiple payers.</div>
       <div class="section-body">
-        <p>CPT codes are national. Documentation requirements are not. The AMA defines what code 97153 covers — direct treatment by RBT by protocol, each 15 minutes. The AMA does not define what a session note must contain to prove that 97153 was delivered. That is left to each payer, each state Medicaid program, and in some cases each individual payer contract.</p>
-        <p>The result is a patchwork of requirements that look identical at the code level and are meaningfully different at the documentation level. A session note that satisfies United Healthcare may fail a Medi-Cal audit. A note that satisfies Aetna may fail a TRICARE review. The documentation coordinator is the person who knows the difference — or should be.</p>
+        <p>CPT codes are national. Documentation requirements are not. The AMA defines what code 97153 covers, direct treatment by RBT by protocol, each 15 minutes. The AMA does not define what a session note must contain to prove that 97153 was delivered. That is left to each payer, each state Medicaid program, and in some cases each individual payer contract.</p>
+        <p>The result is a patchwork of requirements that look identical at the code level and are meaningfully different at the documentation level. A session note that satisfies United Healthcare may fail a Medi-Cal audit. A note that satisfies Aetna may fail a TRICARE review. The documentation coordinator is the person who knows the difference, or should be.</p>
 
         <h3>Three reasons payer rules diverge</h3>
-        <p><strong>State Medicaid programs set their own standards.</strong> Medi-Cal (California) is not Indiana Medicaid. Each state Medicaid program publishes its own provider manual, which specifies documentation requirements above and beyond the federal floor. California requires the "outcome of previous session" field. Indiana requires a specific notation of the BCBA's supervision ratio. These are state choices, not federal mandates — and documentation coordinators are expected to know their state's specific requirements.</p>
-        <p><strong>Commercial payers negotiate contract terms.</strong> When a clinic signs a provider agreement with BlueCross, Aetna, or United, that agreement includes documentation standards. Some payers adopt HIPAA and CMS minimums and add little on top. Others add proprietary requirements — specific signature blocks, specific notation of supervisory contact, specific timing for note completion. These requirements are in the provider contract, not in the CPT code descriptor.</p>
-        <p><strong>TRICARE operates under federal military health rules.</strong> TRICARE is administered by the Department of Defense under a separate legal authority from Medicare and Medicaid. Its ABA documentation requirements reflect military health standards that differ from civilian Medicaid in several specific ways — particularly around supervisor presence documentation and outcome measurement requirements.</p>
+        <p><strong>State Medicaid programs set their own standards.</strong> Medi-Cal (California) is not Indiana Medicaid. Each state Medicaid program publishes its own provider manual, which specifies documentation requirements above and beyond the federal floor. California requires the "outcome of previous session" field. Indiana requires a specific notation of the BCBA's supervision ratio. These are state choices, not federal mandates, and documentation coordinators are expected to know their state's specific requirements.</p>
+        <p><strong>Commercial payers negotiate contract terms.</strong> When a clinic signs a provider agreement with BlueCross, Aetna, or United, that agreement includes documentation standards. Some payers adopt HIPAA and CMS minimums and add little on top. Others add proprietary requirements, specific signature blocks, specific notation of supervisory contact, specific timing for note completion. These requirements are in the provider contract, not in the CPT code descriptor.</p>
+        <p><strong>TRICARE operates under federal military health rules.</strong> TRICARE is administered by the Department of Defense under a separate legal authority from Medicare and Medicaid. Its ABA documentation requirements reflect military health standards that differ from civilian Medicaid in several specific ways, particularly around supervisor presence documentation and outcome measurement requirements.</p>
 
         <h3>The five states with the highest ABA audit activity right now</h3>
         <p>OIG audit findings and CMS enforcement data as of 2026 show concentrated audit activity in five states. Documentation coordinators in these states face the highest probability of payer-initiated audit and the highest financial exposure from documentation errors.</p>
@@ -379,7 +390,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="state-card high-risk">
           <div class="state-card-name">Wisconsin</div>
           <div class="state-card-tag">HIGH AUDIT ACTIVITY</div>
-          <p>OIG identified widespread authorization overrun — services continuing after units expire. Automated unit tracking now required. Prior authorization expiration flagging is a documentation coordinator core responsibility.</p>
+          <p>OIG identified widespread authorization overrun, services continuing after units expire. Automated unit tracking now required. Prior authorization expiration flagging is a documentation coordinator core responsibility.</p>
         </div>
         <div class="state-card high-risk">
           <div class="state-card-name">California</div>
@@ -410,10 +421,10 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 3: MEDI-CAL (KCs 2,3) -->
     <section class="module-section" id="sec-3">
       <div class="section-label">PART 2 OF CORE CONTENT</div>
-      <div class="section-title">Medi-Cal and state Medicaid — what California's program requires that others do not.</div>
+      <div class="section-title">Medi-Cal and state Medicaid, what California's program requires that others do not.</div>
       <div class="section-body">
-        <p>Medi-Cal is California's Medicaid program and the payer for a large share of ABA clients in the state. For documentation coordinators at California clinics, Medi-Cal requirements are not optional reading — they are the baseline against which every session note is measured before it reaches any other payer.</p>
-        <p>Medi-Cal publishes its ABA documentation requirements in the Medi-Cal ABA Provider Manual. The documentation coordinator's job is to know that manual — specifically the sections covering session note required elements, authorization documentation, and audit response requirements — in more detail than any BCBA in the building is likely to know them.</p>
+        <p>Medi-Cal is California's Medicaid program and the payer for a large share of ABA clients in the state. For documentation coordinators at California clinics, Medi-Cal requirements are not optional reading, they are the baseline against which every session note is measured before it reaches any other payer.</p>
+        <p>Medi-Cal publishes its ABA documentation requirements in the Medi-Cal ABA Provider Manual. The documentation coordinator's job is to know that manual, specifically the sections covering session note required elements, authorization documentation, and audit response requirements, in more detail than any BCBA in the building is likely to know them.</p>
 
         <h3>Medi-Cal specific documentation requirements</h3>
       </div>
@@ -421,13 +432,13 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="payer-card medi-cal">
         <div class="payer-card-name">Medi-Cal (California Medicaid)</div>
         <ul class="payer-card-reqs">
-          <li>Outcome of previous session — required in every note (most common audit finding when missing)</li>
+          <li>Outcome of previous session, required in every note (most common audit finding when missing)</li>
           <li>Client's response to treatment described with behavioral terms, not evaluative language</li>
           <li>Target programs addressed in the session, with specific program names matching the BIP</li>
           <li>RBT signature with printed name and credential number</li>
           <li>Service location documented (home, clinic, community, school)</li>
           <li>BCBA name and NPI number on every session note (even when BCBA not present)</li>
-          <li>Prior authorization number must appear on claim — not just in the system</li>
+          <li>Prior authorization number must appear on claim, not just in the system</li>
           <li>Notes must be completed within 24 hours of service delivery</li>
           <li>Medi-Cal managed care plan documentation may add additional requirements beyond the state floor</li>
         </ul>
@@ -435,12 +446,12 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
       <div class="section-body">
         <h3>What "outcome of previous session" means in practice</h3>
-        <p>The "outcome of previous session" field is the documentation element most commonly flagged in Medi-Cal ABA audits. It is not a clinical requirement — the BCBA does not write it. It is a documentation requirement: a brief note in the session record stating how the previous session concluded, what targets were mastered or in progress, and whether there were any notable behavioral events that the current session should take into account.</p>
-        <p>Many clinics complete this field for the first session of a new authorization period and then leave it blank for subsequent sessions, treating it as a one-time intake field. That is incorrect. The field must appear in every session note — meaning every PrioraCare template used for Medi-Cal clients must include this as a required field, and every RBT must be trained to complete it before submitting a note.</p>
+        <p>The "outcome of previous session" field is the documentation element most commonly flagged in Medi-Cal ABA audits. It is not a clinical requirement, the BCBA does not write it. It is a documentation requirement: a brief note in the session record stating how the previous session concluded, what targets were mastered or in progress, and whether there were any notable behavioral events that the current session should take into account.</p>
+        <p>Many clinics complete this field for the first session of a new authorization period and then leave it blank for subsequent sessions, treating it as a one-time intake field. That is incorrect. The field must appear in every session note, meaning every PrioraCare template used for Medi-Cal clients must include this as a required field, and every RBT must be trained to complete it before submitting a note.</p>
         <p>The documentation coordinator's role is to verify that PrioraCare templates include this field, that RBTs complete it, and that completed notes are reviewed for this element before the weekly claim run. A single week of notes with blank outcome fields can produce 10 to 30 deficient claims depending on client volume.</p>
 
         <h3>How California Medicaid managed care adds complexity</h3>
-        <p>Many Medi-Cal clients are enrolled in managed care plans — Anthem Blue Cross Medi-Cal, Health Net Medi-Cal, Molina Healthcare Medi-Cal, and others. These plans administer Medi-Cal benefits under state contracts but are free to add documentation requirements above the state floor. A documentation coordinator at a clinic serving Medi-Cal managed care clients must know the documentation standards for each managed care plan — not just the Medi-Cal state standard. The two may differ on note timing, supervisor documentation, or outcome reporting frequency.</p>
+        <p>Many Medi-Cal clients are enrolled in managed care plans, Anthem Blue Cross Medi-Cal, Health Net Medi-Cal, Molina Healthcare Medi-Cal, and others. These plans administer Medi-Cal benefits under state contracts but are free to add documentation requirements above the state floor. A documentation coordinator at a clinic serving Medi-Cal managed care clients must know the documentation standards for each managed care plan, not just the Medi-Cal state standard. The two may differ on note timing, supervisor documentation, or outcome reporting frequency.</p>
       </div>
 
       <!-- KC 2 -->
@@ -465,9 +476,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 4: COMMERCIAL PAYER RULES (KCs 4,5) -->
     <section class="module-section" id="sec-4">
       <div class="section-label">PART 3 OF CORE CONTENT</div>
-      <div class="section-title">Commercial payer rules — where BlueCross, Aetna, Cigna, United, and TRICARE diverge from Medicaid.</div>
+      <div class="section-title">Commercial payer rules, where BlueCross, Aetna, Cigna, United, and TRICARE diverge from Medicaid.</div>
       <div class="section-body">
-        <p>Commercial payers are not bound by Medi-Cal documentation standards. They set their own requirements through provider contracts and published clinical policies. For a documentation coordinator at a clinic with multiple commercial payer contracts, knowing those differences is not optional — it is what prevents a submission that looks correct from being denied for a documentation reason the coordinator could have caught before the claim went out.</p>
+        <p>Commercial payers are not bound by Medi-Cal documentation standards. They set their own requirements through provider contracts and published clinical policies. For a documentation coordinator at a clinic with multiple commercial payer contracts, knowing those differences is not optional, it is what prevents a submission that looks correct from being denied for a documentation reason the coordinator could have caught before the claim went out.</p>
       </div>
 
       <div class="payer-grid">
@@ -476,7 +487,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <ul class="payer-card-reqs">
             <li>Session goals with objective measurement criteria required</li>
             <li>Supervisor name and NPI on notes for RBT-delivered sessions</li>
-            <li>Progress notation against each goal — not just "continued work on program"</li>
+            <li>Progress notation against each goal, not just "continued work on program"</li>
             <li>Notes must be signed within 24 hours; unsigned notes may be rejected at audit</li>
             <li>Some BCBS plans require quarterly progress reports in addition to session notes</li>
           </ul>
@@ -484,10 +495,10 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="payer-card commercial">
           <div class="payer-card-name">Aetna</div>
           <ul class="payer-card-reqs">
-            <li>Reinforcer type documented — requires specific notation, not just "positive reinforcement"</li>
+            <li>Reinforcer type documented, requires specific notation, not just "positive reinforcement"</li>
             <li>Antecedent-behavior-consequence format preferred for behavioral incidents</li>
             <li>Discrete trial data notation required for programs using DTT methodology</li>
-            <li>BCBA oversight contact documented — date of last BCBA contact with RBT noted</li>
+            <li>BCBA oversight contact documented, date of last BCBA contact with RBT noted</li>
             <li>Notes older than 30 days at time of submission may be flagged for late submission</li>
           </ul>
         </div>
@@ -504,10 +515,10 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="payer-card commercial">
           <div class="payer-card-name">United Healthcare</div>
           <ul class="payer-card-reqs">
-            <li>Supervisor cosignature and NPI required — the field most commonly missing on notes</li>
+            <li>Supervisor cosignature and NPI required, the field most commonly missing on notes</li>
             <li>Client's name and date of birth on every page of multi-page documentation</li>
             <li>Response to intervention documented in behavioral terms (frequency, duration, intensity)</li>
-            <li>No "copy-forward" note language — unique narrative required per session</li>
+            <li>No "copy-forward" note language, unique narrative required per session</li>
             <li>Prior auth number must appear in the note, not only on the claim form</li>
           </ul>
         </div>
@@ -515,8 +526,8 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <div class="payer-card-name">TRICARE</div>
           <ul class="payer-card-reqs">
             <li>Sponsor's name and ID number must appear on all documentation</li>
-            <li>BCBA must hold Active status with the BACB — suspended or lapsed BCBAs are disqualifying</li>
-            <li>Progress toward treatment plan goals required in every note — no skipped entries</li>
+            <li>BCBA must hold Active status with the BACB, suspended or lapsed BCBAs are disqualifying</li>
+            <li>Progress toward treatment plan goals required in every note, no skipped entries</li>
             <li>Sessions over 4 hours require supervisory contact documentation within the note</li>
             <li>TRICARE requires a separate ABA treatment plan on TRICARE-specific forms, not just a BIP</li>
             <li>Notes must be in English; translation notes require a certified interpreter attestation</li>
@@ -551,17 +562,17 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 5: DENIALS AND APPEALS (KCs 6,7) -->
     <section class="module-section" id="sec-5">
       <div class="section-label">PART 4 OF CORE CONTENT</div>
-      <div class="section-title">Denials and appeals — the documentation coordinator's role when a claim comes back rejected.</div>
+      <div class="section-title">Denials and appeals, the documentation coordinator's role when a claim comes back rejected.</div>
       <div class="section-body">
         <p>A denied claim is not a final answer. It is a problem with a documentation solution. The documentation coordinator's role in the denial management process is specific: identify the denial code, pull the documentation that was submitted with the claim, determine whether the denial is correct or contestable, and prepare the appeal package that addresses the specific denial reason.</p>
-        <p>Most documentation coordinators are not taught this. They receive a denial, escalate it to the billing team, and move on. That escalation is appropriate for coding errors or payer processing issues. It is not appropriate for documentation deficiency denials — those require the documentation coordinator to go back to the source, assess whether the note can be corrected or supplemented, and lead the appeal.</p>
+        <p>Most documentation coordinators are not taught this. They receive a denial, escalate it to the billing team, and move on. That escalation is appropriate for coding errors or payer processing issues. It is not appropriate for documentation deficiency denials, those require the documentation coordinator to go back to the source, assess whether the note can be corrected or supplemented, and lead the appeal.</p>
 
         <h3>The most common denial codes in ABA and what they mean</h3>
-        <p><strong>CO-4 (Inconsistent with Modifier)</strong> — The modifier billed does not match the documentation in the session note. Usually a provider type mismatch: the claim says BCBA, the note was written by an RBT.</p>
-        <p><strong>CO-11 (Diagnosis Inconsistent with Procedure)</strong> — The diagnosis code on the claim does not match the ABA authorization. Common when a clinic updates a client's diagnosis without updating the authorization.</p>
-        <p><strong>CO-57 (Procedure Inconsistent with Documentation)</strong> — The session note does not support the CPT code billed. The most common documentation deficiency denial — the note is missing a required element for that code.</p>
-        <p><strong>CO-96 (Non-Covered Charge)</strong> — The service is not covered under the client's plan for the date of service. Often triggered by expired authorizations or services not included in the authorization.</p>
-        <p><strong>PR-204 (Service Not Authorized)</strong> — No valid authorization exists for the service on the date billed. Caused by expired authorizations, wrong code on authorization, or services delivered before the authorization was approved.</p>
+        <p><strong>CO-4 (Inconsistent with Modifier)</strong>, The modifier billed does not match the documentation in the session note. Usually a provider type mismatch: the claim says BCBA, the note was written by an RBT.</p>
+        <p><strong>CO-11 (Diagnosis Inconsistent with Procedure)</strong>, The diagnosis code on the claim does not match the ABA authorization. Common when a clinic updates a client's diagnosis without updating the authorization.</p>
+        <p><strong>CO-57 (Procedure Inconsistent with Documentation)</strong>, The session note does not support the CPT code billed. The most common documentation deficiency denial, the note is missing a required element for that code.</p>
+        <p><strong>CO-96 (Non-Covered Charge)</strong>, The service is not covered under the client's plan for the date of service. Often triggered by expired authorizations or services not included in the authorization.</p>
+        <p><strong>PR-204 (Service Not Authorized)</strong>, No valid authorization exists for the service on the date billed. Caused by expired authorizations, wrong code on authorization, or services delivered before the authorization was approved.</p>
 
         <h3>The documentation coordinator's first-level appeal process</h3>
       </div>
@@ -571,21 +582,21 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <div class="appeal-step-num">1</div>
           <div class="appeal-step-body">
             <h4>Identify the denial code and reason</h4>
-            <p>Pull the Explanation of Benefits or Electronic Remittance Advice from PrioraCare. Document the denial code and the payer's written denial reason. Do not assume the denial reason from the code alone — the written reason tells you specifically what the payer found deficient.</p>
+            <p>Pull the Explanation of Benefits or Electronic Remittance Advice from PrioraCare. Document the denial code and the payer's written denial reason. Do not assume the denial reason from the code alone, the written reason tells you specifically what the payer found deficient.</p>
           </div>
         </div>
         <div class="appeal-step">
           <div class="appeal-step-num">2</div>
           <div class="appeal-step-body">
             <h4>Pull the original documentation</h4>
-            <p>Retrieve the session note, the authorization document, and the claim form that was submitted. Compare them side by side. Identify whether the payer's stated deficiency is accurate — sometimes denial reasons are erroneous, particularly for PR-204 denials where the authorization was active but not referenced correctly on the claim.</p>
+            <p>Retrieve the session note, the authorization document, and the claim form that was submitted. Compare them side by side. Identify whether the payer's stated deficiency is accurate, sometimes denial reasons are erroneous, particularly for PR-204 denials where the authorization was active but not referenced correctly on the claim.</p>
           </div>
         </div>
         <div class="appeal-step">
           <div class="appeal-step-num">3</div>
           <div class="appeal-step-body">
             <h4>Determine if the note can be supplemented</h4>
-            <p>For CO-57 denials, assess whether the missing documentation element can be added as an addendum. Many payers allow addenda to session notes within a specified window (typically 60 to 90 days after the date of service). An addendum must be clearly labeled as an addendum, include the date it was added, and reference the original note date — it cannot replace or delete original content.</p>
+            <p>For CO-57 denials, assess whether the missing documentation element can be added as an addendum. Many payers allow addenda to session notes within a specified window (typically 60 to 90 days after the date of service). An addendum must be clearly labeled as an addendum, include the date it was added, and reference the original note date, it cannot replace or delete original content.</p>
           </div>
         </div>
         <div class="appeal-step">
@@ -599,7 +610,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <div class="appeal-step-num">5</div>
           <div class="appeal-step-body">
             <h4>Track the appeal and follow up</h4>
-            <p>Document the appeal submission date, the payer's acknowledgment, and the expected response timeframe (typically 30 to 60 days for first-level commercial appeals, 90 days for Medicaid). Set a follow-up reminder in PrioraCare. Unanswered appeals do not resolve themselves — they expire without action if not tracked.</p>
+            <p>Document the appeal submission date, the payer's acknowledgment, and the expected response timeframe (typically 30 to 60 days for first-level commercial appeals, 90 days for Medicaid). Set a follow-up reminder in PrioraCare. Unanswered appeals do not resolve themselves, they expire without action if not tracked.</p>
           </div>
         </div>
       </div>
@@ -626,29 +637,29 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 6: BUILDING YOUR PAYER SYSTEM (KCs 8,9) -->
     <section class="module-section" id="sec-6">
       <div class="section-label">PART 5 OF CORE CONTENT</div>
-      <div class="section-title">Building your payer rule system — the living reference that makes multi-payer documentation manageable.</div>
+      <div class="section-title">Building your payer rule system, the living reference that makes multi-payer documentation manageable.</div>
       <div class="section-body">
-        <p>No documentation coordinator can hold every payer's documentation requirements in memory. The goal is not memorization — it is infrastructure. A well-built payer rule reference system means every RBT knows what their note needs before they write it, every BCBA knows what their countersignature must include, and the documentation coordinator can verify compliance without researching the same question twice.</p>
+        <p>No documentation coordinator can hold every payer's documentation requirements in memory. The goal is not memorization, it is infrastructure. A well-built payer rule reference system means every RBT knows what their note needs before they write it, every BCBA knows what their countersignature must include, and the documentation coordinator can verify compliance without researching the same question twice.</p>
 
         <h3>What a payer rule binder contains</h3>
-        <p>The payer rule binder — whether physical or in PrioraCare as a documentation set — is organized by payer. Each payer section contains:</p>
+        <p>The payer rule binder, whether physical or in PrioraCare as a documentation set, is organized by payer. Each payer section contains:</p>
         <ul style="padding-left:22px;margin-bottom:16px">
-          <li style="margin-bottom:8px"><strong>Required note elements by CPT code</strong> — a table showing what each code requires for that specific payer, with checkboxes the RBT can reference before submission</li>
-          <li style="margin-bottom:8px"><strong>Signature requirements</strong> — who must sign, in what order, and within what timeframe</li>
-          <li style="margin-bottom:8px"><strong>Prior authorization reference</strong> — what number must appear on the note and the claim, and what happens if the authorization is pending or in revision</li>
-          <li style="margin-bottom:8px"><strong>Appeal deadlines</strong> — how many days the clinic has to appeal a denial for that payer (commercial payer appeal windows range from 60 to 180 days; Medicaid windows vary by state)</li>
-          <li style="margin-bottom:8px"><strong>Payer contact information</strong> — the provider relations number, the claims submission address, and the appeals submission address. Not the general customer service line — the provider-specific line</li>
-          <li style="margin-bottom:8px"><strong>Last verified date</strong> — payer rules change. The binder notes when each section was last verified against the payer's current provider manual or policy, and when it is next due for review</li>
+          <li style="margin-bottom:8px"><strong>Required note elements by CPT code</strong>, a table showing what each code requires for that specific payer, with checkboxes the RBT can reference before submission</li>
+          <li style="margin-bottom:8px"><strong>Signature requirements</strong>, who must sign, in what order, and within what timeframe</li>
+          <li style="margin-bottom:8px"><strong>Prior authorization reference</strong>, what number must appear on the note and the claim, and what happens if the authorization is pending or in revision</li>
+          <li style="margin-bottom:8px"><strong>Appeal deadlines</strong>, how many days the clinic has to appeal a denial for that payer (commercial payer appeal windows range from 60 to 180 days; Medicaid windows vary by state)</li>
+          <li style="margin-bottom:8px"><strong>Payer contact information</strong>, the provider relations number, the claims submission address, and the appeals submission address. Not the general customer service line, the provider-specific line</li>
+          <li style="margin-bottom:8px"><strong>Last verified date</strong>, payer rules change. The binder notes when each section was last verified against the payer's current provider manual or policy, and when it is next due for review</li>
         </ul>
 
         <h3>When to verify payer rules</h3>
-        <p>Payer documentation requirements are not static. Commercial payers update their clinical policies annually — sometimes more frequently. Medicaid programs update their provider manuals when state policy changes or when audit findings reveal a documentation standard that needs clarification. The documentation coordinator's job is not to build the payer rule binder once and trust it forever. It is to build it and maintain it.</p>
+        <p>Payer documentation requirements are not static. Commercial payers update their clinical policies annually, sometimes more frequently. Medicaid programs update their provider manuals when state policy changes or when audit findings reveal a documentation standard that needs clarification. The documentation coordinator's job is not to build the payer rule binder once and trust it forever. It is to build it and maintain it.</p>
         <p>A practical verification schedule: review each payer's published clinical policy and provider manual at the start of each calendar year, after any denial wave that suggests a new payer requirement is in effect, and whenever a payer sends a notification about policy updates. Set a PrioraCare reminder for the January review. When a payer sends an update notice, the binder section for that payer gets updated the same week.</p>
       </div>
 
       <div class="info-box">
         <div class="info-label">THE BINDER AS TRAINING TOOL</div>
-        <p>A new RBT's first day includes orientation to the payer rule binder. Not the clinical supervision handbook — the documentation requirements. Every new staff member learns which payers the clinic serves and what each one requires before they write their first note. This is how a documentation culture is built from the first shift, not corrected after the first audit.</p>
+        <p>A new RBT's first day includes orientation to the payer rule binder. Not the clinical supervision handbook, the documentation requirements. Every new staff member learns which payers the clinic serves and what each one requires before they write their first note. This is how a documentation culture is built from the first shift, not corrected after the first audit.</p>
       </div>
 
       <!-- KC 8 -->
@@ -673,15 +684,15 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 7: WORKED EXAMPLE -->
     <section class="module-section" id="sec-7">
       <div class="section-label">WORKED EXAMPLE</div>
-      <div class="section-title">A denial letter — and the appeal that reversed it.</div>
+      <div class="section-title">A denial letter, and the appeal that reversed it.</div>
       <div class="section-body" style="margin-bottom:20px">
         <p>A documentation coordinator at a California clinic receives a CO-57 denial from BlueCross for a 97153 session delivered on November 3, 2026. The denial reads: "Documentation does not support the procedure billed." Here is the denial, and the appeal that reversed it, annotated to show what worked and why.</p>
       </div>
 
       <div class="denial-doc">
         <div class="denial-header">
-          <h4>CLAIM DENIAL — EXPLANATION OF BENEFITS</h4>
-          <p>BlueCross BlueShield of California — Provider Claims Division</p>
+          <h4>CLAIM DENIAL, EXPLANATION OF BENEFITS</h4>
+          <p>BlueCross BlueShield of California, Provider Claims Division</p>
         </div>
         <div class="denial-body">
           <div class="denial-field">
@@ -694,7 +705,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           </div>
           <div class="denial-field">
             <div class="denial-field-label">CPT CODE BILLED</div>
-            <div class="denial-field-value">97153 — 8 units (2 hours)</div>
+            <div class="denial-field-value">97153, 8 units (2 hours)</div>
           </div>
           <div class="denial-field">
             <div class="denial-field-label">DENIAL CODE</div>
@@ -703,7 +714,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <div class="denial-field">
             <div class="denial-field-label">DENIAL REASON</div>
             <div class="denial-field-value">Documentation submitted does not contain objective progress notation required for 97153 services under BCBS CA Clinical Policy ABA-2024-001. Session note does not reflect measurable progress toward documented treatment goals.
-              <div class="denial-annotation">▲ The payer is citing a specific policy number. This is what the appeal must address directly — not "our note is good" but "here is how our note meets ABA-2024-001."</div>
+              <div class="denial-annotation">▲ The payer is citing a specific policy number. This is what the appeal must address directly, not "our note is good" but "here is how our note meets ABA-2024-001."</div>
             </div>
           </div>
         </div>
@@ -711,18 +722,18 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
       <div class="appeal-doc">
         <div class="appeal-header">
-          <h4>FIRST-LEVEL APPEAL — DOCUMENTATION COORDINATOR RESPONSE</h4>
-          <p>Submitted November 18, 2026 — 15 days after denial</p>
+          <h4>FIRST-LEVEL APPEAL, DOCUMENTATION COORDINATOR RESPONSE</h4>
+          <p>Submitted November 18, 2026, 15 days after denial</p>
         </div>
         <div class="appeal-body">
           <div class="appeal-para">Re: Claim BCX-2026-114-998821 | Date of Service: November 3, 2026 | CPT Code: 97153 | Client: [Member ID on file]
-            <div class="appeal-green">▲ Always open with the claim number, DOS, code, and member ID on the first line. Reviewers process hundreds of appeals — make it effortless to find the record.</div>
+            <div class="appeal-green">▲ Always open with the claim number, DOS, code, and member ID on the first line. Reviewers process hundreds of appeals, make it effortless to find the record.</div>
           </div>
           <div class="appeal-para">We are appealing the CO-57 denial issued for the above claim on the grounds that the session note submitted on November 7, 2026 does contain objective progress notation as required under BCBS CA Clinical Policy ABA-2024-001, Section 4.2 (Documentation of Measurable Progress).
             <div class="appeal-green">▲ Cite the same policy the payer cited. Show you read it. Appeals that engage the specific policy provision are reversed at higher rates than appeals that argue generally.</div>
           </div>
-          <div class="appeal-para"><strong>Documentation of measurable progress — November 3, 2026 session:</strong> Session note (attached, page 2) records the following objective data: (1) Target program "Following Two-Step Instructions" — trials completed: 20, correct responses: 16 (80%), previous session rate: 70%. (2) Target program "Tolerating Transitions" — incidents of elopement: 1, previous session rate: 3. Both entries include numerical trial data referenced against the previous session, meeting the measurable progress standard under Section 4.2.
-            <div class="appeal-green">▲ Quote the specific numbers from the note. Do not summarize — give the exact data the reviewer needs to confirm without reading the full note first. This is the section most appeals skip.</div>
+          <div class="appeal-para"><strong>Documentation of measurable progress, November 3, 2026 session:</strong> Session note (attached, page 2) records the following objective data: (1) Target program "Following Two-Step Instructions", trials completed: 20, correct responses: 16 (80%), previous session rate: 70%. (2) Target program "Tolerating Transitions", incidents of elopement: 1, previous session rate: 3. Both entries include numerical trial data referenced against the previous session, meeting the measurable progress standard under Section 4.2.
+            <div class="appeal-green">▲ Quote the specific numbers from the note. Do not summarize, give the exact data the reviewer needs to confirm without reading the full note first. This is the section most appeals skip.</div>
           </div>
           <div class="appeal-para">We respectfully request that this claim be reconsidered and paid at the contracted rate. The session note documenting these services is attached. Please contact [name, phone, email] with any questions.
             <div class="appeal-green">▲ End with a clear ask, the attachment confirmed, and a contact. Never leave the reviewer without a next action.</div>
@@ -735,7 +746,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <h4>Four things this appeal did that most appeals do not</h4>
         <p><strong>It cited the specific policy, not the general standard.</strong> The payer cited ABA-2024-001, Section 4.2. The appeal cited the same section and explained how the note met it. Generic appeals arguing "our note is complete" do not engage the payer's reasoning and are denied at high rates.</p>
         <p><strong>It quoted the exact data from the note.</strong> The reviewer does not want to read a full session note to find the data. The appeal served it on a plate: 80% correct this session, 70% last session. Progress is obvious without further research.</p>
-        <p><strong>It was submitted in 15 days.</strong> BlueCross has a 180-day appeal window. Waiting 150 days is not a strategy — it is risk. Appeals submitted quickly signal an organized documentation operation and reach reviewers before the original denial becomes buried in the queue.</p>
+        <p><strong>It was submitted in 15 days.</strong> BlueCross has a 180-day appeal window. Waiting 150 days is not a strategy, it is risk. Appeals submitted quickly signal an organized documentation operation and reach reviewers before the original denial becomes buried in the queue.</p>
         <p><strong>It did not apologize or hedge.</strong> The documentation coordinator did not say "we believe the note may contain..." She said "the note does contain." Confidence in the documentation signals confidence in the claim. Hedged language in an appeal is interpreted as uncertainty about the documentation.</p>
       </div>
     </section>
@@ -745,19 +756,19 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-label">CAPSTONE SCENARIO</div>
       <div class="section-title">December 1, 2026. A new documentation coordinator. 60 clients. Three payers. One month to get it right.</div>
       <div class="scenario-box">
-        <div class="scenario-label">CAPSTONE SCENARIO — INTEGRATES MODULES 1 THROUGH 6</div>
+        <div class="scenario-label">CAPSTONE SCENARIO, INTEGRATES MODULES 1 THROUGH 6</div>
         <h3>Welcome to Valley Behavioral Health. Here is your first month.</h3>
         <p>It is December 1, 2026. You are the new documentation coordinator at Valley Behavioral Health, a mid-size ABA clinic in Fresno, California. Your predecessor left without transition documentation. You have been handed access to PrioraCare, a list of 60 active clients, and the following intake summary from the billing director:</p>
-        <p><em>"40 clients are Medi-Cal (mix of fee-for-service and two managed care plans). 15 clients are on commercial plans — 7 BlueCross, 5 United Healthcare, 3 Aetna. 5 clients are TRICARE. We had a CO-57 denial wave in October — about 22 claims. We haven't filed the appeals yet. And someone told me the 2027 CPT code thing is something we need to figure out."</em></p>
+        <p><em>"40 clients are Medi-Cal (mix of fee-for-service and two managed care plans). 15 clients are on commercial plans, 7 BlueCross, 5 United Healthcare, 3 Aetna. 5 clients are TRICARE. We had a CO-57 denial wave in October, about 22 claims. We haven't filed the appeals yet. And someone told me the 2027 CPT code thing is something we need to figure out."</em></p>
         <p>You have three decisions to make in your first week. This scenario draws on everything from Modules 1 through 6.</p>
 
         <div class="decision-point" id="dp-0">
           <div class="decision-label">DECISION POINT 1 OF 3</div>
           <div class="decision-q">Your first priority on Day 1 is establishing what documentation system the clinic currently has. What do you do first?</div>
           <div class="decision-choices">
-            <div class="decision-choice" onclick="pickDecision(this,false,0)">Review the 22 outstanding CO-57 denials first — they represent immediate revenue loss and need attention before anything else.</div>
-            <div class="decision-choice" onclick="pickDecision(this,true,0)">Conduct a full documentation system inventory: pull all active session note templates from PrioraCare, identify which payers each template is used for, and check whether a payer rule binder exists. Everything else — the appeals, the 2027 transition, the new payer rules — depends on knowing what documentation infrastructure you are starting from.</div>
-            <div class="decision-choice" onclick="pickDecision(this,false,0)">Call Medi-Cal first — they have the most clients and their rules are the most complex.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,0)">Review the 22 outstanding CO-57 denials first, they represent immediate revenue loss and need attention before anything else.</div>
+            <div class="decision-choice" onclick="pickDecision(this,true,0)">Conduct a full documentation system inventory: pull all active session note templates from PrioraCare, identify which payers each template is used for, and check whether a payer rule binder exists. Everything else, the appeals, the 2027 transition, the new payer rules, depends on knowing what documentation infrastructure you are starting from.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,0)">Call Medi-Cal first, they have the most clients and their rules are the most complex.</div>
             <div class="decision-choice" onclick="pickDecision(this,false,0)">Ask the billing director for a summary of the clinic's audit history before touching anything in PrioraCare.</div>
           </div>
           <div class="decision-feedback" id="df-0"></div>
@@ -768,9 +779,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <div class="decision-q">Your template audit reveals a single session note template used for all 60 clients regardless of payer. The template does not include the Medi-Cal "outcome of previous session" field or the United Healthcare supervisor cosignature and NPI block. The October CO-57 denial wave was entirely Medi-Cal clients. What do you do?</div>
           <div class="decision-choices">
             <div class="decision-choice" onclick="pickDecision(this,false,1)">Fix the Medi-Cal template first since the October denials confirm it is the immediate problem, then address United Healthcare after the Medi-Cal template is deployed.</div>
-            <div class="decision-choice" onclick="pickDecision(this,true,1)">Build payer-specific templates for all three payer types simultaneously — Medi-Cal, commercial (with separate variations for United, BlueCross, Aetna), and TRICARE — before deploying any of them. Fixing Medi-Cal first risks the same error happening for United Healthcare in December while you are focused on October's denials. The templates should go out together with a staff training session before the first December note is written.</div>
-            <div class="decision-choice" onclick="pickDecision(this,false,1)">Ask the BCBAs to handle the template update — they know the clinical documentation requirements better than a new documentation coordinator does.</div>
-            <div class="decision-choice" onclick="pickDecision(this,false,1)">Update the single template to include both the Medi-Cal field and the United cosignature block — adding both to one template is more efficient than building separate ones.</div>
+            <div class="decision-choice" onclick="pickDecision(this,true,1)">Build payer-specific templates for all three payer types simultaneously, Medi-Cal, commercial (with separate variations for United, BlueCross, Aetna), and TRICARE, before deploying any of them. Fixing Medi-Cal first risks the same error happening for United Healthcare in December while you are focused on October's denials. The templates should go out together with a staff training session before the first December note is written.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,1)">Ask the BCBAs to handle the template update, they know the clinical documentation requirements better than a new documentation coordinator does.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,1)">Update the single template to include both the Medi-Cal field and the United cosignature block, adding both to one template is more efficient than building separate ones.</div>
           </div>
           <div class="decision-feedback" id="df-1"></div>
         </div>
@@ -779,10 +790,10 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <div class="decision-label">DECISION POINT 3 OF 3</div>
           <div class="decision-q">The October CO-57 appeals need to be filed. Twenty-two claims. The BlueCross appeal window is 180 days (expires in April). The Medi-Cal appeal window is 90 days (expires in January). United Healthcare's window is 120 days (expires in February). How do you sequence the appeals?</div>
           <div class="decision-choices">
-            <div class="decision-choice" onclick="pickDecision(this,false,2)">File all 22 appeals at once this week — waiting is a risk and speed matters for all of them.</div>
-            <div class="decision-choice" onclick="pickDecision(this,false,2)">File the BlueCross appeals first — the most claims are BlueCross.</div>
-            <div class="decision-choice" onclick="pickDecision(this,true,2)">File Medi-Cal appeals first — their window expires in January, three months before United and five months before BlueCross. Sequence appeals by expiration deadline, not by claim volume or payer size. After Medi-Cal appeals are submitted this week, file United Healthcare by end of December. BlueCross appeals can be filed in January without risk of expiration. Document the sequencing logic in PrioraCare so that if any appeal is missed, the reason is on record.</div>
-            <div class="decision-choice" onclick="pickDecision(this,false,2)">Ask the billing director to file the appeals — she has the payer relationships and the appeal window knowledge.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,2)">File all 22 appeals at once this week, waiting is a risk and speed matters for all of them.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,2)">File the BlueCross appeals first, the most claims are BlueCross.</div>
+            <div class="decision-choice" onclick="pickDecision(this,true,2)">File Medi-Cal appeals first, their window expires in January, three months before United and five months before BlueCross. Sequence appeals by expiration deadline, not by claim volume or payer size. After Medi-Cal appeals are submitted this week, file United Healthcare by end of December. BlueCross appeals can be filed in January without risk of expiration. Document the sequencing logic in PrioraCare so that if any appeal is missed, the reason is on record.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,2)">Ask the billing director to file the appeals, she has the payer relationships and the appeal window knowledge.</div>
           </div>
           <div class="decision-feedback" id="df-2"></div>
         </div>
@@ -791,7 +802,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="capstone-banner" style="margin-top:28px">
         <div class="capstone-icon">🎓</div>
         <h3>You have completed all six modules.</h3>
-        <p>You are ready for the full-length practice exam — 12 questions drawn from all six modules, with a weak areas summary that tells you exactly which sections to review before the final assessment. Take it when you are ready.</p>
+        <p>You are ready for the full-length practice exam, 12 questions drawn from all six modules, with a weak areas summary that tells you exactly which sections to review before the final assessment. Take it when you are ready.</p>
         <a href="practice-exam.html" class="capstone-link">Take Practice Exam →</a>
       </div>
     </section>
@@ -799,9 +810,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 9: JOB AID -->
     <section class="module-section" id="sec-9">
       <div class="section-label">JOB AID</div>
-      <div class="section-title">CADA Payer Rules Reference Guide — required documentation elements by payer, side by side.</div>
+      <div class="section-title">CADA Payer Rules Reference Guide, required documentation elements by payer, side by side.</div>
       <div class="section-body" style="margin-bottom:20px">
-        <p>Keep this guide at your workstation. Update the "last verified" date whenever you confirm requirements with a payer. Requirements change — a date that is more than 12 months old should be re-verified before you rely on it. Click any payer row to expand its requirements.</p>
+        <p>Keep this guide at your workstation. Update the "last verified" date whenever you confirm requirements with a payer. Requirements change, a date that is more than 12 months old should be re-verified before you rely on it. Click any payer row to expand its requirements.</p>
       </div>
 
       <div class="job-aid">
@@ -823,9 +834,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
               <div class="ja-req-row"><div class="ja-req-field">Service location</div><div class="ja-req-detail"><strong>REQUIRED</strong>. Home, clinic, community, or school. Must match the authorization service location.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">RBT credential number</div><div class="ja-req-detail"><strong>REQUIRED</strong>. Printed name AND credential number. Signature alone is not sufficient.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">BCBA name and NPI</div><div class="ja-req-detail"><strong>REQUIRED</strong> even when BCBA is not present. The supervising BCBA must be identified on every note.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Prior auth number on claim</div><div class="ja-req-detail"><strong>REQUIRED</strong> on the claim form. Not just in PrioraCare — it must appear on the submitted claim.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Prior auth number on claim</div><div class="ja-req-detail"><strong>REQUIRED</strong> on the claim form. Not just in PrioraCare, it must appear on the submitted claim.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Note completion deadline</div><div class="ja-req-detail">Within <strong>24 hours</strong> of service delivery. Notes submitted more than 24 hours late may be rejected on audit.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026 — Medi-Cal ABA Provider Manual, Chapter 7. Next review: January 2027.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026, Medi-Cal ABA Provider Manual, Chapter 7. Next review: January 2027.</div></div>
             </div>
           </div>
 
@@ -836,12 +847,12 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
               <div class="ja-toggle">▼</div>
             </div>
             <div class="ja-payer-content">
-              <div class="ja-req-row"><div class="ja-req-field">Session goals with measurement</div><div class="ja-req-detail"><strong>REQUIRED</strong>. Goals must be stated with objective measurement criteria — not "worked on communication" but "10-trial DTT for requesting, 7/10 correct."</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Session goals with measurement</div><div class="ja-req-detail"><strong>REQUIRED</strong>. Goals must be stated with objective measurement criteria, not "worked on communication" but "10-trial DTT for requesting, 7/10 correct."</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Supervisor name and NPI</div><div class="ja-req-detail"><strong>REQUIRED</strong> on RBT-delivered notes. Supervisor information must appear on the note, not only on the claim.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Progress against each goal</div><div class="ja-req-detail"><strong>REQUIRED</strong>. Generic "continued" or "worked on" language is insufficient. Each goal addressed must have a progress notation.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Note signature deadline</div><div class="ja-req-detail">Within <strong>24 hours</strong>. Unsigned notes may be rejected.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Appeal window</div><div class="ja-req-detail"><strong>180 days</strong> from the date of the Explanation of Benefits. Longest commercial window.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026 — BCBS CA Clinical Policy ABA-2024-001. Next review: January 2027.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026, BCBS CA Clinical Policy ABA-2024-001. Next review: January 2027.</div></div>
             </div>
           </div>
 
@@ -854,11 +865,11 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
             <div class="ja-payer-content">
               <div class="ja-req-row"><div class="ja-req-field">Supervisor cosignature + NPI</div><div class="ja-req-detail"><strong>REQUIRED</strong>. Most commonly missing field. Supervisor's name, NPI, AND signature must appear on every RBT-delivered note.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Client ID on every page</div><div class="ja-req-detail"><strong>REQUIRED</strong>. Client name and date of birth on every page of multi-page documentation.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Prior auth number in note</div><div class="ja-req-detail"><strong>REQUIRED</strong> in the note body — not only on the claim form.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Prior auth number in note</div><div class="ja-req-detail"><strong>REQUIRED</strong> in the note body, not only on the claim form.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">No copy-forward language</div><div class="ja-req-detail"><strong>PROHIBITED</strong>. Each note must have a unique narrative. Identical language across notes triggers denial.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Response in behavioral terms</div><div class="ja-req-detail">Client response to intervention must use frequency, duration, or intensity — not subjective evaluative language.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Response in behavioral terms</div><div class="ja-req-detail">Client response to intervention must use frequency, duration, or intensity, not subjective evaluative language.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Appeal window</div><div class="ja-req-detail"><strong>120 days</strong> from date of denial.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026 — UHC ABA Clinical Program Policy 2025.T0.0. Next review: January 2027.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026, UHC ABA Clinical Program Policy 2025.T0.0. Next review: January 2027.</div></div>
             </div>
           </div>
 
@@ -875,7 +886,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
               <div class="ja-req-row"><div class="ja-req-field">BCBA contact date</div><div class="ja-req-detail">Date of last BCBA contact with the RBT must be noted. Supervision ratio documentation recommended.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Late submission threshold</div><div class="ja-req-detail">Notes submitted more than <strong>30 days</strong> after date of service may be flagged for late submission review.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Appeal window</div><div class="ja-req-detail"><strong>180 days</strong> from date of denial.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026 — Aetna ABA Clinical Policy Bulletin 0784. Next review: January 2027.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026, Aetna ABA Clinical Policy Bulletin 0784. Next review: January 2027.</div></div>
             </div>
           </div>
 
@@ -891,7 +902,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
               <div class="ja-req-row"><div class="ja-req-field">Goal status notation</div><div class="ja-req-detail">Each goal addressed must be marked: mastered, in progress, or not targeted. No neutral entries.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Supervisor cosignature</div><div class="ja-req-detail"><strong>REQUIRED</strong> on all RBT-delivered sessions.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Appeal window</div><div class="ja-req-detail"><strong>180 days</strong> from date of denial.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026 — Cigna Coverage Policy: Behavioral Analysis Treatment. Next review: January 2027.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026, Cigna Coverage Policy: Behavioral Analysis Treatment. Next review: January 2027.</div></div>
             </div>
           </div>
 
@@ -903,13 +914,13 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
             </div>
             <div class="ja-payer-content">
               <div class="ja-req-row"><div class="ja-req-field">Sponsor name and ID</div><div class="ja-req-detail"><strong>REQUIRED</strong> on all documentation. Military sponsor name and ID number must appear on every note and form.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">BCBA Active BACB status</div><div class="ja-req-detail"><strong>REQUIRED</strong>. BCBA must hold Active status with the BACB. Suspended or lapsed certification is a disqualifying condition — TRICARE audits BACB status at the claim level.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">BCBA Active BACB status</div><div class="ja-req-detail"><strong>REQUIRED</strong>. BCBA must hold Active status with the BACB. Suspended or lapsed certification is a disqualifying condition, TRICARE audits BACB status at the claim level.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">TRICARE-specific treatment plan</div><div class="ja-req-detail"><strong>REQUIRED</strong>. A separate ABA treatment plan on TRICARE-approved forms is required in addition to the clinical BIP. The BIP alone is not sufficient for TRICARE documentation.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Progress toward treatment plan goals</div><div class="ja-req-detail"><strong>REQUIRED</strong> in every note. No skipped entries. TRICARE auditors cross-reference notes against the treatment plan at a higher rate than commercial auditors.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Sessions over 4 hours</div><div class="ja-req-detail">Supervisory contact must be documented within the note for any session exceeding 4 hours.</div></div>
               <div class="ja-req-row"><div class="ja-req-field">Language requirements</div><div class="ja-req-detail">Notes must be in English. If a certified interpreter was used, an interpreter attestation must be attached.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Appeal window</div><div class="ja-req-detail"><strong>365 days</strong> from date of denial — longest appeal window of any payer in this table.</div></div>
-              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026 — TRICARE ABA Policy Manual, Chapter 7. Next review: January 2027.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Appeal window</div><div class="ja-req-detail"><strong>365 days</strong> from date of denial, longest appeal window of any payer in this table.</div></div>
+              <div class="ja-req-row"><div class="ja-req-field">Last verified</div><div class="ja-req-detail">December 2026, TRICARE ABA Policy Manual, Chapter 7. Next review: January 2027.</div></div>
             </div>
           </div>
 
@@ -920,9 +931,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 10: QUIZ -->
     <section class="module-section" id="sec-10">
       <div class="section-label">MODULE QUIZ</div>
-      <div class="section-title">Test your knowledge — Module 6.</div>
+      <div class="section-title">Test your knowledge, Module 6.</div>
       <div class="section-body" style="margin-bottom:24px">
-        <p>Five questions on payer rules, state variations, and denial management. Answer all five and submit to see your score and rationales. This is the final module quiz — after this, you are ready for the full-length practice exam.</p>
+        <p>Five questions on payer rules, state variations, and denial management. Answer all five and submit to see your score and rationales. This is the final module quiz, after this, you are ready for the full-length practice exam.</p>
       </div>
       <div class="quiz-wrap" id="quizWrap"></div>
       <div class="quiz-submit">
@@ -934,7 +945,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="capstone-banner">
           <div class="capstone-icon">✅</div>
           <h3>Module 6 complete. All six modules done.</h3>
-          <p>You have completed the full CADA curriculum. The practice exam is 12 questions drawn from all six modules, with a weak areas summary. Take it when you are ready — then proceed to the final assessment.</p>
+          <p>You have completed the full CADA curriculum. The practice exam is 12 questions drawn from all six modules, with a weak areas summary. Take it when you are ready, then proceed to the final assessment.</p>
           <a href="practice-exam.html" class="capstone-link">Take Practice Exam →</a>
         </div>
       </div>
@@ -969,94 +980,94 @@ let kcLastLetter = {};
 let kcCurrentLetter = {};
 
 const KC_DATA = [
-  // KC 0 — Section 2
+  // KC 0, Section 2
   {q:'A clinic uses the same session note template for all payers to save time. Under which condition will this strategy most reliably produce a documentation deficiency?',
    answers:[
-    {text:'When the clinic serves more than 30 clients — template fatigue increases error rates at scale.',correct:false,rationale:'Client volume does not determine whether a single template is sufficient. The issue is payer-specific documentation requirements. A clinic with 5 clients across two payers with different requirements will have the same template problem as a clinic with 60 clients.'},
-    {text:'When at least two of the payers served have different required documentation elements — which is true whenever a clinic serves both Medicaid and any commercial payer.',correct:true,rationale:'Correct. Medi-Cal requires the "outcome of previous session" field. United Healthcare requires a supervisor cosignature and NPI. Aetna requires specific reinforcer notation. A single template cannot satisfy all of these simultaneously without becoming so long that RBTs skip fields. Any clinic serving more than one payer type will have different requirements, making a single universal template a documentation liability.'},
-    {text:'When RBTs are not trained on the template — the problem is training, not the template itself.',correct:false,rationale:'Training helps, but it does not solve a structural problem. If the template does not include the Medi-Cal "outcome of previous session" field, no amount of training will make RBTs complete a field that is not there. The template is the foundation — training builds on it.'},
-    {text:'When the template is more than two years old — documentation standards change and old templates fall behind.',correct:false,rationale:'Template age is relevant for ensuring currency with the latest requirements, but the core issue is payer specificity, not age. A brand-new universal template used for both Medi-Cal and United Healthcare clients will produce deficiencies from day one because the two payers require different fields.'}
+    {text:'When the clinic serves more than 30 clients, template fatigue increases error rates at scale.',correct:false,rationale:'Client volume does not determine whether a single template is sufficient. The issue is payer-specific documentation requirements. A clinic with 5 clients across two payers with different requirements will have the same template problem as a clinic with 60 clients.'},
+    {text:'When at least two of the payers served have different required documentation elements, which is true whenever a clinic serves both Medicaid and any commercial payer.',correct:true,rationale:'Correct. Medi-Cal requires the "outcome of previous session" field. United Healthcare requires a supervisor cosignature and NPI. Aetna requires specific reinforcer notation. A single template cannot satisfy all of these simultaneously without becoming so long that RBTs skip fields. Any clinic serving more than one payer type will have different requirements, making a single universal template a documentation liability.'},
+    {text:'When RBTs are not trained on the template, the problem is training, not the template itself.',correct:false,rationale:'Training helps, but it does not solve a structural problem. If the template does not include the Medi-Cal "outcome of previous session" field, no amount of training will make RBTs complete a field that is not there. The template is the foundation, training builds on it.'},
+    {text:'When the template is more than two years old, documentation standards change and old templates fall behind.',correct:false,rationale:'Template age is relevant for ensuring currency with the latest requirements, but the core issue is payer specificity, not age. A brand-new universal template used for both Medi-Cal and United Healthcare clients will produce deficiencies from day one because the two payers require different fields.'}
    ]
   },
-  // KC 1 — Section 2
+  // KC 1, Section 2
   {q:'Why do commercial payer documentation requirements sometimes differ from state Medicaid requirements, even for the same CPT code?',
    answers:[
     {text:'Commercial payers are not subject to CMS oversight and can set any requirement they choose without federal review.',correct:false,rationale:'Commercial payers are regulated and subject to state insurance oversight, though not by CMS directly for all purposes. The more accurate reason for differences is contractual: provider agreements allow payers to set documentation standards above the CPT code minimum, within legal boundaries.'},
-    {text:'Commercial payers set documentation requirements through provider contracts and published clinical policies, which may differ from state Medicaid provider manuals and from each other.',correct:true,rationale:'Correct. The CPT code defines the service. The documentation requirements to prove that service are set by each payer independently — through provider contracts, clinical policy bulletins, and provider manuals. Medi-Cal\'s requirements come from the California DHCS. BlueCross\'s come from their internal clinical policy. Neither is derived from the other, so they can differ on the same CPT code.'},
-    {text:'State Medicaid programs set requirements based on federal law; commercial payers have simpler requirements because they face less federal scrutiny.',correct:false,rationale:'Commercial payer requirements are not necessarily simpler — in some cases they are more demanding than state Medicaid requirements. United Healthcare\'s no-copy-forward rule and Aetna\'s specific reinforcer notation requirement are examples of commercial standards that exceed Medi-Cal minimums in those areas.'},
-    {text:'CPT codes include documentation specifications that Medicaid follows but commercial payers are not required to adopt.',correct:false,rationale:'CPT codes define the service delivered — not the documentation required to prove it. Neither Medicaid programs nor commercial payers are required by the CPT code itself to follow a specific documentation standard. Each payer sets its own standard above the CPT definition.'}
+    {text:'Commercial payers set documentation requirements through provider contracts and published clinical policies, which may differ from state Medicaid provider manuals and from each other.',correct:true,rationale:'Correct. The CPT code defines the service. The documentation requirements to prove that service are set by each payer independently, through provider contracts, clinical policy bulletins, and provider manuals. Medi-Cal\'s requirements come from the California DHCS. BlueCross\'s come from their internal clinical policy. Neither is derived from the other, so they can differ on the same CPT code.'},
+    {text:'State Medicaid programs set requirements based on federal law; commercial payers have simpler requirements because they face less federal scrutiny.',correct:false,rationale:'Commercial payer requirements are not necessarily simpler, in some cases they are more demanding than state Medicaid requirements. United Healthcare\'s no-copy-forward rule and Aetna\'s specific reinforcer notation requirement are examples of commercial standards that exceed Medi-Cal minimums in those areas.'},
+    {text:'CPT codes include documentation specifications that Medicaid follows but commercial payers are not required to adopt.',correct:false,rationale:'CPT codes define the service delivered, not the documentation required to prove it. Neither Medicaid programs nor commercial payers are required by the CPT code itself to follow a specific documentation standard. Each payer sets its own standard above the CPT definition.'}
    ]
   },
-  // KC 2 — Section 3
+  // KC 2, Section 3
   {q:'Which documentation element is most commonly flagged as deficient in Medi-Cal ABA audits?',
    answers:[
     {text:'Missing RBT credential number on session notes.',correct:false,rationale:'RBT credential number is required by Medi-Cal and its absence does generate audit findings. However, it is not the most commonly flagged deficiency. The most consistent audit finding in California ABA documentation reviews is the missing "outcome of previous session" field.'},
-    {text:'Missing prior authorization number on the submitted claim.',correct:false,rationale:'Authorization number absence is a significant issue — it can generate denials and audit findings. But it falls into the billing infrastructure category. The most common documentation-level deficiency in Medi-Cal ABA audits specifically is the "outcome of previous session" field.'},
-    {text:'The "outcome of previous session" field — required in every note, missing when clinics treat it as a one-time intake field.',correct:true,rationale:'Correct. The "outcome of previous session" field must appear in every Medi-Cal ABA session note. Many clinics complete it for the first session and then stop, treating it as background information rather than a recurring documentation requirement. Medi-Cal auditors flag its absence consistently, and a week of notes with blank outcome fields can produce 10 to 30 deficient claims depending on client volume.'},
+    {text:'Missing prior authorization number on the submitted claim.',correct:false,rationale:'Authorization number absence is a significant issue, it can generate denials and audit findings. But it falls into the billing infrastructure category. The most common documentation-level deficiency in Medi-Cal ABA audits specifically is the "outcome of previous session" field.'},
+    {text:'The "outcome of previous session" field, required in every note, missing when clinics treat it as a one-time intake field.',correct:true,rationale:'Correct. The "outcome of previous session" field must appear in every Medi-Cal ABA session note. Many clinics complete it for the first session and then stop, treating it as background information rather than a recurring documentation requirement. Medi-Cal auditors flag its absence consistently, and a week of notes with blank outcome fields can produce 10 to 30 deficient claims depending on client volume.'},
     {text:'Service location not documented in the session note.',correct:false,rationale:'Service location is required by Medi-Cal and its absence generates findings. But it is typically included in clinic templates because it is also required for scheduling and billing purposes. The outcome of previous session field is more commonly omitted because clinics misclassify it as a one-time intake requirement.'}
    ]
   },
-  // KC 3 — Section 3
+  // KC 3, Section 3
   {q:'A documentation coordinator\'s clinic serves both Medi-Cal fee-for-service clients and Medi-Cal managed care plan clients. Which documentation standards apply?',
    answers:[
-    {text:'The Medi-Cal state standard applies to both — managed care plans are required to follow state Medicaid standards.',correct:false,rationale:'While managed care plans must meet the state floor, they are permitted to add requirements above it. A documentation coordinator who relies only on the state standard for managed care plan clients may miss additional requirements that those plans have added. Each managed care plan\'s specific documentation requirements must be verified independently.'},
-    {text:'The managed care plan\'s standards apply to managed care clients and the state standard applies to fee-for-service clients — and the two may differ in specific documentation elements.',correct:true,rationale:'Correct. Medi-Cal managed care plans administer the state Medicaid benefit under a state contract, but they are free to add documentation requirements above the state floor. A documentation coordinator at a clinic serving both Medi-Cal fee-for-service and Medi-Cal managed care clients must know the documentation standards for each — the state standard for fee-for-service and the specific managed care plan standard (which may exceed the state floor) for managed care clients.'},
+    {text:'The Medi-Cal state standard applies to both, managed care plans are required to follow state Medicaid standards.',correct:false,rationale:'While managed care plans must meet the state floor, they are permitted to add requirements above it. A documentation coordinator who relies only on the state standard for managed care plan clients may miss additional requirements that those plans have added. Each managed care plan\'s specific documentation requirements must be verified independently.'},
+    {text:'The managed care plan\'s standards apply to managed care clients and the state standard applies to fee-for-service clients, and the two may differ in specific documentation elements.',correct:true,rationale:'Correct. Medi-Cal managed care plans administer the state Medicaid benefit under a state contract, but they are free to add documentation requirements above the state floor. A documentation coordinator at a clinic serving both Medi-Cal fee-for-service and Medi-Cal managed care clients must know the documentation standards for each, the state standard for fee-for-service and the specific managed care plan standard (which may exceed the state floor) for managed care clients.'},
     {text:'The managed care plan standard supersedes the state standard for all clients regardless of enrollment type.',correct:false,rationale:'The managed care plan standard applies only to clients enrolled in that plan. Fee-for-service clients are billed directly to the state Medicaid program and are subject to the state standard. The two populations are billed differently and subject to different documentation standards.'},
-    {text:'The documentation coordinator should use the more stringent standard for all clients to ensure compliance with both.',correct:false,rationale:'While this is a conservative strategy, it can create documentation burden without purpose for clients whose payer does not require those elements. The correct approach is payer-specific templates — each client\'s notes should meet the standard of their specific payer, not a combined maximum standard.'}
+    {text:'The documentation coordinator should use the more stringent standard for all clients to ensure compliance with both.',correct:false,rationale:'While this is a conservative strategy, it can create documentation burden without purpose for clients whose payer does not require those elements. The correct approach is payer-specific templates, each client\'s notes should meet the standard of their specific payer, not a combined maximum standard.'}
    ]
   },
-  // KC 4 — Section 4
+  // KC 4, Section 4
   {q:'A clinic serves both Aetna and United Healthcare clients. The same RBT provides services to both. Which documentation element is required by United Healthcare but NOT by Aetna according to this module?',
    answers:[
     {text:'Specific reinforcer type documented in the note.',correct:false,rationale:'Specific reinforcer documentation is an Aetna requirement, not a United Healthcare requirement. This is an example of a documentation element that United does not explicitly require but Aetna does.'},
     {text:'ABC (antecedent-behavior-consequence) format for behavioral incidents.',correct:false,rationale:'ABC format for behavioral incidents is an Aetna requirement. It is not listed as a United Healthcare specific requirement in this module.'},
-    {text:'Supervisor cosignature and NPI on the note.',correct:true,rationale:'Correct. United Healthcare requires the supervisor cosignature AND NPI number on the note — it is described as the most commonly missing field for United Healthcare clients. Aetna requires BCBA contact date notation but does not list a supervisor cosignature as a specific separate requirement. A single template without a supervisor cosignature field will produce consistent United Healthcare denials.'},
+    {text:'Supervisor cosignature and NPI on the note.',correct:true,rationale:'Correct. United Healthcare requires the supervisor cosignature AND NPI number on the note, it is described as the most commonly missing field for United Healthcare clients. Aetna requires BCBA contact date notation but does not list a supervisor cosignature as a specific separate requirement. A single template without a supervisor cosignature field will produce consistent United Healthcare denials.'},
     {text:'Prior authorization number referenced within the note body.',correct:false,rationale:'Both United Healthcare and Medi-Cal require the prior authorization number within the note body. It is not exclusive to United Healthcare as a documentation element that distinguishes United from Aetna in this context.'}
    ]
   },
-  // KC 5 — Section 4
+  // KC 5, Section 4
   {q:'A documentation coordinator finds that RBTs at her clinic have been copying previous session notes as a starting point for each new note, then adding a few sentences. Under which payer\'s rules is this practice most explicitly prohibited?',
    answers:[
-    {text:'Medi-Cal — the "outcome of previous session" field requires unique narrative per session.',correct:false,rationale:'Medi-Cal requires a unique "outcome of previous session" entry, which makes copy-forward problematic. But Medi-Cal does not use the specific "no copy-forward" language or prohibition that United Healthcare does. The most explicit prohibition is from United.'},
-    {text:'TRICARE — federal military health documentation standards require unique entries per session.',correct:false,rationale:'TRICARE requires progress toward treatment plan goals in every note, which makes copy-forward insufficient. But the explicit "no copy-forward" prohibition by name is United Healthcare\'s rule. TRICARE\'s prohibition is implied by its specificity requirements rather than stated as an explicit rule against the practice.'},
-    {text:'United Healthcare — which explicitly prohibits copy-forward language and requires a unique narrative for each session.',correct:true,rationale:'Correct. United Healthcare explicitly prohibits copy-forward note language. The same narrative text appearing across multiple session notes triggers denial. This is not an implied requirement — it is stated in United\'s clinical policy as a specific prohibited practice. The documentation coordinator must disable or supervise any PrioraCare feature that allows RBTs to copy previous notes as a starting point for United Healthcare clients.'},
-    {text:'Aetna — which requires ABC format for behavioral incidents, making each note inherently unique.',correct:false,rationale:'Aetna\'s ABC format requirement makes incident documentation specific, but it does not constitute an explicit prohibition on copy-forward language. The explicit prohibition is United Healthcare\'s. Aetna\'s requirement affects a specific section of the note, not the overall note narrative.'}
+    {text:'Medi-Cal, the "outcome of previous session" field requires unique narrative per session.',correct:false,rationale:'Medi-Cal requires a unique "outcome of previous session" entry, which makes copy-forward problematic. But Medi-Cal does not use the specific "no copy-forward" language or prohibition that United Healthcare does. The most explicit prohibition is from United.'},
+    {text:'TRICARE, federal military health documentation standards require unique entries per session.',correct:false,rationale:'TRICARE requires progress toward treatment plan goals in every note, which makes copy-forward insufficient. But the explicit "no copy-forward" prohibition by name is United Healthcare\'s rule. TRICARE\'s prohibition is implied by its specificity requirements rather than stated as an explicit rule against the practice.'},
+    {text:'United Healthcare, which explicitly prohibits copy-forward language and requires a unique narrative for each session.',correct:true,rationale:'Correct. United Healthcare explicitly prohibits copy-forward note language. The same narrative text appearing across multiple session notes triggers denial. This is not an implied requirement, it is stated in United\'s clinical policy as a specific prohibited practice. The documentation coordinator must disable or supervise any PrioraCare feature that allows RBTs to copy previous notes as a starting point for United Healthcare clients.'},
+    {text:'Aetna, which requires ABC format for behavioral incidents, making each note inherently unique.',correct:false,rationale:'Aetna\'s ABC format requirement makes incident documentation specific, but it does not constitute an explicit prohibition on copy-forward language. The explicit prohibition is United Healthcare\'s. Aetna\'s requirement affects a specific section of the note, not the overall note narrative.'}
    ]
   },
-  // KC 6 — Section 5
+  // KC 6, Section 5
   {q:'A claim comes back with denial code CO-57 (Procedure Inconsistent with Documentation). What does this most likely mean and what is the documentation coordinator\'s first action?',
    answers:[
-    {text:'The payer processed the wrong claim — CO-57 is a billing error code, not a documentation code. Escalate to the billing vendor immediately.',correct:false,rationale:'CO-57 is a documentation code, not a billing processing error. It means the session note does not contain the documentation elements required to support the CPT code billed. Escalating to the billing vendor is not the first action — reviewing the note against the payer\'s documentation requirements is.'},
+    {text:'The payer processed the wrong claim, CO-57 is a billing error code, not a documentation code. Escalate to the billing vendor immediately.',correct:false,rationale:'CO-57 is a documentation code, not a billing processing error. It means the session note does not contain the documentation elements required to support the CPT code billed. Escalating to the billing vendor is not the first action, reviewing the note against the payer\'s documentation requirements is.'},
     {text:'The session note is missing a required element for the CPT code billed. The documentation coordinator should pull the note, compare it to the payer\'s documentation requirements, and determine whether a corrective addendum is possible.',correct:true,rationale:'Correct. CO-57 means the payer reviewed the documentation and found it insufficient to support the procedure code on the claim. The documentation coordinator\'s first action is to pull the original session note and compare it against the payer\'s specific documentation requirements for that code. If a required element is missing and can be added as an addendum within the payer\'s allowed window (typically 60 to 90 days), the addendum is prepared and the appeal is filed with both the original note and the addendum attached.'},
-    {text:'The diagnosis code on the claim does not match the authorization. CO-57 is a diagnosis-to-procedure mismatch code.',correct:false,rationale:'A diagnosis-to-procedure mismatch is covered by CO-11, not CO-57. CO-57 specifically concerns the documentation submitted with the claim. The session note does not support the procedure billed — not a diagnosis mismatch.'},
-    {text:'The claim was submitted after the filing deadline. CO-57 indicates a late submission.',correct:false,rationale:'Late submission is covered by CO-29, not CO-57. CO-57 is a documentation deficiency code — it means the note does not support the procedure billed, regardless of when the claim was submitted.'}
+    {text:'The diagnosis code on the claim does not match the authorization. CO-57 is a diagnosis-to-procedure mismatch code.',correct:false,rationale:'A diagnosis-to-procedure mismatch is covered by CO-11, not CO-57. CO-57 specifically concerns the documentation submitted with the claim. The session note does not support the procedure billed, not a diagnosis mismatch.'},
+    {text:'The claim was submitted after the filing deadline. CO-57 indicates a late submission.',correct:false,rationale:'Late submission is covered by CO-29, not CO-57. CO-57 is a documentation deficiency code, it means the note does not support the procedure billed, regardless of when the claim was submitted.'}
    ]
   },
-  // KC 7 — Section 5
+  // KC 7, Section 5
   {q:'An appeal includes the original claim number, the denial code, and a letter explaining the documentation coordinator disagrees with the denial. What critical component is most likely missing from this appeal?',
    answers:[
-    {text:'The appeal should not include a letter — only the corrected documentation.',correct:false,rationale:'A letter explaining the basis of the appeal is a required component of a first-level appeal. Without the letter, the payer does not know what the clinic believes went wrong with the denial or what documentation standard is being cited in support of reversal.'},
-    {text:'The specific documentation that addresses the denial reason — either the original note with the missing element highlighted, or an addendum that adds the missing element, plus a citation of the payer\'s own policy or documentation standard.',correct:true,rationale:'Correct. An appeal letter that says "we disagree with this denial" without explaining why the documentation actually meets the standard — and without attaching the evidence that proves it — will almost always be denied. The appeal must include: (1) the specific documentation that addresses the denial reason, (2) a citation of the payer\'s own policy, and (3) a clear explanation of how the documentation meets that policy. The claim number and denial code are starting points, not an argument.'},
+    {text:'The appeal should not include a letter, only the corrected documentation.',correct:false,rationale:'A letter explaining the basis of the appeal is a required component of a first-level appeal. Without the letter, the payer does not know what the clinic believes went wrong with the denial or what documentation standard is being cited in support of reversal.'},
+    {text:'The specific documentation that addresses the denial reason, either the original note with the missing element highlighted, or an addendum that adds the missing element, plus a citation of the payer\'s own policy or documentation standard.',correct:true,rationale:'Correct. An appeal letter that says "we disagree with this denial" without explaining why the documentation actually meets the standard, and without attaching the evidence that proves it, will almost always be denied. The appeal must include: (1) the specific documentation that addresses the denial reason, (2) a citation of the payer\'s own policy, and (3) a clear explanation of how the documentation meets that policy. The claim number and denial code are starting points, not an argument.'},
     {text:'The appeal should be filed by the BCBA, not the documentation coordinator. Appeals require a licensed clinician\'s signature.',correct:false,rationale:'First-level documentation deficiency appeals are filed by the documentation or billing team, not by licensed clinicians. BCBA involvement may be needed if the denial involves a clinical judgment question, but a CO-57 denial for a missing documentation element is a documentation coordinator function.'},
-    {text:'The denial code alone is insufficient — the appeal should restate the full claim in the letter.',correct:false,rationale:'Restating the full claim in the appeal letter is unnecessary and may actually obscure the argument. The appeal needs to address the denial reason specifically and provide the documentation that supports reversal. Volume does not substitute for precision in an appeal.'}
+    {text:'The denial code alone is insufficient, the appeal should restate the full claim in the letter.',correct:false,rationale:'Restating the full claim in the appeal letter is unnecessary and may actually obscure the argument. The appeal needs to address the denial reason specifically and provide the documentation that supports reversal. Volume does not substitute for precision in an appeal.'}
    ]
   },
-  // KC 8 — Section 6
+  // KC 8, Section 6
   {q:'A documentation coordinator has built a payer rule binder and trained her team on it in January 2026. By January 2027, two of her commercial payers have updated their clinical policies. What should she do?',
    answers:[
-    {text:'The binder is good for two years — commercial payers typically update their clinical policies on a biennial cycle.',correct:false,rationale:'Commercial payers do not follow a fixed update cycle. Some update annually, some update more frequently in response to audit findings or regulatory changes. The documentation in the binder from January 2026 reflects requirements as of that date — it is not guaranteed to be accurate 12 months later.'},
-    {text:'Update the binder sections for the two payers that changed, retrain affected staff, and update the "last verified" date for those sections. Add a PrioraCare reminder for the next annual review.',correct:true,rationale:'Correct. The payer rule binder is a living document, not a one-time build. When a payer updates its clinical policy, the corresponding binder section must be updated promptly — before the next claim submission for that payer. Staff whose documentation was based on the old requirements need to be notified of the change. The "last verified" date is what tells the documentation coordinator (and any reviewer) how current the information is.'},
-    {text:'Rebuild the entire binder from scratch — partial updates create inconsistency between sections.',correct:false,rationale:'Rebuilding the entire binder when only two payers have changed is unnecessary and wastes time. The binder is designed to be updated section by section. Only the sections covering the two payers that changed need to be updated.'},
-    {text:'Wait until the next annual review to make any changes — mid-year updates create staff confusion.',correct:false,rationale:'Waiting to update the binder after a payer has changed its requirements means submitting notes that do not meet the new standard until the next annual review. That is a documentation deficiency waiting to happen. Changes should be made and communicated to staff as soon as a policy update is confirmed.'}
+    {text:'The binder is good for two years, commercial payers typically update their clinical policies on a biennial cycle.',correct:false,rationale:'Commercial payers do not follow a fixed update cycle. Some update annually, some update more frequently in response to audit findings or regulatory changes. The documentation in the binder from January 2026 reflects requirements as of that date, it is not guaranteed to be accurate 12 months later.'},
+    {text:'Update the binder sections for the two payers that changed, retrain affected staff, and update the "last verified" date for those sections. Add a PrioraCare reminder for the next annual review.',correct:true,rationale:'Correct. The payer rule binder is a living document, not a one-time build. When a payer updates its clinical policy, the corresponding binder section must be updated promptly, before the next claim submission for that payer. Staff whose documentation was based on the old requirements need to be notified of the change. The "last verified" date is what tells the documentation coordinator (and any reviewer) how current the information is.'},
+    {text:'Rebuild the entire binder from scratch, partial updates create inconsistency between sections.',correct:false,rationale:'Rebuilding the entire binder when only two payers have changed is unnecessary and wastes time. The binder is designed to be updated section by section. Only the sections covering the two payers that changed need to be updated.'},
+    {text:'Wait until the next annual review to make any changes, mid-year updates create staff confusion.',correct:false,rationale:'Waiting to update the binder after a payer has changed its requirements means submitting notes that do not meet the new standard until the next annual review. That is a documentation deficiency waiting to happen. Changes should be made and communicated to staff as soon as a policy update is confirmed.'}
    ]
   },
-  // KC 9 — Section 6
+  // KC 9, Section 6
   {q:'Which element in the payer rule binder is most important for managing denied claims and preventing revenue loss from missed deadlines?',
    answers:[
-    {text:'The payer contact information — having the right phone number prevents delays in resolving denials.',correct:false,rationale:'Contact information is valuable, but it does not prevent revenue loss on its own. Missing an appeal deadline makes the contact information irrelevant for that claim — the window is closed regardless of who you call.'},
-    {text:'The appeal deadlines — knowing exactly how many days each payer allows for first-level appeals is what prevents claims from becoming permanently denied.',correct:true,rationale:'Correct. A denied claim that is not appealed within the payer\'s deadline becomes a permanent denial. Appeal windows range from 60 days to 365 days depending on the payer. A documentation coordinator who does not know that Medi-Cal has a 90-day window and BlueCross has a 180-day window will prioritize incorrectly — filing low-urgency appeals before high-urgency ones and missing short-window claims. Appeal deadline knowledge is the most operationally critical element in the payer binder for preventing permanent revenue loss.'},
-    {text:'The required note elements by CPT code — the documentation standard is the foundation of every appeal.',correct:false,rationale:'Required note elements are the foundation of documentation quality, but they are most useful before a denial occurs. After a denial, appeal deadlines determine whether revenue can be recovered at all. A clinic with perfect documentation knowledge but no awareness of appeal deadlines will lose the right to appeal short-window denials regardless of how strong its documentation is.'},
-    {text:'The last verified date — out-of-date requirements are more dangerous than missing information.',correct:false,rationale:'The last verified date is a critical maintenance indicator, but it does not function as a denial management tool. Appeal deadlines directly affect whether denied claims can be recovered. Last verified dates tell you when to update the binder — they do not tell you how long you have to file an appeal.'}
+    {text:'The payer contact information, having the right phone number prevents delays in resolving denials.',correct:false,rationale:'Contact information is valuable, but it does not prevent revenue loss on its own. Missing an appeal deadline makes the contact information irrelevant for that claim, the window is closed regardless of who you call.'},
+    {text:'The appeal deadlines, knowing exactly how many days each payer allows for first-level appeals is what prevents claims from becoming permanently denied.',correct:true,rationale:'Correct. A denied claim that is not appealed within the payer\'s deadline becomes a permanent denial. Appeal windows range from 60 days to 365 days depending on the payer. A documentation coordinator who does not know that Medi-Cal has a 90-day window and BlueCross has a 180-day window will prioritize incorrectly, filing low-urgency appeals before high-urgency ones and missing short-window claims. Appeal deadline knowledge is the most operationally critical element in the payer binder for preventing permanent revenue loss.'},
+    {text:'The required note elements by CPT code, the documentation standard is the foundation of every appeal.',correct:false,rationale:'Required note elements are the foundation of documentation quality, but they are most useful before a denial occurs. After a denial, appeal deadlines determine whether revenue can be recovered at all. A clinic with perfect documentation knowledge but no awareness of appeal deadlines will lose the right to appeal short-window denials regardless of how strong its documentation is.'},
+    {text:'The last verified date, out-of-date requirements are more dangerous than missing information.',correct:false,rationale:'The last verified date is a critical maintenance indicator, but it does not function as a denial management tool. Appeal deadlines directly affect whether denied claims can be recovered. Last verified dates tell you when to update the binder, they do not tell you how long you have to file an appeal.'}
    ]
   }
 ];
@@ -1064,53 +1075,53 @@ const KC_DATA = [
 const QUIZ_DATA = [
   {q:'A documentation coordinator at a California clinic uses one universal session note template for all 60 clients across Medi-Cal, BlueCross, and United Healthcare. What is the primary documentation risk?',
    answers:[
-    {text:'The template will cause inconsistent note length across payers.',correct:false,rationale:'Note length is not a payer-specific documentation standard. The risk is not inconsistency in length — it is that a universal template will be missing payer-specific required fields, producing deficient notes for one or more payers.'},
-    {text:'Notes for each payer will be missing payer-specific required elements — producing deficient documentation for at least one payer on every note.',correct:true,rationale:'Correct. Medi-Cal requires the "outcome of previous session" field. United Healthcare requires a supervisor cosignature and NPI. BlueCross requires objective progress notation. No single template satisfies all three simultaneously without becoming a documentation burden. Universal templates produce systematic deficiencies for at least one payer on every note.'},
+    {text:'The template will cause inconsistent note length across payers.',correct:false,rationale:'Note length is not a payer-specific documentation standard. The risk is not inconsistency in length, it is that a universal template will be missing payer-specific required fields, producing deficient notes for one or more payers.'},
+    {text:'Notes for each payer will be missing payer-specific required elements, producing deficient documentation for at least one payer on every note.',correct:true,rationale:'Correct. Medi-Cal requires the "outcome of previous session" field. United Healthcare requires a supervisor cosignature and NPI. BlueCross requires objective progress notation. No single template satisfies all three simultaneously without becoming a documentation burden. Universal templates produce systematic deficiencies for at least one payer on every note.'},
     {text:'The template will cause payer-to-payer confusion for RBTs who serve clients on multiple payers.',correct:false,rationale:'Staff confusion is a training issue, not the primary documentation risk. The primary risk is structural: the template does not contain all required fields for every payer it is used for.'},
-    {text:'One universal template is acceptable if it meets the highest documentation standard — all payers will accept documentation that exceeds their minimum requirements.',correct:false,rationale:'Payer-specific required fields are not minimum floors that can be exceeded by inclusion — they are specific fields those payers require. A template designed around Medi-Cal\'s requirements will not necessarily satisfy United Healthcare\'s supervisor cosignature block or Aetna\'s reinforcer specificity requirement.'}
+    {text:'One universal template is acceptable if it meets the highest documentation standard, all payers will accept documentation that exceeds their minimum requirements.',correct:false,rationale:'Payer-specific required fields are not minimum floors that can be exceeded by inclusion, they are specific fields those payers require. A template designed around Medi-Cal\'s requirements will not necessarily satisfy United Healthcare\'s supervisor cosignature block or Aetna\'s reinforcer specificity requirement.'}
    ]
   },
   {q:'A clinic receives a CO-57 denial from United Healthcare for a 97153 session note. The denial states the note contains copy-forward language. What is the most accurate description of the documentation coordinator\'s next steps?',
    answers:[
-    {text:'File an appeal stating the note is unique — copy-forward language is subjective and should be contested.',correct:false,rationale:'United Healthcare\'s prohibition on copy-forward language is an explicit policy, not a subjective finding. If the note does contain identical language from a previous note, contesting the denial on the grounds that the finding is subjective will not succeed.'},
-    {text:'Pull the note, confirm whether copy-forward language is present, and if so, prepare an addendum with unique narrative for the session — then file the appeal with the addendum attached.',correct:true,rationale:'Correct. The documentation coordinator first verifies whether the United Healthcare finding is accurate. If the note does contain copy-forward language, the response is a note addendum with unique narrative that describes what actually happened in that specific session. The appeal attaches both the original note and the addendum, explaining what the addendum adds and why it supports the original claim.'},
-    {text:'Ask the RBT to rewrite the note with unique language and resubmit without an appeal.',correct:false,rationale:'Rewriting a submitted session note without filing a formal appeal creates a documentation conflict — the original note was submitted as evidence of service, and the rewrite may be seen as an unauthorized alteration rather than a proper addendum. The correct path is an addendum to the original note, filed through the formal appeal process.'},
-    {text:'The denial cannot be appealed — copy-forward language disqualifies the claim permanently.',correct:false,rationale:'A CO-57 denial for copy-forward language can be appealed with a properly filed addendum that provides unique session narrative. The payer\'s concern is that the documentation does not prove a unique service was delivered. An addendum that provides that proof is an appropriate appeal response.'}
+    {text:'File an appeal stating the note is unique, copy-forward language is subjective and should be contested.',correct:false,rationale:'United Healthcare\'s prohibition on copy-forward language is an explicit policy, not a subjective finding. If the note does contain identical language from a previous note, contesting the denial on the grounds that the finding is subjective will not succeed.'},
+    {text:'Pull the note, confirm whether copy-forward language is present, and if so, prepare an addendum with unique narrative for the session, then file the appeal with the addendum attached.',correct:true,rationale:'Correct. The documentation coordinator first verifies whether the United Healthcare finding is accurate. If the note does contain copy-forward language, the response is a note addendum with unique narrative that describes what actually happened in that specific session. The appeal attaches both the original note and the addendum, explaining what the addendum adds and why it supports the original claim.'},
+    {text:'Ask the RBT to rewrite the note with unique language and resubmit without an appeal.',correct:false,rationale:'Rewriting a submitted session note without filing a formal appeal creates a documentation conflict, the original note was submitted as evidence of service, and the rewrite may be seen as an unauthorized alteration rather than a proper addendum. The correct path is an addendum to the original note, filed through the formal appeal process.'},
+    {text:'The denial cannot be appealed, copy-forward language disqualifies the claim permanently.',correct:false,rationale:'A CO-57 denial for copy-forward language can be appealed with a properly filed addendum that provides unique session narrative. The payer\'s concern is that the documentation does not prove a unique service was delivered. An addendum that provides that proof is an appropriate appeal response.'}
    ]
   },
   {q:'A documentation coordinator files a first-level appeal for a denied Medi-Cal claim. The appeal window for Medi-Cal is 90 days. The denial was issued October 1 and the appeal was filed on January 15. What is the outcome?',
    answers:[
-    {text:'The appeal is accepted — Medi-Cal\'s 90-day window is extended during the holiday period.',correct:false,rationale:'Medi-Cal does not automatically extend appeal windows for the holiday period. Extensions require a documented showing of cause — an administrative inability to respond, not a simple calendar delay.'},
-    {text:'The appeal will likely be rejected as untimely — 90 days from October 1 is December 30, and January 15 is 16 days past the deadline.',correct:true,rationale:'Correct. 90 days from October 1 is December 30, 2026. An appeal filed January 15, 2027 is 16 days late. The payer will reject it as untimely, and the denied claim becomes a permanent denial with no further appeal rights. This is precisely why the appeal deadline column in the payer rule binder is the most operationally critical element for protecting clinic revenue.'},
-    {text:'The appeal is accepted — the 90-day window runs from the date the documentation coordinator received the denial, not from the date of issue.',correct:false,rationale:'Appeal windows run from the date on the denial notice, not the date the documentation coordinator first reads it. Processing delays inside the clinic do not extend the payer\'s deadline.'},
-    {text:'The appeal is returned for resubmission — late appeals are allowed once with documentation of the delay reason.',correct:false,rationale:'Most payers, including Medi-Cal, do not automatically allow one late appeal resubmission. Late appeals are rejected as untimely. Some payers will grant an exception for extraordinary circumstances with supporting documentation — but that is not a reliable strategy and is not the same as an allowed late appeal.'}
+    {text:'The appeal is accepted, Medi-Cal\'s 90-day window is extended during the holiday period.',correct:false,rationale:'Medi-Cal does not automatically extend appeal windows for the holiday period. Extensions require a documented showing of cause, an administrative inability to respond, not a simple calendar delay.'},
+    {text:'The appeal will likely be rejected as untimely, 90 days from October 1 is December 30, and January 15 is 16 days past the deadline.',correct:true,rationale:'Correct. 90 days from October 1 is December 30, 2026. An appeal filed January 15, 2027 is 16 days late. The payer will reject it as untimely, and the denied claim becomes a permanent denial with no further appeal rights. This is precisely why the appeal deadline column in the payer rule binder is the most operationally critical element for protecting clinic revenue.'},
+    {text:'The appeal is accepted, the 90-day window runs from the date the documentation coordinator received the denial, not from the date of issue.',correct:false,rationale:'Appeal windows run from the date on the denial notice, not the date the documentation coordinator first reads it. Processing delays inside the clinic do not extend the payer\'s deadline.'},
+    {text:'The appeal is returned for resubmission, late appeals are allowed once with documentation of the delay reason.',correct:false,rationale:'Most payers, including Medi-Cal, do not automatically allow one late appeal resubmission. Late appeals are rejected as untimely. Some payers will grant an exception for extraordinary circumstances with supporting documentation, but that is not a reliable strategy and is not the same as an allowed late appeal.'}
    ]
   },
   {q:'A TRICARE client\'s BCBA has let her BACB certification lapse and is in the process of renewing it. BCBA-delivered services continue while the renewal is pending. What documentation risk does this create?',
    answers:[
-    {text:'No documentation risk — TRICARE does not audit BCBA certification status at the claim level.',correct:false,rationale:'TRICARE does audit BCBA certification status at the claim level. Active BACB status is a TRICARE billing condition. Claims submitted for BCBA-delivered services while the BCBA\'s certification is lapsed are not payable — and may trigger an audit of all claims submitted during the lapse period.'},
+    {text:'No documentation risk, TRICARE does not audit BCBA certification status at the claim level.',correct:false,rationale:'TRICARE does audit BCBA certification status at the claim level. Active BACB status is a TRICARE billing condition. Claims submitted for BCBA-delivered services while the BCBA\'s certification is lapsed are not payable, and may trigger an audit of all claims submitted during the lapse period.'},
     {text:'A moderate risk that can be mitigated by having a different BCBA countersign the notes.',correct:false,rationale:'Having a different BCBA countersign notes written during another BCBA\'s certification lapse does not resolve the issue. The service was delivered by the lapsed BCBA. Substituting another provider\'s signature on those notes creates a fraudulent representation of who delivered the service.'},
-    {text:'A significant documentation and billing risk — TRICARE requires BCBA Active BACB status as a billing condition, and claims for services delivered during a lapse period may be denied and subjected to retrospective audit.',correct:true,rationale:'Correct. TRICARE explicitly requires that the billing BCBA hold Active status with the BACB. Services delivered by a lapsed BCBA are not reimbursable under TRICARE, and claims submitted for those services may be denied. If TRICARE audits the period of lapse, every claim submitted during that window is at risk. The documentation coordinator should flag certification expiration dates in PrioraCare as part of the authorization tracking process.'},
-    {text:'A minimal risk — the BCBA\'s renewal will be retroactive to the lapse date, covering the claims.',correct:false,rationale:'BACB certification renewal is not retroactive. Renewing a lapsed certification re-establishes Active status from the renewal date forward — it does not cover the lapse period. Claims submitted for services delivered during the lapse are submitted under a lapsed credential, regardless of when the renewal occurs.'}
+    {text:'A significant documentation and billing risk, TRICARE requires BCBA Active BACB status as a billing condition, and claims for services delivered during a lapse period may be denied and subjected to retrospective audit.',correct:true,rationale:'Correct. TRICARE explicitly requires that the billing BCBA hold Active status with the BACB. Services delivered by a lapsed BCBA are not reimbursable under TRICARE, and claims submitted for those services may be denied. If TRICARE audits the period of lapse, every claim submitted during that window is at risk. The documentation coordinator should flag certification expiration dates in PrioraCare as part of the authorization tracking process.'},
+    {text:'A minimal risk, the BCBA\'s renewal will be retroactive to the lapse date, covering the claims.',correct:false,rationale:'BACB certification renewal is not retroactive. Renewing a lapsed certification re-establishes Active status from the renewal date forward, it does not cover the lapse period. Claims submitted for services delivered during the lapse are submitted under a lapsed credential, regardless of when the renewal occurs.'}
    ]
   },
   {q:'A new documentation coordinator at a 60-client California clinic (40 Medi-Cal, 15 commercial, 5 TRICARE) discovers 22 outstanding CO-57 denial appeals with varying deadlines. How should she sequence the appeals?',
    answers:[
-    {text:'File all 22 appeals at once this week — volume suggests all deadlines may be approaching.',correct:false,rationale:'Filing all 22 at once may be possible, but "volume suggests deadlines may be approaching" is not a documentation strategy — it is a guess. The correct approach is to know the specific deadline for each appeal and sequence by expiration date.'},
-    {text:'File the largest-dollar claims first — revenue loss is the priority.',correct:false,rationale:'Filing by claim dollar amount is a common but incorrect sequencing strategy. A large-dollar Medi-Cal appeal due in 10 days and a small-dollar BlueCross appeal due in 150 days require the Medi-Cal appeal first regardless of dollar amount. A missed deadline makes the claim\'s dollar amount irrelevant.'},
+    {text:'File all 22 appeals at once this week, volume suggests all deadlines may be approaching.',correct:false,rationale:'Filing all 22 at once may be possible, but "volume suggests deadlines may be approaching" is not a documentation strategy, it is a guess. The correct approach is to know the specific deadline for each appeal and sequence by expiration date.'},
+    {text:'File the largest-dollar claims first, revenue loss is the priority.',correct:false,rationale:'Filing by claim dollar amount is a common but incorrect sequencing strategy. A large-dollar Medi-Cal appeal due in 10 days and a small-dollar BlueCross appeal due in 150 days require the Medi-Cal appeal first regardless of dollar amount. A missed deadline makes the claim\'s dollar amount irrelevant.'},
     {text:'Sequence by appeal deadline, filing the shortest-window appeals first regardless of payer or dollar amount.',correct:true,rationale:'Correct. The appeal deadline is the controlling factor. A claim whose appeal window expires in 10 days must be filed before a claim whose window expires in 60 days, regardless of dollar amount, payer, or any other consideration. Sequencing by deadline prevents permanent denials and ensures the clinic preserves its right to appeal every claim while time remains.'},
-    {text:'File commercial payer appeals first — they are more likely to be reversed than Medicaid appeals.',correct:false,rationale:'Commercial payer reversal rates vary and are not reliably higher than Medicaid rates. Even if they were, reversal probability does not override appeal deadline. A likely-to-reverse commercial appeal due in 180 days comes after a less-certain Medi-Cal appeal due in 20 days.'}
+    {text:'File commercial payer appeals first, they are more likely to be reversed than Medicaid appeals.',correct:false,rationale:'Commercial payer reversal rates vary and are not reliably higher than Medicaid rates. Even if they were, reversal probability does not override appeal deadline. A likely-to-reverse commercial appeal due in 180 days comes after a less-certain Medi-Cal appeal due in 20 days.'}
    ]
   }
 ];
 
-// — Payer accordion —
+//, Payer accordion —
 function togglePayer(idx) {
   const section = document.getElementById('jps-' + idx);
   section.classList.toggle('open');
 }
 
-// — KC engine —
+//, KC engine —
 function buildKCOptions(kcIdx, excludeLetter) {
   const kc = KC_DATA[kcIdx];
   const indices = [0,1,2,3];
@@ -1176,7 +1187,7 @@ function checkSectionKCs(){
   updateDots();
 }
 
-// — Quiz engine —
+//, Quiz engine —
 let quizAnswers = {};
 let quizSubmitted = false;
 
@@ -1234,29 +1245,29 @@ function submitQuiz(){
   resultEl.style.display='block';
   if(score>=4){
     resultEl.className='quiz-result pass';
-    resultEl.textContent=`Excellent — ${score} out of 5. You are ready for the practice exam.`;
+    resultEl.textContent=`Excellent, ${score} out of 5. You are ready for the practice exam.`;
   } else {
     resultEl.className='quiz-result fail';
-    resultEl.textContent=`${score} out of 5 — review the sections covering your missed questions, then proceed to the practice exam.`;
+    resultEl.textContent=`${score} out of 5, review the sections covering your missed questions, then proceed to the practice exam.`;
   }
   document.getElementById('quizSubmit').disabled=true;
   document.getElementById('quizAfter').style.display='block';
   sectionDone[10]=true;
 }
 
-// — Scenario engine —
+//, Scenario engine —
 const decisionFeedback = [
   {
-    correct:'Exactly right. The template audit is the diagnostic that scopes every other action. Without knowing what templates exist, which payers they serve, and what fields are present or missing, the appeals work and the 2027 transition planning cannot be scoped correctly. The October CO-57 denials are urgent — but the template audit is what reveals whether December notes are already replicating the same error that generated them.',
-    wrong:'Each of the other actions is important — but each one requires knowing what documentation system currently exists before it can be done correctly. Appeals need to be matched against the template deficiencies that caused them. Medi-Cal calls are productive only once you know which Medi-Cal clients are affected and by what documentation gap. The template audit is the foundation everything else builds on.'
+    correct:'Exactly right. The template audit is the diagnostic that scopes every other action. Without knowing what templates exist, which payers they serve, and what fields are present or missing, the appeals work and the 2027 transition planning cannot be scoped correctly. The October CO-57 denials are urgent, but the template audit is what reveals whether December notes are already replicating the same error that generated them.',
+    wrong:'Each of the other actions is important, but each one requires knowing what documentation system currently exists before it can be done correctly. Appeals need to be matched against the template deficiencies that caused them. Medi-Cal calls are productive only once you know which Medi-Cal clients are affected and by what documentation gap. The template audit is the foundation everything else builds on.'
   },
   {
-    correct:'Right. Building all templates simultaneously before deploying any of them prevents the sequential error — fixing Medi-Cal in week one while United Healthcare clients continue generating deficient notes in week two. The staff training session that accompanies the new templates ensures that RBTs who have been writing one type of note for months know why their December notes look different. This is how a documentation culture is rebuilt, not patched.',
-    wrong:'Payer-specific documentation requirements are the documentation coordinator\'s domain, not the BCBAs\' domain. BCBAs know clinical documentation — what constitutes a defensible behavior description, how to record data. They are not typically trained on payer-specific field requirements. Adding both required fields to one template does not solve the problem — a universal template including all fields from all payers creates a note so long that RBTs skip fields or complete them incorrectly.'
+    correct:'Right. Building all templates simultaneously before deploying any of them prevents the sequential error, fixing Medi-Cal in week one while United Healthcare clients continue generating deficient notes in week two. The staff training session that accompanies the new templates ensures that RBTs who have been writing one type of note for months know why their December notes look different. This is how a documentation culture is rebuilt, not patched.',
+    wrong:'Payer-specific documentation requirements are the documentation coordinator\'s domain, not the BCBAs\' domain. BCBAs know clinical documentation, what constitutes a defensible behavior description, how to record data. They are not typically trained on payer-specific field requirements. Adding both required fields to one template does not solve the problem, a universal template including all fields from all payers creates a note so long that RBTs skip fields or complete them incorrectly.'
   },
   {
-    correct:'Correct. Appeal deadline sequencing is a documentation coordinator core competency. Dollar amount, payer relationship, and claim volume are all irrelevant if the appeal window closes before the appeal is filed. Medi-Cal at 90 days is the most urgent. United Healthcare at 120 days is next. BlueCross at 180 days can be filed in January without risk. Documenting the sequencing logic in PrioraCare protects the documentation coordinator if any appeal is later questioned — the record shows the decision was made deliberately, not arbitrarily.',
-    wrong:'Sequencing by payer relationship, dollar amount, or filing everything at once ignores the controlling factor: appeal deadlines. A missed Medi-Cal appeal window makes the claim a permanent denial regardless of its dollar amount. The billing director may have payer relationships — but appeal deadline management belongs to the documentation coordinator, not the billing director.'
+    correct:'Correct. Appeal deadline sequencing is a documentation coordinator core competency. Dollar amount, payer relationship, and claim volume are all irrelevant if the appeal window closes before the appeal is filed. Medi-Cal at 90 days is the most urgent. United Healthcare at 120 days is next. BlueCross at 180 days can be filed in January without risk. Documenting the sequencing logic in PrioraCare protects the documentation coordinator if any appeal is later questioned, the record shows the decision was made deliberately, not arbitrarily.',
+    wrong:'Sequencing by payer relationship, dollar amount, or filing everything at once ignores the controlling factor: appeal deadlines. A missed Medi-Cal appeal window makes the claim a permanent denial regardless of its dollar amount. The billing director may have payer relationships, but appeal deadline management belongs to the documentation coordinator, not the billing director.'
   }
 ];
 
@@ -1274,7 +1285,7 @@ function pickDecision(el,isCorrect,dpIdx){
   fb.innerHTML=`<strong style="color:${isCorrect?'var(--green)':'var(--red)'}">${isCorrect?'✓ Right call.':'✗ Not the best move.'}</strong> ${isCorrect?decisionFeedback[dpIdx].correct:decisionFeedback[dpIdx].wrong}`;
 }
 
-// — Navigation —
+//, Navigation —
 function navNext(){if(current<TOTAL-1)goTo(current+1);}
 function navBack(){if(current>0)goTo(current-1);}
 function goTo(idx){

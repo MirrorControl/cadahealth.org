@@ -1,8 +1,42 @@
-<title>Module 3 — ABA Billing Fundamentals | CareGuard CADA</title>
+<title>Module 3, ABA Billing Fundamentals | CareGuard CADA</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
+  --bg:#111827;--surface:#1f2937;--surface-raised:#374151;
+  --navy:#0d1b2e;--navy-mid:#1e3a5f;
+  --gold:#d97706;--gold-light:#451a03;
+  --teal:#2dd4bf;--teal-light:#0d3534;
+  --red:#ef4444;--red-light:#450a0a;
+  --green:#22c55e;--green-light:#052e16;
+  --amber:#fb923c;--amber-light:#431407;
+  --text:#f9fafb;--text-secondary:#d1d5db;--text-muted:#9ca3af;
+  --border:#374151;--border-light:#4b5563;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.3);
+  --shadow-md:0 4px 16px rgba(0,0,0,.4);
+  --shadow-nav:0 -4px 24px rgba(0,0,0,.4);
+  --radius-sm:6px;--radius:10px;--radius-lg:16px;
+  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
+  color-scheme:dark;
+}
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+    --navy:#1a2744;--navy-mid:#2c3e6b;
+    --gold:#c8921a;--gold-light:#f5e6c3;
+    --teal:#0d7377;--teal-light:#d4f0f1;
+    --red:#c0392b;--red-light:#fcecea;
+    --green:#1e7e34;--green-light:#d4f4dd;
+    --amber:#d35400;--amber-light:#fef0e4;
+    --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
+    --border:#d8d5cf;--border-light:#ebe8e2;
+    --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
   --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
   --navy:#1a2744;--navy-mid:#2c3e6b;
   --gold:#c8921a;--gold-light:#f5e6c3;
@@ -12,31 +46,8 @@
   --amber:#d35400;--amber-light:#fef0e4;
   --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
   --border:#d8d5cf;--border-light:#ebe8e2;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
-  --shadow-md:0 4px 16px rgba(0,0,0,.10);
-  --shadow-nav:0 -4px 24px rgba(0,0,0,.10);
-  --radius-sm:6px;--radius:10px;--radius-lg:16px;
-  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
-}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
-    --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
-    --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
-    --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
-    --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
-    --border:#343850;--border-light:#272b3e;color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
-  --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
-  --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
-  --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
-  --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
-  --border:#343850;--border-light:#272b3e;color-scheme:dark;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
+  color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
@@ -259,7 +270,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <div class="sidebar-nav" id="sidebarNav">
       <a onclick="goTo(0)"><span class="sidebar-dot" id="sd-0">1</span>Consequence Hook</a>
       <a onclick="goTo(1)"><span class="sidebar-dot" id="sd-1">2</span>Learning Objectives</a>
-      <a onclick="goTo(2)"><span class="sidebar-dot" id="sd-2">3</span>CPT Codes — What They Are</a>
+      <a onclick="goTo(2)"><span class="sidebar-dot" id="sd-2">3</span>CPT Codes, What They Are</a>
       <a onclick="goTo(3)"><span class="sidebar-dot" id="sd-3">4</span>The ABA Code Breakdown</a>
       <a onclick="goTo(4)"><span class="sidebar-dot" id="sd-4">5</span>Units vs Hours</a>
       <a onclick="goTo(5)"><span class="sidebar-dot" id="sd-5">6</span>Modifiers</a>
@@ -278,14 +289,14 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-label">CONSEQUENCE HOOK</div>
       <div class="section-title">Two words. One denial. One appeal denied.</div>
       <div class="hook-box">
-        <div class="hook-eyebrow">WHAT HAPPENED — INDIANA, 2024</div>
+        <div class="hook-eyebrow">WHAT HAPPENED, INDIANA, 2024</div>
         <div class="hook-stat">"2 hours"</div>
-        <div class="hook-stat-label">written on a session note instead of "8 units" — same service, different record</div>
+        <div class="hook-stat-label">written on a session note instead of "8 units", same service, different record</div>
         <p style="margin-top:16px">An RBT at an Indiana clinic recorded "2 hours" on a session note instead of "8 units." The clinic billed 8 units. The payer paid for 8 units. When the OIG auditor reviewed the note and saw "2 hours," they flagged it as a documentation discrepancy. The claim was denied. The clinic appealed. The appeal was denied because the note said one thing and the claim said another.</p>
         <p style="margin-top:12px">Two hours is 8 units. The math was right. The service was real. The documentation was not. And that is all the auditor needed.</p>
       </div>
       <div class="section-body">
-        <p>ABA billing runs on CPT codes, units, modifiers, and documentation standards that most non-clinical staff were never formally trained on. The RBT in Indiana was not trying to defraud anyone. She just did not know that "2 hours" and "8 units" are not interchangeable on a session note — even when they describe the same period of time.</p>
+        <p>ABA billing runs on CPT codes, units, modifiers, and documentation standards that most non-clinical staff were never formally trained on. The RBT in Indiana was not trying to defraud anyone. She just did not know that "2 hours" and "8 units" are not interchangeable on a session note, even when they describe the same period of time.</p>
         <p>This module closes that gap. By the time you finish it, you will understand what every ABA CPT code covers, who is qualified to deliver it, how time translates to units, what modifiers do and when they are required, and how the chain from session note to paid claim either holds together or breaks.</p>
       </div>
     </section>
@@ -296,10 +307,10 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-title">What you will be able to do after this module.</div>
       <div class="section-body">
         <ul class="obj-list">
-          <li><span class="obj-num">1</span>Identify the correct CPT code for a described ABA service by provider type, service type, and delivery format — and explain why the wrong code on a claim generates an audit finding even when the service was legitimate.</li>
+          <li><span class="obj-num">1</span>Identify the correct CPT code for a described ABA service by provider type, service type, and delivery format, and explain why the wrong code on a claim generates an audit finding even when the service was legitimate.</li>
           <li><span class="obj-num">2</span>Convert between hours and units for time-based ABA CPT codes and explain why session notes must record time in the same format required by the billed code.</li>
           <li><span class="obj-num">3</span>Describe what billing modifiers are, identify at least three modifiers used in ABA billing, and explain what happens when the wrong modifier is attached to a claim.</li>
-          <li><span class="obj-num">4</span>Trace the chain from session note to billed claim and identify the specific point in that chain where a documentation error becomes a billing error — and then an audit finding.</li>
+          <li><span class="obj-num">4</span>Trace the chain from session note to billed claim and identify the specific point in that chain where a documentation error becomes a billing error, and then an audit finding.</li>
         </ul>
       </div>
     </section>
@@ -307,20 +318,20 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 2: WHAT CPT CODES ARE (KCs 0,1) -->
     <section class="module-section" id="sec-2">
       <div class="section-label">PART 1 OF CORE CONTENT</div>
-      <div class="section-title">What CPT codes actually are — and why they matter to you.</div>
+      <div class="section-title">What CPT codes actually are, and why they matter to you.</div>
       <div class="section-body">
-        <p>A Current Procedural Terminology code — a CPT code — is a five-digit number that identifies a specific medical or behavioral health service for billing purposes. When a clinic submits a claim, the payer does not read the session note first. It reads the CPT code on the claim. The code tells the payer: what service was delivered, who is qualified to deliver it, and how long it took. Everything that follows — approval, denial, payment, audit — flows from that code.</p>
+        <p>A Current Procedural Terminology code, a CPT code, is a five-digit number that identifies a specific medical or behavioral health service for billing purposes. When a clinic submits a claim, the payer does not read the session note first. It reads the CPT code on the claim. The code tells the payer: what service was delivered, who is qualified to deliver it, and how long it took. Everything that follows, approval, denial, payment, audit, flows from that code.</p>
 
         <h3>CPT codes are not abbreviations</h3>
-        <p>A CPT code is a formal legal billing designation. It describes a service to a level of specificity that carries legal weight in a payer contract. When a clinic bills 97153, it is representing to the payer that a technician delivered direct ABA treatment by protocol under BCBA supervision for the number of units listed. If the session note describes something different — a BCBA delivering the session, or a parent training session, or a group treatment — the code and the note disagree. That disagreement is an audit finding.</p>
+        <p>A CPT code is a formal legal billing designation. It describes a service to a level of specificity that carries legal weight in a payer contract. When a clinic bills 97153, it is representing to the payer that a technician delivered direct ABA treatment by protocol under BCBA supervision for the number of units listed. If the session note describes something different, a BCBA delivering the session, or a parent training session, or a group treatment, the code and the note disagree. That disagreement is an audit finding.</p>
         <p>This is why the documentation coordinator's understanding of CPT codes matters. You are not responsible for clinical decisions. You are responsible for ensuring that what the note says matches what the claim says. That requires knowing what each code covers.</p>
 
         <h3>Who assigns CPT codes</h3>
-        <p>CPT codes are developed and maintained by the American Medical Association. Payers then determine which codes they will reimburse, at what rates, and under what conditions. For ABA specifically, most payers cover the range from 97151 through 97158 — the adaptive behavior codes. The 2027 transition adds six new codes to this range. Module 5 covers those in full. For now, the current code set is what you need to know.</p>
+        <p>CPT codes are developed and maintained by the American Medical Association. Payers then determine which codes they will reimburse, at what rates, and under what conditions. For ABA specifically, most payers cover the range from 97151 through 97158, the adaptive behavior codes. The 2027 transition adds six new codes to this range. Module 5 covers those in full. For now, the current code set is what you need to know.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="0">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">In an ABA billing context, what does the CPT code on a submitted claim communicate to the payer?</div>
         <div class="kc-options" id="kc-opts-0"></div>
         <div class="kc-rationale" id="kc-rat-0"></div>
@@ -328,7 +339,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="1">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A documentation coordinator reviews a denied claim. The denial note reads "service does not match documentation." The session note describes parent training delivered by a BCBA. The claim was filed under 97153. What is most likely wrong?</div>
         <div class="kc-options" id="kc-opts-1"></div>
         <div class="kc-rationale" id="kc-rat-1"></div>
@@ -339,9 +350,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 3: CODE BREAKDOWN (KCs 2,3) -->
     <section class="module-section" id="sec-3">
       <div class="section-label">PART 2 OF CORE CONTENT</div>
-      <div class="section-title">The ABA CPT code breakdown — in plain language.</div>
+      <div class="section-title">The ABA CPT code breakdown, in plain language.</div>
       <div class="section-body">
-        <p>There are eight active ABA CPT codes from 97151 through 97158. Each one defines a different service type, a different provider requirement, and a different documentation standard. Getting one wrong on a claim is not a technicality — it is a documentation accuracy failure that the payer treats as misrepresentation of the service delivered.</p>
+        <p>There are eight active ABA CPT codes from 97151 through 97158. Each one defines a different service type, a different provider requirement, and a different documentation standard. Getting one wrong on a claim is not a technicality, it is a documentation accuracy failure that the payer treats as misrepresentation of the service delivered.</p>
 
         <div style="overflow-x:auto;margin:24px 0">
         <table class="code-table">
@@ -375,7 +386,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
             <tr>
               <td><span class="code-pill tech">97154</span></td>
               <td>Group adaptive behavior treatment by protocol</td>
-              <td>Technician (RBT) — 2 or more clients present</td>
+              <td>Technician (RBT), 2 or more clients present</td>
               <td>All clients present, group composition, target programs for each client</td>
             </tr>
             <tr>
@@ -393,13 +404,13 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
             <tr>
               <td><span class="code-pill bcba">97157</span></td>
               <td>Multiple-family group adaptive behavior treatment guidance</td>
-              <td>BCBA or BCaBA — 2 or more families</td>
+              <td>BCBA or BCaBA, 2 or more families</td>
               <td>All families present, topics covered, each family's participation documented</td>
             </tr>
             <tr>
               <td><span class="code-pill either">97158</span></td>
               <td>Group adaptive behavior treatment with protocol modification</td>
-              <td>BCBA or BCaBA — 2 or more clients</td>
+              <td>BCBA or BCaBA, 2 or more clients</td>
               <td>All clients present, individual modifications for each client, clinical rationale</td>
             </tr>
           </tbody>
@@ -407,11 +418,11 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         </div>
 
         <h3>BCBA-delivered vs technician-delivered: the distinction that matters most</h3>
-        <p>The most common billing error in ABA documentation is submitting a technician code when a BCBA delivered the service, or vice versa. 97153 is a technician code. 97155 is a BCBA code. If a BCBA delivers direct 1:1 ABA therapy, it cannot be billed under 97153 — that code represents a technician-delivered service. The session note will say "BCBA," the code will say "technician," and the auditor will flag the mismatch. This is not a gray area.</p>
+        <p>The most common billing error in ABA documentation is submitting a technician code when a BCBA delivered the service, or vice versa. 97153 is a technician code. 97155 is a BCBA code. If a BCBA delivers direct 1:1 ABA therapy, it cannot be billed under 97153, that code represents a technician-delivered service. The session note will say "BCBA," the code will say "technician," and the auditor will flag the mismatch. This is not a gray area.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="2">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">An RBT delivers a 97153 session for 90 minutes. How many units should appear on the session note and the billed claim?</div>
         <div class="kc-options" id="kc-opts-2"></div>
         <div class="kc-rationale" id="kc-rat-2"></div>
@@ -419,7 +430,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="3">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">What is the primary documentation difference between a 97155 session note and a 97153 session note?</div>
         <div class="kc-options" id="kc-opts-3"></div>
         <div class="kc-rationale" id="kc-rat-3"></div>
@@ -430,22 +441,22 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 4: UNITS VS HOURS (KCs 4,5) -->
     <section class="module-section" id="sec-4">
       <div class="section-label">PART 3 OF CORE CONTENT</div>
-      <div class="section-title">Units vs hours — the most common documentation failure in ABA billing.</div>
+      <div class="section-title">Units vs hours, the most common documentation failure in ABA billing.</div>
       <div class="section-body">
-        <p>Time-based CPT codes are billed in 15-minute units. This is not a clinic policy — it is how the American Medical Association structured these codes, and every payer billing system processes them in units, not hours. One unit equals 15 minutes. Four units equals one hour. Eight units equals two hours. These are not interchangeable terms — they are different formats for the same information, and mixing them creates a documentation discrepancy that an auditor will catch.</p>
+        <p>Time-based CPT codes are billed in 15-minute units. This is not a clinic policy, it is how the American Medical Association structured these codes, and every payer billing system processes them in units, not hours. One unit equals 15 minutes. Four units equals one hour. Eight units equals two hours. These are not interchangeable terms, they are different formats for the same information, and mixing them creates a documentation discrepancy that an auditor will catch.</p>
 
         <h3>Why the Indiana finding happened</h3>
         <p>The RBT wrote "2 hours" because that is how most people track time in everyday life. But the claim was submitted for "8 units" because that is how the billing system processes 97153 services. The two records are mathematically equivalent. The two records are not documentarily equivalent. An OIG auditor reviewing the note against the claim sees a note that says "2 hours" and a claim that says "8 units." Without a documented conversion methodology, those two records appear to conflict. That appearance of conflict is enough to trigger a denial.</p>
 
         <h3>The correct standard for session note time documentation</h3>
-        <p>Session notes for time-based ABA codes should record time in units — the same format the billing system uses. The note should state: start time, end time, and total units delivered. If your clinic's RBTs are recording time in hours, that is a training gap that the documentation coordinator can flag and correct before an auditor finds it. It is not a clinical decision — it is a documentation standards issue, and it is exactly the kind of issue CADA is designed to catch.</p>
+        <p>Session notes for time-based ABA codes should record time in units, the same format the billing system uses. The note should state: start time, end time, and total units delivered. If your clinic's RBTs are recording time in hours, that is a training gap that the documentation coordinator can flag and correct before an auditor finds it. It is not a clinical decision, it is a documentation standards issue, and it is exactly the kind of issue CADA is designed to catch.</p>
 
         <h3>Partial units and rounding</h3>
-        <p>Most payers use an 8-minute rule for time-based codes: 8 minutes or more of a 15-minute unit may be billed as a full unit. Some payers have different rounding rules. The documentation coordinator should know the rounding policy for each payer in their clinic's payer mix. A session note documenting 22 minutes may support 1 or 2 units depending on the payer. Applying the wrong rounding rule to a note is a billing error — even if the clinical team performed the service correctly.</p>
+        <p>Most payers use an 8-minute rule for time-based codes: 8 minutes or more of a 15-minute unit may be billed as a full unit. Some payers have different rounding rules. The documentation coordinator should know the rounding policy for each payer in their clinic's payer mix. A session note documenting 22 minutes may support 1 or 2 units depending on the payer. Applying the wrong rounding rule to a note is a billing error, even if the clinical team performed the service correctly.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="4">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">An RBT records "2 hours" on a session note. The billing system shows the session was billed for 8 units of 97153. An OIG auditor reviews the note during a post-payment audit. What most likely happens?</div>
         <div class="kc-options" id="kc-opts-4"></div>
         <div class="kc-rationale" id="kc-rat-4"></div>
@@ -453,7 +464,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="5">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A clinic's RBTs have been recording session time in hours on their notes. The billing team converts hours to units before submitting claims. What is the documentation risk in this system?</div>
         <div class="kc-options" id="kc-opts-5"></div>
         <div class="kc-rationale" id="kc-rat-5"></div>
@@ -464,30 +475,30 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 5: MODIFIERS (KCs 6,7) -->
     <section class="module-section" id="sec-5">
       <div class="section-label">PART 4 OF CORE CONTENT</div>
-      <div class="section-title">Modifiers — the codes that modify the codes.</div>
+      <div class="section-title">Modifiers, the codes that modify the codes.</div>
       <div class="section-body">
-        <p>A billing modifier is a two-digit code appended to a CPT code that provides additional information about the service. Modifiers do not change what the code describes — they tell the payer something specific about how the service was delivered, by whom, or under what circumstances. When a modifier is required by a payer and missing from the claim, the claim denies. When a modifier is attached incorrectly, the claim either denies or triggers a documentation review.</p>
+        <p>A billing modifier is a two-digit code appended to a CPT code that provides additional information about the service. Modifiers do not change what the code describes, they tell the payer something specific about how the service was delivered, by whom, or under what circumstances. When a modifier is required by a payer and missing from the claim, the claim denies. When a modifier is attached incorrectly, the claim either denies or triggers a documentation review.</p>
 
         <h3>Common ABA billing modifiers and what they mean</h3>
         <ul>
-          <li><strong>HO</strong> — Delivered by a master's-level provider. Required by some payers for certain code-provider combinations.</li>
-          <li><strong>HN</strong> — Delivered by a bachelor's-level provider. Required by specific payers to confirm provider credential level.</li>
-          <li><strong>HM</strong> — Delivered by a less than bachelor's-level provider. Some payers require this for RBT-delivered services.</li>
-          <li><strong>U1 through U9</strong> — State-specific modifiers. Meaning varies by state Medicaid program. California Medi-Cal uses different U modifiers than Indiana Medicaid.</li>
-          <li><strong>GT</strong> — Via interactive audio and video telecommunications (telehealth). Required on any claim for a service delivered remotely. Incorrect use — attaching GT to an in-person service note — is a billing misrepresentation.</li>
-          <li><strong>95</strong> — Synchronous telemedicine service rendered via real-time interactive audio and video. Used by some commercial payers in place of or alongside GT.</li>
-          <li><strong>76</strong> — Procedure repeated by the same physician or other qualified health care professional. Used in some concurrent supervision scenarios.</li>
+          <li><strong>HO</strong>, Delivered by a master's-level provider. Required by some payers for certain code-provider combinations.</li>
+          <li><strong>HN</strong>, Delivered by a bachelor's-level provider. Required by specific payers to confirm provider credential level.</li>
+          <li><strong>HM</strong>, Delivered by a less than bachelor's-level provider. Some payers require this for RBT-delivered services.</li>
+          <li><strong>U1 through U9</strong>, State-specific modifiers. Meaning varies by state Medicaid program. California Medi-Cal uses different U modifiers than Indiana Medicaid.</li>
+          <li><strong>GT</strong>, Via interactive audio and video telecommunications (telehealth). Required on any claim for a service delivered remotely. Incorrect use, attaching GT to an in-person service note, is a billing misrepresentation.</li>
+          <li><strong>95</strong>, Synchronous telemedicine service rendered via real-time interactive audio and video. Used by some commercial payers in place of or alongside GT.</li>
+          <li><strong>76</strong>, Procedure repeated by the same physician or other qualified health care professional. Used in some concurrent supervision scenarios.</li>
         </ul>
 
         <h3>Modifier requirements are payer-specific</h3>
-        <p>No single modifier rule applies to every payer. Medi-Cal requires specific U modifiers. United Healthcare commercial requires different modifiers for different service types. TRICARE has its own modifier standards. The documentation coordinator cannot assume that because a modifier is required for one payer, it applies to all payers — or that because one payer does not require a modifier, no other payer will either. The payer-specific modifier requirements belong in the same payer rule reference you build in Module 6.</p>
+        <p>No single modifier rule applies to every payer. Medi-Cal requires specific U modifiers. United Healthcare commercial requires different modifiers for different service types. TRICARE has its own modifier standards. The documentation coordinator cannot assume that because a modifier is required for one payer, it applies to all payers, or that because one payer does not require a modifier, no other payer will either. The payer-specific modifier requirements belong in the same payer rule reference you build in Module 6.</p>
 
         <h3>Concurrent billing restrictions</h3>
-        <p>Most payers restrict billing certain codes concurrently — that is, for the same client at the same time. The most common restriction is 97151 and 97155 on the same date at overlapping times. Some payers also restrict simultaneous billing of 97155 and 97153 for the same client. When a documentation coordinator reviews weekly claims and finds two codes billed for the same client at overlapping times, the first check is whether that payer's billing guidelines allow that combination. Submit the concurrent claims first and address the denial later is the most expensive approach a documentation coordinator can take.</p>
+        <p>Most payers restrict billing certain codes concurrently, that is, for the same client at the same time. The most common restriction is 97151 and 97155 on the same date at overlapping times. Some payers also restrict simultaneous billing of 97155 and 97153 for the same client. When a documentation coordinator reviews weekly claims and finds two codes billed for the same client at overlapping times, the first check is whether that payer's billing guidelines allow that combination. Submit the concurrent claims first and address the denial later is the most expensive approach a documentation coordinator can take.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="6">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A clinic submits a 97153 claim for a session delivered by an RBT. The payer's billing guidelines require Modifier HM for all RBT-delivered services. The modifier is missing from the claim. What most likely happens?</div>
         <div class="kc-options" id="kc-opts-6"></div>
         <div class="kc-rationale" id="kc-rat-6"></div>
@@ -495,7 +506,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="7">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A billing staff member is not sure whether a specific modifier is required by a payer for 97153 services. What is the most appropriate action before submitting the week's claims?</div>
         <div class="kc-options" id="kc-opts-7"></div>
         <div class="kc-rationale" id="kc-rat-7"></div>
@@ -506,25 +517,25 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 6: DOC-TO-BILLING CHAIN (KCs 8,9) -->
     <section class="module-section" id="sec-6">
       <div class="section-label">PART 5 OF CORE CONTENT</div>
-      <div class="section-title">The documentation to billing chain — where it holds and where it breaks.</div>
+      <div class="section-title">The documentation to billing chain, where it holds and where it breaks.</div>
       <div class="section-body">
-        <p>Every paid ABA claim is the end result of a chain that starts before the session begins and ends when the payment posts. That chain has five links. Break any one of them and you do not get paid — or you get paid and then owe it back. The documentation coordinator sits at the junction between the clinical world and the billing world. Understanding the chain is understanding your job.</p>
+        <p>Every paid ABA claim is the end result of a chain that starts before the session begins and ends when the payment posts. That chain has five links. Break any one of them and you do not get paid, or you get paid and then owe it back. The documentation coordinator sits at the junction between the clinical world and the billing world. Understanding the chain is understanding your job.</p>
 
         <h3>The five-link chain</h3>
         <ol style="padding-left:22px;margin-bottom:16px">
-          <li style="margin-bottom:12px"><strong>Treatment plan</strong> — The BCBA writes a treatment plan that identifies target behaviors, intervention protocols, and service intensity. This plan is what the payer used to approve the authorization. Every service delivered must connect back to something in the treatment plan. A session note documenting a target that is not in the treatment plan is a documentation integrity gap.</li>
-          <li style="margin-bottom:12px"><strong>Authorization</strong> — The payer approves services as described in the treatment plan. The authorization specifies CPT codes, units, date range, eligible providers, and service location. Everything delivered must fit inside the authorization boundaries. Module 2 covers authorization in depth.</li>
-          <li style="margin-bottom:12px"><strong>Session note</strong> — The RBT or BCBA documents the specific service delivered: who delivered it, what targets were addressed, how long the session ran (in units), the client's response, and the supervisor's identification. The note is the legal record of the session. It must match the authorization in CPT code, provider type, units, and date.</li>
-          <li style="margin-bottom:12px"><strong>Claim</strong> — The billing team takes the session note and translates it into a claim: CPT code, units, modifier, diagnosis code, date of service, provider NPI, and authorization number. If the note says one thing and the claim says another, that is a billing error. The documentation coordinator's pre-submission review catches this before it becomes an audit finding.</li>
-          <li style="margin-bottom:0px"><strong>Remittance and payment</strong> — The payer processes the claim and either pays or denies. If the chain held together at every link, the claim pays. If it broke anywhere — a code mismatch, a missing modifier, a unit discrepancy, an unauthorized service location — it denies.</li>
+          <li style="margin-bottom:12px"><strong>Treatment plan</strong>, The BCBA writes a treatment plan that identifies target behaviors, intervention protocols, and service intensity. This plan is what the payer used to approve the authorization. Every service delivered must connect back to something in the treatment plan. A session note documenting a target that is not in the treatment plan is a documentation integrity gap.</li>
+          <li style="margin-bottom:12px"><strong>Authorization</strong>, The payer approves services as described in the treatment plan. The authorization specifies CPT codes, units, date range, eligible providers, and service location. Everything delivered must fit inside the authorization boundaries. Module 2 covers authorization in depth.</li>
+          <li style="margin-bottom:12px"><strong>Session note</strong>, The RBT or BCBA documents the specific service delivered: who delivered it, what targets were addressed, how long the session ran (in units), the client's response, and the supervisor's identification. The note is the legal record of the session. It must match the authorization in CPT code, provider type, units, and date.</li>
+          <li style="margin-bottom:12px"><strong>Claim</strong>, The billing team takes the session note and translates it into a claim: CPT code, units, modifier, diagnosis code, date of service, provider NPI, and authorization number. If the note says one thing and the claim says another, that is a billing error. The documentation coordinator's pre-submission review catches this before it becomes an audit finding.</li>
+          <li style="margin-bottom:0px"><strong>Remittance and payment</strong>, The payer processes the claim and either pays or denies. If the chain held together at every link, the claim pays. If it broke anywhere, a code mismatch, a missing modifier, a unit discrepancy, an unauthorized service location, it denies.</li>
         </ol>
 
         <h3>Where most errors enter the chain</h3>
-        <p>In OIG audit findings across Indiana, Wisconsin, Maine, and Colorado, errors most commonly entered the chain at the session note level. The clinical team was delivering real services. The billing team was filing claims that matched the notes. But the notes themselves were inaccurate — wrong units, wrong time format, missing required elements, or descriptions that did not match the billed code. The documentation coordinator who catches a session note error before it reaches the billing team prevents a claim denial, an audit finding, and a potential recoupment demand.</p>
+        <p>In OIG audit findings across Indiana, Wisconsin, Maine, and Colorado, errors most commonly entered the chain at the session note level. The clinical team was delivering real services. The billing team was filing claims that matched the notes. But the notes themselves were inaccurate, wrong units, wrong time format, missing required elements, or descriptions that did not match the billed code. The documentation coordinator who catches a session note error before it reaches the billing team prevents a claim denial, an audit finding, and a potential recoupment demand.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="8">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A claim for 97155 is denied. The denial code reads "documentation does not support the service billed." The documentation coordinator pulls the session note. What is the most critical element to verify first?</div>
         <div class="kc-options" id="kc-opts-8"></div>
         <div class="kc-rationale" id="kc-rat-8"></div>
@@ -532,7 +543,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="9">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A documentation coordinator reviews Tuesday's billing summary and finds that 97155 and 97153 were billed for the same client during the same time window. The payer's guidelines prohibit concurrent billing of these two codes for the same client. What should the documentation coordinator do?</div>
         <div class="kc-options" id="kc-opts-9"></div>
         <div class="kc-rationale" id="kc-rat-9"></div>
@@ -550,13 +561,13 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
       <div class="claim-block">
         <div class="claim-header">
-          <h4>WEEKLY BILLING SUMMARY EXCERPT — CLIENT: T. WASHINGTON, DOB: 03/14/2017</h4>
+          <h4>WEEKLY BILLING SUMMARY EXCERPT, CLIENT: T. WASHINGTON, DOB: 03/14/2017</h4>
         </div>
         <div class="claim-row ok-row">
           <div class="claim-line">LINE 1</div>
           <div>
             <div class="claim-code">97153</div>
-            <div class="claim-desc">Adaptive behavior treatment by protocol — RBT Jordan M.</div>
+            <div class="claim-desc">Adaptive behavior treatment by protocol, RBT Jordan M.</div>
           </div>
           <div class="claim-units">8 units</div>
           <div class="claim-status ok">CLEAN</div>
@@ -565,7 +576,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <div class="claim-line">LINE 2</div>
           <div>
             <div class="claim-code">97155 · GT</div>
-            <div class="claim-desc">Protocol modification — BCBA Dr. Perez — in-person clinic session</div>
+            <div class="claim-desc">Protocol modification, BCBA Dr. Perez, in-person clinic session</div>
           </div>
           <div class="claim-units">4 units</div>
           <div class="claim-status err">ERROR</div>
@@ -574,7 +585,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <div class="claim-line">LINE 3</div>
           <div>
             <div class="claim-code">97153</div>
-            <div class="claim-desc">Adaptive behavior treatment — session note documents "3 hours"</div>
+            <div class="claim-desc">Adaptive behavior treatment, session note documents "3 hours"</div>
           </div>
           <div class="claim-units">12 units</div>
           <div class="claim-status err">ERROR</div>
@@ -584,7 +595,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
       <div class="compare-grid">
         <div class="compare-card good">
-          <div class="compare-tag">LINE 1 — CLEAN</div>
+          <div class="compare-tag">LINE 1, CLEAN</div>
           <p><strong>What is right:</strong> 97153 matches the described service (technician-delivered direct therapy). 8 units is correctly calculated (2 hours = 8 units at 15 min/unit). Provider type matches the code. No modifier issues noted.</p>
           <ul style="padding-left:18px;margin-top:8px">
             <li>Code matches the provider type ✓</li>
@@ -593,7 +604,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           </ul>
         </div>
         <div class="compare-card bad">
-          <div class="compare-tag">LINE 2 — MODIFIER ERROR</div>
+          <div class="compare-tag">LINE 2, MODIFIER ERROR</div>
           <p><strong>What is wrong:</strong> Modifier GT indicates telehealth delivery. The session note says "in-person clinic session." Attaching a telehealth modifier to an in-person service is a billing misrepresentation. The modifier must be removed and the note must clearly document the in-person delivery location.</p>
           <ul style="padding-left:18px;margin-top:8px">
             <li>GT modifier contradicts "in-person" note ✗</li>
@@ -603,9 +614,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="annotation">
-        <div class="annotation-label">LINE 3 — DOCUMENTATION FORMAT ERROR</div>
+        <div class="annotation-label">LINE 3, DOCUMENTATION FORMAT ERROR</div>
         <h4>The session note says "3 hours." The claim says "12 units." This is the Indiana finding, repeated.</h4>
-        <p>The math is correct: 3 hours = 12 units at 15 minutes per unit. But the session note says "3 hours" and the claim says "12 units." An auditor reviewing the note against the claim sees a format discrepancy. The note should read "Start: 9:00 AM — End: 12:00 PM — Total: 12 units." The documentation coordinator should return this note to the clinical team for correction before the claim is submitted — not convert it themselves, which creates a chain of custody issue, and not submit it as-is, which creates an audit exposure.</p>
+        <p>The math is correct: 3 hours = 12 units at 15 minutes per unit. But the session note says "3 hours" and the claim says "12 units." An auditor reviewing the note against the claim sees a format discrepancy. The note should read "Start: 9:00 AM, End: 12:00 PM, Total: 12 units." The documentation coordinator should return this note to the clinical team for correction before the claim is submitted, not convert it themselves, which creates a chain of custody issue, and not submit it as-is, which creates an audit exposure.</p>
       </div>
     </section>
 
@@ -627,7 +638,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="decision-q">The claim was filed under 97155. Looking at the session note, what is the most likely reason for the denial?</div>
         <div class="decision-choices">
           <div class="decision-choice" onclick="pickDecision(this, false, 0)">A. The BCBA's signature is on the note, which is correct for 97155, so the denial must be a payer error.</div>
-          <div class="decision-choice" onclick="pickDecision(this, true, 0)">B. The session note describes direct skills training with a client — which is 97153 activity. 97155 requires documentation of protocol modification, clinical analysis, or caregiver guidance delivered by the BCBA. The note does not contain any of that.</div>
+          <div class="decision-choice" onclick="pickDecision(this, true, 0)">B. The session note describes direct skills training with a client, which is 97153 activity. 97155 requires documentation of protocol modification, clinical analysis, or caregiver guidance delivered by the BCBA. The note does not contain any of that.</div>
           <div class="decision-choice" onclick="pickDecision(this, false, 0)">C. The note is missing the authorization number, which caused the denial.</div>
         </div>
         <div class="decision-feedback" id="df-0"></div>
@@ -637,9 +648,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="decision-label">DECISION POINT 2 OF 3</div>
         <div class="decision-q">You confirm that the session description is 97153 activity delivered by a BCBA rather than by an RBT. What is the correct code for this service, and why?</div>
         <div class="decision-choices">
-          <div class="decision-choice" onclick="pickDecision(this, false, 1)">A. Leave the code as 97155 — the BCBA's presence qualifies any session for a BCBA code.</div>
-          <div class="decision-choice" onclick="pickDecision(this, false, 1)">B. Change it to 97153 — direct ABA treatment by any provider is billed as 97153.</div>
-          <div class="decision-choice" onclick="pickDecision(this, true, 1)">C. Escalate to the BCBA and clinic director — the documentation coordinator cannot unilaterally change the billed code. The clinical team must review the note and determine whether the service was 97153 (technician-level activity performed by a BCBA) or whether the note simply failed to document 97155-qualifying activities that actually occurred.</div>
+          <div class="decision-choice" onclick="pickDecision(this, false, 1)">A. Leave the code as 97155, the BCBA's presence qualifies any session for a BCBA code.</div>
+          <div class="decision-choice" onclick="pickDecision(this, false, 1)">B. Change it to 97153, direct ABA treatment by any provider is billed as 97153.</div>
+          <div class="decision-choice" onclick="pickDecision(this, true, 1)">C. Escalate to the BCBA and clinic director, the documentation coordinator cannot unilaterally change the billed code. The clinical team must review the note and determine whether the service was 97153 (technician-level activity performed by a BCBA) or whether the note simply failed to document 97155-qualifying activities that actually occurred.</div>
         </div>
         <div class="decision-feedback" id="df-1"></div>
       </div>
@@ -666,7 +677,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
       <div class="job-aid">
         <div class="job-aid-header">
-          <h3>CADA CPT Code Reference Card — ABA Services 97151 through 97158</h3>
+          <h3>CADA CPT Code Reference Card, ABA Services 97151 through 97158</h3>
           <p>CareGuard · cadahealth.org · For documentation coordinators and billing support staff</p>
         </div>
         <div class="job-aid-body">
@@ -805,104 +816,104 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
 <script>
 const TOTAL = 11;
-const SECTION_NAMES = ['Consequence Hook','Learning Objectives','CPT Codes — What They Are','The ABA Code Breakdown','Units vs Hours','Modifiers','Documentation to Billing Chain','Worked Example','Module Scenario','Job Aid','Module Quiz'];
+const SECTION_NAMES = ['Consequence Hook','Learning Objectives','CPT Codes, What They Are','The ABA Code Breakdown','Units vs Hours','Modifiers','Documentation to Billing Chain','Worked Example','Module Scenario','Job Aid','Module Quiz'];
 const SECTION_KCS = {2:[0,1],3:[2,3],4:[4,5],5:[6,7],6:[8,9]};
 const LETTERS = ['A','B','C','D'];
 
 const KC_DATA = [
   /* 0 */ {q:'',answers:[
-    {text:'The diagnosis code that qualifies the client for ABA services.',correct:false,rationale:'Diagnosis codes are ICD codes — a separate coding system from CPT. The CPT code on a claim describes the service delivered, not the diagnosis. Diagnosis codes appear on the claim alongside the CPT code but serve a different function.'},
+    {text:'The diagnosis code that qualifies the client for ABA services.',correct:false,rationale:'Diagnosis codes are ICD codes, a separate coding system from CPT. The CPT code on a claim describes the service delivered, not the diagnosis. Diagnosis codes appear on the claim alongside the CPT code but serve a different function.'},
     {text:'The specific service delivered, who is qualified to deliver it, and how long the service took in billable units.',correct:true,rationale:'Correct. A CPT code is a formal legal billing designation that communicates service type, provider qualification requirements, and time-based unit structure to the payer. The payer reads the CPT code to determine what service is being billed before it reviews any other claim element.'},
     {text:'The name of the supervising BCBA for the session.',correct:false,rationale:'The supervising BCBA\'s name and NPI appear in the provider fields of the claim. The CPT code communicates what service was delivered, not who supervised it.'},
-    {text:'The total number of sessions the client has completed under the current authorization.',correct:false,rationale:'Authorization tracking is external to the CPT code. The CPT code on each claim describes that specific service — not the client\'s cumulative session history.'}
+    {text:'The total number of sessions the client has completed under the current authorization.',correct:false,rationale:'Authorization tracking is external to the CPT code. The CPT code on each claim describes that specific service, not the client\'s cumulative session history.'}
   ]},
   /* 1 */ {q:'',answers:[
     {text:'97153 is the correct code for BCBA-delivered parent training.',correct:false,rationale:'97153 is for adaptive behavior treatment delivered by a technician (RBT) under BCBA supervision. Parent training delivered by a BCBA is billed under 97156 (family adaptive behavior treatment guidance). The two codes describe fundamentally different services by different provider types.'},
-    {text:'97153 is a technician-delivered code for direct ABA with a client. Parent training delivered by a BCBA should have been billed under 97156.',correct:true,rationale:'Correct. 97153 describes adaptive behavior treatment by protocol, delivered by a technician. The session note describes parent training (family guidance) by a BCBA — that is 97156. The payer reviewed the note, saw that the described service was not a technician delivering direct client therapy, and denied the claim because the service description did not match the billed code.'},
+    {text:'97153 is a technician-delivered code for direct ABA with a client. Parent training delivered by a BCBA should have been billed under 97156.',correct:true,rationale:'Correct. 97153 describes adaptive behavior treatment by protocol, delivered by a technician. The session note describes parent training (family guidance) by a BCBA, that is 97156. The payer reviewed the note, saw that the described service was not a technician delivering direct client therapy, and denied the claim because the service description did not match the billed code.'},
     {text:'Parent training cannot be billed as an ABA service under any CPT code.',correct:false,rationale:'Parent training is an established billable ABA service. 97156 covers family adaptive behavior treatment guidance delivered by a BCBA or BCaBA. It is a commonly billed and paid code under most ABA payer contracts.'},
-    {text:'The session note should have listed a diagnosis code instead of describing the service.',correct:false,rationale:'Session notes document the service delivered — they do not substitute for diagnosis codes. The diagnosis code appears on the claim. The session note\'s job is to describe what happened during the session in enough detail to support the billed CPT code.'}
+    {text:'The session note should have listed a diagnosis code instead of describing the service.',correct:false,rationale:'Session notes document the service delivered, they do not substitute for diagnosis codes. The diagnosis code appears on the claim. The session note\'s job is to describe what happened during the session in enough detail to support the billed CPT code.'}
   ]},
   /* 2 */ {q:'',answers:[
-    {text:'2 units — 90 minutes divided by 45 minutes per unit.',correct:false,rationale:'97153 is billed in 15-minute units, not 45-minute units. There is no ABA CPT code that uses 45-minute units. The correct calculation is 90 minutes divided by 15 minutes per unit = 6 units.'},
-    {text:'90 units — one unit per minute.',correct:false,rationale:'Units are not calculated at one per minute for ABA CPT codes. 97153 uses 15-minute units. 90 minutes = 6 units at 15 minutes per unit.'},
-    {text:'6 units — 90 minutes divided by 15 minutes per unit.',correct:true,rationale:'Correct. All ABA time-based CPT codes use 15-minute units. 90 minutes divided by 15 minutes per unit equals 6 units. The session note should read "Start: [time] — End: [time] — Total: 6 units." Both the note and the claim should show 6 units.'},
-    {text:'1.5 units — 90 minutes expressed as 1.5 hours.',correct:false,rationale:'Units are not calculated by converting hours to a decimal and treating that decimal as a unit count. 1.5 hours is not 1.5 units. 1.5 hours is 6 units at 15 minutes per unit. Recording "1.5 units" on a session note is a documentation error.'}
+    {text:'2 units, 90 minutes divided by 45 minutes per unit.',correct:false,rationale:'97153 is billed in 15-minute units, not 45-minute units. There is no ABA CPT code that uses 45-minute units. The correct calculation is 90 minutes divided by 15 minutes per unit = 6 units.'},
+    {text:'90 units, one unit per minute.',correct:false,rationale:'Units are not calculated at one per minute for ABA CPT codes. 97153 uses 15-minute units. 90 minutes = 6 units at 15 minutes per unit.'},
+    {text:'6 units, 90 minutes divided by 15 minutes per unit.',correct:true,rationale:'Correct. All ABA time-based CPT codes use 15-minute units. 90 minutes divided by 15 minutes per unit equals 6 units. The session note should read "Start: [time], End: [time], Total: 6 units." Both the note and the claim should show 6 units.'},
+    {text:'1.5 units, 90 minutes expressed as 1.5 hours.',correct:false,rationale:'Units are not calculated by converting hours to a decimal and treating that decimal as a unit count. 1.5 hours is not 1.5 units. 1.5 hours is 6 units at 15 minutes per unit. Recording "1.5 units" on a session note is a documentation error.'}
   ]},
   /* 3 */ {q:'',answers:[
-    {text:'97155 requires a session length of at least 2 hours while 97153 can be billed for shorter sessions.',correct:false,rationale:'There is no minimum session length requirement that distinguishes 97155 from 97153. Both are billed in 15-minute units. The distinction is about the type of service delivered and the provider type — not session duration.'},
-    {text:'97155 must document the BCBA\'s specific protocol modification activities or clinical analysis, while 97153 documents direct skills training delivered by a technician.',correct:true,rationale:'Correct. 97155 is for adaptive behavior treatment with protocol modification — the BCBA must document the specific modifications made, the clinical rationale for those modifications, and any data analysis that informed the clinical decision. A note that simply describes direct skills training with a client does not support 97155 regardless of who delivered it.'},
-    {text:'97155 notes must include the client\'s current diagnosis while 97153 notes do not require diagnosis documentation.',correct:false,rationale:'Both codes require documentation that supports the service delivered. The diagnosis appears on the claim as an ICD code — session notes do not need to repeat the diagnosis for either code. The key distinction between 97153 and 97155 notes is the type of clinical activity documented.'},
-    {text:'There is no documentation difference — 97155 and 97153 notes use the same template.',correct:false,rationale:'97155 and 97153 describe fundamentally different services. Using the same note template for both is a documentation accuracy failure. 97155 notes must capture the BCBA\'s clinical reasoning, protocol modifications, and data analysis. 97153 notes capture the technician\'s direct delivery of an existing protocol.'}
+    {text:'97155 requires a session length of at least 2 hours while 97153 can be billed for shorter sessions.',correct:false,rationale:'There is no minimum session length requirement that distinguishes 97155 from 97153. Both are billed in 15-minute units. The distinction is about the type of service delivered and the provider type, not session duration.'},
+    {text:'97155 must document the BCBA\'s specific protocol modification activities or clinical analysis, while 97153 documents direct skills training delivered by a technician.',correct:true,rationale:'Correct. 97155 is for adaptive behavior treatment with protocol modification, the BCBA must document the specific modifications made, the clinical rationale for those modifications, and any data analysis that informed the clinical decision. A note that simply describes direct skills training with a client does not support 97155 regardless of who delivered it.'},
+    {text:'97155 notes must include the client\'s current diagnosis while 97153 notes do not require diagnosis documentation.',correct:false,rationale:'Both codes require documentation that supports the service delivered. The diagnosis appears on the claim as an ICD code, session notes do not need to repeat the diagnosis for either code. The key distinction between 97153 and 97155 notes is the type of clinical activity documented.'},
+    {text:'There is no documentation difference, 97155 and 97153 notes use the same template.',correct:false,rationale:'97155 and 97153 describe fundamentally different services. Using the same note template for both is a documentation accuracy failure. 97155 notes must capture the BCBA\'s clinical reasoning, protocol modifications, and data analysis. 97153 notes capture the technician\'s direct delivery of an existing protocol.'}
   ]},
   /* 4 */ {q:'',answers:[
-    {text:'The auditor approves the claim because 2 hours equals 8 units, and the math is correct.',correct:false,rationale:'OIG auditors do not calculate the math and approve documentation discrepancies. Their role is to compare what the clinical record says to what the billing record says. When those two records use different formats — "hours" vs "units" — the auditor flags the discrepancy regardless of whether the math checks out.'},
-    {text:'The auditor flags it as a documentation discrepancy — the note says hours and the claim says units, and without documentation of the conversion, the two records appear to conflict.',correct:true,rationale:'Correct. This is exactly the scenario that produced the Indiana finding in this module\'s consequence hook. The service was real. The math was right. But the note and the claim used different formats, and that format mismatch is a documentation discrepancy. The session note should have recorded "Start time, End time, Total: 8 units" to match the claim.'},
+    {text:'The auditor approves the claim because 2 hours equals 8 units, and the math is correct.',correct:false,rationale:'OIG auditors do not calculate the math and approve documentation discrepancies. Their role is to compare what the clinical record says to what the billing record says. When those two records use different formats, "hours" vs "units", the auditor flags the discrepancy regardless of whether the math checks out.'},
+    {text:'The auditor flags it as a documentation discrepancy, the note says hours and the claim says units, and without documentation of the conversion, the two records appear to conflict.',correct:true,rationale:'Correct. This is exactly the scenario that produced the Indiana finding in this module\'s consequence hook. The service was real. The math was right. But the note and the claim used different formats, and that format mismatch is a documentation discrepancy. The session note should have recorded "Start time, End time, Total: 8 units" to match the claim.'},
     {text:'The auditor requests the billing team to explain the conversion in writing, then approves the claim.',correct:false,rationale:'OIG auditors do not request supplemental explanations for documentation discrepancies and then approve the claim. A discrepancy between the clinical record and the billing record is a finding. The appeal process may allow for explanation, but auditors do not resolve discrepancies informally.'},
-    {text:'Nothing happens — the payer already paid the claim, so the audit cannot reverse it.',correct:false,rationale:'Post-payment audits specifically review claims that have already been paid. If the audit finds a documentation discrepancy, the payer issues a recoupment demand — requiring the clinic to return the payment. Payment does not insulate a claim from a post-payment audit finding.'}
+    {text:'Nothing happens, the payer already paid the claim, so the audit cannot reverse it.',correct:false,rationale:'Post-payment audits specifically review claims that have already been paid. If the audit finds a documentation discrepancy, the payer issues a recoupment demand, requiring the clinic to return the payment. Payment does not insulate a claim from a post-payment audit finding.'}
   ]},
   /* 5 */ {q:'',answers:[
-    {text:'There is no risk — as long as the math is correct, hours and units are legally interchangeable on session notes.',correct:false,rationale:'Hours and units are not interchangeable on session notes. They are different formats, and when the clinical record uses one format and the billing record uses another, that is a documentation discrepancy — regardless of whether the math is correct.'},
-    {text:'When an auditor compares the session note (hours) to the claim (units), any conversion error or format discrepancy creates a documentation mismatch that can result in denial or recoupment.',correct:true,rationale:'Correct. The risk is not primarily arithmetic — it is the format mismatch between the clinical record and the billing record. Any conversion creates an opportunity for error. If a conversion error occurs, the note says one thing, the claim says another, and the audit finding is automatic. The correct standard is for session notes to record time in units from the start.'},
-    {text:'RBTs are required by federal law to document in units rather than hours on all 97153 session notes.',correct:false,rationale:'There is no universal federal law mandating units vs hours on RBT session notes. The documentation standard is set by payer contracts, state Medicaid guidelines, and clinic policy. However, the clinical best practice — and the standard that prevents the Indiana-type finding — is to document in units to match the billing format.'},
-    {text:'Billing teams are permitted to convert session note time records as long as they document the conversion methodology in a separate log.',correct:false,rationale:'While some clinics do maintain conversion logs, this practice creates a chain of custody concern — the original clinical record (the note) says one thing, and a separate administrative record explains why the billing record says something else. The cleaner and more defensible system is to have session notes record time in units from the beginning.'}
+    {text:'There is no risk, as long as the math is correct, hours and units are legally interchangeable on session notes.',correct:false,rationale:'Hours and units are not interchangeable on session notes. They are different formats, and when the clinical record uses one format and the billing record uses another, that is a documentation discrepancy, regardless of whether the math is correct.'},
+    {text:'When an auditor compares the session note (hours) to the claim (units), any conversion error or format discrepancy creates a documentation mismatch that can result in denial or recoupment.',correct:true,rationale:'Correct. The risk is not primarily arithmetic, it is the format mismatch between the clinical record and the billing record. Any conversion creates an opportunity for error. If a conversion error occurs, the note says one thing, the claim says another, and the audit finding is automatic. The correct standard is for session notes to record time in units from the start.'},
+    {text:'RBTs are required by federal law to document in units rather than hours on all 97153 session notes.',correct:false,rationale:'There is no universal federal law mandating units vs hours on RBT session notes. The documentation standard is set by payer contracts, state Medicaid guidelines, and clinic policy. However, the clinical best practice, and the standard that prevents the Indiana-type finding, is to document in units to match the billing format.'},
+    {text:'Billing teams are permitted to convert session note time records as long as they document the conversion methodology in a separate log.',correct:false,rationale:'While some clinics do maintain conversion logs, this practice creates a chain of custody concern, the original clinical record (the note) says one thing, and a separate administrative record explains why the billing record says something else. The cleaner and more defensible system is to have session notes record time in units from the beginning.'}
   ]},
   /* 6 */ {q:'',answers:[
-    {text:'The claim pays as usual — missing modifiers only matter for telehealth services.',correct:false,rationale:'Modifiers are required by specific payers for specific reasons, and telehealth is only one context in which modifiers appear. When a payer\'s billing guidelines require Modifier HM for RBT-delivered services and the modifier is missing, the claim typically denies for modifier-related reasons regardless of service type.'},
+    {text:'The claim pays as usual, missing modifiers only matter for telehealth services.',correct:false,rationale:'Modifiers are required by specific payers for specific reasons, and telehealth is only one context in which modifiers appear. When a payer\'s billing guidelines require Modifier HM for RBT-delivered services and the modifier is missing, the claim typically denies for modifier-related reasons regardless of service type.'},
     {text:'The claim denies because the required Modifier HM is missing, and the payer cannot confirm from the claim that the provider met their credential requirements.',correct:true,rationale:'Correct. Payer billing systems match submitted modifier combinations against established rules. When a required modifier is absent, the system flags the claim. For credential-based modifiers like HM, the payer is verifying that the service was delivered by a provider at the qualifying credential level. A missing modifier means the payer cannot confirm that requirement from the claim.'},
-    {text:'The claim processes without the modifier — billing systems ignore missing modifiers automatically.',correct:false,rationale:'Billing systems do not ignore missing required modifiers. They process modifier requirements as part of claim adjudication. A required modifier that is absent causes the claim to either deny or pend for manual review.'},
+    {text:'The claim processes without the modifier, billing systems ignore missing modifiers automatically.',correct:false,rationale:'Billing systems do not ignore missing required modifiers. They process modifier requirements as part of claim adjudication. A required modifier that is absent causes the claim to either deny or pend for manual review.'},
     {text:'The payer will call the clinic to ask about the missing modifier and will accept verbal confirmation.',correct:false,rationale:'Payers do not call clinics to resolve missing modifier issues informally. Claims with modifier errors deny through the payer\'s adjudication system. The clinic must correct and resubmit or submit a corrected claim with the proper modifier attached.'}
   ]},
   /* 7 */ {q:'',answers:[
-    {text:'Bill without the modifier — adding an unnecessary modifier always causes a denial.',correct:false,rationale:'Adding an unnecessary modifier does not always cause a denial, but adding an incorrect or unsupported modifier can. More importantly, failing to add a required modifier causes a denial. The correct action is to verify the payer\'s requirements before choosing either option.'},
-    {text:'Bill with the modifier on every claim until someone from the payer says not to.',correct:false,rationale:'Submitting modifiers speculatively — attaching modifiers without confirmed payer guidance — is not a sound documentation practice. If the modifier is incorrect for that payer\'s rules, the claims may deny or trigger a review. The correct action is to verify requirements before submission.'},
-    {text:'Look up the payer\'s billing guidelines or call the payer\'s provider line to confirm before submitting claims.',correct:true,rationale:'Correct. Every payer publishes billing guidelines, and most maintain a provider relations line specifically for coverage and billing questions. The documentation coordinator\'s job is to know the requirements before submitting claims — not to guess and correct after denials arrive. Verifying modifier requirements is exactly the kind of pre-submission due diligence that prevents avoidable denials.'},
-    {text:'Use Modifier 59 as a universal modifier that satisfies all payer modifier requirements.',correct:false,rationale:'Modifier 59 indicates a distinct procedural service — it is used to override a National Correct Coding Initiative edit when procedures are distinct and separately identifiable. It is not a universal modifier that substitutes for credential-based or delivery-method modifiers. Using 59 incorrectly is itself a billing error.'}
+    {text:'Bill without the modifier, adding an unnecessary modifier always causes a denial.',correct:false,rationale:'Adding an unnecessary modifier does not always cause a denial, but adding an incorrect or unsupported modifier can. More importantly, failing to add a required modifier causes a denial. The correct action is to verify the payer\'s requirements before choosing either option.'},
+    {text:'Bill with the modifier on every claim until someone from the payer says not to.',correct:false,rationale:'Submitting modifiers speculatively, attaching modifiers without confirmed payer guidance, is not a sound documentation practice. If the modifier is incorrect for that payer\'s rules, the claims may deny or trigger a review. The correct action is to verify requirements before submission.'},
+    {text:'Look up the payer\'s billing guidelines or call the payer\'s provider line to confirm before submitting claims.',correct:true,rationale:'Correct. Every payer publishes billing guidelines, and most maintain a provider relations line specifically for coverage and billing questions. The documentation coordinator\'s job is to know the requirements before submitting claims, not to guess and correct after denials arrive. Verifying modifier requirements is exactly the kind of pre-submission due diligence that prevents avoidable denials.'},
+    {text:'Use Modifier 59 as a universal modifier that satisfies all payer modifier requirements.',correct:false,rationale:'Modifier 59 indicates a distinct procedural service, it is used to override a National Correct Coding Initiative edit when procedures are distinct and separately identifiable. It is not a universal modifier that substitutes for credential-based or delivery-method modifiers. Using 59 incorrectly is itself a billing error.'}
   ]},
   /* 8 */ {q:'',answers:[
-    {text:'Whether the BCBA\'s signature appears on the note.',correct:false,rationale:'A BCBA signature is necessary for a 97155 note, but it is not what a "documentation does not support the service" denial is pointing to. The denial is about whether the note describes the right activities — not whether the right person signed it. Check the content of the note first.'},
-    {text:'Whether the note documents the specific clinical activities that require a BCBA\'s expertise — protocol modification, clinical analysis, or supervised caregiver training delivered by the BCBA.',correct:true,rationale:'Correct. 97155 is billed for adaptive behavior treatment with protocol modification — it requires the BCBA\'s clinical reasoning, documented changes to the treatment protocol, or specific analysis activities that only a BCBA performs. If the note describes direct skills training with a client, it does not support 97155, regardless of whether a BCBA was present. The first check is whether the described activities match the code billed.'},
-    {text:'Whether the session was delivered at an approved service location.',correct:false,rationale:'Service location is an authorization element, not a CPT code documentation element. A denial citing "documentation does not support the service billed" is pointing to the content of the session note versus the billed code — not to the location where the service was delivered.'},
-    {text:'Whether the client signed the bottom of the note at the end of the session.',correct:false,rationale:'Client signature requirements vary by payer but are not typically the documentation element flagged by a "documentation does not support the service" denial. That denial language points to the clinical content of the note not matching the billed CPT code — not to signature logistics.'}
+    {text:'Whether the BCBA\'s signature appears on the note.',correct:false,rationale:'A BCBA signature is necessary for a 97155 note, but it is not what a "documentation does not support the service" denial is pointing to. The denial is about whether the note describes the right activities, not whether the right person signed it. Check the content of the note first.'},
+    {text:'Whether the note documents the specific clinical activities that require a BCBA\'s expertise, protocol modification, clinical analysis, or supervised caregiver training delivered by the BCBA.',correct:true,rationale:'Correct. 97155 is billed for adaptive behavior treatment with protocol modification, it requires the BCBA\'s clinical reasoning, documented changes to the treatment protocol, or specific analysis activities that only a BCBA performs. If the note describes direct skills training with a client, it does not support 97155, regardless of whether a BCBA was present. The first check is whether the described activities match the code billed.'},
+    {text:'Whether the session was delivered at an approved service location.',correct:false,rationale:'Service location is an authorization element, not a CPT code documentation element. A denial citing "documentation does not support the service billed" is pointing to the content of the session note versus the billed code, not to the location where the service was delivered.'},
+    {text:'Whether the client signed the bottom of the note at the end of the session.',correct:false,rationale:'Client signature requirements vary by payer but are not typically the documentation element flagged by a "documentation does not support the service" denial. That denial language points to the clinical content of the note not matching the billed CPT code, not to signature logistics.'}
   ]},
   /* 9 */ {q:'',answers:[
-    {text:'This is correct — 97155 covers the BCBA\'s supervision time and 97153 covers the technician\'s direct therapy, so both can always be billed simultaneously for the same client.',correct:false,rationale:'Whether concurrent billing of 97155 and 97153 is permitted depends entirely on the payer\'s billing guidelines. Most commercial payers and many Medicaid MCOs restrict concurrent billing of these two codes for the same client at the same time. "Always permitted" is incorrect — payer guidelines vary.'},
+    {text:'This is correct, 97155 covers the BCBA\'s supervision time and 97153 covers the technician\'s direct therapy, so both can always be billed simultaneously for the same client.',correct:false,rationale:'Whether concurrent billing of 97155 and 97153 is permitted depends entirely on the payer\'s billing guidelines. Most commercial payers and many Medicaid MCOs restrict concurrent billing of these two codes for the same client at the same time. "Always permitted" is incorrect, payer guidelines vary.'},
     {text:'Most commercial payers restrict concurrent billing of 97155 and 97153 for the same client at the same time, and the documentation coordinator should flag this claim before submission.',correct:true,rationale:'Correct. The documentation coordinator\'s role is to catch billing issues before submission, not after denial. When concurrent codes appear for the same client in the same time window, the first step is to check the payer\'s billing guidelines. If those guidelines prohibit the combination, the claim must be corrected before submission.'},
-    {text:'Concurrent billing of 97155 and 97153 is prohibited by federal law under all circumstances.',correct:false,rationale:'There is no universal federal law prohibiting concurrent billing of 97155 and 97153. Some payers allow it under specific circumstances. The restriction depends on payer contract terms and billing guidelines — which vary significantly across Medicaid MCOs, commercial plans, and TRICARE.'},
-    {text:'Only Medicaid plans restrict concurrent billing — commercial plans always allow it.',correct:false,rationale:'Both Medicaid MCOs and commercial payers may restrict concurrent billing. The specific restrictions vary by payer. Making assumptions based on payer type (Medicaid vs commercial) rather than reviewing the specific payer\'s guidelines is how billing errors enter the claims system.'}
+    {text:'Concurrent billing of 97155 and 97153 is prohibited by federal law under all circumstances.',correct:false,rationale:'There is no universal federal law prohibiting concurrent billing of 97155 and 97153. Some payers allow it under specific circumstances. The restriction depends on payer contract terms and billing guidelines, which vary significantly across Medicaid MCOs, commercial plans, and TRICARE.'},
+    {text:'Only Medicaid plans restrict concurrent billing, commercial plans always allow it.',correct:false,rationale:'Both Medicaid MCOs and commercial payers may restrict concurrent billing. The specific restrictions vary by payer. Making assumptions based on payer type (Medicaid vs commercial) rather than reviewing the specific payer\'s guidelines is how billing errors enter the claims system.'}
   ]}
 ];
 
 const QUIZ_DATA = [
   {text:'An RBT delivers direct 1:1 ABA skills training to a client for 60 minutes. Which CPT code most accurately describes this service?',answers:[
-    {text:'97151 — Behavior identification assessment by a BCBA',correct:false},
-    {text:'97153 — Adaptive behavior treatment by protocol, delivered by a technician',correct:true},
-    {text:'97155 — Adaptive behavior treatment with protocol modification by a BCBA',correct:false},
-    {text:'97156 — Family adaptive behavior treatment guidance by a BCBA',correct:false}
+    {text:'97151, Behavior identification assessment by a BCBA',correct:false},
+    {text:'97153, Adaptive behavior treatment by protocol, delivered by a technician',correct:true},
+    {text:'97155, Adaptive behavior treatment with protocol modification by a BCBA',correct:false},
+    {text:'97156, Family adaptive behavior treatment guidance by a BCBA',correct:false}
   ],rationale:'97153 is the code for adaptive behavior treatment by protocol delivered by a technician (RBT) under BCBA supervision. 97151 is an assessment code. 97155 is for BCBA-delivered treatment with protocol modification. 97156 is for caregiver or family training.',reviewSection:3},
   {text:'An RBT records "3 hours" on a session note for a 97153 session. The billing team converts this to 12 units and submits the claim. The claim pays. Three months later, an OIG auditor reviews the note. What is the documentation risk?',answers:[
-    {text:'No risk — 3 hours equals 12 units, so the documentation and billing are mathematically consistent.',correct:false},
+    {text:'No risk, 3 hours equals 12 units, so the documentation and billing are mathematically consistent.',correct:false},
     {text:'The note records time in hours while the claim records units. Without a documented conversion methodology, an auditor may flag this as a discrepancy between the clinical record and the billing record.',correct:true},
     {text:'The only risk is that 3 hours may be too long for a single 97153 session.',correct:false},
     {text:'The auditor will verify the math and close the case automatically.',correct:false}
   ],rationale:'This is exactly the documentation failure that produced the Indiana finding in Module 3\'s consequence hook. The math is correct, but the format mismatch between the clinical record (hours) and the billing record (units) is a documentation discrepancy. Session notes should record time in units to match the billing format and eliminate any appearance of conflict.',reviewSection:4},
   {text:'A documentation coordinator reviews a submitted claim and notices that Modifier GT is attached to a 97155 service. The session note for the same date reads: "In-person BCBA session at clinic. Protocol modification performed." What is the most accurate description of the problem?',answers:[
-    {text:'No problem — GT is a standard modifier for all BCBA-delivered services.',correct:false},
+    {text:'No problem, GT is a standard modifier for all BCBA-delivered services.',correct:false},
     {text:'Modifier GT indicates telehealth delivery via audio-video telecommunications. The session note documents an in-person session. Attaching a telehealth modifier to an in-person service is a billing misrepresentation.',correct:true},
     {text:'GT is not a recognized ABA modifier and will be ignored by payer systems.',correct:false},
     {text:'The modifier is only an issue if the payer requests documentation.',correct:false}
-  ],rationale:'Modifier GT specifically indicates that a service was delivered via interactive audio and video telecommunications — telehealth. When a session note clearly documents an in-person clinic session, attaching GT to the claim contradicts the clinical record. Submitting a telehealth modifier on an in-person service is a billing accuracy violation that an audit will find.',reviewSection:5},
+  ],rationale:'Modifier GT specifically indicates that a service was delivered via interactive audio and video telecommunications, telehealth. When a session note clearly documents an in-person clinic session, attaching GT to the claim contradicts the clinical record. Submitting a telehealth modifier on an in-person service is a billing accuracy violation that an audit will find.',reviewSection:5},
   {text:'A clinic bills 97158 for a session described in the note as: "Individual 1:1 session between BCBA Ramirez and client D.T. Protocol modification for self-care targets performed." What is the documentation risk when this claim is audited?',answers:[
-    {text:'No risk — 97158 is a BCBA code and the BCBA delivered the session.',correct:false},
+    {text:'No risk, 97158 is a BCBA code and the BCBA delivered the session.',correct:false},
     {text:'97158 is for group adaptive behavior treatment with protocol modification, requiring 2 or more clients. The note documents a 1:1 session. The documentation does not support the billed group code.',correct:true},
     {text:'The only issue is that "self-care targets" is not a recognized ABA treatment area.',correct:false},
     {text:'97158 and 97155 are interchangeable for BCBA-delivered protocol modification.',correct:false}
-  ],rationale:'97158 is specifically for group adaptive behavior treatment with protocol modification — defined as 2 or more clients present simultaneously. A session note describing a 1:1 session cannot support a group code. When an auditor reviews the note and finds a single client documented, the claim fails the documentation-to-billing match and will be denied and subject to recoupment.',reviewSection:3},
+  ],rationale:'97158 is specifically for group adaptive behavior treatment with protocol modification, defined as 2 or more clients present simultaneously. A session note describing a 1:1 session cannot support a group code. When an auditor reviews the note and finds a single client documented, the claim fails the documentation-to-billing match and will be denied and subject to recoupment.',reviewSection:3},
   {text:'A documentation coordinator reviews Tuesday\'s claims before submission. For client M.J., she finds 97151 and 97155 billed at overlapping times. The payer\'s billing guidelines explicitly prohibit concurrent billing of 97151 and 97155 for the same client. What is the most appropriate next step?',answers:[
     {text:'Submit both claims and address the denial when it arrives.',correct:false},
     {text:'Remove the lower-paying code and submit only the higher-paying code without notifying the clinical team.',correct:false},
     {text:'Flag both concurrent claims, do not submit either until the clinical team confirms whether the services were delivered at overlapping times or the billing was an error, and document the review.',correct:true},
-    {text:'Concurrent billing restrictions only apply to Medicaid — these claims are for a commercial payer, so submit as filed.',correct:false}
-  ],rationale:'The documentation coordinator\'s job is to catch billing errors before submission. When payer guidelines prohibit a concurrent billing combination, submitting both claims is a billing error — not a question to resolve after denial. The correct action is to flag the claims, verify with the clinical team whether the services actually overlapped, and document the review. Never remove documentation or change billing codes unilaterally.',reviewSection:5}
+    {text:'Concurrent billing restrictions only apply to Medicaid, these claims are for a commercial payer, so submit as filed.',correct:false}
+  ],rationale:'The documentation coordinator\'s job is to catch billing errors before submission. When payer guidelines prohibit a concurrent billing combination, submitting both claims is a billing error, not a question to resolve after denial. The correct action is to flag the claims, verify with the clinical team whether the services actually overlapped, and document the review. Never remove documentation or change billing codes unilaterally.',reviewSection:5}
 ];
 
 let cur = 0;
@@ -1030,9 +1041,9 @@ function submitQuiz(){
 
 // Scenario decision points
 const decisionFeedback = [
-  {correct:'Exactly right. The session note describes direct skills training with a client — that is 97153 activity. 97155 requires the BCBA to document protocol modification, clinical analysis, or supervised caregiver training. The note contains none of that. The payer reviewed the note, saw the mismatch, and denied the claim.',wrong:'Look at the description of the activities in the note. 97155 specifically covers protocol modification by a BCBA — not direct skills training with a client. The mismatch between the note content and the billed code is the denial reason.'},
-  {correct:'Correct — and this is the right instinct. The documentation coordinator cannot unilaterally recode a claim. The clinical team must review whether the note failed to capture qualifying 97155 activities, or whether the session was truly 97153-level activity delivered by a BCBA. That is a clinical and billing decision above the documentation coordinator\'s authority.',wrong:'The documentation coordinator does not have the authority to change billed codes unilaterally. The correct action is to escalate — the BCBA and clinic director must determine whether the session qualifies for 97155 and whether the note can be amended to reflect the actual clinical activities performed.'},
-  {correct:'Correct. The appeal requires an amended or addended note from the BCBA specifically documenting the protocol modification activities that occurred. Without that documentation, the appeal will fail — the payer will not reverse a denial based on a letter alone. The original note\'s deficiency must be corrected through the proper clinical documentation process.',wrong:'Appeals must be built on documentation that supports the billed code, not on assertions of error or retrospective recreations. The appeal needs the BCBA\'s addended note documenting what actually occurred during the session, with an explanation of why the original note did not capture those activities.'}
+  {correct:'Exactly right. The session note describes direct skills training with a client, that is 97153 activity. 97155 requires the BCBA to document protocol modification, clinical analysis, or supervised caregiver training. The note contains none of that. The payer reviewed the note, saw the mismatch, and denied the claim.',wrong:'Look at the description of the activities in the note. 97155 specifically covers protocol modification by a BCBA, not direct skills training with a client. The mismatch between the note content and the billed code is the denial reason.'},
+  {correct:'Correct, and this is the right instinct. The documentation coordinator cannot unilaterally recode a claim. The clinical team must review whether the note failed to capture qualifying 97155 activities, or whether the session was truly 97153-level activity delivered by a BCBA. That is a clinical and billing decision above the documentation coordinator\'s authority.',wrong:'The documentation coordinator does not have the authority to change billed codes unilaterally. The correct action is to escalate, the BCBA and clinic director must determine whether the session qualifies for 97155 and whether the note can be amended to reflect the actual clinical activities performed.'},
+  {correct:'Correct. The appeal requires an amended or addended note from the BCBA specifically documenting the protocol modification activities that occurred. Without that documentation, the appeal will fail, the payer will not reverse a denial based on a letter alone. The original note\'s deficiency must be corrected through the proper clinical documentation process.',wrong:'Appeals must be built on documentation that supports the billed code, not on assertions of error or retrospective recreations. The appeal needs the BCBA\'s addended note documenting what actually occurred during the session, with an explanation of why the original note did not capture those activities.'}
 ];
 
 function pickDecision(el, isCorrect, dpIdx){

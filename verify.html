@@ -4,6 +4,33 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root{
+  --bg:#111827;--surface:#1f2937;--surface-raised:#374151;
+  --navy:#0d1b2e;--navy-mid:#1e3a5f;
+  --gold:#d97706;--gold-light:#451a03;
+  --teal:#2dd4bf;--teal-light:#0d3534;
+  --red:#ef4444;--red-light:#450a0a;
+  --green:#22c55e;--green-light:#052e16;
+  --amber:#fb923c;--amber-light:#451a03;
+  --text:#f9fafb;--text-secondary:#d1d5db;--text-muted:#9ca3af;
+  --border:#374151;--border-light:#4b5563;
+  --radius:12px;--topbar-h:56px;
+  color-scheme:dark;
+}
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+    --navy:#1a2744;--navy-mid:#2c3e6b;
+    --gold:#c8921a;--gold-light:#f5e6c3;
+    --teal:#0d7377;--teal-light:#d4f0f1;
+    --red:#c0392b;--red-light:#fcecea;
+    --green:#1e7e34;--green-light:#d4f4dd;
+    --amber:#d35400;--amber-light:#fef0e4;
+    --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
+    --border:#d8d5cf;--border-light:#ebe8e2;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
   --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
   --navy:#1a2744;--navy-mid:#2c3e6b;
   --gold:#c8921a;--gold-light:#f5e6c3;
@@ -13,21 +40,7 @@
   --amber:#d35400;--amber-light:#fef0e4;
   --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
   --border:#d8d5cf;--border-light:#ebe8e2;
-  --radius:12px;--topbar-h:56px;
-}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
-    --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
-    --border:#2e2b26;--border-light:#252320;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
-  --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
-  --border:#2e2b26;--border-light:#252320;
-  color-scheme:dark;
+  color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -74,10 +87,10 @@ body{
 h1.page-title{
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(24px,5vw,34px);font-weight:700;
-  color:var(--navy);margin-bottom:12px;
+  color:var(--text);margin-bottom:12px;
 }
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) h1.page-title{color:var(--text)}}
-:root[data-theme="dark"] h1.page-title{color:var(--text)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) h1.page-title{color:var(--navy)}}
+:root[data-theme="light"] h1.page-title{color:var(--navy)}
 .page-subtitle{font-size:15px;color:var(--text-secondary);max-width:520px;margin:0 auto;line-height:1.65}
 
 /* Search box */
@@ -95,17 +108,17 @@ h1.page-title{
   flex:1;padding:13px 16px;
   border:1.5px solid var(--border);border-radius:8px;
   font-family:'Inter',sans-serif;font-size:15px;color:var(--text);
-  background:var(--bg);transition:border-color .15s;
+  background:var(--surface-raised);transition:border-color .15s;
   -webkit-appearance:none;letter-spacing:.04em;
 }
-.search-input:focus{outline:none;border-color:var(--navy)}
+.search-input:focus{outline:none;border-color:var(--gold)}
 .search-input::placeholder{color:var(--text-muted);letter-spacing:0}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .search-input{background:var(--surface-raised)}
-  :root:not([data-theme="light"]) .search-input:focus{border-color:var(--gold)}
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .search-input{background:var(--bg)}
+  :root:not([data-theme="dark"]) .search-input:focus{border-color:var(--navy)}
 }
-:root[data-theme="dark"] .search-input{background:var(--surface-raised)}
-:root[data-theme="dark"] .search-input:focus{border-color:var(--gold)}
+:root[data-theme="light"] .search-input{background:var(--bg)}
+:root[data-theme="light"] .search-input:focus{border-color:var(--navy)}
 
 .btn-verify{
   padding:13px 24px;background:var(--navy);color:#fff;border:none;
@@ -311,7 +324,6 @@ h1.page-title{
       <span class="logo-badge">CADA</span>
     </a>
     <nav class="topnav">
-      <a href="assessment.html" class="nav-link">Assessment</a>
       <a href="enroll.html" class="nav-link">Enroll</a>
     </nav>
   </header>
@@ -581,11 +593,11 @@ function runVerify(){
           </div>
           <div class="detail-item">
             <div class="detail-label">Credential Status</div>
-            <div class="detail-value valid">Active &mdash; Valid for 2027</div>
+            <div class="detail-value valid">Active, valid for 2027</div>
           </div>
           <div class="detail-item">
             <div class="detail-label">Assessment Passed</div>
-            <div class="detail-value">15-Question CADA Final Assessment (80% pass threshold)</div>
+            <div class="detail-value">20-Question CADA Final Assessment (80% pass threshold)</div>
           </div>
           <div class="detail-item">
             <div class="detail-label">Issuer Website</div>

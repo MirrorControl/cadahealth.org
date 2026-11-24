@@ -1,8 +1,42 @@
-<title>Module 2 — Prior Authorization | CareGuard CADA</title>
+<title>Module 2, Prior Authorization | CareGuard CADA</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
+  --bg:#111827;--surface:#1f2937;--surface-raised:#374151;
+  --navy:#0d1b2e;--navy-mid:#1e3a5f;
+  --gold:#d97706;--gold-light:#451a03;
+  --teal:#2dd4bf;--teal-light:#0d3534;
+  --red:#ef4444;--red-light:#450a0a;
+  --green:#22c55e;--green-light:#052e16;
+  --amber:#fb923c;--amber-light:#431407;
+  --text:#f9fafb;--text-secondary:#d1d5db;--text-muted:#9ca3af;
+  --border:#374151;--border-light:#4b5563;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.3);
+  --shadow-md:0 4px 16px rgba(0,0,0,.4);
+  --shadow-nav:0 -4px 24px rgba(0,0,0,.4);
+  --radius-sm:6px;--radius:10px;--radius-lg:16px;
+  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
+  color-scheme:dark;
+}
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+    --navy:#1a2744;--navy-mid:#2c3e6b;
+    --gold:#c8921a;--gold-light:#f5e6c3;
+    --teal:#0d7377;--teal-light:#d4f0f1;
+    --red:#c0392b;--red-light:#fcecea;
+    --green:#1e7e34;--green-light:#d4f4dd;
+    --amber:#d35400;--amber-light:#fef0e4;
+    --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
+    --border:#d8d5cf;--border-light:#ebe8e2;
+    --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
   --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
   --navy:#1a2744;--navy-mid:#2c3e6b;
   --gold:#c8921a;--gold-light:#f5e6c3;
@@ -12,31 +46,8 @@
   --amber:#d35400;--amber-light:#fef0e4;
   --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
   --border:#d8d5cf;--border-light:#ebe8e2;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
-  --shadow-md:0 4px 16px rgba(0,0,0,.10);
-  --shadow-nav:0 -4px 24px rgba(0,0,0,.10);
-  --radius-sm:6px;--radius:10px;--radius-lg:16px;
-  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
-}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
-    --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
-    --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
-    --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
-    --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
-    --border:#343850;--border-light:#272b3e;color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
-  --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
-  --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
-  --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
-  --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
-  --border:#343850;--border-light:#272b3e;color-scheme:dark;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
+  color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
@@ -235,14 +246,14 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-label">CONSEQUENCE HOOK</div>
       <div class="section-title">$14,720 and no one caught it.</div>
       <div class="hook-box">
-        <div class="hook-eyebrow">WHAT HAPPENED — WISCONSIN, 2025</div>
+        <div class="hook-eyebrow">WHAT HAPPENED, WISCONSIN, 2025</div>
         <div class="hook-stat">$14,720</div>
         <div class="hook-stat-label">46 days of service delivered after authorization expired</div>
-        <p style="margin-top:16px">A Wisconsin clinic continued delivering 97153 services for a client after the authorization expired on September 30. No one caught it. Services continued through November 15 — 46 days, 92 units. When the payer audit arrived, the clinic owed back $14,720. The authorization had been in the system the whole time. The expiration date was visible. No one was looking at it.</p>
+        <p style="margin-top:16px">A Wisconsin clinic continued delivering 97153 services for a client after the authorization expired on September 30. No one caught it. Services continued through November 15, 46 days, 92 units. When the payer audit arrived, the clinic owed back $14,720. The authorization had been in the system the whole time. The expiration date was visible. No one was looking at it.</p>
         <p style="margin-top:12px">The documentation coordinator in that clinic had a login to the system that held the authorization. The date was there. The tracking just was not. This module is about building the habit and the system so that never happens on your watch.</p>
       </div>
       <div class="section-body">
-        <p>Prior authorization is the single most common documentation gap across every OIG audit state. Not because clinics are fraudulent — but because tracking authorizations against delivered services requires active, ongoing attention that no one trains for systematically. You will have that training after this module.</p>
+        <p>Prior authorization is the single most common documentation gap across every OIG audit state. Not because clinics are fraudulent, but because tracking authorizations against delivered services requires active, ongoing attention that no one trains for systematically. You will have that training after this module.</p>
       </div>
     </section>
 
@@ -253,9 +264,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-body">
         <ul class="obj-list">
           <li><span class="obj-num">1</span>Read a prior authorization document and identify the five elements that determine whether a claim for a given date of service will be paid or denied.</li>
-          <li><span class="obj-num">2</span>Build and maintain a tracking system that shows units authorized, units delivered, units remaining, and renewal deadline — for every active client.</li>
+          <li><span class="obj-num">2</span>Build and maintain a tracking system that shows units authorized, units delivered, units remaining, and renewal deadline, for every active client.</li>
           <li><span class="obj-num">3</span>Recognize when authorization expiration risk is approaching and identify the specific steps required to submit an initial authorization request versus a renewal request.</li>
-          <li><span class="obj-num">4</span>Identify the documentation differences between Medicaid, commercial insurance, and TRICARE prior authorization processes — and explain why a documentation coordinator must know their payer mix before building a tracking template.</li>
+          <li><span class="obj-num">4</span>Identify the documentation differences between Medicaid, commercial insurance, and TRICARE prior authorization processes, and explain why a documentation coordinator must know their payer mix before building a tracking template.</li>
         </ul>
       </div>
     </section>
@@ -263,24 +274,24 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 2: WHAT PRIOR AUTH IS (KCs 0,1) -->
     <section class="module-section" id="sec-2">
       <div class="section-label">PART 1 OF CORE CONTENT</div>
-      <div class="section-title">What prior authorization is — and what it is not.</div>
+      <div class="section-title">What prior authorization is, and what it is not.</div>
       <div class="section-body">
-        <p>Prior authorization is a payer requirement that certain services be approved before they are delivered. For ABA therapy, prior authorization is not optional — Medicaid and most commercial insurance plans require it for every CPT code from 97151 through 97158. If a clinic delivers services without an active authorization, those services cannot be billed. If they are billed anyway, any payment that follows is an improper payment subject to recoupment.</p>
+        <p>Prior authorization is a payer requirement that certain services be approved before they are delivered. For ABA therapy, prior authorization is not optional, Medicaid and most commercial insurance plans require it for every CPT code from 97151 through 97158. If a clinic delivers services without an active authorization, those services cannot be billed. If they are billed anyway, any payment that follows is an improper payment subject to recoupment.</p>
 
         <h3>Who issues prior authorizations</h3>
-        <p>The payer issues prior authorization — the insurance company or Medicaid managed care organization responsible for paying the claim. The authorization is their formal approval, in writing, confirming that they have reviewed the medical necessity documentation and agreed to cover the described services for a defined period and unit count.</p>
-        <p>Authorizations are not treatment plans. They are not prescriptions. They are payer approvals — a binding statement that the payer will pay for defined services as long as the documentation supports delivery.</p>
+        <p>The payer issues prior authorization, the insurance company or Medicaid managed care organization responsible for paying the claim. The authorization is their formal approval, in writing, confirming that they have reviewed the medical necessity documentation and agreed to cover the described services for a defined period and unit count.</p>
+        <p>Authorizations are not treatment plans. They are not prescriptions. They are payer approvals, a binding statement that the payer will pay for defined services as long as the documentation supports delivery.</p>
 
         <h3>What prior authorization covers</h3>
-        <p>Every authorization document specifies: the client name and member ID, the authorized CPT codes, the authorized number of units, the service date range, the eligible service location (home, clinic, school, community), and the eligible providers. Services delivered outside any of these parameters are not covered by that authorization — even if the authorization document is active on the date of service.</p>
+        <p>Every authorization document specifies: the client name and member ID, the authorized CPT codes, the authorized number of units, the service date range, the eligible service location (home, clinic, school, community), and the eligible providers. Services delivered outside any of these parameters are not covered by that authorization, even if the authorization document is active on the date of service.</p>
 
         <h3>What prior authorization does not protect you from</h3>
-        <p>An active authorization does not guarantee payment. It is a commitment to pay if the documentation supports the service delivered. If the session note does not meet documentation requirements — wrong elements, missing signature, unit mismatch — the claim can still be denied on a documentation basis even with a valid, active authorization in hand.</p>
+        <p>An active authorization does not guarantee payment. It is a commitment to pay if the documentation supports the service delivered. If the session note does not meet documentation requirements, wrong elements, missing signature, unit mismatch, the claim can still be denied on a documentation basis even with a valid, active authorization in hand.</p>
         <p>This is the distinction that separates documentation coordinators who understand billing from those who do not. Authorization is necessary but not sufficient. The documentation must hold up too.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="0">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A clinic has an active prior authorization for 97153 services that runs through December 31. The BCBA decides to deliver a session in a school setting instead of the clinic. The authorization lists "clinic only" as the eligible service location. When the claim is submitted, what happens?</div>
         <div class="kc-options" id="kc-opts-0"></div>
         <div class="kc-rationale" id="kc-rat-0"></div>
@@ -288,7 +299,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="1">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A documentation coordinator reviews a claim and confirms the authorization is active, the CPT code is authorized, and the date of service falls within the authorized period. The claim is still denied. What is the most likely reason?</div>
         <div class="kc-options" id="kc-opts-1"></div>
         <div class="kc-rationale" id="kc-rat-1"></div>
@@ -306,18 +317,18 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <h3>The five critical authorization elements</h3>
         <ul>
           <li><strong>Authorization number:</strong> The unique identifier the payer assigns. Every claim for services covered by this authorization must include this number. If it is missing or mistyped, the claim processes without an authorization match and will deny.</li>
-          <li><strong>Authorized CPT codes and units:</strong> These define what services are covered and for how many units total. Units and hours are not interchangeable — a 97153 unit is 15 minutes. An authorization for 480 units covers 120 hours of service, not 480 hours.</li>
-          <li><strong>Effective and expiration dates:</strong> Services delivered before the effective date or after the expiration date are not covered. The expiration date is not a suggestion — it is the hard boundary after which all services are at financial risk.</li>
-          <li><strong>Eligible service locations:</strong> Home, clinic, school, community — most authorizations specify where covered services can be delivered. A session delivered at a location not listed is not covered regardless of the date or unit count.</li>
+          <li><strong>Authorized CPT codes and units:</strong> These define what services are covered and for how many units total. Units and hours are not interchangeable, a 97153 unit is 15 minutes. An authorization for 480 units covers 120 hours of service, not 480 hours.</li>
+          <li><strong>Effective and expiration dates:</strong> Services delivered before the effective date or after the expiration date are not covered. The expiration date is not a suggestion, it is the hard boundary after which all services are at financial risk.</li>
+          <li><strong>Eligible service locations:</strong> Home, clinic, school, community, most authorizations specify where covered services can be delivered. A session delivered at a location not listed is not covered regardless of the date or unit count.</li>
           <li><strong>Eligible providers:</strong> Some authorizations list specific provider NPIs. If a session is delivered by an RBT not listed on the authorization, the claim for that session may deny even with a valid, active authorization.</li>
         </ul>
 
         <h3>Units vs. hours: the most common misread</h3>
-        <p>Time-based CPT codes like 97153 are billed in 15-minute units. When an authorization says "480 units of 97153," that is 120 hours of face-to-face technician-delivered ABA service — not 480 hours. If a documentation coordinator is tracking in hours and the authorization is in units, the first tracking error is built in from day one. Always confirm the unit definition in the authorization document and in your tracking template before the first service is delivered.</p>
+        <p>Time-based CPT codes like 97153 are billed in 15-minute units. When an authorization says "480 units of 97153," that is 120 hours of face-to-face technician-delivered ABA service, not 480 hours. If a documentation coordinator is tracking in hours and the authorization is in units, the first tracking error is built in from day one. Always confirm the unit definition in the authorization document and in your tracking template before the first service is delivered.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="2">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">An authorization for client Marcus W. shows "480 units of 97153 effective January 1 through June 30." The clinic delivers 30 hours of 97153 services per month from January through June. How many units remain when the authorization expires?</div>
         <div class="kc-options" id="kc-opts-2"></div>
         <div class="kc-rationale" id="kc-rat-2"></div>
@@ -325,7 +336,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="3">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">Which of the following is NOT one of the five critical elements a documentation coordinator must extract from every prior authorization document?</div>
         <div class="kc-options" id="kc-opts-3"></div>
         <div class="kc-rationale" id="kc-rat-3"></div>
@@ -338,21 +349,21 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-label">PART 3 OF CORE CONTENT</div>
       <div class="section-title">Tracking authorizations against delivered services.</div>
       <div class="section-body">
-        <p>Authorization tracking is the gap that generates most improper payments across every OIG audit state. The issue is not that clinics do not have authorization data — it is that no one is actively comparing what was authorized against what is being delivered in real time. By the time anyone notices a problem, 46 days and $14,720 of services have already been delivered past the authorization expiration.</p>
+        <p>Authorization tracking is the gap that generates most improper payments across every OIG audit state. The issue is not that clinics do not have authorization data, it is that no one is actively comparing what was authorized against what is being delivered in real time. By the time anyone notices a problem, 46 days and $14,720 of services have already been delivered past the authorization expiration.</p>
 
         <h3>Building a tracking system that works</h3>
-        <p>An effective authorization tracking system does six things. First: it lists every active authorization, by client, with the authorization number, authorized CPT codes, unit totals, start and end dates, and eligible locations. Second: it updates after every service delivery, deducting units used from units authorized. Third: it calculates units remaining automatically — not as a manual subtraction but as a formula that updates when sessions are logged. Fourth: it flags when units remaining fall below a threshold (commonly 20 units or 2 weeks of services, whichever is earlier). Fifth: it flags when the authorization expiration date is within 30 days. Sixth: it shows who is responsible for submitting the renewal and what the deadline is.</p>
+        <p>An effective authorization tracking system does six things. First: it lists every active authorization, by client, with the authorization number, authorized CPT codes, unit totals, start and end dates, and eligible locations. Second: it updates after every service delivery, deducting units used from units authorized. Third: it calculates units remaining automatically, not as a manual subtraction but as a formula that updates when sessions are logged. Fourth: it flags when units remaining fall below a threshold (commonly 20 units or 2 weeks of services, whichever is earlier). Fifth: it flags when the authorization expiration date is within 30 days. Sixth: it shows who is responsible for submitting the renewal and what the deadline is.</p>
 
         <h3>When units run out before the renewal arrives</h3>
         <p>This is the scenario that generates most authorization-related improper payments. A client has 20 units remaining. The renewal request was submitted but not yet approved. The BCBA wants to continue services. What does the documentation coordinator do?</p>
-        <p>Stop the services until the authorization is approved. This is the correct answer even when it feels like the wrong answer to families and clinical staff. Delivering services without an active authorization, even when a renewal is pending, creates claims that cannot be paid legally. The only exception is a formal "pending authorization" policy in writing from the payer — which some Medicaid plans offer and most commercial plans do not. The documentation coordinator must know their payer's specific policy before services continue.</p>
+        <p>Stop the services until the authorization is approved. This is the correct answer even when it feels like the wrong answer to families and clinical staff. Delivering services without an active authorization, even when a renewal is pending, creates claims that cannot be paid legally. The only exception is a formal "pending authorization" policy in writing from the payer, which some Medicaid plans offer and most commercial plans do not. The documentation coordinator must know their payer's specific policy before services continue.</p>
 
         <h3>The 30-day rule</h3>
         <p>Most payers allow submission of renewal authorization requests 30 to 60 days before the current authorization expires. The documentation coordinator's job is to identify every client whose authorization expires in the next 30 days and confirm that a renewal request has been submitted with enough lead time for payer review. Payer review can take 7 to 21 business days. If a renewal is submitted with 10 days left and the payer takes 15 days to review, services have a gap. That gap is the documentation coordinator's responsibility to prevent.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="4">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A client has 24 units remaining on an authorization that expires in 18 days. At the current service rate of 10 units per week, units will run out in 17 days. The renewal request has not yet been submitted. What should the documentation coordinator do immediately?</div>
         <div class="kc-options" id="kc-opts-4"></div>
         <div class="kc-rationale" id="kc-rat-4"></div>
@@ -360,7 +371,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="5">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">Which of the following best describes an effective authorization tracking system for a documentation coordinator managing 30 active clients?</div>
         <div class="kc-options" id="kc-opts-5"></div>
         <div class="kc-rationale" id="kc-rat-5"></div>
@@ -373,22 +384,22 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-label">PART 4 OF CORE CONTENT</div>
       <div class="section-title">Submitting initial requests and renewals.</div>
       <div class="section-body">
-        <p>Initial authorization requests and renewal requests are not the same process. The documentation required, the clinical justification expected, and the submission timeline differ significantly — and submitting the wrong request type, or submitting the right request type with insufficient documentation, delays approval and creates service gaps.</p>
+        <p>Initial authorization requests and renewal requests are not the same process. The documentation required, the clinical justification expected, and the submission timeline differ significantly, and submitting the wrong request type, or submitting the right request type with insufficient documentation, delays approval and creates service gaps.</p>
 
         <h3>Initial authorization requests</h3>
         <p>An initial authorization is submitted for a new client or for a client returning after a lapse in services. The payer is evaluating medical necessity for the first time. Required documentation typically includes: a current medical diagnosis of autism spectrum disorder with the diagnosing provider's name and date, a current treatment plan developed by a qualified BCBA, an assessment report (usually a BCBA-administered functional behavior assessment) with specific measurable treatment goals, and a prescription or referral from the client's primary care physician in states that require it.</p>
-        <p>The clinical justification must explain why ABA services are medically necessary for this specific client at this specific intensity level. Generic justifications — "client has ASD and needs ABA" — are insufficient. Payers want to see the specific behaviors being targeted, the severity level, the expected outcomes, and why the requested number of hours per week is clinically appropriate.</p>
+        <p>The clinical justification must explain why ABA services are medically necessary for this specific client at this specific intensity level. Generic justifications, "client has ASD and needs ABA", are insufficient. Payers want to see the specific behaviors being targeted, the severity level, the expected outcomes, and why the requested number of hours per week is clinically appropriate.</p>
 
         <h3>Renewal authorization requests</h3>
         <p>A renewal is submitted for an existing client whose authorization is expiring. The payer now has a prior authorization history to evaluate. Required documentation typically includes: updated progress notes showing measurable progress toward treatment goals, an updated treatment plan reflecting current goals and reduced or maintained intensity as appropriate, the current BCBA's attestation of continued medical necessity, and in some states a new physician referral.</p>
-        <p>The key difference from an initial request: the payer wants to see that treatment is working. If a renewal shows identical goal language to the previous authorization with no documented progress, payers may request additional documentation or deny continued services. The documentation coordinator does not write clinical justifications — but the documentation coordinator should know what to flag when the renewal packet comes back from the BCBA incomplete.</p>
+        <p>The key difference from an initial request: the payer wants to see that treatment is working. If a renewal shows identical goal language to the previous authorization with no documented progress, payers may request additional documentation or deny continued services. The documentation coordinator does not write clinical justifications, but the documentation coordinator should know what to flag when the renewal packet comes back from the BCBA incomplete.</p>
 
         <h3>What "incomplete" looks like in practice</h3>
-        <p>A renewal packet is incomplete when: the progress notes cover fewer than the required period (most payers want 90 to 180 days of notes for renewal), the treatment plan is outdated (many payers require an update within 30 to 90 days of the renewal submission), the physician referral is expired, or the BCBA's signature is missing. The documentation coordinator reviews every packet before submission and kicks incomplete packets back to the clinical team. Submitting an incomplete packet does not stop the clock — but it delays approval and may result in the payer requesting additional documentation, adding another week or more to the review timeline.</p>
+        <p>A renewal packet is incomplete when: the progress notes cover fewer than the required period (most payers want 90 to 180 days of notes for renewal), the treatment plan is outdated (many payers require an update within 30 to 90 days of the renewal submission), the physician referral is expired, or the BCBA's signature is missing. The documentation coordinator reviews every packet before submission and kicks incomplete packets back to the clinical team. Submitting an incomplete packet does not stop the clock, but it delays approval and may result in the payer requesting additional documentation, adding another week or more to the review timeline.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="6">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A documentation coordinator receives a renewal authorization packet for a client whose authorization expires in 15 days. The packet includes updated progress notes and a current treatment plan, but the physician referral on file expired 6 months ago and the payer requires a current referral. What should the coordinator do?</div>
         <div class="kc-options" id="kc-opts-6"></div>
         <div class="kc-rationale" id="kc-rat-6"></div>
@@ -396,7 +407,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="7">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">What is the primary clinical difference between an initial authorization request and a renewal authorization request from a payer's evaluation perspective?</div>
         <div class="kc-options" id="kc-opts-7"></div>
         <div class="kc-rationale" id="kc-rat-7"></div>
@@ -409,22 +420,22 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-label">PART 5 OF CORE CONTENT</div>
       <div class="section-title">Payer differences: Medicaid, commercial, and TRICARE.</div>
       <div class="section-body">
-        <p>Not all prior authorization processes work the same way. The documentation coordinator who manages clients across multiple payers — which describes most documentation coordinators in private practice settings — needs to understand three distinct prior authorization frameworks: Medicaid managed care, commercial insurance, and TRICARE.</p>
+        <p>Not all prior authorization processes work the same way. The documentation coordinator who manages clients across multiple payers, which describes most documentation coordinators in private practice settings, needs to understand three distinct prior authorization frameworks: Medicaid managed care, commercial insurance, and TRICARE.</p>
 
         <h3>Medicaid managed care</h3>
-        <p>Medicaid in most states is administered through managed care organizations — private insurance companies contracted by the state to manage Medicaid benefits. This matters because it means prior authorization rules are not uniform across Medicaid clients. A client on United Healthcare's Medicaid plan in California follows United's prior authorization policies. A client on Molina Medicaid in California follows Molina's policies. The payer is the managed care organization, not the state Medicaid program, and each MCO sets its own documentation requirements, timelines, and renewal policies within state Medicaid guidelines.</p>
+        <p>Medicaid in most states is administered through managed care organizations, private insurance companies contracted by the state to manage Medicaid benefits. This matters because it means prior authorization rules are not uniform across Medicaid clients. A client on United Healthcare's Medicaid plan in California follows United's prior authorization policies. A client on Molina Medicaid in California follows Molina's policies. The payer is the managed care organization, not the state Medicaid program, and each MCO sets its own documentation requirements, timelines, and renewal policies within state Medicaid guidelines.</p>
         <p>Key Medicaid considerations: most Medicaid plans allow more units per authorization period than commercial plans (some allow 1,000+ units for intensive early intervention), payer portals for submitting authorizations vary by MCO, and the appeals process for Medicaid denials typically has statutory timelines that commercial plans do not.</p>
 
         <h3>Commercial insurance</h3>
-        <p>Commercial insurance authorization processes are more variable than Medicaid in some ways and more standardized in others. BlueCross BlueShield, Aetna, Cigna, and United Healthcare each have prior authorization requirements for ABA services — but the forms, submission portals, review timelines, and clinical documentation requirements differ by plan type, by region, and sometimes by employer group plan design. What is covered under a California BlueCross PPO plan may differ from what is covered under a California BlueCross HMO plan from the same company.</p>
-        <p>Commercial authorizations typically approve fewer total units per period than Medicaid (often 400 to 600 units per 6-month authorization versus 600 to 1,200+ per year for Medicaid). Commercial plans are also more likely to require periodic "medical necessity reviews" mid-authorization — where the payer requests updated clinical documentation before the authorization period ends.</p>
+        <p>Commercial insurance authorization processes are more variable than Medicaid in some ways and more standardized in others. BlueCross BlueShield, Aetna, Cigna, and United Healthcare each have prior authorization requirements for ABA services, but the forms, submission portals, review timelines, and clinical documentation requirements differ by plan type, by region, and sometimes by employer group plan design. What is covered under a California BlueCross PPO plan may differ from what is covered under a California BlueCross HMO plan from the same company.</p>
+        <p>Commercial authorizations typically approve fewer total units per period than Medicaid (often 400 to 600 units per 6-month authorization versus 600 to 1,200+ per year for Medicaid). Commercial plans are also more likely to require periodic "medical necessity reviews" mid-authorization, where the payer requests updated clinical documentation before the authorization period ends.</p>
 
         <h3>TRICARE</h3>
-        <p>TRICARE is the federal healthcare program for active-duty military members and their families. TRICARE covers ABA services under a formal Applied Behavior Analysis benefit. Prior authorization for TRICARE is submitted through the TRICARE regional contractor — either Humana Military (East region) or Health Net Federal Services (West region). TRICARE requires a formal ABA treatment plan submitted to and approved by an authorized TRICARE ABA provider. The documentation requirements are specific to TRICARE and differ from both Medicaid and commercial insurance. TRICARE clients are a small percentage of most ABA clinic caseloads — but the documentation requirements are distinct enough that a documentation coordinator managing TRICARE clients needs TRICARE-specific training on the authorization process.</p>
+        <p>TRICARE is the federal healthcare program for active-duty military members and their families. TRICARE covers ABA services under a formal Applied Behavior Analysis benefit. Prior authorization for TRICARE is submitted through the TRICARE regional contractor, either Humana Military (East region) or Health Net Federal Services (West region). TRICARE requires a formal ABA treatment plan submitted to and approved by an authorized TRICARE ABA provider. The documentation requirements are specific to TRICARE and differ from both Medicaid and commercial insurance. TRICARE clients are a small percentage of most ABA clinic caseloads, but the documentation requirements are distinct enough that a documentation coordinator managing TRICARE clients needs TRICARE-specific training on the authorization process.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="8">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A documentation coordinator manages clients on three different payers: United Healthcare Medicaid, Aetna commercial, and TRICARE. All three clients need prior authorization renewals submitted next week. Which statement is most accurate?</div>
         <div class="kc-options" id="kc-opts-8"></div>
         <div class="kc-rationale" id="kc-rat-8"></div>
@@ -432,7 +443,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="9">
-        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
         <div class="kc-question">A clinic serves a client on a BlueCross BlueShield commercial PPO plan. The client's authorization is approved for 480 units from January through June. In April, the payer sends a "medical necessity review" request asking for updated clinical documentation. What does this mean?</div>
         <div class="kc-options" id="kc-opts-9"></div>
         <div class="kc-rationale" id="kc-rat-9"></div>
@@ -445,28 +456,28 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-label">WORKED EXAMPLE</div>
       <div class="section-title">Reading and tracking: annotated authorization document.</div>
       <div class="section-body">
-        <p>Below is an authorization document annotation and two tracking scenarios — one that works and one that generates a finding. Review both before the module scenario.</p>
+        <p>Below is an authorization document annotation and two tracking scenarios, one that works and one that generates a finding. Review both before the module scenario.</p>
       </div>
 
       <div class="annotation">
         <div class="annotation-label">ANNOTATED AUTHORIZATION DOCUMENT</div>
-        <h4>Sample Authorization — Molina Healthcare Medicaid</h4>
+        <h4>Sample Authorization, Molina Healthcare Medicaid</h4>
         <p><strong>Client:</strong> ANDERSON, JAMILA R. · Member ID: 7889204 · DOB: 03/15/2020</p>
         <p><strong>Auth #:</strong> MOL-2026-0048821 &larr; <em>Must appear on every claim line or the claim processes without an auth match and denies</em></p>
-        <p><strong>Authorized services:</strong> 97153 (480 units), 97155 (96 units) &larr; <em>97154 is NOT authorized here — a concurrent 97154 session would not be covered</em></p>
+        <p><strong>Authorized services:</strong> 97153 (480 units), 97155 (96 units) &larr; <em>97154 is NOT authorized here, a concurrent 97154 session would not be covered</em></p>
         <p><strong>Effective:</strong> 10/01/2026 · <strong>Expires:</strong> 03/31/2027 &larr; <em>Any service on or after April 1 is not covered by this authorization</em></p>
-        <p><strong>Service location:</strong> Clinic and home &larr; <em>Community setting is NOT listed — a school session would not be covered</em></p>
-        <p><strong>Eligible providers:</strong> Any enrolled Molina provider &larr; <em>No NPI restriction here — but check every authorization; some list specific providers</em></p>
+        <p><strong>Service location:</strong> Clinic and home &larr; <em>Community setting is NOT listed, a school session would not be covered</em></p>
+        <p><strong>Eligible providers:</strong> Any enrolled Molina provider &larr; <em>No NPI restriction here, but check every authorization; some list specific providers</em></p>
       </div>
 
       <div class="compare-grid">
         <div class="compare-card good">
           <div class="compare-tag">✓ TRACKING THAT WORKS</div>
-          <p>Documentation coordinator creates a tracking row for Jamila: Auth#, 480 units 97153, 96 units 97155, effective 10/1 through 3/31. After every service week, the coordinator subtracts units delivered. At week 10, the tracker shows 80 units of 97153 remaining (480 − 400 = 80). The coordinator flags the renewal deadline and submits the renewal request on week 10 — 6 weeks before expiration. Approval arrives in 2 weeks. No gap in services.</p>
+          <p>Documentation coordinator creates a tracking row for Jamila: Auth#, 480 units 97153, 96 units 97155, effective 10/1 through 3/31. After every service week, the coordinator subtracts units delivered. At week 10, the tracker shows 80 units of 97153 remaining (480 − 400 = 80). The coordinator flags the renewal deadline and submits the renewal request on week 10, 6 weeks before expiration. Approval arrives in 2 weeks. No gap in services.</p>
         </div>
         <div class="compare-card bad">
           <div class="compare-tag">✗ TRACKING THAT FAILS</div>
-          <p>Documentation coordinator notes the authorization in the client file but does not build a running unit tracker. Services continue through March. On March 28, the billing team submits claims and discovers the payer is showing 0 units remaining — the 480 units were depleted by week 20. Services from week 20 through the end of March were delivered without units. Recoupment demand arrives for 180 units × $32/unit = $5,760.</p>
+          <p>Documentation coordinator notes the authorization in the client file but does not build a running unit tracker. Services continue through March. On March 28, the billing team submits claims and discovers the payer is showing 0 units remaining, the 480 units were depleted by week 20. Services from week 20 through the end of March were delivered without units. Recoupment demand arrives for 180 units × $32/unit = $5,760.</p>
         </div>
       </div>
     </section>
@@ -483,9 +494,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <p>At the same time, the authorization expires December 31, and no renewal has been submitted yet. The payer typically takes 15 to 21 business days to review renewal requests. Today is November 15. December 31 is 46 days away.</p>
         <p>The BCBA says: "We've been approved every year. Just submit the renewal and we'll figure it out." The clinic director says she doesn't want any gaps in services for Marcus.</p>
         <p><strong>Decision point 1:</strong> The BCBA wants to schedule 30 units per week. You have 180 units remaining. What do you tell the BCBA about the scheduling plan?</p>
-        <p>The right answer: Inform the BCBA that the authorization supports a maximum of 180 units between now and December 31 — roughly 27 units per week, not 30. Scheduling 30 units per week creates a 15-unit overage that will not be covered. Adjust the schedule to 27 units per week maximum, or identify whether any units can be redistributed from the 97155 authorization.</p>
+        <p>The right answer: Inform the BCBA that the authorization supports a maximum of 180 units between now and December 31, roughly 27 units per week, not 30. Scheduling 30 units per week creates a 15-unit overage that will not be covered. Adjust the schedule to 27 units per week maximum, or identify whether any units can be redistributed from the 97155 authorization.</p>
         <p><strong>Decision point 2:</strong> The renewal has not been submitted. What do you do today?</p>
-        <p>The right answer: Submit the renewal authorization request today. With payer review taking 15 to 21 business days, submitting on November 15 means approval should arrive between December 8 and December 15 — giving a 2-week buffer before December 31. Any later and the clinic risks a service gap in January.</p>
+        <p>The right answer: Submit the renewal authorization request today. With payer review taking 15 to 21 business days, submitting on November 15 means approval should arrive between December 8 and December 15, giving a 2-week buffer before December 31. Any later and the clinic risks a service gap in January.</p>
         <p><strong>Decision point 3:</strong> What do you document about this process?</p>
         <p>The right answer: Document the submission date, the payer confirmation number for the renewal request, the current unit count and schedule adjustment communicated to the BCBA, and the expected approval timeline. If services gap despite the timely submission, this documentation shows the clinic acted in good faith.</p>
       </div>
@@ -500,7 +511,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="job-aid">
         <div class="job-aid-header">
           <h3>CADA Authorization Tracking Matrix</h3>
-          <p>Weekly tracking template for documentation coordinators — update every Monday morning</p>
+          <p>Weekly tracking template for documentation coordinators, update every Monday morning</p>
         </div>
         <div class="job-aid-body">
           <table class="job-aid-table">
@@ -535,7 +546,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           </div>
 
           <div style="margin-top:18px;padding:14px 16px;background:var(--gold-light);border-radius:var(--radius-sm);font-size:13px;color:var(--text-secondary)">
-            <strong>Key rule:</strong> Services delivered after authorization expiration are not covered — even if a renewal is pending. Confirm payer's "pending authorization" policy in writing before continuing services past an expiration date.
+            <strong>Key rule:</strong> Services delivered after authorization expiration are not covered, even if a renewal is pending. Confirm payer's "pending authorization" policy in writing before continuing services past an expiration date.
           </div>
         </div>
       </div>
@@ -573,72 +584,72 @@ const LETTERS = ['A','B','C','D'];
 const KC_DATA = [
   {q:'',answers:[
     {text:'The claim will pay because the authorization is active on the date of service.',correct:false,rationale:'Authorization validity alone does not guarantee payment. The authorization also defines eligible service locations. A clinic-only authorization does not cover school-based sessions regardless of the date.'},
-    {text:'The claim will deny because the service location does not match the authorization.',correct:true,rationale:'Correct. Every authorization defines eligible service locations as one of the five critical elements. Delivering services at a location not listed on the authorization means those services are not covered — the claim will deny even with an active authorization.'},
+    {text:'The claim will deny because the service location does not match the authorization.',correct:true,rationale:'Correct. Every authorization defines eligible service locations as one of the five critical elements. Delivering services at a location not listed on the authorization means those services are not covered, the claim will deny even with an active authorization.'},
     {text:'The claim will pay with a modifier indicating community setting.',correct:false,rationale:'Modifiers indicate the nature of the service, not the authorization status. A modifier cannot override an authorization restriction on service location.'},
     {text:'The payer will automatically expand the authorization to include the school setting.',correct:false,rationale:'Payers do not automatically expand authorization scope. The clinic would need to request a modification to the existing authorization to add an eligible service location.'}
   ]},
   {q:'',answers:[
-    {text:'The authorization number was entered incorrectly on the claim.',correct:false,rationale:'An incorrect authorization number is a possible reason for denial, but the question states the authorization is active and all parameters match — suggesting the issue is elsewhere.'},
-    {text:'The session note did not meet the documentation requirements for the billed service.',correct:true,rationale:'Correct. An active authorization is necessary but not sufficient for payment. If the session note is missing required elements — wrong code documentation, missing signature, unit mismatch — the claim can deny on documentation grounds even with a valid authorization. Authorization and documentation requirements are separate and both must be met.'},
+    {text:'The authorization number was entered incorrectly on the claim.',correct:false,rationale:'An incorrect authorization number is a possible reason for denial, but the question states the authorization is active and all parameters match, suggesting the issue is elsewhere.'},
+    {text:'The session note did not meet the documentation requirements for the billed service.',correct:true,rationale:'Correct. An active authorization is necessary but not sufficient for payment. If the session note is missing required elements, wrong code documentation, missing signature, unit mismatch, the claim can deny on documentation grounds even with a valid authorization. Authorization and documentation requirements are separate and both must be met.'},
     {text:'The payer does not cover ABA services.',correct:false,rationale:'If the payer did not cover ABA services, the authorization would not have been issued in the first place. An active authorization confirms the payer covers the service.'},
     {text:'The client\'s eligibility lapsed during the authorization period.',correct:false,rationale:'The question states the authorization is active, which implies the client was eligible when the authorization was issued. While eligibility lapses do cause denials, the question points to a documentation issue.'}
   ]},
   {q:'',answers:[
-    {text:'0 units remain — the authorization was exactly consumed.',correct:false,rationale:'30 hours per month × 4 units per hour = 120 units per month. 120 units × 6 months = 720 units total. But the authorization was for only 480 units, so the clinic would have run out of units before June.'},
-    {text:'The authorization would have been depleted before June — 480 units cannot cover 720 units of service.',correct:true,rationale:'Correct. 30 hours per month × 4 units per hour (15-min units) = 120 units per month. At that rate, 480 units run out after 4 months — by the end of April, not June. The documentation coordinator tracking this authorization must catch the depletion risk and alert the clinical team to adjust scheduling.'},
-    {text:'60 units remain — 720 units were delivered against 480 authorized.',correct:false,rationale:'60 units would not remain because only 480 units were authorized. If 720 units of services were delivered, 240 units of those services were unauthorized and would be subject to recoupment.'},
-    {text:'480 units remain — the 30 hours per month billing is in hours, not units.',correct:false,rationale:'The question specifies 30 hours per month of 97153 services. 97153 is billed in 15-minute units. 30 hours = 120 units. This is exactly the hours-vs-units conversion error that generates tracking failures.'}
+    {text:'0 units remain, the authorization was exactly consumed.',correct:false,rationale:'30 hours per month × 4 units per hour = 120 units per month. 120 units × 6 months = 720 units total. But the authorization was for only 480 units, so the clinic would have run out of units before June.'},
+    {text:'The authorization would have been depleted before June, 480 units cannot cover 720 units of service.',correct:true,rationale:'Correct. 30 hours per month × 4 units per hour (15-min units) = 120 units per month. At that rate, 480 units run out after 4 months, by the end of April, not June. The documentation coordinator tracking this authorization must catch the depletion risk and alert the clinical team to adjust scheduling.'},
+    {text:'60 units remain, 720 units were delivered against 480 authorized.',correct:false,rationale:'60 units would not remain because only 480 units were authorized. If 720 units of services were delivered, 240 units of those services were unauthorized and would be subject to recoupment.'},
+    {text:'480 units remain, the 30 hours per month billing is in hours, not units.',correct:false,rationale:'The question specifies 30 hours per month of 97153 services. 97153 is billed in 15-minute units. 30 hours = 120 units. This is exactly the hours-vs-units conversion error that generates tracking failures.'}
   ]},
   {q:'',answers:[
-    {text:'The client\'s diagnosis code',correct:true,rationale:'Correct. The five critical elements are: authorization number, authorized CPT codes and units, effective and expiration dates, eligible service locations, and eligible providers. The diagnosis code is in the client\'s medical record and treatment plan — it may appear on the authorization for reference, but it is not one of the five tracking elements that determines whether a claim on a given date of service will pay or deny.'},
+    {text:'The client\'s diagnosis code',correct:true,rationale:'Correct. The five critical elements are: authorization number, authorized CPT codes and units, effective and expiration dates, eligible service locations, and eligible providers. The diagnosis code is in the client\'s medical record and treatment plan, it may appear on the authorization for reference, but it is not one of the five tracking elements that determines whether a claim on a given date of service will pay or deny.'},
     {text:'Authorization number',correct:false,rationale:'Authorization number is one of the five critical elements. Every claim for services covered by this authorization must include the authorization number or the claim processes without an authorization match and denies.'},
-    {text:'Effective and expiration dates',correct:false,rationale:'Effective and expiration dates are one of the five critical elements. Services delivered before the effective date or after the expiration date are not covered — this is the most common authorization-related audit finding.'},
+    {text:'Effective and expiration dates',correct:false,rationale:'Effective and expiration dates are one of the five critical elements. Services delivered before the effective date or after the expiration date are not covered, this is the most common authorization-related audit finding.'},
     {text:'Eligible service locations',correct:false,rationale:'Eligible service locations are one of the five critical elements. Services delivered at a location not listed on the authorization are not covered regardless of date or unit count.'}
   ]},
   {q:'',answers:[
-    {text:'Continue services at the current rate and submit the renewal request today.',correct:false,rationale:'At 10 units per week, units will be depleted in approximately 17 days — before the authorization expires. If services continue at the current rate, the clinic will deliver unauthorized services in the final days of the authorization period even before expiration. The documentation coordinator needs to alert the BCBA to both the impending unit depletion and the renewal timeline.'},
-    {text:'Alert the BCBA that units will be depleted in approximately 17 days, submit the renewal immediately, and confirm whether the payer has a pending authorization policy.',correct:true,rationale:'Correct. This addresses both problems: the unit depletion risk (which is the more urgent issue — it happens before expiration) and the renewal timeline. The documentation coordinator must surface both issues to the BCBA and confirm whether the payer\'s pending authorization policy allows services to continue while the renewal is under review.'},
-    {text:'Stop services immediately until the renewal is approved.',correct:false,rationale:'Units have not yet run out. The authorization is active. Services can continue until units are depleted — but the BCBA must be informed of the depletion timeline so the schedule can be adjusted to stay within remaining units. Stopping services now when units remain is unnecessary and harmful to the client.'},
+    {text:'Continue services at the current rate and submit the renewal request today.',correct:false,rationale:'At 10 units per week, units will be depleted in approximately 17 days, before the authorization expires. If services continue at the current rate, the clinic will deliver unauthorized services in the final days of the authorization period even before expiration. The documentation coordinator needs to alert the BCBA to both the impending unit depletion and the renewal timeline.'},
+    {text:'Alert the BCBA that units will be depleted in approximately 17 days, submit the renewal immediately, and confirm whether the payer has a pending authorization policy.',correct:true,rationale:'Correct. This addresses both problems: the unit depletion risk (which is the more urgent issue, it happens before expiration) and the renewal timeline. The documentation coordinator must surface both issues to the BCBA and confirm whether the payer\'s pending authorization policy allows services to continue while the renewal is under review.'},
+    {text:'Stop services immediately until the renewal is approved.',correct:false,rationale:'Units have not yet run out. The authorization is active. Services can continue until units are depleted, but the BCBA must be informed of the depletion timeline so the schedule can be adjusted to stay within remaining units. Stopping services now when units remain is unnecessary and harmful to the client.'},
     {text:'Submit the renewal and do not inform the BCBA until the approval arrives.',correct:false,rationale:'The documentation coordinator has an obligation to inform the clinical team of authorization issues that affect scheduling. Submitting the renewal without informing the BCBA of the unit depletion risk allows the BCBA to continue scheduling 10 units per week into a period when no units remain.'}
   ]},
   {q:'',answers:[
-    {text:'A spreadsheet with one row per client, updated after every session, showing auth number, units authorized, units used, units remaining, expiration date, and renewal submission status.',correct:true,rationale:'Correct. An effective tracking system is comprehensive (all clients), current (updated after every session), calculates units remaining automatically, and tracks renewal submission status alongside unit tracking. A system that checks only expiration dates without tracking units can miss unit depletion before expiration — which is the more common failure mode.'},
+    {text:'A spreadsheet with one row per client, updated after every session, showing auth number, units authorized, units used, units remaining, expiration date, and renewal submission status.',correct:true,rationale:'Correct. An effective tracking system is comprehensive (all clients), current (updated after every session), calculates units remaining automatically, and tracks renewal submission status alongside unit tracking. A system that checks only expiration dates without tracking units can miss unit depletion before expiration, which is the more common failure mode.'},
     {text:'A calendar showing each client\'s authorization expiration date, checked monthly.',correct:false,rationale:'A calendar of expiration dates addresses only one of the five critical authorization elements and is updated only monthly. It does not track unit consumption, eligible locations, or renewal status. It would miss the scenario where units are depleted before the expiration date.'},
     {text:'A folder with each client\'s authorization PDF, organized alphabetically.',correct:false,rationale:'Authorization documents on file are essential but passive. A folder does not track units consumed against units authorized, calculate remaining units, or flag upcoming renewals. It is a record of what was authorized, not an active tracking system.'},
-    {text:'A weekly email to the BCBA listing the current month\'s authorization expiration dates.',correct:false,rationale:'Weekly emails to the BCBA shift the tracking responsibility to the clinical team and do not constitute a documentation coordinator\'s tracking system. The coordinator is responsible for active tracking — not reporting expiration dates and delegating the tracking upstream.'}
+    {text:'A weekly email to the BCBA listing the current month\'s authorization expiration dates.',correct:false,rationale:'Weekly emails to the BCBA shift the tracking responsibility to the clinical team and do not constitute a documentation coordinator\'s tracking system. The coordinator is responsible for active tracking, not reporting expiration dates and delegating the tracking upstream.'}
   ]},
   {q:'',answers:[
-    {text:'Submit the renewal immediately with the available documentation and add a note that the physician referral is being obtained.',correct:false,rationale:'Submitting an incomplete packet does not stop the payer\'s clock on approval timeline in a helpful way — it starts a clock on a submission that the payer may immediately request additional documentation for, adding more delay. Some payers will deny an incomplete submission outright.'},
-    {text:'Notify the BCBA and clinic director immediately that the renewal cannot be submitted as complete, obtain the physician referral as an urgent task, and submit as a complete packet.',correct:true,rationale:'Correct. With 15 days until expiration and 15 to 21 business days typically needed for payer review, the renewal must be submitted as soon as possible — but it must be complete. The physician referral must be obtained urgently. The documentation coordinator\'s job is to flag the incomplete packet immediately so the clinical team can secure the referral and not lose days waiting.'},
+    {text:'Submit the renewal immediately with the available documentation and add a note that the physician referral is being obtained.',correct:false,rationale:'Submitting an incomplete packet does not stop the payer\'s clock on approval timeline in a helpful way, it starts a clock on a submission that the payer may immediately request additional documentation for, adding more delay. Some payers will deny an incomplete submission outright.'},
+    {text:'Notify the BCBA and clinic director immediately that the renewal cannot be submitted as complete, obtain the physician referral as an urgent task, and submit as a complete packet.',correct:true,rationale:'Correct. With 15 days until expiration and 15 to 21 business days typically needed for payer review, the renewal must be submitted as soon as possible, but it must be complete. The physician referral must be obtained urgently. The documentation coordinator\'s job is to flag the incomplete packet immediately so the clinical team can secure the referral and not lose days waiting.'},
     {text:'Wait until the physician referral is obtained before notifying anyone, then submit the complete packet.',correct:false,rationale:'Waiting to notify anyone delays the entire team\'s awareness of the problem. The clinic director needs to know immediately that the authorization is at risk. Time spent waiting to notify the team is time the team could use to solve the problem.'},
-    {text:'Call the payer and ask if they will accept the renewal without a current physician referral.',correct:false,rationale:'While it is appropriate to know the payer\'s requirements, calling to ask for a waiver of a known requirement is unlikely to succeed and wastes time that should be spent obtaining the missing documentation. The coordinator already knows what is required — the job is to get it.'}
+    {text:'Call the payer and ask if they will accept the renewal without a current physician referral.',correct:false,rationale:'While it is appropriate to know the payer\'s requirements, calling to ask for a waiver of a known requirement is unlikely to succeed and wastes time that should be spent obtaining the missing documentation. The coordinator already knows what is required, the job is to get it.'}
   ]},
   {q:'',answers:[
     {text:'The payer is evaluating the client\'s original diagnosis for the first time.',correct:false,rationale:'For a renewal, the payer already has the original diagnosis information from the initial authorization. The evaluation focus for a renewal is not diagnosis confirmation but treatment progress and continued medical necessity.'},
-    {text:'The initial request evaluates whether services are medically necessary; the renewal evaluates whether treatment is working and whether continued services at the requested level are justified.',correct:true,rationale:'Correct. The initial request establishes medical necessity — the payer is deciding for the first time whether to authorize ABA services. The renewal builds on that foundation: the payer evaluates whether the initial decision was correct (is treatment working?), whether continued services at the same or different intensity are justified (is the client progressing toward goals?), and whether the clinical documentation supports continued medical necessity.'},
-    {text:'Renewals require more documentation than initial requests because payers are more skeptical of long-term ABA services.',correct:false,rationale:'While some payers do apply more scrutiny to long-term ABA authorizations, the fundamental difference between initial and renewal requests is what the payer is evaluating — not how much documentation is required. Some initial requests require more documentation than renewals for complex cases.'},
-    {text:'Initial requests and renewals use the same evaluation criteria — the only difference is the submission timing.',correct:false,rationale:'Initial requests and renewals use different evaluation criteria. Initial requests establish medical necessity for the first time. Renewals evaluate progress, continued medical necessity, and whether the requested service level is clinically appropriate given what has been achieved.'}
+    {text:'The initial request evaluates whether services are medically necessary; the renewal evaluates whether treatment is working and whether continued services at the requested level are justified.',correct:true,rationale:'Correct. The initial request establishes medical necessity, the payer is deciding for the first time whether to authorize ABA services. The renewal builds on that foundation: the payer evaluates whether the initial decision was correct (is treatment working?), whether continued services at the same or different intensity are justified (is the client progressing toward goals?), and whether the clinical documentation supports continued medical necessity.'},
+    {text:'Renewals require more documentation than initial requests because payers are more skeptical of long-term ABA services.',correct:false,rationale:'While some payers do apply more scrutiny to long-term ABA authorizations, the fundamental difference between initial and renewal requests is what the payer is evaluating, not how much documentation is required. Some initial requests require more documentation than renewals for complex cases.'},
+    {text:'Initial requests and renewals use the same evaluation criteria, the only difference is the submission timing.',correct:false,rationale:'Initial requests and renewals use different evaluation criteria. Initial requests establish medical necessity for the first time. Renewals evaluate progress, continued medical necessity, and whether the requested service level is clinically appropriate given what has been achieved.'}
   ]},
   {q:'',answers:[
-    {text:'The three renewal requests are identical processes — submit the same documentation to each payer.',correct:false,rationale:'Each of the three payers operates under a different prior authorization framework with different documentation requirements, submission methods, and timelines. Using the same documentation across all three is likely to result in denials from at least one or two payers.'},
+    {text:'The three renewal requests are identical processes, submit the same documentation to each payer.',correct:false,rationale:'Each of the three payers operates under a different prior authorization framework with different documentation requirements, submission methods, and timelines. Using the same documentation across all three is likely to result in denials from at least one or two payers.'},
     {text:'Each renewal requires separate documentation meeting each payer\'s specific requirements, submitted through each payer\'s specific channel.',correct:true,rationale:'Correct. Medicaid managed care (United Healthcare Medicaid), commercial insurance (Aetna), and TRICARE are three distinct prior authorization frameworks. Each has different documentation requirements, submission methods, review timelines, and payer portals. A documentation coordinator managing multiple payers must maintain payer-specific knowledge for each one.'},
-    {text:'Commercial insurance (Aetna) and TRICARE use the same process because both are non-government payers.',correct:false,rationale:'TRICARE is a federal healthcare program for military families — it is a government payer administered through federal contractors, not a commercial insurance plan. TRICARE prior authorization goes through the TRICARE regional contractor, not through standard commercial insurance channels.'},
-    {text:'Medicaid renewal processes are simpler than commercial because Medicaid is a government program with standardized forms.',correct:false,rationale:'Medicaid in most states is administered through managed care organizations — private insurance companies with their own prior authorization requirements. There is no single standardized Medicaid prior authorization form. Medicaid MCO requirements vary as significantly as commercial plan requirements.'}
+    {text:'Commercial insurance (Aetna) and TRICARE use the same process because both are non-government payers.',correct:false,rationale:'TRICARE is a federal healthcare program for military families, it is a government payer administered through federal contractors, not a commercial insurance plan. TRICARE prior authorization goes through the TRICARE regional contractor, not through standard commercial insurance channels.'},
+    {text:'Medicaid renewal processes are simpler than commercial because Medicaid is a government program with standardized forms.',correct:false,rationale:'Medicaid in most states is administered through managed care organizations, private insurance companies with their own prior authorization requirements. There is no single standardized Medicaid prior authorization form. Medicaid MCO requirements vary as significantly as commercial plan requirements.'}
   ]},
   {q:'',answers:[
-    {text:'The payer is canceling the remaining units on the authorization.',correct:false,rationale:'A mid-authorization medical necessity review is a documentation request, not a cancellation notice. The authorization remains active during the review. Services should continue while the documentation is being gathered and submitted — unless the payer specifies otherwise.'},
+    {text:'The payer is canceling the remaining units on the authorization.',correct:false,rationale:'A mid-authorization medical necessity review is a documentation request, not a cancellation notice. The authorization remains active during the review. Services should continue while the documentation is being gathered and submitted, unless the payer specifies otherwise.'},
     {text:'The payer is requesting updated clinical documentation to confirm that ABA services continue to be medically necessary at the authorized level.',correct:true,rationale:'Correct. Some commercial payers conduct periodic medical necessity reviews mid-authorization to confirm that the authorized level of services is still clinically appropriate. The documentation coordinator must respond to the review request with updated progress notes and clinical documentation within the payer\'s specified timeline. Failing to respond may result in the authorization being suspended or reduced.'},
-    {text:'The payer made an error and issued an extra letter — no action is needed.',correct:false,rationale:'A mid-authorization medical necessity review from a payer is not an error. It is a formal documentation request that requires a timely response. Ignoring it risks authorization suspension.'},
-    {text:'The payer is offering to extend the authorization period automatically if documentation is submitted.',correct:false,rationale:'A medical necessity review is not an extension offer. It is a request for documentation to verify continued medical necessity. The authorization period does not automatically extend based on a successful review — a separate renewal request is still required when the current authorization expires.'}
+    {text:'The payer made an error and issued an extra letter, no action is needed.',correct:false,rationale:'A mid-authorization medical necessity review from a payer is not an error. It is a formal documentation request that requires a timely response. Ignoring it risks authorization suspension.'},
+    {text:'The payer is offering to extend the authorization period automatically if documentation is submitted.',correct:false,rationale:'A medical necessity review is not an extension offer. It is a request for documentation to verify continued medical necessity. The authorization period does not automatically extend based on a successful review, a separate renewal request is still required when the current authorization expires.'}
   ]}
 ];
 
 const QUIZ_DATA = [
-  {text:`A prior authorization for client Devon M. covers 480 units of 97153 and 96 units of 97155, effective October 1 through March 31. On March 1, the documentation coordinator's tracking sheet shows 80 units of 97153 remaining and 12 units of 97155 remaining. The clinic schedules 32 units of 97153 and 8 units of 97155 per week for the remaining 4 weeks of the authorization. What is the problem with this plan?`,answers:[{text:'The plan will exceed authorized 97155 units by 20 units.',correct:false},{text:'The plan will exceed authorized 97153 units by 48 units and 97155 units by 20 units.',correct:true},{text:'The plan is fine — there are 80 units of 97153 and 12 units of 97155 remaining.',correct:false},{text:'The plan will only use 32 units of 97153, leaving 48 unused.',correct:false}],rationale:'At 32 units/week × 4 weeks = 128 units of 97153 needed; only 80 remain — an overage of 48 units. At 8 units/week × 4 weeks = 32 units of 97155 needed; only 12 remain — an overage of 20 units. The scheduling plan would generate 68 total unauthorized service units.',reviewSection:4},
-  {text:`A clinic submits a renewal authorization request on November 1 for a client whose authorization expires December 15. The payer\'s typical review timeline is 15 to 21 business days. When should the documentation coordinator alert the clinical team to a potential service gap?`,answers:[{text:'On December 1, if the authorization has not been approved.',correct:false},{text:'On December 14, the day before expiration.',correct:false},{text:'Immediately — 21 business days from November 1 falls around December 1, leaving a 2-week gap risk before the December 15 expiration.',correct:true},{text:'After the authorization expires — the payer is responsible for timely processing.',correct:false}],rationale:'21 business days from November 1 falls around December 1 (accounting for weekends). This means approval could arrive as late as December 1, giving only 2 weeks before the December 15 expiration. The documentation coordinator should alert the clinical team immediately after submission to monitor for the pending approval and prepare for a possible service gap if approval is delayed.',reviewSection:4},
-  {text:`Which of the following describes the most critical difference between Medicaid managed care prior authorization and commercial insurance prior authorization that a documentation coordinator must understand?`,answers:[{text:'Medicaid authorization requests can only be submitted by fax.',correct:false},{text:'Medicaid managed care plans are administered by MCOs with plan-specific requirements, so "Medicaid" is not one uniform process — the requirements depend on which MCO administers the specific client\'s plan.',correct:true},{text:'Commercial insurance always requires fewer units than Medicaid and is therefore easier to manage.',correct:false},{text:'TRICARE prior authorization follows the same process as Medicaid managed care.',correct:false}],rationale:'Medicaid in most states is administered through managed care organizations — private companies with their own prior authorization forms, portals, documentation requirements, and timelines. There is no single "Medicaid prior authorization process." A documentation coordinator managing Medicaid clients across United Healthcare, Molina, and Anthem Medicaid plans must know each MCO\'s specific requirements separately.',reviewSection:6},
-  {text:`An RBT delivers a 97153 session at a client\'s home on November 20. The authorization for that client covers clinic and community settings effective October 1 through March 31. The home is not listed as an eligible service location. What is the documentation coordinator\'s obligation when reviewing the week\'s claims?`,answers:[{text:'Submit the claim — the authorization is active on November 20 and the service is authorized.',correct:false},{text:'Flag the claim and do not submit it. The home setting is not on the authorization. The documentation coordinator must contact the payer to determine whether a service location modification can be added retroactively.',correct:true},{text:'Modify the claim to show "community setting" since home visits are similar to community visits.',correct:false},{text:'Submit the claim with a note that the client requested home services.',correct:false}],rationale:'The authorization lists clinic and community as eligible settings — not home. Submitting a claim for a service delivered in a non-authorized setting is submitting a claim for an unauthorized service. The documentation coordinator must flag this claim before submission and explore whether the payer will approve a retroactive setting modification. Modifying the claim to show a different setting without payer approval is a documentation accuracy violation.',reviewSection:2},
-  {text:`A renewal authorization packet for a client on a commercial Aetna plan arrives from the clinical team. The packet includes progress notes from the last 90 days and a current treatment plan signed by the BCBA. The physician referral on file expired 4 months ago. The documentation coordinator knows Aetna requires a current physician referral for renewal. The authorization expires in 10 days. What is the MOST accurate description of the documentation coordinator\'s next action?`,answers:[{text:'Submit the packet immediately with the expired referral and hope Aetna does not notice.',correct:false},{text:'Return the packet to the clinical team with an urgent request for a current physician referral, notify the clinic director of the timeline risk, and document the notification date.',correct:true},{text:'Submit the packet and call Aetna to request an extension while the referral is obtained.',correct:false},{text:'Wait until the referral is obtained before notifying the clinical team.',correct:false}],rationale:'Submitting an incomplete packet to Aetna is likely to result in a denial or additional documentation request, which adds more delay. The documentation coordinator\'s job is to flag the incomplete packet immediately, escalate to the clinic director (not just the BCBA) given the 10-day timeline, and document when and to whom the notification was given. The documentation of the notification date is critical — if a service gap results, the documentation shows the coordinator identified the problem and escalated it appropriately.',reviewSection:5}
+  {text:`A prior authorization for client Devon M. covers 480 units of 97153 and 96 units of 97155, effective October 1 through March 31. On March 1, the documentation coordinator's tracking sheet shows 80 units of 97153 remaining and 12 units of 97155 remaining. The clinic schedules 32 units of 97153 and 8 units of 97155 per week for the remaining 4 weeks of the authorization. What is the problem with this plan?`,answers:[{text:'The plan will exceed authorized 97155 units by 20 units.',correct:false},{text:'The plan will exceed authorized 97153 units by 48 units and 97155 units by 20 units.',correct:true},{text:'The plan is fine, there are 80 units of 97153 and 12 units of 97155 remaining.',correct:false},{text:'The plan will only use 32 units of 97153, leaving 48 unused.',correct:false}],rationale:'At 32 units/week × 4 weeks = 128 units of 97153 needed; only 80 remain, an overage of 48 units. At 8 units/week × 4 weeks = 32 units of 97155 needed; only 12 remain, an overage of 20 units. The scheduling plan would generate 68 total unauthorized service units.',reviewSection:4},
+  {text:`A clinic submits a renewal authorization request on November 1 for a client whose authorization expires December 15. The payer\'s typical review timeline is 15 to 21 business days. When should the documentation coordinator alert the clinical team to a potential service gap?`,answers:[{text:'On December 1, if the authorization has not been approved.',correct:false},{text:'On December 14, the day before expiration.',correct:false},{text:'Immediately, 21 business days from November 1 falls around December 1, leaving a 2-week gap risk before the December 15 expiration.',correct:true},{text:'After the authorization expires, the payer is responsible for timely processing.',correct:false}],rationale:'21 business days from November 1 falls around December 1 (accounting for weekends). This means approval could arrive as late as December 1, giving only 2 weeks before the December 15 expiration. The documentation coordinator should alert the clinical team immediately after submission to monitor for the pending approval and prepare for a possible service gap if approval is delayed.',reviewSection:4},
+  {text:`Which of the following describes the most critical difference between Medicaid managed care prior authorization and commercial insurance prior authorization that a documentation coordinator must understand?`,answers:[{text:'Medicaid authorization requests can only be submitted by fax.',correct:false},{text:'Medicaid managed care plans are administered by MCOs with plan-specific requirements, so "Medicaid" is not one uniform process, the requirements depend on which MCO administers the specific client\'s plan.',correct:true},{text:'Commercial insurance always requires fewer units than Medicaid and is therefore easier to manage.',correct:false},{text:'TRICARE prior authorization follows the same process as Medicaid managed care.',correct:false}],rationale:'Medicaid in most states is administered through managed care organizations, private companies with their own prior authorization forms, portals, documentation requirements, and timelines. There is no single "Medicaid prior authorization process." A documentation coordinator managing Medicaid clients across United Healthcare, Molina, and Anthem Medicaid plans must know each MCO\'s specific requirements separately.',reviewSection:6},
+  {text:`An RBT delivers a 97153 session at a client\'s home on November 20. The authorization for that client covers clinic and community settings effective October 1 through March 31. The home is not listed as an eligible service location. What is the documentation coordinator\'s obligation when reviewing the week\'s claims?`,answers:[{text:'Submit the claim, the authorization is active on November 20 and the service is authorized.',correct:false},{text:'Flag the claim and do not submit it. The home setting is not on the authorization. The documentation coordinator must contact the payer to determine whether a service location modification can be added retroactively.',correct:true},{text:'Modify the claim to show "community setting" since home visits are similar to community visits.',correct:false},{text:'Submit the claim with a note that the client requested home services.',correct:false}],rationale:'The authorization lists clinic and community as eligible settings, not home. Submitting a claim for a service delivered in a non-authorized setting is submitting a claim for an unauthorized service. The documentation coordinator must flag this claim before submission and explore whether the payer will approve a retroactive setting modification. Modifying the claim to show a different setting without payer approval is a documentation accuracy violation.',reviewSection:2},
+  {text:`A renewal authorization packet for a client on a commercial Aetna plan arrives from the clinical team. The packet includes progress notes from the last 90 days and a current treatment plan signed by the BCBA. The physician referral on file expired 4 months ago. The documentation coordinator knows Aetna requires a current physician referral for renewal. The authorization expires in 10 days. What is the MOST accurate description of the documentation coordinator\'s next action?`,answers:[{text:'Submit the packet immediately with the expired referral and hope Aetna does not notice.',correct:false},{text:'Return the packet to the clinical team with an urgent request for a current physician referral, notify the clinic director of the timeline risk, and document the notification date.',correct:true},{text:'Submit the packet and call Aetna to request an extension while the referral is obtained.',correct:false},{text:'Wait until the referral is obtained before notifying the clinical team.',correct:false}],rationale:'Submitting an incomplete packet to Aetna is likely to result in a denial or additional documentation request, which adds more delay. The documentation coordinator\'s job is to flag the incomplete packet immediately, escalate to the clinic director (not just the BCBA) given the 10-day timeline, and document when and to whom the notification was given. The documentation of the notification date is critical, if a service gap results, the documentation shows the coordinator identified the problem and escalated it appropriately.',reviewSection:5}
 ];
 
 let cur = 0;

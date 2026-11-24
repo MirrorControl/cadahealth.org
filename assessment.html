@@ -4,6 +4,33 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root{
+  --bg:#111827;--surface:#1f2937;--surface-raised:#374151;
+  --navy:#0d1b2e;--navy-mid:#1e3a5f;
+  --gold:#d97706;--gold-light:#451a03;
+  --teal:#2dd4bf;--teal-light:#0d3534;
+  --red:#ef4444;--red-light:#450a0a;
+  --green:#22c55e;--green-light:#052e16;
+  --amber:#fb923c;--amber-light:#431407;
+  --text:#f9fafb;--text-secondary:#d1d5db;--text-muted:#9ca3af;
+  --border:#374151;--border-light:#4b5563;
+  --radius:12px;--topbar-h:56px;
+  color-scheme:dark;
+}
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+    --navy:#1a2744;--navy-mid:#2c3e6b;
+    --gold:#c8921a;--gold-light:#f5e6c3;
+    --teal:#0d7377;--teal-light:#d4f0f1;
+    --red:#c0392b;--red-light:#fcecea;
+    --green:#1e7e34;--green-light:#d4f4dd;
+    --amber:#d35400;--amber-light:#fef0e4;
+    --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
+    --border:#d8d5cf;--border-light:#ebe8e2;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
   --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
   --navy:#1a2744;--navy-mid:#2c3e6b;
   --gold:#c8921a;--gold-light:#f5e6c3;
@@ -13,21 +40,7 @@
   --amber:#d35400;--amber-light:#fef0e4;
   --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
   --border:#d8d5cf;--border-light:#ebe8e2;
-  --radius:12px;--topbar-h:56px;
-}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
-    --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
-    --border:#2e2b26;--border-light:#252320;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
-  --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
-  --border:#2e2b26;--border-light:#252320;
-  color-scheme:dark;
+  color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -71,26 +84,24 @@ body{
 /* Intro */
 .assessment-icon{
   width:80px;height:80px;border-radius:50%;
-  background:linear-gradient(135deg,var(--navy),var(--navy-mid));
+  background:linear-gradient(135deg,var(--gold-light),var(--surface-raised));
   display:flex;align-items:center;justify-content:center;
   margin:0 auto 24px;
-  box-shadow:0 4px 20px rgba(26,39,68,.25);
+  box-shadow:0 4px 20px rgba(217,119,6,.2);
 }
 .assessment-icon svg{width:40px;height:40px}
 
 h1.page-title{
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(24px,5vw,34px);font-weight:700;
-  color:var(--navy);margin-bottom:14px;text-wrap:balance;
+  color:var(--text);margin-bottom:14px;text-wrap:balance;
 }
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) h1.page-title{color:var(--text)}}
-:root[data-theme="dark"] h1.page-title{color:var(--text)}
 
 .intro-meta{
   display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px;
 }
 .intro-meta-item{
-  background:var(--navy);color:#fff;
+  background:var(--surface-raised);color:var(--text-secondary);
   font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
   padding:5px 14px;border-radius:20px;letter-spacing:.03em;
 }
@@ -110,13 +121,13 @@ h1.page-title{
 .instructions-box li:last-child{margin-bottom:0}
 
 .btn-start{
-  background:var(--navy);color:#fff;border:none;
+  background:var(--gold);color:#111827;border:none;
   font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;
   padding:14px 40px;border-radius:8px;cursor:pointer;
   transition:background .2s;display:inline-block;
-  box-shadow:0 4px 16px rgba(26,39,68,.25);
+  box-shadow:0 4px 16px rgba(217,119,6,.35);
 }
-.btn-start:hover{background:var(--navy-mid)}
+.btn-start:hover{background:var(--amber)}
 
 /* Exam progress */
 .exam-progress-bar{
@@ -135,10 +146,20 @@ h1.page-title{
 }
 .epb-count{
   font-family:'Space Grotesk',sans-serif;
-  font-size:14px;font-weight:700;color:var(--navy);
+  font-size:14px;font-weight:700;color:var(--gold);
 }
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .epb-count{color:var(--gold)}}
-:root[data-theme="dark"] .epb-count{color:var(--gold)}
+/* Timer */
+.exam-timer{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;font-weight:700;
+  color:var(--text-secondary);
+  display:flex;align-items:center;gap:6px;
+  transition:color .3s;
+}
+.exam-timer.warning{color:var(--amber)}
+.exam-timer.critical{color:var(--red);animation:pulse-red 1s ease-in-out infinite}
+@keyframes pulse-red{0%,100%{opacity:1}50%{opacity:.6}}
+.timer-icon{font-size:14px}
 .epb-fill{
   position:absolute;bottom:0;left:0;height:3px;
   background:linear-gradient(90deg,var(--gold),var(--amber));
@@ -163,7 +184,7 @@ h1.page-title{
 }
 .q-num{
   width:28px;height:28px;border-radius:50%;
-  background:var(--navy);color:#fff;
+  background:var(--gold);color:#111827;
   font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
@@ -180,10 +201,8 @@ h1.page-title{
   padding:12px 14px;border:1.5px solid var(--border);
   border-radius:8px;cursor:pointer;transition:all .15s;user-select:none;
 }
-.q-option:hover{border-color:var(--navy);background:var(--surface-raised)}
-.q-option.selected{border-color:var(--navy);background:rgba(26,39,68,.06)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .q-option.selected{background:rgba(44,62,107,.25)}}
-:root[data-theme="dark"] .q-option.selected{background:rgba(44,62,107,.25)}
+.q-option:hover{border-color:var(--gold);background:var(--surface-raised)}
+.q-option.selected{border-color:var(--gold);background:var(--gold-light)}
 
 .q-option.graded{cursor:default;pointer-events:none}
 .q-option.correct-ans{border-color:var(--green)!important;background:var(--green-light)!important}
@@ -195,7 +214,7 @@ h1.page-title{
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;color:var(--text-muted);transition:all .15s;
 }
-.q-option.selected .opt-letter{background:var(--navy);border-color:var(--navy);color:#fff}
+.q-option.selected .opt-letter{background:var(--gold);border-color:var(--gold);color:#111827}
 .q-option.correct-ans .opt-letter{background:var(--green);border-color:var(--green);color:#fff}
 .q-option.wrong-sel .opt-letter{background:var(--red);border-color:var(--red);color:#fff}
 .opt-text{font-size:14px;line-height:1.55;color:var(--text);padding-top:2px}
@@ -203,16 +222,14 @@ h1.page-title{
 .q-rationale{
   margin-top:16px;padding:14px 16px;
   background:var(--surface-raised);border-radius:8px;
-  border-left:3px solid var(--navy);
+  border-left:3px solid var(--gold);
   font-size:14px;line-height:1.65;color:var(--text-secondary);
 }
 .q-rationale strong{
   display:block;margin-bottom:5px;
   font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--navy);
+  color:var(--gold);
 }
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .q-rationale strong{color:var(--gold)}}
-:root[data-theme="dark"] .q-rationale strong{color:var(--gold)}
 
 /* Submit */
 .submit-wrap{
@@ -221,11 +238,11 @@ h1.page-title{
   text-align:center;
 }
 .btn-submit{
-  background:var(--navy);color:#fff;border:none;
+  background:var(--gold);color:#111827;border:none;
   font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;
   padding:14px 40px;border-radius:8px;cursor:pointer;transition:all .2s;
 }
-.btn-submit:hover:not(:disabled){background:var(--navy-mid)}
+.btn-submit:hover:not(:disabled){background:var(--amber)}
 .btn-submit:disabled{opacity:.35;cursor:not-allowed}
 .submit-hint{margin-top:10px;font-size:13px;color:var(--text-muted)}
 
@@ -341,12 +358,10 @@ h1.page-title{
   display:block;padding:10px 14px;
   background:var(--surface);border:1px solid var(--border);
   border-radius:8px;text-decoration:none;
-  font-size:13px;font-weight:600;color:var(--navy);
+  font-size:13px;font-weight:600;color:var(--gold);
   transition:all .15s;
 }
-.review-module-link:hover{border-color:var(--navy);background:var(--surface-raised)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .review-module-link{color:var(--gold)}}
-:root[data-theme="dark"] .review-module-link{color:var(--gold)}
+.review-module-link:hover{border-color:var(--gold);background:var(--surface-raised)}
 
 /* Weak areas */
 .weak-areas{margin:0 0 28px}
@@ -370,17 +385,11 @@ h1.page-title{
 .score-miss{background:var(--red-light);color:var(--red)}
 .score-ok{background:var(--green-light);color:var(--green)}
 .weak-area-link{
-  font-size:13px;font-weight:600;color:var(--navy);text-decoration:none;
-  padding:5px 10px;border:1px solid var(--navy);border-radius:6px;
+  font-size:13px;font-weight:600;color:var(--gold);text-decoration:none;
+  padding:5px 10px;border:1px solid var(--gold);border-radius:6px;
   transition:all .15s;white-space:nowrap;
 }
-.weak-area-link:hover{background:var(--navy);color:#fff}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .weak-area-link{color:var(--gold);border-color:var(--gold)}
-  :root:not([data-theme="light"]) .weak-area-link:hover{background:var(--gold);color:var(--navy)}
-}
-:root[data-theme="dark"] .weak-area-link{color:var(--gold);border-color:var(--gold)}
-:root[data-theme="dark"] .weak-area-link:hover{background:var(--gold);color:var(--navy)}
+.weak-area-link:hover{background:var(--gold);color:#111827}
 
 /* Q Review */
 .q-review{margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
@@ -393,26 +402,20 @@ h1.page-title{
 /* Buttons */
 .btn-primary{
   display:inline-block;
-  background:var(--navy);color:#fff;border:none;
+  background:var(--gold);color:#111827;border:none;
   font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;
   padding:14px 32px;border-radius:8px;text-decoration:none;
   cursor:pointer;transition:background .2s;
 }
-.btn-primary:hover{background:var(--navy-mid)}
+.btn-primary:hover{background:var(--amber)}
 .btn-secondary{
   display:inline-block;
-  background:transparent;color:var(--navy);border:2px solid var(--navy);
+  background:transparent;color:var(--gold);border:2px solid var(--gold);
   font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;
   padding:12px 28px;border-radius:8px;text-decoration:none;cursor:pointer;
   transition:all .2s;
 }
-.btn-secondary:hover{background:var(--navy);color:#fff}
-@media(prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .btn-secondary{color:var(--gold);border-color:var(--gold)}
-  :root:not([data-theme="light"]) .btn-secondary:hover{background:var(--gold);color:var(--navy)}
-}
-:root[data-theme="dark"] .btn-secondary{color:var(--gold);border-color:var(--gold)}
-:root[data-theme="dark"] .btn-secondary:hover{background:var(--gold);color:var(--navy)}
+.btn-secondary:hover{background:var(--gold);color:#111827}
 
 .btn-group{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px;margin-top:4px}
 
@@ -448,7 +451,6 @@ h1.page-title{
     </a>
     <nav class="topnav">
       <a href="practice-exam.html" class="nav-link">← Practice</a>
-      <a href="module1.html" class="nav-link">Modules</a>
     </nav>
   </header>
 
@@ -465,8 +467,8 @@ h1.page-title{
       </div>
       <h1 class="page-title">CADA Final Assessment</h1>
       <div class="intro-meta">
-        <span class="intro-meta-item">15 Questions</span>
-        <span class="intro-meta-item">80% to Pass &mdash; 12 of 15</span>
+        <span class="intro-meta-item">20 Questions</span>
+        <span class="intro-meta-item">80% to Pass: 16 of 20</span>
         <span class="intro-meta-item">72-Hour Retake Wait</span>
         <span class="intro-meta-item">All 6 Modules</span>
       </div>
@@ -474,9 +476,9 @@ h1.page-title{
         <h2>Instructions</h2>
         <ul>
           <li>Read each question carefully before selecting your answer</li>
-          <li>All 15 questions must be answered before you can submit</li>
+          <li>All 20 questions must be answered before you can submit</li>
           <li>Once submitted, answers cannot be changed</li>
-          <li>You need at least 12 correct answers (80%) to earn your CADA credential</li>
+          <li>You need at least 16 correct answers (80%) to earn your CADA credential</li>
           <li>If you do not pass, a 72-hour waiting period is required before retaking</li>
           <li>Passing earns your Credential ID and eligibility to enroll</li>
         </ul>
@@ -500,12 +502,12 @@ h1.page-title{
       <div class="review-links">
         <h3>Use this time to review</h3>
         <div class="review-module-links">
-          <a href="module1.html" class="review-module-link">Module 1 &mdash; Documentation</a>
-          <a href="module2.html" class="review-module-link">Module 2 &mdash; Prior Auth</a>
-          <a href="module3.html" class="review-module-link">Module 3 &mdash; Billing</a>
-          <a href="module4.html" class="review-module-link">Module 4 &mdash; Compliance</a>
-          <a href="module5.html" class="review-module-link">Module 5 &mdash; CPT 2027</a>
-          <a href="module6.html" class="review-module-link">Module 6 &mdash; Payer Rules</a>
+          <a href="module1.html" class="review-module-link">Module 1: Documentation</a>
+          <a href="module2.html" class="review-module-link">Module 2: Prior Auth</a>
+          <a href="module3.html" class="review-module-link">Module 3: Billing</a>
+          <a href="module4.html" class="review-module-link">Module 4: Compliance</a>
+          <a href="module5.html" class="review-module-link">Module 5: CPT 2027</a>
+          <a href="module6.html" class="review-module-link">Module 6: Payer Rules</a>
         </div>
       </div>
     </div>
@@ -533,14 +535,15 @@ h1.page-title{
     <div class="exam-progress-bar">
       <div class="epb-inner">
         <span class="epb-title">CADA Final Assessment</span>
-        <span class="epb-count" id="epb-count">0 of 15 answered</span>
+        <span class="exam-timer" id="exam-timer"><span class="timer-icon">⏱</span><span id="timer-display">30:00</span></span>
+        <span class="epb-count" id="epb-count">0 of 20 answered</span>
       </div>
       <div class="epb-fill" id="epb-fill" style="width:0%"></div>
     </div>
     <div class="questions-wrap" id="questions-wrap"></div>
     <div class="submit-wrap">
       <button class="btn-submit" id="btn-submit" onclick="submitExam()" disabled>Submit Assessment</button>
-      <p class="submit-hint" id="submit-hint">Answer all 15 questions to submit</p>
+      <p class="submit-hint" id="submit-hint">Answer all 20 questions to submit</p>
     </div>
   </div>
 
@@ -553,7 +556,7 @@ h1.page-title{
       <div class="score-banner" id="score-banner">
         <div class="score-circle" id="score-circle">
           <span class="score-num" id="score-num"></span>
-          <span class="score-den">/15</span>
+          <span class="score-den" id="score-den">/20</span>
         </div>
         <div class="score-info">
           <div class="score-pct" id="score-pct"></div>
@@ -602,8 +605,8 @@ h1.page-title{
    CONSTANTS
 ============================================= */
 const LETTERS = ['A','B','C','D'];
-const PASS_THRESHOLD = 12;
-const TOTAL = 15;
+const PASS_THRESHOLD = 16;
+const TOTAL = 20;
 const RETAKE_MS = 72 * 60 * 60 * 1000;
 const KEY_FAIL = 'cada_last_fail';
 const KEY_PASS = 'cada_passed';
@@ -623,7 +626,7 @@ const MODULE_URLS = {
 };
 
 /* =============================================
-   QUESTION BANK (15 questions, all 6 modules)
+   QUESTION BANK (20 questions, all 6 modules)
 ============================================= */
 const QUESTIONS = [
   /* ---- Module 1: ABA Documentation Standard ---- */
@@ -768,6 +771,71 @@ const QUESTIONS = [
     ]
   },
 
+  /* ---- Module 1 Q4 ---- */
+  {
+    module:1,
+    stem:"An RBT completes a session note but forgets to add their electronic signature before the BCBA submits the claim. The BCBA's signature is present. What is the documentation deficiency?",
+    rationale:"Both the treating provider (RBT) and the supervising BCBA must sign ABA session notes. The RBT's signature establishes who performed the service and that the documentation is accurate. The BCBA's signature alone does not substitute for the treating provider's attestation.",
+    options:[
+      {text:"No deficiency — the BCBA's signature satisfies the signature requirement",correct:false},
+      {text:"The RBT's signature is required on every session note as the treating provider",correct:true},
+      {text:"Only the BCBA signature is required; RBT signatures are optional",correct:false},
+      {text:"The note must be voided and re-entered with both signatures before the next session",correct:false}
+    ]
+  },
+
+  /* ---- Module 2 Q3 ---- */
+  {
+    module:2,
+    stem:"A client transitions from one Medi-Cal managed care plan to another mid-authorization. The receiving plan requires a new authorization submission. The existing authorization from the previous plan has 45 days remaining. What must the documentation coordinator do?",
+    rationale:"Prior authorizations are plan-specific and do not transfer between managed care plans, even within the same payer. When a client changes managed care plans mid-authorization, the documentation coordinator must submit a new prior authorization to the receiving plan immediately, documenting the transition date and ensuring no service gap occurs.",
+    options:[
+      {text:"Apply the remaining 45-day authorization period to the new plan",correct:false},
+      {text:"Submit a new prior authorization to the receiving plan immediately, since authorizations do not transfer between plans",correct:true},
+      {text:"Request the BCBA extend the treatment plan to cover the transition period",correct:false},
+      {text:"Continue billing under the original authorization until it expires",correct:false}
+    ]
+  },
+
+  /* ---- Module 3 Q3 ---- */
+  {
+    module:3,
+    stem:"A client receives ABA services from two different RBTs in separate sessions on the same calendar day. Both sessions are billed under CPT 97153. What is required to prevent claim rejection?",
+    rationale:"When the same CPT code is billed more than once on the same date of service for the same client, payers will reject the duplicate. Modifier 59 distinguishes the second session as a separate and distinct service event, satisfying the payer's claim editing logic and preventing denial.",
+    options:[
+      {text:"The two sessions must be combined into a single claim line",correct:false},
+      {text:"A prior authorization addendum must be submitted for the second session",correct:false},
+      {text:"Modifier 59 (Distinct Procedural Service) must be appended to the second claim line to identify it as a separate, distinct service",correct:true},
+      {text:"Only the longer session should be billed; the shorter session is not separately billable",correct:false}
+    ]
+  },
+
+  /* ---- Module 5 Q3 ---- */
+  {
+    module:5,
+    stem:"Under the 2027 CPT transition, what happens to billing for direct ABA treatment by an RBT when the BCBA is not physically present?",
+    rationale:"CPT 97153 (Adaptive Behavior Treatment by Protocol) is not part of the 2027 CPT revision. It continues to describe RBT-delivered direct treatment implemented without the BCBA physically present. The 2027 changes specifically affect CPT code 97155 (splitting into 97173 and 97160) and delete legacy codes 0362T and 0373T.",
+    options:[
+      {text:"The service is no longer billable after January 1, 2027",correct:false},
+      {text:"It continues to be billed under CPT 97153, which is not affected by the 2027 transition",correct:true},
+      {text:"It must now be billed under the new 97160 code replacing 97155",correct:false},
+      {text:"It requires a co-treatment modifier for all services after 2027",correct:false}
+    ]
+  },
+
+  /* ---- Module 6 Q4 ---- */
+  {
+    module:6,
+    stem:"A documentation coordinator submits a prior authorization for 480 units of 97153 to a commercial payer. The authorization is approved for 480 units but specifies a maximum of 40 units per week. The treating team delivers 52 units in one week. What is the billing consequence?",
+    rationale:"Most commercial payers enforce both the total authorization units AND any per-unit-period caps specified in the authorization letter. Exceeding the weekly unit cap creates a denial risk for the excess units even if the cumulative total authorization remains under the approved ceiling. Documentation coordinators must track weekly unit usage against per-period caps, not just overall authorization totals.",
+    options:[
+      {text:"No consequence — the weekly limit does not apply as long as the total authorization is not exceeded",correct:false},
+      {text:"The 12 units exceeding the weekly maximum may be denied even though the total authorization is not exceeded, as most commercial payers treat weekly caps as hard limits",correct:true},
+      {text:"Units above the weekly maximum are non-covered and cannot be billed to the client",correct:false},
+      {text:"The authorization must be amended before services can continue the following week",correct:false}
+    ]
+  },
+
   /* ---- Module 6: Payer Rules and Variations ---- */
   {
     module:6,
@@ -811,6 +879,8 @@ let shuffledQ = [];
 let selected = [];
 let graded = false;
 let cdInterval = null;
+let timerInterval = null;
+let timerSecsLeft = 0;
 
 /* =============================================
    UTILITY
@@ -913,6 +983,46 @@ function runCountdown(elId, initialMs) {
 }
 
 /* =============================================
+   TIMER
+============================================= */
+function startTimer() {
+  timerSecsLeft = 30 * 60;
+  updateTimerDisplay();
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timerSecsLeft--;
+    updateTimerDisplay();
+    if (timerSecsLeft <= 0) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      autoSubmitExam();
+    }
+  }, 1000);
+}
+function stopTimer() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+}
+function updateTimerDisplay() {
+  const el = document.getElementById('exam-timer');
+  const disp = document.getElementById('timer-display');
+  if (!el || !disp) return;
+  const m = Math.floor(timerSecsLeft / 60);
+  const s = timerSecsLeft % 60;
+  disp.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  el.classList.remove('warning','critical');
+  if (timerSecsLeft <= 60) el.classList.add('critical');
+  else if (timerSecsLeft <= 300) el.classList.add('warning');
+}
+function autoSubmitExam() {
+  if (graded) return;
+  // Fill any unanswered questions with no selection (they grade as wrong)
+  for (let i = 0; i < selected.length; i++) {
+    if (selected[i] === null) selected[i] = -1;
+  }
+  submitExam();
+}
+
+/* =============================================
    START EXAM
 ============================================= */
 function startExam() {
@@ -925,6 +1035,7 @@ function startExam() {
   renderQuestions();
   showView('view-exam');
   window.scrollTo(0,0);
+  startTimer();
 }
 
 function renderQuestions() {
@@ -940,7 +1051,6 @@ function renderQuestions() {
       <div class="q-card" id="qcard-${qi}">
         <div class="q-header">
           <span class="q-num">${qi + 1}</span>
-          <span class="q-module-badge">Module ${q.module}</span>
         </div>
         <div class="q-stem">${q.stem}</div>
         <div class="q-options">${opts}</div>
@@ -990,6 +1100,7 @@ function updateProgress() {
 function submitExam() {
   if (graded) return;
   graded = true;
+  stopTimer();
 
   let score = 0;
   const moduleResults = {};
@@ -997,7 +1108,7 @@ function submitExam() {
 
   shuffledQ.forEach((q, qi) => {
     const selIdx = selected[qi];
-    const selOpt = q.shuffledOptions[selIdx];
+    const selOpt = (selIdx != null && selIdx >= 0) ? q.shuffledOptions[selIdx] : null;
     if (selOpt?.correct) score++;
     moduleResults[q.module].total++;
     if (selOpt?.correct) moduleResults[q.module].correct++;
@@ -1014,9 +1125,10 @@ function submitExam() {
       if (!el) return;
       el.classList.add('graded');
       if (opt.correct) el.classList.add('correct-ans');
-      if (oi === selIdx && !opt.correct) el.classList.add('wrong-sel');
+      if (selIdx != null && selIdx >= 0 && oi === selIdx && !opt.correct) el.classList.add('wrong-sel');
     });
-    document.getElementById(`rat-${qi}`).hidden = false;
+    const rat = document.getElementById(`rat-${qi}`);
+    if (rat) rat.hidden = false;
   });
 
   // Build score banner
@@ -1063,7 +1175,7 @@ function buildWeakAreas(moduleResults) {
     const cls = missed > 0 ? 'score-miss' : 'score-ok';
     return `
       <div class="weak-area-item">
-        <span class="weak-area-module">Module ${mod} &mdash; ${MODULE_NAMES[mod]}</span>
+        <span class="weak-area-module">Module ${mod}: ${MODULE_NAMES[mod]}</span>
         <div class="weak-area-score">
           <span class="weak-score-pill ${cls}">${res.correct}/${res.total}</span>
           ${missed > 0 ? `<a href="${MODULE_URLS[mod]}" class="weak-area-link">Review &rarr;</a>` : ''}
@@ -1083,7 +1195,7 @@ function buildQReview() {
     const opts = q.shuffledOptions.map((opt, oi) => {
       let cls = 'graded';
       if (opt.correct) cls += ' correct-ans';
-      else if (oi === selIdx) cls += ' wrong-sel';
+      else if (selIdx != null && selIdx >= 0 && oi === selIdx) cls += ' wrong-sel';
       return `
         <div class="q-option ${cls}">
           <span class="opt-letter">${LETTERS[oi]}</span>
