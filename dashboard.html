@@ -11,10 +11,10 @@
   --surface:#ffffff;
   --surface-raised:#f0ede9;
   --sidebar-bg:#ffffff;
-  --navy:#1a2744;
-  --navy-mid:#2c3e6b;
-  --gold:#c8921a;
-  --gold-light:#fdf3e1;
+  --navy:#080808;
+  --navy-mid:#1a1a1a;
+  --gold:#0ab8a8;
+  --gold-light:#d4f5f2;
   --teal:#0d7377;
   --teal-light:#e0f5f5;
   --red:#c0392b;
@@ -198,7 +198,7 @@ body{
   padding:10px 20px;border-radius:8px;cursor:pointer;
   text-decoration:none;transition:background .15s,transform .1s;
 }
-.btn-gold:hover{background:#a97415;transform:translateY(-1px)}
+.btn-gold:hover{background:#089888;transform:translateY(-1px)}
 
 /* Stat cards */
 .stat-grid{
@@ -233,7 +233,7 @@ body{
 .prog-bar-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--navy)}
 .prog-bar-pct{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--gold)}
 .prog-track{height:8px;background:var(--surface-raised);border-radius:4px;overflow:hidden}
-.prog-fill{height:100%;border-radius:4px;transition:width .8s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,var(--gold),#e8a825)}
+.prog-fill{height:100%;border-radius:4px;transition:width .8s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,var(--gold),#089888)}
 .prog-fill.complete{background:linear-gradient(90deg,var(--green),#2ea84a)}
 
 /* Two-column layout */
@@ -305,7 +305,7 @@ body{
 }
 .sc-btn:hover{background:var(--navy-mid)}
 .sc-btn.gold{background:var(--gold)}
-.sc-btn.gold:hover{background:#a97415}
+.sc-btn.gold:hover{background:#089888}
 
 /* Cooldown card */
 .cooldown-card{
@@ -323,7 +323,7 @@ body{
 
 /* Credential card (post pass) */
 .credential-card{
-  background:linear-gradient(135deg,var(--navy) 0%,#243460 100%);
+  background:linear-gradient(135deg,#080808 0%,#1a1a1a 100%);
   border-radius:var(--radius);padding:22px;
   box-shadow:var(--shadow-md);margin-bottom:28px;
   position:relative;overflow:hidden;
