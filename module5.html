@@ -1,66 +1,42 @@
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-(function(){
-  function initAuth(){
-    var ni=window.netlifyIdentity;
-    if(!ni||typeof ni.on!=='function'){setTimeout(initAuth,80);return;}
-    ni.on('init',function(u){if(!u){window.location.replace('enroll.html');}});
-    ni.on('logout',function(){window.location.replace('enroll.html');});
-    ni.init();
-  }
-  initAuth();
-})();
-</script>
-<title>Module 5, The 2027 CPT Code Transition | CareGuard CADA</title>
+<title>Module 5 — The 2027 CPT Code Transition | CADA Institute</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
-  --bg:#0d0a06;--surface:#1a1208;--surface-raised:#2c1e0c;
-  --navy:#0d0a06;--navy-mid:#1a1208;
-  --gold:#d4a020;--gold-light:#2a1e0a;
-  --teal:#2dd4bf;--teal-light:#0d3534;
-  --red:#ef4444;--red-light:#450a0a;
-  --green:#22c55e;--green-light:#052e16;
-  --amber:#fb923c;--amber-light:#431407;
-  --text:#f9fafb;--text-secondary:#d1d5db;--text-muted:#9ca3af;
-  --border:#374151;--border-light:#4b5563;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.3);
-  --shadow-md:0 4px 16px rgba(0,0,0,.4);
-  --shadow-nav:0 -4px 24px rgba(0,0,0,.4);
-  --radius-sm:6px;--radius:10px;--radius-lg:16px;
-  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
-  color-scheme:dark;
-}
-@media(prefers-color-scheme:light){
-  :root:not([data-theme="dark"]){
-    --bg:#f8f4ee;--surface:#fffdf9;--surface-raised:#f2ece4;
-    --navy:#0d0a06;--navy-mid:#1a1208;
-    --gold:#9a6e10;--gold-light:#f2e8d4;
-    --teal:#0d7377;--teal-light:#d4f0f1;
-    --red:#c0392b;--red-light:#fcecea;
-    --green:#1e7e34;--green-light:#d4f4dd;
-    --amber:#d35400;--amber-light:#fef0e4;
-    --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
-    --border:#d8d5cf;--border-light:#ebe8e2;
-    --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
-    color-scheme:light;
-  }
-}
-:root[data-theme="light"]{
-  --bg:#f8f4ee;--surface:#fffdf9;--surface-raised:#f2ece4;
-  --navy:#0d0a06;--navy-mid:#1a1208;
-  --gold:#9a6e10;--gold-light:#f2e8d4;
+  --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+  --navy:#1a2744;--navy-mid:#2c3e6b;
+  --gold:#c8921a;--gold-light:#f5e6c3;
   --teal:#0d7377;--teal-light:#d4f0f1;
   --red:#c0392b;--red-light:#fcecea;
   --green:#1e7e34;--green-light:#d4f4dd;
   --amber:#d35400;--amber-light:#fef0e4;
   --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
   --border:#d8d5cf;--border-light:#ebe8e2;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
-  color-scheme:light;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:0 4px 16px rgba(0,0,0,.10);
+  --shadow-nav:0 -4px 24px rgba(0,0,0,.10);
+  --radius-sm:6px;--radius:10px;--radius-lg:16px;
+  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
+    --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
+    --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
+    --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
+    --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
+    --border:#343850;--border-light:#272b3e;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
+  --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
+  --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
+  --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
+  --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
+  --border:#343850;--border-light:#272b3e;color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
@@ -308,7 +284,6 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
   <a href="index.html" class="topbar-back">← Home</a>
   <div class="topbar-title">Module 5: The 2027 CPT Code Transition</div>
   <div class="topbar-badge">CADA</div>
-  <a href="dashboard.html" style="font-size:11px;font-weight:700;color:rgba(255,255,255,.85);text-decoration:none;padding:5px 10px;border:1px solid rgba(255,255,255,.22);border-radius:5px;white-space:nowrap;letter-spacing:.02em">My Dashboard</a>
   <button class="theme-btn" onclick="toggleTheme()">◐</button>
 </div>
 
@@ -347,19 +322,19 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="countdown-num">39</div>
         <div class="countdown-text">
           <h3>Days until January 1, 2027</h3>
-          <p>Six new adaptive behavior CPT codes take effect. Two existing codes are deleted. 97155, the most billed code in ABA, splits into two. Every authorization written under old codes that extends into 2027 references codes that will not exist on January 2.</p>
+          <p>Six new adaptive behavior CPT codes take effect. Two existing codes are deleted. 97155 — the most billed code in ABA — splits into two. Every authorization written under old codes that extends into 2027 references codes that will not exist on January 2.</p>
         </div>
       </div>
       <div class="hook-box">
-        <div class="hook-eyebrow">WHAT HAPPENS WITHOUT PREPARATION, PROJECTED JANUARY 2027</div>
+        <div class="hook-eyebrow">WHAT HAPPENS WITHOUT PREPARATION — PROJECTED JANUARY 2027</div>
         <div class="hook-stat">$340,000</div>
-        <div class="hook-stat-label">in denied January claims, a mid-size California clinic, projected scenario</div>
-        <p style="margin-top:16px">A documentation coordinator submits the first week of January 2027 claims using the same CPT codes her clinic has used for three years. She does not know that two of those codes were deleted on January 1. She does not know that 97155, her most common code, now requires a documentation distinction that the session notes she is processing do not make. The claims go out on January 7. The first denial wave arrives January 14. By February 1, the clinic has $340,000 in denied January claims and no clean way to resubmit, because the session notes were written for codes that no longer exist, and the payer's documentation requirements for the new codes are different from what the RBTs were instructed to include.</p>
-        <p style="margin-top:12px">This is not a hypothetical. Every clinic that enters 2027 without transition documentation training will face a version of this scenario. The question is whether your clinic is one of them, and whether you are the person who prevented it.</p>
+        <div class="hook-stat-label">in denied January claims — a mid-size California clinic, projected scenario</div>
+        <p style="margin-top:16px">A documentation coordinator submits the first week of January 2027 claims using the same CPT codes her clinic has used for three years. She does not know that two of those codes were deleted on January 1. She does not know that 97155, her most common code, now requires a documentation distinction that the session notes she is processing do not make. The claims go out on January 7. The first denial wave arrives January 14. By February 1, the clinic has $340,000 in denied January claims and no clean way to resubmit — because the session notes were written for codes that no longer exist, and the payer's documentation requirements for the new codes are different from what the RBTs were instructed to include.</p>
+        <p style="margin-top:12px">This is not a hypothetical. Every clinic that enters 2027 without transition documentation training will face a version of this scenario. The question is whether your clinic is one of them — and whether you are the person who prevented it.</p>
       </div>
       <div class="section-body">
-        <p>January 1, 2027 is the most significant date in ABA billing in a decade. This module walks through every change, what the new codes cover, what the deleted codes mean for existing authorizations, how 97155 splits and what documentation must change to support that split, and what a documentation coordinator needs to do before December 31 to protect her clinic's January revenue.</p>
-        <p>CADA exists in part because of this transition. No other credential covers it. By the time you finish this module, you will be ahead of 90% of the documentation coordinators in the country, most of whom will not understand what changed until the first denial arrives.</p>
+        <p>January 1, 2027 is the most significant date in ABA billing in a decade. This module walks through every change — what the new codes cover, what the deleted codes mean for existing authorizations, how 97155 splits and what documentation must change to support that split, and what a documentation coordinator needs to do before December 31 to protect her clinic's January revenue.</p>
+        <p>CADA exists in part because of this transition. No other credential covers it. By the time you finish this module, you will be ahead of 90% of the documentation coordinators in the country — most of whom will not understand what changed until the first denial arrives.</p>
       </div>
     </section>
 
@@ -369,10 +344,10 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-title">What you will be able to do after this module.</div>
       <div class="section-body">
         <ul class="obj-list">
-          <li><span class="obj-num">1</span>Identify the six new adaptive behavior CPT codes effective January 1, 2027, including which provider type delivers each service, what the note must document, and how each code differs from the codes it replaces or supplements.</li>
+          <li><span class="obj-num">1</span>Identify the six new adaptive behavior CPT codes effective January 1, 2027 — including which provider type delivers each service, what the note must document, and how each code differs from the codes it replaces or supplements.</li>
           <li><span class="obj-num">2</span>Explain what happens to claims and authorizations that reference the two deleted codes after January 1, 2027, and describe the steps required to correct authorizations before the effective date.</li>
-          <li><span class="obj-num">3</span>Describe the 97155 split, which new code replaces which type of 97155 service, and what documentation element determines whether a session is billed as 97160 or 97173.</li>
-          <li><span class="obj-num">4</span>Execute a pre-transition documentation system review, template audit, payer verification, staff training, and authorization correction, using the CADA 2027 Transition Checklist as a guide.</li>
+          <li><span class="obj-num">3</span>Describe the 97155 split — which new code replaces which type of 97155 service, and what documentation element determines whether a session is billed as 97160 or 97173.</li>
+          <li><span class="obj-num">4</span>Execute a pre-transition documentation system review — template audit, payer verification, staff training, and authorization correction — using the CADA 2027 Transition Checklist as a guide.</li>
         </ul>
       </div>
     </section>
@@ -380,18 +355,18 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 2: WHY 2027 CHANGES EVERYTHING (KCs 0,1) -->
     <section class="module-section" id="sec-2">
       <div class="section-label">PART 1 OF CORE CONTENT</div>
-      <div class="section-title">Why 2027 changes everything, what is happening and why it matters for documentation.</div>
+      <div class="section-title">Why 2027 changes everything — what is happening and why it matters for documentation.</div>
       <div class="section-body">
-        <p>The current ABA CPT code set, codes 97151 through 97158, was established in 2019 when the AMA replaced the previous unlisted procedure codes that the ABA field had used for years. At the time, the 2019 codes were a dramatic improvement: specific, defined, provider-matched, and tied to measurable service types. For five years, the field built its documentation systems around them.</p>
-        <p>The 2027 update does not replace that framework. It expands it. CMS and the AMA determined that the existing codes did not adequately distinguish between several service types that differ meaningfully in clinical intensity and provider involvement. The result is six new permanent codes, two deleted Category III codes, and one significant split in an existing code, changes designed to improve specificity, reduce audit exposure for clinics doing legitimate work, and give payers cleaner data.</p>
+        <p>The current ABA CPT code set — codes 97151 through 97158 — was established in 2019 when the AMA replaced the previous unlisted procedure codes that the ABA field had used for years. At the time, the 2019 codes were a dramatic improvement: specific, defined, provider-matched, and tied to measurable service types. For five years, the field built its documentation systems around them.</p>
+        <p>The 2027 update does not replace that framework. It expands it. CMS and the AMA determined that the existing codes did not adequately distinguish between several service types that differ meaningfully in clinical intensity and provider involvement. The result is six new permanent codes, two deleted Category III codes, and one significant split in an existing code — changes designed to improve specificity, reduce audit exposure for clinics doing legitimate work, and give payers cleaner data.</p>
 
         <h3>Why the documentation coordinator's role is central to this transition</h3>
-        <p>A BCBA's clinical decisions do not change on January 1, 2027. The behavior analyst will still modify protocols. The RBT will still implement them. The parent will still receive training. What changes is how those services are described in documentation, and documentation is the documentation coordinator's domain.</p>
-        <p>Every session note written in January 2027 must include documentation elements that session notes written in December 2026 were not required to include. Every authorization written under old codes that extends into 2027 must be amended before the first January service date. Every PrioraCare template must be updated. These are not clinical changes. They are documentation infrastructure changes, and the documentation coordinator is the person responsible for them.</p>
+        <p>A BCBA's clinical decisions do not change on January 1, 2027. The behavior analyst will still modify protocols. The RBT will still implement them. The parent will still receive training. What changes is how those services are described in documentation — and documentation is the documentation coordinator's domain.</p>
+        <p>Every session note written in January 2027 must include documentation elements that session notes written in December 2026 were not required to include. Every authorization written under old codes that extends into 2027 must be amended before the first January service date. Every PrioraCare template must be updated. These are not clinical changes. They are documentation infrastructure changes — and the documentation coordinator is the person responsible for them.</p>
 
         <h3>When payers begin accepting new codes</h3>
-        <p>CMS sets the January 1, 2027 effective date for the new codes. Payers, including Medi-Cal and commercial insurers, typically open their billing systems to accept new codes starting 30 to 60 days before the effective date, in November or December 2026. This matters: a clinic that waits until January 1 to begin testing payer acceptance is a clinic that will not discover billing system errors until they affect real claims. Documentation coordinators should begin payer verification no later than mid-November 2026.</p>
-        <p>It also matters in the other direction. Some payers extend grace periods allowing submission of old codes for services rendered before January 1, even if the claim is submitted after. Knowing your payer's specific transition window is essential, and that knowledge requires a phone call or a written payer communication, not an assumption.</p>
+        <p>CMS sets the January 1, 2027 effective date for the new codes. Payers — including Medi-Cal and commercial insurers — typically open their billing systems to accept new codes starting 30 to 60 days before the effective date, in November or December 2026. This matters: a clinic that waits until January 1 to begin testing payer acceptance is a clinic that will not discover billing system errors until they affect real claims. Documentation coordinators should begin payer verification no later than mid-November 2026.</p>
+        <p>It also matters in the other direction. Some payers extend grace periods allowing submission of old codes for services rendered before January 1, even if the claim is submitted after. Knowing your payer's specific transition window is essential — and that knowledge requires a phone call or a written payer communication, not an assumption.</p>
       </div>
 
       <!-- KC 0 -->
@@ -416,54 +391,54 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 3: THE SIX NEW CODES (KCs 2,3) -->
     <section class="module-section" id="sec-3">
       <div class="section-label">PART 2 OF CORE CONTENT</div>
-      <div class="section-title">The six new codes, what each one covers and what documentation it requires.</div>
+      <div class="section-title">The six new codes — what each one covers and what documentation it requires.</div>
       <div class="section-body">
-        <p>Six new permanent CPT codes take effect January 1, 2027. Each one captures a service type that the existing code set either could not describe precisely or could only approximate using unlisted procedure codes. The documentation requirements for each new code are more specific than what the existing codes required, meaning session note templates must be updated before the first January 2027 service date.</p>
+        <p>Six new permanent CPT codes take effect January 1, 2027. Each one captures a service type that the existing code set either could not describe precisely or could only approximate using unlisted procedure codes. The documentation requirements for each new code are more specific than what the existing codes required — meaning session note templates must be updated before the first January 2027 service date.</p>
       </div>
 
       <div class="code-grid">
         <div class="code-card new-code">
           <div class="code-card-num">97148</div>
-          <div class="code-card-tag">NEW, EFFECTIVE JAN 1, 2027</div>
+          <div class="code-card-tag">NEW — EFFECTIVE JAN 1, 2027</div>
           <h4>Group Adaptive Behavior Treatment</h4>
           <p>Direct treatment by protocol in a group setting, each 15 minutes. RBT delivered. Requires documentation of group composition, number of participants, and each client's target programs addressed in group.</p>
         </div>
         <div class="code-card new-code">
           <div class="code-card-num">97149</div>
-          <div class="code-card-tag">NEW, EFFECTIVE JAN 1, 2027</div>
+          <div class="code-card-tag">NEW — EFFECTIVE JAN 1, 2027</div>
           <h4>Caregiver Training Without Client Present</h4>
           <p>Adaptive behavior treatment guidance to caregiver or guardian, client not present, each 15 minutes. Note must document caregiver name, training topics, and client whose behavior program was discussed.</p>
         </div>
         <div class="code-card new-code">
           <div class="code-card-num">97159</div>
-          <div class="code-card-tag">NEW, EFFECTIVE JAN 1, 2027</div>
-          <h4>Adaptive Behavior Assessment, Caregiver Interview</h4>
+          <div class="code-card-tag">NEW — EFFECTIVE JAN 1, 2027</div>
+          <h4>Adaptive Behavior Assessment — Caregiver Interview</h4>
           <p>Assessment involving caregiver or guardian, 30 minutes minimum. Requires documentation of assessment purpose, caregiver responses, and how results will inform the behavior intervention plan.</p>
         </div>
         <div class="code-card new-code">
           <div class="code-card-num">97160</div>
-          <div class="code-card-tag">NEW, EFFECTIVE JAN 1, 2027</div>
-          <h4>Protocol Modification, Analyst Not Present</h4>
+          <div class="code-card-tag">NEW — EFFECTIVE JAN 1, 2027</div>
+          <h4>Protocol Modification — Analyst Not Present</h4>
           <p>BCBA modifies treatment protocol based on data review. Analyst is NOT physically present during the session. Note must document that the analyst reviewed session data remotely and specify the modification made.</p>
         </div>
         <div class="code-card new-code">
           <div class="code-card-num">97173</div>
-          <div class="code-card-tag">NEW, EFFECTIVE JAN 1, 2027</div>
-          <h4>Protocol Modification, Analyst Physically Present</h4>
+          <div class="code-card-tag">NEW — EFFECTIVE JAN 1, 2027</div>
+          <h4>Protocol Modification — Analyst Physically Present</h4>
           <p>BCBA is physically present during the session and directly observes or supervises the protocol modification. Note must explicitly document analyst's physical presence and their direct involvement during the session.</p>
         </div>
         <div class="code-card new-code">
           <div class="code-card-num">97180</div>
-          <div class="code-card-tag">NEW, EFFECTIVE JAN 1, 2027</div>
+          <div class="code-card-tag">NEW — EFFECTIVE JAN 1, 2027</div>
           <h4>Non-Face-to-Face BCBA Time</h4>
-          <p>The first standalone permanent code for indirect BCBA work, care coordination, supervision documentation, treatment plan revision, payer communication. Each 15 minutes. No client or caregiver present. Documents the time BCBAs spend that previously had no billable code.</p>
+          <p>The first standalone permanent code for indirect BCBA work — care coordination, supervision documentation, treatment plan revision, payer communication. Each 15 minutes. No client or caregiver present. Documents the time BCBAs spend that previously had no billable code.</p>
         </div>
       </div>
 
       <div class="section-body">
         <h3>What documentation coordinators must track for each new code</h3>
-        <p>Each new code introduces a documentation element that the existing code set did not require. For 97148 (group treatment), the note must document the number of clients in the group, a field that existing session note templates often do not include. For 97149, the note must distinguish whether the client was present or absent during the caregiver training session. For 97173, the note must include a statement of analyst physical presence that existing 97155 notes often omit because it was implied.</p>
-        <p>The documentation coordinator's pre-transition job is to review every existing session note template and identify which fields are missing for each new code. PrioraCare templates must be updated to include those fields before December 31. If RBTs submit January session notes using December templates, the notes will not contain the required documentation elements, and the claims will be denied on documentation grounds.</p>
+        <p>Each new code introduces a documentation element that the existing code set did not require. For 97148 (group treatment), the note must document the number of clients in the group — a field that existing session note templates often do not include. For 97149, the note must distinguish whether the client was present or absent during the caregiver training session. For 97173, the note must include a statement of analyst physical presence that existing 97155 notes often omit because it was implied.</p>
+        <p>The documentation coordinator's pre-transition job is to review every existing session note template and identify which fields are missing for each new code. PrioraCare templates must be updated to include those fields before December 31. If RBTs submit January session notes using December templates, the notes will not contain the required documentation elements — and the claims will be denied on documentation grounds.</p>
       </div>
 
       <!-- KC 2 -->
@@ -488,36 +463,36 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 4: THE TWO DELETED CODES (KCs 4,5) -->
     <section class="module-section" id="sec-4">
       <div class="section-label">PART 3 OF CORE CONTENT</div>
-      <div class="section-title">The two deleted codes, and what happens to every authorization that references them.</div>
+      <div class="section-title">The two deleted codes — and what happens to every authorization that references them.</div>
       <div class="section-body">
-        <p>Two Category III CPT codes, temporary codes used when a service does not yet have a permanent code, are deleted effective January 1, 2027. These codes are being retired because permanent replacement codes now exist. After December 31, 2026, no payer billing system will recognize these codes. Any claim submitted using either code will be automatically denied at the system level before it reaches a human reviewer.</p>
+        <p>Two Category III CPT codes — temporary codes used when a service does not yet have a permanent code — are deleted effective January 1, 2027. These codes are being retired because permanent replacement codes now exist. After December 31, 2026, no payer billing system will recognize these codes. Any claim submitted using either code will be automatically denied at the system level before it reaches a human reviewer.</p>
       </div>
 
       <div class="code-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
         <div class="code-card deleted-code">
           <div class="code-card-num">0362T</div>
-          <div class="code-card-tag">DELETED, EFFECTIVE JAN 1, 2027</div>
-          <h4>Adaptive Behavior Treatment with Protocol Modification, Physician/QHP</h4>
+          <div class="code-card-tag">DELETED — EFFECTIVE JAN 1, 2027</div>
+          <h4>Adaptive Behavior Treatment with Protocol Modification — Physician/QHP</h4>
           <p>Category III code for protocol modification delivered by a physician or other qualified healthcare professional. Replaced by 97160 and 97173 in the permanent code set. Any authorization referencing 0362T that extends beyond December 31, 2026 must be amended before the first January 2027 service date.</p>
         </div>
         <div class="code-card deleted-code">
           <div class="code-card-num">0373T</div>
-          <div class="code-card-tag">DELETED, EFFECTIVE JAN 1, 2027</div>
+          <div class="code-card-tag">DELETED — EFFECTIVE JAN 1, 2027</div>
           <h4>Exposure Behavioral Follow-Up Assessment</h4>
           <p>Category III code for follow-up behavioral assessment using exposure-based methodology. Folded into the expanded permanent assessment code set. Any authorization referencing 0373T that extends beyond December 31, 2026 must be amended to reference the applicable replacement code.</p>
         </div>
       </div>
 
       <div class="warn-box">
-        <div class="warn-label">CRITICAL, AUTHORIZATION DEADLINE</div>
-        <p>An authorization written in October 2026 that authorizes 0362T services through April 2027 will not support any claim submitted after December 31, 2026. The payer's billing system will reject the code, and the authorization itself, even if still active by date, cannot be used to approve a claim for a code that no longer exists. The documentation coordinator must identify every active authorization referencing 0362T or 0373T and initiate amendment requests before December 31.</p>
+        <div class="warn-label">CRITICAL — AUTHORIZATION DEADLINE</div>
+        <p>An authorization written in October 2026 that authorizes 0362T services through April 2027 will not support any claim submitted after December 31, 2026. The payer's billing system will reject the code, and the authorization itself — even if still active by date — cannot be used to approve a claim for a code that no longer exists. The documentation coordinator must identify every active authorization referencing 0362T or 0373T and initiate amendment requests before December 31.</p>
       </div>
 
       <div class="section-body">
         <h3>What "Category III" means and why these deletions happen</h3>
-        <p>Category III codes are temporary. The AMA creates them when a new service needs a code before enough clinical evidence exists to establish a permanent code with fully defined documentation requirements. Category III codes are designed to sunset, they are either elevated to permanent status as the evidence base develops, or they are deleted as the service is absorbed into existing or new permanent codes.</p>
-        <p>0362T and 0373T are being deleted because the 2027 expansion of the permanent code set now covers the services those temporary codes described. This is a normal part of the CPT lifecycle, but it creates a documentation transition challenge when active authorizations reference codes that are being retired mid-authorization period.</p>
-        <p>The documentation coordinator's job is to catch this before the first January service date. That means pulling a list of every active authorization in PrioraCare that references either code, flagging each one, and initiating amendment requests with the payer before December 31. If the payer does not process the amendment before January 1, a real possibility given holiday processing timelines, services authorized under those codes should not be delivered until a valid authorization for the replacement code is in place.</p>
+        <p>Category III codes are temporary. The AMA creates them when a new service needs a code before enough clinical evidence exists to establish a permanent code with fully defined documentation requirements. Category III codes are designed to sunset — they are either elevated to permanent status as the evidence base develops, or they are deleted as the service is absorbed into existing or new permanent codes.</p>
+        <p>0362T and 0373T are being deleted because the 2027 expansion of the permanent code set now covers the services those temporary codes described. This is a normal part of the CPT lifecycle — but it creates a documentation transition challenge when active authorizations reference codes that are being retired mid-authorization period.</p>
+        <p>The documentation coordinator's job is to catch this before the first January service date. That means pulling a list of every active authorization in PrioraCare that references either code, flagging each one, and initiating amendment requests with the payer before December 31. If the payer does not process the amendment before January 1 — a real possibility given holiday processing timelines — services authorized under those codes should not be delivered until a valid authorization for the replacement code is in place.</p>
       </div>
 
       <!-- KC 4 -->
@@ -542,16 +517,16 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 5: 97155 SPLIT IN TWO (KCs 6,7) -->
     <section class="module-section" id="sec-5">
       <div class="section-label">PART 4 OF CORE CONTENT</div>
-      <div class="section-title">97155 split in two, the change that affects every BCBA in the country.</div>
+      <div class="section-title">97155 split in two — the change that affects every BCBA in the country.</div>
       <div class="section-body">
-        <p>97155 is currently the most commonly billed code for BCBA-delivered ABA services. It covers adaptive behavior treatment with protocol modification, the BCBA reviews session data and adjusts the client's treatment protocol. Under the current code, whether the BCBA is physically present during the session or reviews the data remotely and communicates the modification to the RBT is irrelevant to the code billed. 97155 covers both.</p>
-        <p>Starting January 1, 2027, that distinction matters. 97155 is not being deleted, but it is being replaced by two new codes that separate these two service types:</p>
+        <p>97155 is currently the most commonly billed code for BCBA-delivered ABA services. It covers adaptive behavior treatment with protocol modification — the BCBA reviews session data and adjusts the client's treatment protocol. Under the current code, whether the BCBA is physically present during the session or reviews the data remotely and communicates the modification to the RBT is irrelevant to the code billed. 97155 covers both.</p>
+        <p>Starting January 1, 2027, that distinction matters. 97155 is not being deleted — but it is being replaced by two new codes that separate these two service types:</p>
       </div>
 
       <div class="split-visual">
         <div class="split-top">
           <div class="split-top-num">97155</div>
-          <div class="split-top-label">Adaptive behavior treatment with protocol modification, BCBA delivered<br><span style="font-size:12px;opacity:.7">Currently covers all BCBA protocol modification, regardless of physical presence</span></div>
+          <div class="split-top-label">Adaptive behavior treatment with protocol modification — BCBA delivered<br><span style="font-size:12px;opacity:.7">Currently covers all BCBA protocol modification, regardless of physical presence</span></div>
         </div>
         <div class="split-arrow-wrap">
           <div class="split-line">
@@ -566,12 +541,12 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="split-bottom">
           <div class="split-card no-presence">
             <div class="split-card-num">97160</div>
-            <div class="split-card-title">Protocol Modification, Remote</div>
+            <div class="split-card-title">Protocol Modification — Remote</div>
             <div class="split-card-req">BCBA reviews session data and modifies the protocol. <strong>Not physically present during the session.</strong> RBT implements the modified protocol. Note must document: data reviewed, modification made, that analyst was not present during session delivery.</div>
           </div>
           <div class="split-card with-presence">
             <div class="split-card-num">97173</div>
-            <div class="split-card-title">Protocol Modification, In Person</div>
+            <div class="split-card-title">Protocol Modification — In Person</div>
             <div class="split-card-req">BCBA is physically present during the session, directly observes the RBT, and modifies or directs the protocol in real time. Note must document: <strong>analyst's physical presence, direct observation, and specific protocol modification made during the session.</strong></div>
           </div>
         </div>
@@ -579,12 +554,12 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
       <div class="section-body">
         <h3>Why this split creates a documentation problem</h3>
-        <p>Under the current 97155 structure, session notes often include language like "BCBA modified protocol per data review" without specifying whether the analyst was in the room. That language was sufficient for 97155. It is not sufficient for either 97160 or 97173, because each code requires explicit documentation of the analyst's location during the session.</p>
-        <p>A session note that says "BCBA modified protocol" with no presence statement cannot be billed as either 97160 or 97173. If the payer's automated review flags the note for missing presence documentation, the claim will be denied, not because the service was not delivered, but because the note does not contain the required documentation element to support either new code.</p>
-        <p>Every PrioraCare session note template that currently supports 97155 must be updated before December 31. The update must add a mandatory presence field, a checkbox or required text field where the RBT or BCBA confirms whether the analyst was physically present during the session. Without that field, notes written in January will not contain the documentation the new codes require.</p>
+        <p>Under the current 97155 structure, session notes often include language like "BCBA modified protocol per data review" without specifying whether the analyst was in the room. That language was sufficient for 97155. It is not sufficient for either 97160 or 97173 — because each code requires explicit documentation of the analyst's location during the session.</p>
+        <p>A session note that says "BCBA modified protocol" with no presence statement cannot be billed as either 97160 or 97173. If the payer's automated review flags the note for missing presence documentation, the claim will be denied — not because the service was not delivered, but because the note does not contain the required documentation element to support either new code.</p>
+        <p>Every PrioraCare session note template that currently supports 97155 must be updated before December 31. The update must add a mandatory presence field — a checkbox or required text field where the RBT or BCBA confirms whether the analyst was physically present during the session. Without that field, notes written in January will not contain the documentation the new codes require.</p>
 
         <h3>What to do with existing 97155 authorizations that extend into 2027</h3>
-        <p>An authorization for 97155 services that runs through March 2027 is an authorization for a code that will effectively cease to exist as a primary billing code on January 1. The payer may still recognize 97155 for a transition period, or may not. The only way to know is to contact the payer and ask. If the payer does not plan to extend a 97155 grace period into January, the authorization must be amended to reference 97160, 97173, or both, depending on what the BCBA's service type will be for each session.</p>
+        <p>An authorization for 97155 services that runs through March 2027 is an authorization for a code that will effectively cease to exist as a primary billing code on January 1. The payer may still recognize 97155 for a transition period — or may not. The only way to know is to contact the payer and ask. If the payer does not plan to extend a 97155 grace period into January, the authorization must be amended to reference 97160, 97173, or both — depending on what the BCBA's service type will be for each session.</p>
       </div>
 
       <!-- KC 6 -->
@@ -609,9 +584,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 6: PREPARING YOUR DOCUMENTATION SYSTEM (KCs 8,9) -->
     <section class="module-section" id="sec-6">
       <div class="section-label">PART 5 OF CORE CONTENT</div>
-      <div class="section-title">Preparing your documentation system, five actions every documentation coordinator must take before December 31.</div>
+      <div class="section-title">Preparing your documentation system — five actions every documentation coordinator must take before December 31.</div>
       <div class="section-body">
-        <p>The 2027 transition is not a one-day event. It is a documentation infrastructure project that must be completed over several weeks. A documentation coordinator who starts this process on December 28 will not finish it in time. The five actions below represent the minimum transition work required, and the CADA 2027 Transition Checklist in the Job Aid section expands each one into a 10-step implementation guide.</p>
+        <p>The 2027 transition is not a one-day event. It is a documentation infrastructure project that must be completed over several weeks. A documentation coordinator who starts this process on December 28 will not finish it in time. The five actions below represent the minimum transition work required — and the CADA 2027 Transition Checklist in the Job Aid section expands each one into a 10-step implementation guide.</p>
       </div>
 
       <table class="trans-table">
@@ -631,7 +606,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           </tr>
           <tr>
             <td>3. Payer Verification</td>
-            <td>Contact every payer the clinic bills, Medi-Cal, commercial, TRICARE. Confirm: when they begin accepting new codes, whether they extend a grace period for 97155, and what documentation requirements they publish for 97160 and 97173. Get confirmations in writing or by reference number.</td>
+            <td>Contact every payer the clinic bills — Medi-Cal, commercial, TRICARE. Confirm: when they begin accepting new codes, whether they extend a grace period for 97155, and what documentation requirements they publish for 97160 and 97173. Get confirmations in writing or by reference number.</td>
             <td><span class="code-pill new">By Dec 15</span></td>
           </tr>
           <tr>
@@ -649,7 +624,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
       <div class="info-box">
         <div class="info-label">WHAT HAPPENS IF YOU SKIP THE PAYER VERIFICATION STEP</div>
-        <p>CMS guidance on new CPT codes is uniform. Individual payer billing system updates are not. A payer that has not updated its clearinghouse rules to accept 97173 by January 1 will reject every 97173 claim, not because the code is wrong, but because its system does not yet recognize it. Knowing each payer's actual go-live date before January 1 prevents the first week of January from becoming a denial management crisis.</p>
+        <p>CMS guidance on new CPT codes is uniform. Individual payer billing system updates are not. A payer that has not updated its clearinghouse rules to accept 97173 by January 1 will reject every 97173 claim — not because the code is wrong, but because its system does not yet recognize it. Knowing each payer's actual go-live date before January 1 prevents the first week of January from becoming a denial management crisis.</p>
       </div>
 
       <!-- KC 8 -->
@@ -674,7 +649,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 7: WORKED EXAMPLE -->
     <section class="module-section" id="sec-7">
       <div class="section-label">WORKED EXAMPLE</div>
-      <div class="section-title">A clinic that executed the 2027 transition correctly, step by step.</div>
+      <div class="section-title">A clinic that executed the 2027 transition correctly — step by step.</div>
       <div class="section-body">
         <p>Inland Valley Behavioral Health is a mid-size California ABA clinic serving 48 clients across Medi-Cal and two commercial payers. Their documentation coordinator, working alone without outside consultants, completed the 2027 transition in 14 weeks. Here is what she did.</p>
       </div>
@@ -682,27 +657,27 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="timeline">
         <div class="tl-item done">
           <div class="tl-dot"></div>
-          <div class="tl-label">WEEK OF SEPTEMBER 15, 15 WEEKS OUT</div>
-          <div class="tl-text"><strong>Template audit launched.</strong> The documentation coordinator pulled all 11 active session note templates from PrioraCare. She identified that none of them included a BCBA presence field, meaning every January 97155-equivalent session would be underdocumented under the new code set. She flagged this to the clinic director and began drafting the new template fields.</div>
+          <div class="tl-label">WEEK OF SEPTEMBER 15 — 15 WEEKS OUT</div>
+          <div class="tl-text"><strong>Template audit launched.</strong> The documentation coordinator pulled all 11 active session note templates from PrioraCare. She identified that none of them included a BCBA presence field — meaning every January 97155-equivalent session would be underdocumented under the new code set. She flagged this to the clinic director and began drafting the new template fields.</div>
         </div>
         <div class="tl-item done">
           <div class="tl-dot"></div>
-          <div class="tl-label">WEEK OF OCTOBER 6, 12 WEEKS OUT</div>
+          <div class="tl-label">WEEK OF OCTOBER 6 — 12 WEEKS OUT</div>
           <div class="tl-text"><strong>Authorization sweep completed.</strong> She identified 3 clients with active 0362T authorizations running through Q1 2027 and 7 clients with 97155 authorizations extending past December 31. She submitted amendment requests for the 3 0362T clients immediately. For the 7 97155 clients, she drafted amendment requests targeting 97160 or 97173 depending on how the BCBA described each client's service model.</div>
         </div>
         <div class="tl-item done">
           <div class="tl-dot"></div>
-          <div class="tl-label">WEEK OF NOVEMBER 10, 7 WEEKS OUT</div>
+          <div class="tl-label">WEEK OF NOVEMBER 10 — 7 WEEKS OUT</div>
           <div class="tl-text"><strong>Payer verification completed.</strong> She called Medi-Cal, BlueCross, and Aetna. Medi-Cal confirmed a January 1 go-live for all new codes with a 30-day grace period for 97155 claims submitted through January 31. BlueCross confirmed January 1 go-live with no grace period. Aetna confirmed December 15 start date for new code acceptance. She documented all three responses with reference numbers and saved them to PrioraCare under the client files for each payer's client population.</div>
         </div>
         <div class="tl-item done">
           <div class="tl-dot"></div>
-          <div class="tl-label">WEEK OF DECEMBER 8, 3 WEEKS OUT</div>
+          <div class="tl-label">WEEK OF DECEMBER 8 — 3 WEEKS OUT</div>
           <div class="tl-text"><strong>Staff training completed.</strong> She sent written guidance to all 12 RBTs and both BCBAs explaining the 97155 split, with examples of what a 97160 note looks like versus a 97173 note. She ran a 20-minute team meeting on the documentation changes. She confirmed receipt via email from each staff member. She saved the training confirmation emails to PrioraCare.</div>
         </div>
         <div class="tl-item done">
           <div class="tl-dot"></div>
-          <div class="tl-label">DECEMBER 23, 9 DAYS OUT</div>
+          <div class="tl-label">DECEMBER 23 — 9 DAYS OUT</div>
           <div class="tl-text"><strong>System update and test completed.</strong> Updated templates were activated in PrioraCare. She submitted a test claim for each new code to Aetna (which was already accepting them) and confirmed clearinghouse acceptance for all six new codes. On January 2, she ran an audit of all pending claims to verify no old codes appeared. The clinic's January claims went out clean on January 7.</div>
         </div>
       </div>
@@ -710,10 +685,10 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="annotation">
         <div class="annotation-label">WHY THIS WORKED</div>
         <h4>Four decisions that prevented a January denial crisis</h4>
-        <p><strong>She started early.</strong> Fifteen weeks is not excessive, it is what a full transition actually requires when you have amendment requests, payer calls, staff training, and template updates all running in parallel. A three-week timeline cannot absorb an amendment request that takes four weeks to process.</p>
-        <p><strong>She documented everything.</strong> Every payer call had a reference number. Every staff training had a receipt. Every authorization sweep had a PrioraCare note. When the January audit ran clean, she had a complete paper trail showing exactly what was done and when, which is also her audit defense file if a payer later questions any January claim.</p>
-        <p><strong>She escalated to the clinic director immediately.</strong> The template gap was not her error to fix alone. It required a decision about clinic resources, an IT update to PrioraCare, and a staff training budget. She surfaced the issue within days of the template audit, not weeks.</p>
-        <p><strong>She ran a live test.</strong> Submitting a test claim to Aetna in December gave her confirmation that the new codes were actually accepted by that payer's billing system, not just that they should be, theoretically, per CMS guidance.</p>
+        <p><strong>She started early.</strong> Fifteen weeks is not excessive — it is what a full transition actually requires when you have amendment requests, payer calls, staff training, and template updates all running in parallel. A three-week timeline cannot absorb an amendment request that takes four weeks to process.</p>
+        <p><strong>She documented everything.</strong> Every payer call had a reference number. Every staff training had a receipt. Every authorization sweep had a PrioraCare note. When the January audit ran clean, she had a complete paper trail showing exactly what was done and when — which is also her audit defense file if a payer later questions any January claim.</p>
+        <p><strong>She escalated to the clinic director immediately.</strong> The template gap was not her error to fix alone. It required a decision about clinic resources, an IT update to PrioraCare, and a staff training budget. She surfaced the issue within days of the template audit — not weeks.</p>
+        <p><strong>She ran a live test.</strong> Submitting a test claim to Aetna in December gave her confirmation that the new codes were actually accepted by that payer's billing system — not just that they should be, theoretically, per CMS guidance.</p>
       </div>
     </section>
 
@@ -724,18 +699,18 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="scenario-box">
         <div class="scenario-label">YOUR SCENARIO</div>
         <h3>The 0362T authorization that runs through February</h3>
-        <p>It is December 15, 2026. While reviewing active authorizations in PrioraCare, you find that one client, Marcus, age 7, has a Medi-Cal authorization for 0362T services that runs through February 28, 2027. Services are scheduled daily at 10 units per week, and Marcus's BCBA has not flagged this as an issue.</p>
-        <p>The 0362T authorization was processed in September. The authorization coordinator who processed it is no longer with the clinic. No one has reviewed the 0362T exposure since then. You are 17 days from January 1, the date 0362T ceases to exist as a valid CPT code.</p>
+        <p>It is December 15, 2026. While reviewing active authorizations in PrioraCare, you find that one client — Marcus, age 7 — has a Medi-Cal authorization for 0362T services that runs through February 28, 2027. Services are scheduled daily at 10 units per week, and Marcus's BCBA has not flagged this as an issue.</p>
+        <p>The 0362T authorization was processed in September. The authorization coordinator who processed it is no longer with the clinic. No one has reviewed the 0362T exposure since then. You are 17 days from January 1 — the date 0362T ceases to exist as a valid CPT code.</p>
         <p>You have three decisions to make.</p>
 
         <div class="decision-point" id="dp-0">
           <div class="decision-label">DECISION POINT 1 OF 3</div>
           <div class="decision-q">What is your first action when you identify the 0362T authorization for Marcus?</div>
           <div class="decision-choices">
-            <div class="decision-choice" onclick="pickDecision(this,false,0)">Continue scheduling Marcus's sessions as authorized, the payer processed the authorization, so the services are covered through February.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,0)">Continue scheduling Marcus's sessions as authorized — the payer processed the authorization, so the services are covered through February.</div>
             <div class="decision-choice" onclick="pickDecision(this,true,0)">Flag the authorization immediately, escalate to the clinic director and billing team today, and begin an amendment request with Medi-Cal before the holiday period closes processing windows.</div>
-            <div class="decision-choice" onclick="pickDecision(this,false,0)">Wait until January 1 to see whether Medi-Cal accepts 0362T claims, if they reject the first claim, then escalate.</div>
-            <div class="decision-choice" onclick="pickDecision(this,false,0)">Ask the BCBA to decide, this is a clinical authorization issue, not a documentation coordinator responsibility.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,0)">Wait until January 1 to see whether Medi-Cal accepts 0362T claims — if they reject the first claim, then escalate.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,0)">Ask the BCBA to decide — this is a clinical authorization issue, not a documentation coordinator responsibility.</div>
           </div>
           <div class="decision-feedback" id="df-0"></div>
         </div>
@@ -744,9 +719,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
           <div class="decision-label">DECISION POINT 2 OF 3</div>
           <div class="decision-q">The BCBA tells you not to worry about the 0362T issue: "It is a government bureaucracy. They will not catch it until March, and by then we will have sorted it out." What do you do?</div>
           <div class="decision-choices">
-            <div class="decision-choice" onclick="pickDecision(this,false,1)">Defer to the BCBA, clinical staff have authority over service delivery decisions, and the documentation coordinator should not override clinical judgment.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,1)">Defer to the BCBA — clinical staff have authority over service delivery decisions, and the documentation coordinator should not override clinical judgment.</div>
             <div class="decision-choice" onclick="pickDecision(this,false,1)">Wait until January 2 and see whether Medi-Cal rejects the first claim before escalating further.</div>
-            <div class="decision-choice" onclick="pickDecision(this,true,1)">Escalate over the BCBA to the clinic director. Document in PrioraCare that you flagged the 0362T issue, that the BCBA was notified, and that you are escalating. The documentation coordinator is responsible for billing compliance, not for waiting for clinical permission to do her job.</div>
+            <div class="decision-choice" onclick="pickDecision(this,true,1)">Escalate over the BCBA to the clinic director. Document in PrioraCare that you flagged the 0362T issue, that the BCBA was notified, and that you are escalating. The documentation coordinator is responsible for billing compliance — not for waiting for clinical permission to do her job.</div>
             <div class="decision-choice" onclick="pickDecision(this,false,1)">Submit the 0362T claims through January and add a note in PrioraCare stating the BCBA directed the submission.</div>
           </div>
           <div class="decision-feedback" id="df-1"></div>
@@ -754,11 +729,11 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
         <div class="decision-point" id="dp-2">
           <div class="decision-label">DECISION POINT 3 OF 3</div>
-          <div class="decision-q">Medi-Cal confirms they will not process a 0362T amendment request before January 1, their amendment queue is closed December 23 through January 2. Marcus's first January session is scheduled for January 6. What do you do?</div>
+          <div class="decision-q">Medi-Cal confirms they will not process a 0362T amendment request before January 1 — their amendment queue is closed December 23 through January 2. Marcus's first January session is scheduled for January 6. What do you do?</div>
           <div class="decision-choices">
-            <div class="decision-choice" onclick="pickDecision(this,false,2)">Proceed with the January 6 session and submit the claim as 0362T, the payer processing delay is not the clinic's fault.</div>
+            <div class="decision-choice" onclick="pickDecision(this,false,2)">Proceed with the January 6 session and submit the claim as 0362T — the payer processing delay is not the clinic's fault.</div>
             <div class="decision-choice" onclick="pickDecision(this,false,2)">Cancel Marcus's services indefinitely until the authorization issue is resolved.</div>
-            <div class="decision-choice" onclick="pickDecision(this,true,2)">Advise the clinic director that Marcus's January sessions cannot be safely billed until an amended authorization is in place. Document the authorization gap. Submit the amendment request the moment Medi-Cal reopens on January 3, and explore whether Medi-Cal's amendment will cover January services retroactively.</div>
+            <div class="decision-choice" onclick="pickDecision(this,true,2)">Advise the clinic director that Marcus's January sessions cannot be safely billed until an amended authorization is in place. Document the authorization gap. Submit the amendment request the moment Medi-Cal reopens on January 3 — and explore whether Medi-Cal's amendment will cover January services retroactively.</div>
             <div class="decision-choice" onclick="pickDecision(this,false,2)">Deliver the January 6 session, bill it under a different code that is not on Marcus's authorization, and hope the payer does not notice the code mismatch.</div>
           </div>
           <div class="decision-feedback" id="df-2"></div>
@@ -769,7 +744,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 9: JOB AID -->
     <section class="module-section" id="sec-9">
       <div class="section-label">JOB AID</div>
-      <div class="section-title">CADA 2027 CPT Transition Checklist, 10 steps before December 31.</div>
+      <div class="section-title">CADA 2027 CPT Transition Checklist — 10 steps before December 31.</div>
       <div class="section-body" style="margin-bottom:20px">
         <p>Print this checklist and keep it at your workstation through the end of December. Each step should be completed and signed off before the next one begins. This checklist covers the minimum transition work. If your clinic has a large caseload, more than three payers, or several authorizations referencing 0362T or 0373T, build in additional time for each step.</p>
       </div>
@@ -782,13 +757,13 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="job-aid-body">
 
           <div class="ja-section">
-            <div class="ja-section-title">STEP 1, CODE AND TEMPLATE AUDIT</div>
+            <div class="ja-section-title">STEP 1 — CODE AND TEMPLATE AUDIT</div>
             <div class="ja-row">
               <div class="ja-num">1</div>
               <div class="ja-row-text"><strong>Pull all session note templates from PrioraCare.</strong> List every CPT code referenced in every template. Flag any template referencing 97155, 0362T, or 0373T.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
@@ -797,20 +772,20 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
               <div class="ja-row-text"><strong>Identify missing documentation fields for each new 2027 code.</strong> For 97160/97173: presence statement field. For 97148: group composition field. For 97149: client absence confirmation. For 97180: activity type field.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="ja-section">
-            <div class="ja-section-title">STEP 2, AUTHORIZATION SWEEP</div>
+            <div class="ja-section-title">STEP 2 — AUTHORIZATION SWEEP</div>
             <div class="ja-row">
               <div class="ja-num">3</div>
               <div class="ja-row-text"><strong>Pull every active authorization from PrioraCare.</strong> Flag any authorization referencing 0362T or 0373T that extends beyond December 31, 2026. List client names, payer, authorization expiration date, and weekly unit volume.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
@@ -819,7 +794,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
               <div class="ja-row-text"><strong>Flag all authorizations referencing 97155 that extend past December 31.</strong> For each one, confirm with the BCBA whether January services will be billed as 97160 (BCBA not present) or 97173 (BCBA present). Document the BCBA's answer in PrioraCare.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
@@ -828,33 +803,33 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
               <div class="ja-row-text"><strong>Submit 0362T and 0373T amendment requests immediately.</strong> Do not wait until December. Payers may take 15 to 30 business days to process amendments. Target submission by December 1 to allow time for processing before January 1.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="ja-section">
-            <div class="ja-section-title">STEP 3, PAYER VERIFICATION</div>
+            <div class="ja-section-title">STEP 3 — PAYER VERIFICATION</div>
             <div class="ja-row">
               <div class="ja-num">6</div>
               <div class="ja-row-text"><strong>Call or email every payer the clinic bills.</strong> Ask: (1) When will you begin accepting new 2027 codes? (2) Do you have a grace period for 97155? If so, through what date? (3) What documentation do you require for 97160 versus 97173? Document every response with a reference number.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="ja-section">
-            <div class="ja-section-title">STEP 4, STAFF TRAINING AND SYSTEM UPDATE</div>
+            <div class="ja-section-title">STEP 4 — STAFF TRAINING AND SYSTEM UPDATE</div>
             <div class="ja-row">
               <div class="ja-num">7</div>
               <div class="ja-row-text"><strong>Notify all RBTs and BCBAs in writing about the 97155 split.</strong> Provide written examples of a 97160 note versus a 97173 note. Confirm receipt via email or signature. Save confirmation to PrioraCare.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
@@ -863,20 +838,20 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
               <div class="ja-row-text"><strong>Update all PrioraCare session note templates.</strong> Add presence field for 97160/97173. Add group composition field for 97148. Add client absence field for 97149. Remove 0362T and 0373T from all code selection menus. Confirm all updates with PrioraCare support.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="ja-section">
-            <div class="ja-section-title">STEP 5, VALIDATION AND GO-LIVE AUDIT</div>
+            <div class="ja-section-title">STEP 5 — VALIDATION AND GO-LIVE AUDIT</div>
             <div class="ja-row">
               <div class="ja-num">9</div>
               <div class="ja-row-text"><strong>Submit a test claim for each new code to at least one payer that is already accepting them.</strong> Confirm clearinghouse acceptance. Document the test results. If any new code is rejected, investigate the billing system settings before January 1.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
@@ -885,7 +860,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
               <div class="ja-row-text"><strong>Run a January 2 audit of all pending claims.</strong> Confirm no claim references 0362T, 0373T, or 97155 as the primary code. Confirm all 97160/97173 claims include a presence statement. Flag any exception before submission.
                 <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
                   <div class="check-box" onclick="this.classList.toggle('checked')"></div>
-                  <span style="font-size:12px;color:var(--text-muted)">Done, date: ___________</span>
+                  <span style="font-size:12px;color:var(--text-muted)">Done — date: ___________</span>
                 </div>
               </div>
             </div>
@@ -896,14 +871,14 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
       <div class="warn-box" style="margin-top:16px">
         <div class="warn-label">THE COST OF WAITING</div>
-        <p>A clinic that enters January 2027 with unresolved authorization issues for 0362T clients, unreformed session note templates, and no payer verification on file is not making a calculated business risk, it is making an uninformed one. Every denied January claim requires resubmission with updated documentation, which requires going back to RBTs for session note addenda, which triggers payer scrutiny. The documentation coordinator who completes this checklist before December 31 prevents a situation that takes three to six weeks to untangle after the fact.</p>
+        <p>A clinic that enters January 2027 with unresolved authorization issues for 0362T clients, unreformed session note templates, and no payer verification on file is not making a calculated business risk — it is making an uninformed one. Every denied January claim requires resubmission with updated documentation, which requires going back to RBTs for session note addenda, which triggers payer scrutiny. The documentation coordinator who completes this checklist before December 31 prevents a situation that takes three to six weeks to untangle after the fact.</p>
       </div>
     </section>
 
     <!-- SECTION 10: QUIZ -->
     <section class="module-section" id="sec-10">
       <div class="section-label">MODULE QUIZ</div>
-      <div class="section-title">Test your knowledge, Module 5.</div>
+      <div class="section-title">Test your knowledge — Module 5.</div>
       <div class="section-body" style="margin-bottom:24px">
         <p>Five questions on the 2027 CPT code transition. All questions must be answered before submitting. You will see your score and a rationale for each answer after you submit.</p>
       </div>
@@ -947,104 +922,104 @@ let kcCurrentLetter = {};
 let kcLastLetter = {};
 
 const KC_DATA = [
-  // KC 0, Section 2
+  // KC 0 — Section 2
   {
     q:'A clinic submits a claim using code 0362T on January 15, 2027, for a service delivered on December 28, 2026. What is the most likely outcome?',
     answers:[
-      {text:'The claim is paid because the service was delivered before January 1, the service date controls the code set.',correct:false,rationale:'The billing date, not the service date, is what matters for payer acceptance of a CPT code. The claim was submitted on January 15, 2027, after 0362T was deleted. The payer billing system will reject it as an invalid code.'},
-      {text:'The claim is automatically denied, 0362T is a deleted code after December 31, 2026, and no payer system will recognize it.',correct:true,rationale:'Correct. Deleted CPT codes are removed from payer billing system tables on the effective date. After January 1, 2027, any claim submitted with 0362T will be rejected at the system level before a human reviewer ever sees it. The service date does not create an exception.'},
-      {text:'The payer requests additional documentation before deciding, deleted codes trigger enhanced review, not automatic denial.',correct:false,rationale:'Deleted codes do not trigger enhanced review. They trigger automatic denial. The code is not in the payer system after January 1, there is no mechanism to request additional documentation for a code that does not exist.'},
+      {text:'The claim is paid because the service was delivered before January 1 — the service date controls the code set.',correct:false,rationale:'The billing date, not the service date, is what matters for payer acceptance of a CPT code. The claim was submitted on January 15, 2027 — after 0362T was deleted. The payer billing system will reject it as an invalid code.'},
+      {text:'The claim is automatically denied — 0362T is a deleted code after December 31, 2026, and no payer system will recognize it.',correct:true,rationale:'Correct. Deleted CPT codes are removed from payer billing system tables on the effective date. After January 1, 2027, any claim submitted with 0362T will be rejected at the system level before a human reviewer ever sees it. The service date does not create an exception.'},
+      {text:'The payer requests additional documentation before deciding — deleted codes trigger enhanced review, not automatic denial.',correct:false,rationale:'Deleted codes do not trigger enhanced review. They trigger automatic denial. The code is not in the payer system after January 1 — there is no mechanism to request additional documentation for a code that does not exist.'},
       {text:'The claim is denied but can be resubmitted with 0362T after the payer acknowledges the transition grace period.',correct:false,rationale:'Payers do not issue transition grace periods for deleted codes. A grace period may apply to old codes being replaced by new ones (such as 97155 during the transition window some payers allow). It does not apply to codes that have been permanently removed from the CPT set.'}
     ]
   },
-  // KC 1, Section 2
+  // KC 1 — Section 2
   {
     q:'When should a documentation coordinator begin verifying that individual payers are accepting the new 2027 CPT codes?',
     answers:[
-      {text:'January 1, 2027, that is when the codes officially take effect, so that is when payers will begin accepting them.',correct:false,rationale:'Waiting until January 1 means the first real claims are also the first test of payer acceptance. If a payer has not updated its billing system, those claims will fail, with no time to investigate before they affect real revenue.'},
-      {text:'November to December 2026, payers typically open their billing systems 30 to 60 days before the effective date, and verification should be complete before December 31.',correct:true,rationale:'Correct. Most payers begin accepting new CPT codes 30 to 60 days before the effective date to allow clinics to test submissions. Verifying payer readiness in November or December provides time to identify issues, adjust submission dates if needed, and document each payer\'s specific transition timeline.'},
-      {text:'After the first round of January denials arrives, that is when you will know which payers are not ready.',correct:false,rationale:'Waiting for denials is a reactive strategy that costs the clinic real money. The first denial wave from an unverified payer typically arrives 7 to 14 days after submission, meaning January revenue is already affected before the problem is identified.'},
-      {text:'February 2027, most payers allow a 60-day grace period on new codes, so there is no urgency before January.',correct:false,rationale:'No universal 60-day grace period exists for new CPT codes. Individual payers set their own timelines. Some payers have no grace period at all. The only way to know your payer\'s timeline is to ask, which is why verification must happen before December 31.'}
+      {text:'January 1, 2027 — that is when the codes officially take effect, so that is when payers will begin accepting them.',correct:false,rationale:'Waiting until January 1 means the first real claims are also the first test of payer acceptance. If a payer has not updated its billing system, those claims will fail — with no time to investigate before they affect real revenue.'},
+      {text:'November to December 2026 — payers typically open their billing systems 30 to 60 days before the effective date, and verification should be complete before December 31.',correct:true,rationale:'Correct. Most payers begin accepting new CPT codes 30 to 60 days before the effective date to allow clinics to test submissions. Verifying payer readiness in November or December provides time to identify issues, adjust submission dates if needed, and document each payer\'s specific transition timeline.'},
+      {text:'After the first round of January denials arrives — that is when you will know which payers are not ready.',correct:false,rationale:'Waiting for denials is a reactive strategy that costs the clinic real money. The first denial wave from an unverified payer typically arrives 7 to 14 days after submission — meaning January revenue is already affected before the problem is identified.'},
+      {text:'February 2027 — most payers allow a 60-day grace period on new codes, so there is no urgency before January.',correct:false,rationale:'No universal 60-day grace period exists for new CPT codes. Individual payers set their own timelines. Some payers have no grace period at all. The only way to know your payer\'s timeline is to ask — which is why verification must happen before December 31.'}
     ]
   },
-  // KC 2, Section 3
+  // KC 2 — Section 3
   {
     q:'Which new 2027 code requires the behavior analyst to be physically present in the room during the treatment session?',
     answers:[
-      {text:'97160, it covers protocol modification by the analyst regardless of location.',correct:false,rationale:'97160 specifically covers protocol modification where the analyst is NOT physically present. The BCBA reviews data remotely and communicates the modified protocol to the RBT. No physical presence is required.'},
-      {text:'97148, it requires the analyst to supervise group sessions in person.',correct:false,rationale:'97148 covers group adaptive behavior treatment delivered by an RBT. It does not require the analyst to be physically present. The analyst may be involved in supervision, but physical presence during the group session is not what 97148 requires.'},
-      {text:'97173, it requires the behavior analyst to be physically present during the session and directly observe the protocol modification in real time.',correct:true,rationale:'Correct. 97173 is specifically defined as protocol modification with the behavior analyst physically present and directly observing or supervising the session. The note must explicitly document the analyst\'s physical presence. This is the key distinction between 97173 and 97160.'},
-      {text:'97180, it requires the analyst to be on site for all non-face-to-face work.',correct:false,rationale:'97180 covers non-face-to-face BCBA time, indirect work such as care coordination, treatment plan revision, and supervision documentation. It explicitly covers work done without the client or caregiver present, and does not require physical presence at any particular location.'}
+      {text:'97160 — it covers protocol modification by the analyst regardless of location.',correct:false,rationale:'97160 specifically covers protocol modification where the analyst is NOT physically present. The BCBA reviews data remotely and communicates the modified protocol to the RBT. No physical presence is required.'},
+      {text:'97148 — it requires the analyst to supervise group sessions in person.',correct:false,rationale:'97148 covers group adaptive behavior treatment delivered by an RBT. It does not require the analyst to be physically present. The analyst may be involved in supervision, but physical presence during the group session is not what 97148 requires.'},
+      {text:'97173 — it requires the behavior analyst to be physically present during the session and directly observe the protocol modification in real time.',correct:true,rationale:'Correct. 97173 is specifically defined as protocol modification with the behavior analyst physically present and directly observing or supervising the session. The note must explicitly document the analyst\'s physical presence. This is the key distinction between 97173 and 97160.'},
+      {text:'97180 — it requires the analyst to be on site for all non-face-to-face work.',correct:false,rationale:'97180 covers non-face-to-face BCBA time — indirect work such as care coordination, treatment plan revision, and supervision documentation. It explicitly covers work done without the client or caregiver present, and does not require physical presence at any particular location.'}
     ]
   },
-  // KC 3, Section 3
+  // KC 3 — Section 3
   {
     q:'Code 97149 covers which service type?',
     answers:[
-      {text:'Group adaptive behavior treatment with protocol modification, each 15 minutes.',correct:false,rationale:'That description is closer to a group equivalent of 97155, not 97149. 97148 covers group direct treatment. 97149 is a caregiver-focused code, not a group treatment code.'},
+      {text:'Group adaptive behavior treatment with protocol modification, each 15 minutes.',correct:false,rationale:'That description is closer to a group equivalent of 97155 — not 97149. 97148 covers group direct treatment. 97149 is a caregiver-focused code, not a group treatment code.'},
       {text:'Adaptive behavior assessment with caregiver interview, 30 minutes minimum.',correct:false,rationale:'That describes 97159, the new assessment code that involves a caregiver or guardian interview. 97149 is a treatment guidance code, not an assessment code.'},
-      {text:'Caregiver or guardian adaptive behavior treatment guidance, with the client NOT present, each 15 minutes.',correct:true,rationale:'Correct. 97149 covers caregiver or guardian training where the client is not present during the session. The note must document the caregiver\'s name, the training topics covered, and the client whose behavior program was discussed. The absence of the client is a defining feature, it distinguishes 97149 from 97156, which covers caregiver training with the client present.'},
-      {text:'Non-face-to-face behavior analyst time for care coordination, each 15 minutes.',correct:false,rationale:'That describes 97180, the new indirect BCBA time code. 97149 is a direct caregiver training code, it involves a face-to-face interaction with the caregiver, even though the client is not present.'}
+      {text:'Caregiver or guardian adaptive behavior treatment guidance, with the client NOT present, each 15 minutes.',correct:true,rationale:'Correct. 97149 covers caregiver or guardian training where the client is not present during the session. The note must document the caregiver\'s name, the training topics covered, and the client whose behavior program was discussed. The absence of the client is a defining feature — it distinguishes 97149 from 97156, which covers caregiver training with the client present.'},
+      {text:'Non-face-to-face behavior analyst time for care coordination, each 15 minutes.',correct:false,rationale:'That describes 97180, the new indirect BCBA time code. 97149 is a direct caregiver training code — it involves a face-to-face interaction with the caregiver, even though the client is not present.'}
     ]
   },
-  // KC 4, Section 4
+  // KC 4 — Section 4
   {
     q:'0362T and 0373T are Category III codes. What does it mean for an authorization when a Category III code is deleted?',
     answers:[
-      {text:'The authorization remains valid, the payer approved it, so they must honor it regardless of code status.',correct:false,rationale:'An authorization authorizes a specific CPT code for a specific service. If that code is deleted, the authorization no longer references a valid, billable code. The payer\'s billing system will reject any claim submitted under a deleted code, regardless of whether an authorization was previously issued.'},
+      {text:'The authorization remains valid — the payer approved it, so they must honor it regardless of code status.',correct:false,rationale:'An authorization authorizes a specific CPT code for a specific service. If that code is deleted, the authorization no longer references a valid, billable code. The payer\'s billing system will reject any claim submitted under a deleted code, regardless of whether an authorization was previously issued.'},
       {text:'The authorization must be amended to reference the applicable replacement code before the first service date in 2027.',correct:true,rationale:'Correct. A deleted code is not billable after the deletion date. An authorization that references only the deleted code cannot support claims submitted in 2027. The documentation coordinator must identify every active authorization referencing 0362T or 0373T and initiate amendment requests with the payer before December 31. If the amendment is not in place before the first January service date, those services should not be delivered.'},
-      {text:'The payer automatically updates the authorization to reference the replacement code when they process the deletion.',correct:false,rationale:'Payers do not automatically update authorizations when codes are deleted. The responsibility for identifying affected authorizations and submitting amendment requests falls on the clinic, specifically on the documentation coordinator.'},
-      {text:'The authorization becomes void and all associated services must be restarted under new authorizations from scratch.',correct:false,rationale:'The authorization is not void, it is simply referencing a code that is no longer valid. An amendment request to the payer typically converts the existing authorization to reference the replacement code, often preserving the original authorization period and unit volume. It is a correction, not a full restart.'}
+      {text:'The payer automatically updates the authorization to reference the replacement code when they process the deletion.',correct:false,rationale:'Payers do not automatically update authorizations when codes are deleted. The responsibility for identifying affected authorizations and submitting amendment requests falls on the clinic — specifically on the documentation coordinator.'},
+      {text:'The authorization becomes void and all associated services must be restarted under new authorizations from scratch.',correct:false,rationale:'The authorization is not void — it is simply referencing a code that is no longer valid. An amendment request to the payer typically converts the existing authorization to reference the replacement code, often preserving the original authorization period and unit volume. It is a correction, not a full restart.'}
     ]
   },
-  // KC 5, Section 4
+  // KC 5 — Section 4
   {
     q:'A client has a Medi-Cal authorization for 0362T services running through March 31, 2027. Services are scheduled daily starting January 6. What must happen before January 6?',
     answers:[
-      {text:'Submit January 6 claims as 0362T, Medi-Cal will process them because the authorization is active.',correct:false,rationale:'0362T is deleted January 1, 2027. No claim submitted with this code after December 31 will be processed, regardless of whether an active authorization exists for it. Active authorizations cannot override deleted code status in a payer billing system.'},
-      {text:'Notify the BCBA that the authorization must be rewritten, the BCBA handles all authorization changes.',correct:false,rationale:'Authorization amendment requests are typically initiated by the billing or documentation team, not the BCBA. The documentation coordinator is responsible for identifying the authorization gap and initiating the amendment, not for delegating it to clinical staff and waiting.'},
+      {text:'Submit January 6 claims as 0362T — Medi-Cal will process them because the authorization is active.',correct:false,rationale:'0362T is deleted January 1, 2027. No claim submitted with this code after December 31 will be processed, regardless of whether an active authorization exists for it. Active authorizations cannot override deleted code status in a payer billing system.'},
+      {text:'Notify the BCBA that the authorization must be rewritten — the BCBA handles all authorization changes.',correct:false,rationale:'Authorization amendment requests are typically initiated by the billing or documentation team, not the BCBA. The documentation coordinator is responsible for identifying the authorization gap and initiating the amendment — not for delegating it to clinical staff and waiting.'},
       {text:'An authorization amendment must be submitted to Medi-Cal, referencing the applicable replacement codes for the services previously authorized under 0362T, and confirmed before services resume in January.',correct:true,rationale:'Correct. The amendment must be submitted to Medi-Cal with enough lead time for processing before January 6. If processing cannot be confirmed before that date, services should be held until a valid authorization for the replacement codes is in place. Delivering services without an active authorization for a valid code is an unauthorized service under Medicaid billing rules.'},
-      {text:'Begin services on January 6 and submit retroactive authorization requests in February, retroactive authorizations are standard Medicaid procedure.',correct:false,rationale:'Retroactive authorizations are not standard Medicaid procedure, they are exceptions granted under specific circumstances. Delivering services under a deleted code and then requesting retroactive authorization is not a supported billing strategy and creates significant exposure for denial and recoupment.'}
+      {text:'Begin services on January 6 and submit retroactive authorization requests in February — retroactive authorizations are standard Medicaid procedure.',correct:false,rationale:'Retroactive authorizations are not standard Medicaid procedure — they are exceptions granted under specific circumstances. Delivering services under a deleted code and then requesting retroactive authorization is not a supported billing strategy and creates significant exposure for denial and recoupment.'}
     ]
   },
-  // KC 6, Section 5
+  // KC 6 — Section 5
   {
     q:'What is the single documentation element that determines whether a protocol modification session is billed as 97160 or 97173?',
     answers:[
       {text:'The length of the session in minutes.',correct:false,rationale:'Both 97160 and 97173 are 15-minute increment codes. Session length does not determine which code applies.'},
-      {text:'Whether the behavior analyst was physically present in the room during the session.',correct:true,rationale:'Correct. Physical presence of the behavior analyst during the session is the only distinction between 97160 and 97173. Both codes involve protocol modification by a behavior analyst. 97160 covers remote modification, the analyst reviewed data and modified the protocol without being present during the session. 97173 covers in-person modification, the analyst was physically present and directly observed or supervised the session.'},
-      {text:'Whether a protocol modification was actually made during the session.',correct:false,rationale:'Both codes require that a protocol modification was made, that is what both codes cover. The modification itself is not the distinguishing factor. The analyst\'s location during the session is.'},
+      {text:'Whether the behavior analyst was physically present in the room during the session.',correct:true,rationale:'Correct. Physical presence of the behavior analyst during the session is the only distinction between 97160 and 97173. Both codes involve protocol modification by a behavior analyst. 97160 covers remote modification — the analyst reviewed data and modified the protocol without being present during the session. 97173 covers in-person modification — the analyst was physically present and directly observed or supervised the session.'},
+      {text:'Whether a protocol modification was actually made during the session.',correct:false,rationale:'Both codes require that a protocol modification was made — that is what both codes cover. The modification itself is not the distinguishing factor. The analyst\'s location during the session is.'},
       {text:'Whether the payer is Medi-Cal or a commercial insurer.',correct:false,rationale:'The same codes apply regardless of payer type. Payer differences may affect documentation requirements or prior authorization requirements, but the CPT code selection for 97160 versus 97173 is based on the clinical service delivered, not the payer.'}
     ]
   },
-  // KC 7, Section 5
+  // KC 7 — Section 5
   {
     q:'A January 2027 session note reads: "BCBA reviewed previous week\'s data and updated reinforcement schedule. RBT implemented new protocol. BCBA was not present during today\'s session." Which code applies?',
     answers:[
-      {text:'97155, the current protocol modification code, which remains valid through the grace period.',correct:false,rationale:'97155 may remain in some payers\' systems during a grace period, but the note clearly describes a 2027 service type: remote data review and protocol modification with the analyst not present. The correct 2027 code for this service is 97160. Using 97155 when the new codes are available creates inconsistency and potential documentation exposure.'},
-      {text:'97173, the BCBA modified the protocol, so the analyst presence code applies.',correct:false,rationale:'97173 requires the analyst to be physically present during the session. The note explicitly says "BCBA was not present during today\'s session." That statement disqualifies 97173. Physical presence is the defining feature of 97173, the analyst\'s remote involvement does not qualify.'},
-      {text:'97160, the BCBA reviewed data and modified the protocol but was not physically present during the session.',correct:true,rationale:'Correct. The note contains all the documentation elements 97160 requires: data review by the BCBA, a specific protocol modification (updated reinforcement schedule), and confirmation that the analyst was not present during the session. The explicit "not present" statement is what allows this note to support 97160 clearly.'},
-      {text:'97153, the RBT implemented the protocol, so the direct treatment code applies.',correct:false,rationale:'97153 covers direct treatment by an RBT by protocol. The session note describes a protocol modification, the BCBA updated the reinforcement schedule based on data review. Protocol modification adds clinical involvement above the level 97153 covers. The correct code is 97160.'}
+      {text:'97155 — the current protocol modification code, which remains valid through the grace period.',correct:false,rationale:'97155 may remain in some payers\' systems during a grace period, but the note clearly describes a 2027 service type: remote data review and protocol modification with the analyst not present. The correct 2027 code for this service is 97160. Using 97155 when the new codes are available creates inconsistency and potential documentation exposure.'},
+      {text:'97173 — the BCBA modified the protocol, so the analyst presence code applies.',correct:false,rationale:'97173 requires the analyst to be physically present during the session. The note explicitly says "BCBA was not present during today\'s session." That statement disqualifies 97173. Physical presence is the defining feature of 97173 — the analyst\'s remote involvement does not qualify.'},
+      {text:'97160 — the BCBA reviewed data and modified the protocol but was not physically present during the session.',correct:true,rationale:'Correct. The note contains all the documentation elements 97160 requires: data review by the BCBA, a specific protocol modification (updated reinforcement schedule), and confirmation that the analyst was not present during the session. The explicit "not present" statement is what allows this note to support 97160 clearly.'},
+      {text:'97153 — the RBT implemented the protocol, so the direct treatment code applies.',correct:false,rationale:'97153 covers direct treatment by an RBT by protocol. The session note describes a protocol modification — the BCBA updated the reinforcement schedule based on data review. Protocol modification adds clinical involvement above the level 97153 covers. The correct code is 97160.'}
     ]
   },
-  // KC 8, Section 6
+  // KC 8 — Section 6
   {
     q:'What is the FIRST step in the 2027 transition documentation process?',
     answers:[
-      {text:'Call every payer to verify their transition timeline.',correct:false,rationale:'Payer verification is essential, but it is the third step, not the first. Without knowing which codes and templates need updating, you do not yet know what to ask the payer about. The template audit establishes the scope of the transition before payer conversations begin.'},
-      {text:'Notify all RBTs and BCBAs about the 97155 split.',correct:false,rationale:'Staff training is a critical step, but it comes after the template audit and authorization sweep have established what, specifically, staff need to be trained on. Training staff before identifying the documentation gaps means they may receive incomplete guidance.'},
-      {text:'Conduct a template audit, pull every session note template from PrioraCare and identify every code referenced and every documentation field missing for the new code set.',correct:true,rationale:'Correct. The template audit is the first step because it defines the scope of every other action. Without knowing which templates reference old codes and which fields are missing for new codes, the authorization sweep, payer calls, staff training, and system updates cannot be scoped correctly. The audit is the foundation.'},
-      {text:'Submit amendment requests for all authorizations referencing 0362T or 0373T.',correct:false,rationale:'Authorization amendments are urgent and time-sensitive, but they come after the authorization sweep, which itself comes after the template audit. You cannot accurately scope the amendment request work until you have done the authorization sweep, and you cannot scope the authorization sweep until the template audit has identified which codes are in use.'}
+      {text:'Call every payer to verify their transition timeline.',correct:false,rationale:'Payer verification is essential — but it is the third step, not the first. Without knowing which codes and templates need updating, you do not yet know what to ask the payer about. The template audit establishes the scope of the transition before payer conversations begin.'},
+      {text:'Notify all RBTs and BCBAs about the 97155 split.',correct:false,rationale:'Staff training is a critical step — but it comes after the template audit and authorization sweep have established what, specifically, staff need to be trained on. Training staff before identifying the documentation gaps means they may receive incomplete guidance.'},
+      {text:'Conduct a template audit — pull every session note template from PrioraCare and identify every code referenced and every documentation field missing for the new code set.',correct:true,rationale:'Correct. The template audit is the first step because it defines the scope of every other action. Without knowing which templates reference old codes and which fields are missing for new codes, the authorization sweep, payer calls, staff training, and system updates cannot be scoped correctly. The audit is the foundation.'},
+      {text:'Submit amendment requests for all authorizations referencing 0362T or 0373T.',correct:false,rationale:'Authorization amendments are urgent and time-sensitive — but they come after the authorization sweep, which itself comes after the template audit. You cannot accurately scope the amendment request work until you have done the authorization sweep, and you cannot scope the authorization sweep until the template audit has identified which codes are in use.'}
     ]
   },
-  // KC 9, Section 6
+  // KC 9 — Section 6
   {
     q:'Why is individual payer verification more important than relying solely on CMS guidance for the 2027 code transition?',
     answers:[
-      {text:'CMS guidance is not legally binding on private payers, they can choose to ignore the new codes entirely.',correct:false,rationale:'Commercial payers do not ignore new CPT codes. They implement them according to their own billing system update timelines. CMS guidance is a standard that payers follow, the issue is timing and system-specific requirements, not whether payers accept the codes at all.'},
-      {text:'Individual payers set their own billing system update timelines and documentation requirements, which may differ from CMS effective dates and may vary from one payer to another.',correct:true,rationale:'Correct. CMS announces the effective date for new codes, January 1, 2027. But each payer\'s billing system update, grace period policy, and specific documentation requirements are set by that payer independently. A payer whose system is not updated by January 1 will reject new code claims. A payer with a grace period for 97155 may accept it through January 31. Knowing each payer\'s specific timeline requires direct verification, not assumption from CMS guidance.'},
-      {text:'CMS guidance applies only to Medicare, not Medicaid or commercial payers.',correct:false,rationale:'CMS sets CPT code policy for Medicare and provides the framework that Medicaid and commercial payers typically follow. The issue is not whether CMS guidance applies, it is whether each payer\'s billing system and policy documentation aligns with the CMS effective date and in what timeframe.'},
-      {text:'Payers are not required to accept new CPT codes until 90 days after the CMS effective date.',correct:false,rationale:'No universal 90-day buffer rule exists. Some payers begin accepting new codes before January 1. Some are ready by January 1. Some may lag. The only way to know is to ask. This is why payer verification is a step in the transition checklist, not an optional one.'}
+      {text:'CMS guidance is not legally binding on private payers — they can choose to ignore the new codes entirely.',correct:false,rationale:'Commercial payers do not ignore new CPT codes. They implement them according to their own billing system update timelines. CMS guidance is a standard that payers follow — the issue is timing and system-specific requirements, not whether payers accept the codes at all.'},
+      {text:'Individual payers set their own billing system update timelines and documentation requirements, which may differ from CMS effective dates and may vary from one payer to another.',correct:true,rationale:'Correct. CMS announces the effective date for new codes — January 1, 2027. But each payer\'s billing system update, grace period policy, and specific documentation requirements are set by that payer independently. A payer whose system is not updated by January 1 will reject new code claims. A payer with a grace period for 97155 may accept it through January 31. Knowing each payer\'s specific timeline requires direct verification — not assumption from CMS guidance.'},
+      {text:'CMS guidance applies only to Medicare, not Medicaid or commercial payers.',correct:false,rationale:'CMS sets CPT code policy for Medicare and provides the framework that Medicaid and commercial payers typically follow. The issue is not whether CMS guidance applies — it is whether each payer\'s billing system and policy documentation aligns with the CMS effective date and in what timeframe.'},
+      {text:'Payers are not required to accept new CPT codes until 90 days after the CMS effective date.',correct:false,rationale:'No universal 90-day buffer rule exists. Some payers begin accepting new codes before January 1. Some are ready by January 1. Some may lag. The only way to know is to ask. This is why payer verification is a step in the transition checklist — not an optional one.'}
     ]
   }
 ];
@@ -1053,51 +1028,51 @@ const QUIZ_DATA = [
   {
     q:'When do the new 2027 ABA CPT codes officially take effect?',
     answers:[
-      {text:'January 1, 2027',correct:true,rationale:'Correct. The new adaptive behavior CPT codes, 97148, 97149, 97159, 97160, 97173, and 97180, all take effect January 1, 2027. This is the CMS-established effective date.'},
-      {text:'January 15, 2027',correct:false,rationale:'The effective date is January 1, not January 15. Payers begin accepting the new codes on the effective date, though some payers begin acceptance in November or December to allow testing.'},
+      {text:'January 1, 2027',correct:true,rationale:'Correct. The new adaptive behavior CPT codes — 97148, 97149, 97159, 97160, 97173, and 97180 — all take effect January 1, 2027. This is the CMS-established effective date.'},
+      {text:'January 15, 2027',correct:false,rationale:'The effective date is January 1, not January 15. Payers begin accepting the new codes on the effective date — though some payers begin acceptance in November or December to allow testing.'},
       {text:'April 1, 2027',correct:false,rationale:'April 1 is not the correct effective date. The new codes take effect January 1, 2027. Waiting until April to implement the transition would mean three months of improperly coded claims.'},
-      {text:'October 1, 2027',correct:false,rationale:'October 1 is a common date for Medicare payment updates, not for CPT code effective dates. The 2027 adaptive behavior codes take effect January 1, 2027.'}
+      {text:'October 1, 2027',correct:false,rationale:'October 1 is a common date for Medicare payment updates — not for CPT code effective dates. The 2027 adaptive behavior codes take effect January 1, 2027.'}
     ]
   },
   {
     q:'A January 2027 session note reads: "BCBA reviewed prior week data and modified reinforcement schedule. RBT implemented updated protocol. BCBA was not in the building." Which code applies?',
     answers:[
-      {text:'97155',correct:false,rationale:'97155 is being transitioned out as payers move to the new code set. More importantly, the note describes a 2027 service with a specific analyst presence statement. The correct code is determined by the new code set, and by the absence statement in the note.'},
-      {text:'97173, protocol modification with analyst present',correct:false,rationale:'97173 requires the analyst to be physically present during the session. The note says "BCBA was not in the building." That statement explicitly disqualifies 97173. Physical presence is the defining feature of 97173.'},
-      {text:'97160, protocol modification with analyst NOT present',correct:true,rationale:'Correct. The note contains all three elements 97160 requires: data review by the BCBA, a specific modification made (updated reinforcement schedule), and explicit confirmation that the analyst was not present during the session. "BCBA was not in the building" is exactly the kind of presence statement that maps to 97160.'},
-      {text:'97153, direct treatment by RBT by protocol',correct:false,rationale:'97153 covers direct treatment by protocol with no protocol modification component. This session involved a BCBA reviewing data and modifying the protocol, a service above the level 97153 describes. The correct code is 97160.'}
+      {text:'97155',correct:false,rationale:'97155 is being transitioned out as payers move to the new code set. More importantly, the note describes a 2027 service with a specific analyst presence statement. The correct code is determined by the new code set — and by the absence statement in the note.'},
+      {text:'97173 — protocol modification with analyst present',correct:false,rationale:'97173 requires the analyst to be physically present during the session. The note says "BCBA was not in the building." That statement explicitly disqualifies 97173. Physical presence is the defining feature of 97173.'},
+      {text:'97160 — protocol modification with analyst NOT present',correct:true,rationale:'Correct. The note contains all three elements 97160 requires: data review by the BCBA, a specific modification made (updated reinforcement schedule), and explicit confirmation that the analyst was not present during the session. "BCBA was not in the building" is exactly the kind of presence statement that maps to 97160.'},
+      {text:'97153 — direct treatment by RBT by protocol',correct:false,rationale:'97153 covers direct treatment by protocol with no protocol modification component. This session involved a BCBA reviewing data and modifying the protocol — a service above the level 97153 describes. The correct code is 97160.'}
     ]
   },
   {
     q:'What is the primary documentation element that determines whether a session should be billed as 97160 or 97173?',
     answers:[
       {text:'The length of the session in minutes',correct:false,rationale:'Both 97160 and 97173 are 15-minute increment codes. Session length does not determine the code selection.'},
-      {text:'Whether the behavior analyst was physically present in the room during the session',correct:true,rationale:'Correct. Both codes involve protocol modification by a behavior analyst. The only distinguishing factor is physical presence: 97173 requires the analyst to be physically present and directly observing the session. 97160 covers protocol modification done remotely, data review and modification communicated to the RBT without in-person observation.'},
-      {text:'Whether the client consented to analyst observation',correct:false,rationale:'Client consent to observation is not a CPT code selection factor. The code is determined by what service was delivered, specifically, whether the analyst was physically present during the session.'},
+      {text:'Whether the behavior analyst was physically present in the room during the session',correct:true,rationale:'Correct. Both codes involve protocol modification by a behavior analyst. The only distinguishing factor is physical presence: 97173 requires the analyst to be physically present and directly observing the session. 97160 covers protocol modification done remotely — data review and modification communicated to the RBT without in-person observation.'},
+      {text:'Whether the client consented to analyst observation',correct:false,rationale:'Client consent to observation is not a CPT code selection factor. The code is determined by what service was delivered — specifically, whether the analyst was physically present during the session.'},
       {text:'The severity of the client\'s diagnosis',correct:false,rationale:'Diagnosis severity does not determine CPT code selection for protocol modification services. The code is based on the type of service delivered and the provider\'s role during the session.'}
     ]
   },
   {
     q:'A documentation coordinator submits a 0362T claim on January 15, 2027, for a service delivered on December 28, 2026. What is the most likely outcome?',
     answers:[
-      {text:'The claim is paid because the service was delivered before the code deletion date.',correct:false,rationale:'The billing date, not the service date, determines code validity in the payer system. The claim was submitted on January 15, 2027, after 0362T was deleted. The payer system rejects it on the billing date, not the service date.'},
-      {text:'The claim is denied, 0362T is a deleted code after January 1, 2027, and the payer billing system will reject it regardless of the service date.',correct:true,rationale:'Correct. Deleted codes are removed from payer billing system tables on the effective date. After January 1, 2027, 0362T does not exist in the payer system. Any claim submitted using this code will be rejected automatically at the system level.'},
-      {text:'The claim is flagged for manual review because of the code transition.',correct:false,rationale:'Deleted codes do not trigger manual review, they trigger automatic system rejection. There is no manual override pathway for a code that has been removed from the payer billing system.'},
-      {text:'The claim is accepted with a note that the code will be grandfathered for services delivered before January 1.',correct:false,rationale:'No automatic grandfathering applies to deleted codes. If a payer extends a grace period for specific code transitions (such as the 97155 transition window some payers allow), it must be explicitly confirmed with that payer. 0362T deletion is not covered by transition grace periods, it is a permanent deletion.'}
+      {text:'The claim is paid because the service was delivered before the code deletion date.',correct:false,rationale:'The billing date, not the service date, determines code validity in the payer system. The claim was submitted on January 15, 2027 — after 0362T was deleted. The payer system rejects it on the billing date, not the service date.'},
+      {text:'The claim is denied — 0362T is a deleted code after January 1, 2027, and the payer billing system will reject it regardless of the service date.',correct:true,rationale:'Correct. Deleted codes are removed from payer billing system tables on the effective date. After January 1, 2027, 0362T does not exist in the payer system. Any claim submitted using this code will be rejected automatically at the system level.'},
+      {text:'The claim is flagged for manual review because of the code transition.',correct:false,rationale:'Deleted codes do not trigger manual review — they trigger automatic system rejection. There is no manual override pathway for a code that has been removed from the payer billing system.'},
+      {text:'The claim is accepted with a note that the code will be grandfathered for services delivered before January 1.',correct:false,rationale:'No automatic grandfathering applies to deleted codes. If a payer extends a grace period for specific code transitions (such as the 97155 transition window some payers allow), it must be explicitly confirmed with that payer. 0362T deletion is not covered by transition grace periods — it is a permanent deletion.'}
     ]
   },
   {
     q:'A BCBA tells a documentation coordinator not to worry about the 2027 code transition because "it will all sort itself out in February." What is the documentation coordinator\'s correct response?',
     answers:[
-      {text:'Agree, most payers allow a 60-day grace period for new codes, so there is no urgency before January.',correct:false,rationale:'No universal 60-day grace period exists. Some payers have no grace period for deleted codes at all. The documentation coordinator cannot rely on a grace period assumption without payer-specific verification.'},
+      {text:'Agree — most payers allow a 60-day grace period for new codes, so there is no urgency before January.',correct:false,rationale:'No universal 60-day grace period exists. Some payers have no grace period for deleted codes at all. The documentation coordinator cannot rely on a grace period assumption without payer-specific verification.'},
       {text:'Wait until December 31 and then escalate if the BCBA has not addressed it.',correct:false,rationale:'December 31 is too late to initiate amendment requests, complete payer verification, update templates, and train staff. The documentation coordinator does not need BCBA permission to begin transition work. Waiting is not a valid strategy when real claims are at stake.'},
-      {text:'Escalate to the clinic director, initiate a code audit and authorization sweep, and begin the transition process without waiting for BCBA leadership.',correct:true,rationale:'Correct. The documentation coordinator does not need a BCBA\'s sign-off to begin audit and transition work. The documentation coordinator\'s role explicitly includes ensuring the clinic\'s billing infrastructure is compliant. When a BCBA\'s instruction conflicts with billing compliance, the documentation coordinator escalates, to the clinic director, not to the payer.'},
-      {text:'Submit claims using old codes through January and switch to new codes in February when the BCBA says it is ready.',correct:false,rationale:'Submitting deleted codes after January 1 produces automatic denials. Submitting new codes without updated session note templates produces documentation deficiency denials. Neither outcome "sorts itself out", both require active remediation after the fact, at significant cost to the clinic.'}
+      {text:'Escalate to the clinic director, initiate a code audit and authorization sweep, and begin the transition process without waiting for BCBA leadership.',correct:true,rationale:'Correct. The documentation coordinator does not need a BCBA\'s sign-off to begin audit and transition work. The documentation coordinator\'s role explicitly includes ensuring the clinic\'s billing infrastructure is compliant. When a BCBA\'s instruction conflicts with billing compliance, the documentation coordinator escalates — to the clinic director, not to the payer.'},
+      {text:'Submit claims using old codes through January and switch to new codes in February when the BCBA says it is ready.',correct:false,rationale:'Submitting deleted codes after January 1 produces automatic denials. Submitting new codes without updated session note templates produces documentation deficiency denials. Neither outcome "sorts itself out" — both require active remediation after the fact, at significant cost to the clinic.'}
     ]
   }
 ];
 
-//, KC engine —
+// — KC engine —
 function buildKCOptions(kcIdx, excludeLetter) {
   const kc = KC_DATA[kcIdx];
   const indices = [0,1,2,3];
@@ -1173,7 +1148,7 @@ function sectionUnlocked(idx){
   return sectionDone[idx-1]!==false||!(SECTION_KCS[idx-1]&&SECTION_KCS[idx-1].length>0);
 }
 
-//, Quiz engine —
+// — Quiz engine —
 let quizAnswers = {};
 let quizSubmitted = false;
 
@@ -1231,28 +1206,28 @@ function submitQuiz(){
   resultEl.style.display='block';
   if(score>=4){
     resultEl.className='quiz-result pass';
-    resultEl.textContent=`Strong work, ${score} out of 5. You are ready for the 2027 transition.`;
+    resultEl.textContent=`Strong work — ${score} out of 5. You are ready for the 2027 transition.`;
   } else {
     resultEl.className='quiz-result fail';
-    resultEl.textContent=`${score} out of 5, review the sections covering your missed questions, then continue to Module 6.`;
+    resultEl.textContent=`${score} out of 5 — review the sections covering your missed questions, then continue to Module 6.`;
   }
   document.getElementById('quizSubmit').disabled=true;
   sectionDone[10]=true;
 }
 
-//, Scenario engine —
+// — Scenario engine —
 const decisionFeedback = [
   {
-    correct:'Exactly right. This is the documentation coordinator\'s job, not waiting for a problem, but catching one before it costs the clinic money. With 17 days until January 1 and holiday processing windows closing soon, escalating immediately and initiating the amendment request today is the only viable path to having a valid authorization in place before Marcus\'s January sessions begin.',
-    wrong:'0362T does not exist after December 31, 2026. The payer processed the original authorization before the code was deleted, that authorization cannot support claims submitted after January 1, regardless of its expiration date. The documentation coordinator who waits will be managing denials in January instead of doing the job in December.'
+    correct:'Exactly right. This is the documentation coordinator\'s job — not waiting for a problem, but catching one before it costs the clinic money. With 17 days until January 1 and holiday processing windows closing soon, escalating immediately and initiating the amendment request today is the only viable path to having a valid authorization in place before Marcus\'s January sessions begin.',
+    wrong:'0362T does not exist after December 31, 2026. The payer processed the original authorization before the code was deleted — that authorization cannot support claims submitted after January 1, regardless of its expiration date. The documentation coordinator who waits will be managing denials in January instead of doing the job in December.'
   },
   {
-    correct:'Correct. The documentation coordinator\'s role is not contingent on BCBA approval for billing compliance decisions. The BCBA\'s instruction, wait and see, creates real financial exposure for the clinic. Escalating to the clinic director, documenting the BCBA\'s response, and continuing the transition work is exactly what the role requires. The PrioraCare note also creates a record that the issue was raised and escalated, which matters if the January claims are denied and the payer asks who knew what and when.',
-    wrong:'The documentation coordinator does not need the BCBA\'s permission to identify a billing compliance issue and escalate it. BCBA staff have clinical authority, not billing authority. A BCBA instruction to ignore a deleted code problem does not transfer liability for the resulting denied claims. Submitting 0362T after January 1 and attributing it to BCBA direction in a PrioraCare note does not protect the clinic from a denial, it creates a paper trail of a known compliance failure.'
+    correct:'Correct. The documentation coordinator\'s role is not contingent on BCBA approval for billing compliance decisions. The BCBA\'s instruction — wait and see — creates real financial exposure for the clinic. Escalating to the clinic director, documenting the BCBA\'s response, and continuing the transition work is exactly what the role requires. The PrioraCare note also creates a record that the issue was raised and escalated — which matters if the January claims are denied and the payer asks who knew what and when.',
+    wrong:'The documentation coordinator does not need the BCBA\'s permission to identify a billing compliance issue and escalate it. BCBA staff have clinical authority — not billing authority. A BCBA instruction to ignore a deleted code problem does not transfer liability for the resulting denied claims. Submitting 0362T after January 1 and attributing it to BCBA direction in a PrioraCare note does not protect the clinic from a denial — it creates a paper trail of a known compliance failure.'
   },
   {
-    correct:'Correct. The documentation coordinator cannot manufacture an authorization that does not exist. What she can do is document the gap clearly, escalate the scheduling decision to the clinic director, submit the amendment request the moment Medi-Cal reopens on January 3, and find out whether Medi-Cal will approve the amendment retroactively to cover January services. Some payers do grant retroactive authorization in cases where processing delays were outside the clinic\'s control. That is a conversation worth having, but it requires that the amendment was submitted as early as possible.',
-    wrong:'Delivering services without an active authorization for a valid CPT code is the most common finding in OIG audits across all four states reviewed. The documentation coordinator cannot absorb this risk silently, the clinic director must make the decision about whether to hold services, and the documentation must reflect that the authorization gap was identified and escalated before services continued.'
+    correct:'Correct. The documentation coordinator cannot manufacture an authorization that does not exist. What she can do is document the gap clearly, escalate the scheduling decision to the clinic director, submit the amendment request the moment Medi-Cal reopens on January 3, and find out whether Medi-Cal will approve the amendment retroactively to cover January services. Some payers do grant retroactive authorization in cases where processing delays were outside the clinic\'s control. That is a conversation worth having — but it requires that the amendment was submitted as early as possible.',
+    wrong:'Delivering services without an active authorization for a valid CPT code is the most common finding in OIG audits across all four states reviewed. The documentation coordinator cannot absorb this risk silently — the clinic director must make the decision about whether to hold services, and the documentation must reflect that the authorization gap was identified and escalated before services continued.'
   }
 ];
 
@@ -1270,7 +1245,7 @@ function pickDecision(el,isCorrect,dpIdx){
   fb.innerHTML=`<strong style="color:${isCorrect?'var(--green)':'var(--red)'}">${isCorrect?'✓ Right call.':'✗ Not the best move.'}</strong> ${isCorrect?decisionFeedback[dpIdx].correct:decisionFeedback[dpIdx].wrong}`;
 }
 
-//, Navigation —
+// — Navigation —
 function navNext(){
   if(current<TOTAL-1){goTo(current+1);}
 }
@@ -1341,7 +1316,7 @@ function toggleTheme(){
   r.setAttribute('data-theme',cur==='dark'?'light':'dark');
 }
 
-//, Init —
+// — Init —
 buildDots();
 updateProgress();
 updateDots();

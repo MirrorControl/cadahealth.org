@@ -1,877 +1,595 @@
 <title>CADA Dashboard</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
-/* Force light — this is a portal, not a marketing page */
 :root{
-  color-scheme:light;
-  --bg:#f4f3f0;
-  --surface:#ffffff;
-  --surface-raised:#f0ede9;
-  --sidebar-bg:#ffffff;
-  --navy:#1a1208;
-  --navy-mid:#2c1e0c;
-  --gold:#9a6e10;
-  --gold-light:#f2e8d4;
-  --teal:#0d7377;
-  --teal-light:#e0f5f5;
-  --red:#c0392b;
-  --red-light:#fcecea;
-  --green:#1a7a35;
-  --green-light:#e4f7ea;
-  --amber:#b85c00;
-  --amber-light:#fff0e0;
-  --text:#1c1c1e;
-  --text-secondary:#4a4a4a;
-  --text-muted:#767676;
-  --border:#e3e0da;
-  --border-light:#ebe8e2;
-  --shadow:0 1px 4px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.04);
-  --shadow-md:0 2px 8px rgba(0,0,0,.09),0 8px 24px rgba(0,0,0,.06);
-  --radius:12px;
-  --sidebar-w:248px;
+  --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+  --navy:#1a2744;--navy-mid:#2c3e6b;
+  --gold:#c8921a;--gold-light:#f5e6c3;--gold-muted:#e8d49a;
+  --teal:#0d7377;--teal-light:#d4f0f1;
+  --red:#c0392b;--red-light:#fcecea;
+  --green:#1e7e34;--green-light:#d4f4dd;
+  --amber:#d35400;--amber-light:#fef0e4;
+  --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
+  --border:#d8d5cf;--border-light:#ebe8e2;
+  --radius:12px;--topbar-h:56px;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
+    --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
+    --border:#2e2b26;--border-light:#252320;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1117;--surface:#1a1d24;--surface-raised:#22262f;
+  --text:#f0ede8;--text-secondary:#b8b4ae;--text-muted:#78746e;
+  --border:#2e2b26;--border-light:#252320;
+  color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
 body{
   background:var(--bg);color:var(--text);
-  font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;
+  font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
 
-/* Auth loader */
-#auth-loading{
-  display:flex;align-items:center;justify-content:center;height:100vh;
-  background:var(--bg);flex-direction:column;gap:14px;
+/* Topbar */
+.topbar{
+  position:sticky;top:env(safe-area-inset-top,0px);
+  height:var(--topbar-h);background:var(--navy);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(16px,env(safe-area-inset-left,0px));z-index:100;
 }
-.auth-spinner{
-  width:36px;height:36px;border-radius:50%;
-  border:3px solid var(--border);border-top-color:var(--gold);
-  animation:spin .8s linear infinite;
+.logo-link{text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff}
+.logo-badge{
+  background:var(--gold);color:#fff;
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  padding:2px 7px;border-radius:4px;letter-spacing:.05em;
 }
-@keyframes spin{to{transform:rotate(360deg)}}
-.auth-loading-text{font-size:14px;color:var(--text-muted)}
+.topnav{display:flex;gap:6px}
+.nav-link{
+  color:rgba(255,255,255,.75);text-decoration:none;
+  font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:background .15s;
+}
+.nav-link:hover{background:rgba(255,255,255,.1);color:#fff}
 
 /* Layout */
-.app-layout{
-  display:flex;min-height:100vh;
-  padding-top:env(safe-area-inset-top,0px);
+.page-wrap{
+  max-width:960px;margin:0 auto;
+  padding:36px max(16px,env(safe-area-inset-left,0px)) 80px;
 }
 
-/* Sidebar */
-.app-sidebar{
-  width:var(--sidebar-w);flex-shrink:0;
-  background:var(--sidebar-bg);border-right:1px solid var(--border);
-  display:flex;flex-direction:column;
-  position:sticky;top:0;height:100vh;overflow-y:auto;
-  padding:24px 16px 20px;
+/* Welcome bar */
+.welcome-bar{
+  background:linear-gradient(135deg,var(--navy) 0%,#243460 100%);
+  border-radius:var(--radius);padding:28px 32px;margin-bottom:28px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+  flex-wrap:wrap;position:relative;overflow:hidden;
 }
+.welcome-bar::before{
+  content:'';position:absolute;top:-40px;right:40px;
+  width:200px;height:200px;border-radius:50%;
+  background:rgba(200,146,26,.07);pointer-events:none;
+}
+.welcome-left{}
+.welcome-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.welcome-title{
+  font-family:'Space Grotesk',sans-serif;font-size:clamp(18px,3vw,24px);font-weight:700;
+  color:#fff;margin-bottom:6px;
+}
+.welcome-subtitle{font-size:14px;color:rgba(255,255,255,.65);max-width:460px;line-height:1.5}
 
-.sidebar-logo{
-  display:flex;align-items:center;gap:9px;
-  text-decoration:none;margin-bottom:28px;padding:0 4px;
+.welcome-cred{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:16px 20px;text-align:center;min-width:180px;flex-shrink:0;
 }
-.sidebar-logo-text{
-  font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;
-  color:var(--navy);letter-spacing:-.01em;
-}
-.sidebar-logo-badge{
-  background:var(--gold);color:#fff;
-  font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;
-  padding:2px 6px;border-radius:4px;letter-spacing:.05em;
-}
-
-/* User card */
-.sidebar-user{
-  background:var(--bg);border-radius:10px;padding:14px;
-  margin-bottom:20px;display:flex;align-items:center;gap:11px;
-}
-.user-avatar{
-  width:38px;height:38px;border-radius:50%;flex-shrink:0;
-  background:var(--navy);color:#fff;
+.welcome-cred-label{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.welcome-cred-id{
   font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);letter-spacing:.04em;margin-bottom:8px;
 }
-.user-info{min-width:0;flex:1}
-.user-name{
-  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
-  color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+.welcome-cred-status{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:600;padding:4px 10px;border-radius:12px;
 }
-.user-email{font-size:11px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status-active{background:rgba(30,126,52,.25);color:#5de68d}
+.status-pending{background:rgba(211,84,0,.2);color:#f5a05a}
+.status-locked{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
 
-/* Progress ring */
-.sidebar-ring-wrap{
-  display:flex;flex-direction:column;align-items:center;
-  padding:20px 0 24px;border-bottom:1px solid var(--border);margin-bottom:20px;
-}
-.ring-label-top{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
-.ring-svg-wrap{position:relative;width:96px;height:96px}
-.ring-svg{transform:rotate(-90deg)}
-.ring-track{fill:none;stroke:var(--border);stroke-width:7}
-.ring-fill{fill:none;stroke:var(--gold);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .9s cubic-bezier(.4,0,.2,1)}
-.ring-fill.complete{stroke:var(--green)}
-.ring-center{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-}
-.ring-pct{
-  font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;
-  color:var(--navy);line-height:1;
-}
-.ring-pct-label{font-size:10px;color:var(--text-muted);margin-top:2px}
-.ring-steps{font-size:12px;color:var(--text-muted);margin-top:8px}
-
-/* Sidebar nav */
-.sidebar-nav{display:flex;flex-direction:column;gap:2px;flex:1}
-.nav-item{
-  display:flex;align-items:center;gap:10px;
-  padding:9px 12px;border-radius:8px;
-  text-decoration:none;color:var(--text-secondary);
-  font-size:13px;font-weight:500;transition:background .15s,color .15s;
-  cursor:pointer;border:none;background:none;width:100%;text-align:left;
-}
-.nav-item:hover{background:var(--bg);color:var(--navy)}
-.nav-item.active{background:var(--gold-light);color:var(--gold);font-weight:600}
-.nav-item.locked{opacity:.45;pointer-events:none}
-.nav-icon{width:16px;height:16px;flex-shrink:0;opacity:.7}
-.nav-item.active .nav-icon{opacity:1}
-.nav-item:hover .nav-icon{opacity:1}
-
-.sidebar-divider{height:1px;background:var(--border);margin:12px 0}
-
-.logout-btn{
-  display:flex;align-items:center;gap:10px;
-  padding:9px 12px;border-radius:8px;
-  font-size:13px;font-weight:500;color:var(--text-muted);
-  cursor:pointer;border:none;background:none;width:100%;
-  transition:background .15s,color .15s;
-}
-.logout-btn:hover{background:var(--red-light);color:var(--red)}
-
-/* Main content */
-.app-main{
-  flex:1;min-width:0;
-  padding:32px max(24px,env(safe-area-inset-right,0px)) 60px max(24px,env(safe-area-inset-left,0px));
-  overflow-y:auto;max-height:100vh;
-}
-
-/* Welcome */
-.welcome-row{
-  display:flex;align-items:flex-start;justify-content:space-between;
-  gap:16px;margin-bottom:28px;flex-wrap:wrap;
-}
-.welcome-greeting{
-  font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,3vw,26px);
-  font-weight:700;color:var(--navy);margin-bottom:4px;
-}
-.welcome-sub{font-size:14px;color:var(--text-muted)}
-.welcome-date{
-  font-size:13px;color:var(--text-muted);text-align:right;padding-top:4px;
-  white-space:nowrap;
-}
-
-/* CTA button row */
-.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--navy);color:#fff;border:none;
-  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
-  padding:10px 20px;border-radius:8px;cursor:pointer;
-  text-decoration:none;transition:background .15s,transform .1s;
-}
-.btn-primary:hover{background:var(--navy-mid);transform:translateY(-1px)}
-.btn-secondary{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--surface);color:var(--navy);
-  border:1.5px solid var(--border);
-  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;
-  padding:10px 20px;border-radius:8px;cursor:pointer;
-  text-decoration:none;transition:border-color .15s,transform .1s;
-}
-.btn-secondary:hover{border-color:var(--navy);transform:translateY(-1px)}
-.btn-gold{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--gold);color:#fff;border:none;
-  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
-  padding:10px 20px;border-radius:8px;cursor:pointer;
-  text-decoration:none;transition:background .15s,transform .1s;
-}
-.btn-gold:hover{background:#7a5208;transform:translateY(-1px)}
-
-/* Stat cards */
-.stat-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:12px;margin-bottom:24px;
+/* Overall progress */
+.progress-overview{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;margin-bottom:28px;
 }
 .stat-card{
   background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:18px 20px;
-  box-shadow:var(--shadow);
+  border-radius:10px;padding:18px 20px;
 }
-.stat-eyebrow{
-  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--text-muted);margin-bottom:8px;
-  display:flex;align-items:center;gap:5px;
-}
+.stat-label{font-size:12px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 .stat-num{
-  font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;
+  font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
   color:var(--navy);line-height:1;margin-bottom:4px;
 }
-.stat-num.gold{color:var(--gold)}
-.stat-num.green{color:var(--green)}
-.stat-sub{font-size:12px;color:var(--text-muted);line-height:1.4}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .stat-num{color:var(--gold)}}
+:root[data-theme="dark"] .stat-num{color:var(--gold)}
+.stat-desc{font-size:12px;color:var(--text-muted);line-height:1.4}
 
 /* Progress bar */
-.prog-bar-card{
+.progress-bar-wrap{
   background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:18px 20px;
-  box-shadow:var(--shadow);margin-bottom:24px;
+  border-radius:10px;padding:18px 20px;margin-bottom:28px;
 }
-.prog-bar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.prog-bar-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--navy)}
-.prog-bar-pct{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--gold)}
-.prog-track{height:8px;background:var(--surface-raised);border-radius:4px;overflow:hidden}
-.prog-fill{height:100%;border-radius:4px;transition:width .8s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,var(--gold),#c8921a)}
-.prog-fill.complete{background:linear-gradient(90deg,var(--green),#2ea84a)}
+.progress-bar-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.progress-bar-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--text)}
+.progress-bar-pct{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--navy)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .progress-bar-pct{color:var(--gold)}}
+:root[data-theme="dark"] .progress-bar-pct{color:var(--gold)}
+.progress-track{
+  height:10px;background:var(--surface-raised);border-radius:5px;overflow:hidden;
+}
+.progress-fill{
+  height:100%;border-radius:5px;transition:width .6s ease;
+  background:linear-gradient(90deg,var(--navy),var(--navy-mid));
+}
+.progress-fill.complete{background:linear-gradient(90deg,var(--green),#28a745)}
 
 /* Two-column layout */
-.content-cols{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
-@media(max-width:820px){.content-cols{grid-template-columns:1fr}}
+.main-cols{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+@media(max-width:760px){.main-cols{grid-template-columns:1fr}}
 
-/* Section header */
-.section-header{
-  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);
-  margin-bottom:12px;padding:0 2px;
+/* Module list */
+.module-list-section{}
+.section-heading{
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);
+  margin-bottom:14px;
 }
 
-/* Module rows */
-.module-row{
+.module-card{
   background:var(--surface);border:1.5px solid var(--border);
-  border-radius:10px;padding:14px 16px;
-  display:flex;align-items:center;gap:14px;
-  text-decoration:none;transition:border-color .2s,box-shadow .2s;
-  margin-bottom:8px;
+  border-radius:10px;margin-bottom:10px;overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+  text-decoration:none;display:block;
 }
-.module-row:hover{border-color:var(--navy);box-shadow:var(--shadow)}
-.module-row.done{border-color:rgba(26,122,53,.35)}
-.module-row.next{border-color:rgba(200,146,26,.5)}
-.module-row.locked{opacity:.5;pointer-events:none}
+.module-card:hover{border-color:var(--navy);box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.module-card.done{border-color:var(--green)}
+.module-card.in-progress{border-color:var(--gold)}
+.module-card.locked{opacity:.55;pointer-events:none}
 
-.row-icon{
-  width:34px;height:34px;border-radius:50%;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .module-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.2)}
 }
-.icon-done{background:var(--green-light);color:var(--green)}
-.icon-next{background:var(--gold-light);color:var(--gold)}
-.icon-locked{background:var(--surface-raised);color:var(--text-muted)}
+:root[data-theme="dark"] .module-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.2)}
 
-.row-body{flex:1;min-width:0}
-.row-num{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1px}
-.row-title{
-  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
-  color:var(--navy);margin-bottom:1px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.row-desc{font-size:11px;color:var(--text-muted)}
+.module-card-inner{display:flex;align-items:center;gap:14px;padding:14px 18px}
 
-.row-badge{
-  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
-  padding:4px 11px;border-radius:5px;white-space:nowrap;flex-shrink:0;
+.module-status-icon{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
 }
-.badge-done{background:var(--green-light);color:var(--green)}
-.badge-next{background:var(--gold-light);color:var(--amber)}
-.badge-start{background:var(--navy);color:#fff}
-.badge-locked{background:var(--surface-raised);color:var(--text-muted)}
-.badge-cooling{background:var(--amber-light);color:var(--amber)}
-.badge-passed{background:var(--green-light);color:var(--green)}
+.icon-done{background:var(--green-light)}
+.icon-next{background:var(--gold-light)}
+.icon-locked{background:var(--surface-raised)}
 
-/* Sidebar cards */
-.sidebar-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:20px;
-  box-shadow:var(--shadow);margin-bottom:14px;
+.module-info{flex:1;min-width:0}
+.module-num{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px}
+.module-title{
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-.sc-eyebrow{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
-.sc-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.3}
-.sc-desc{font-size:12px;color:var(--text-muted);line-height:1.5;margin-bottom:14px}
-.sc-btn{
-  display:block;text-align:center;text-decoration:none;border:none;cursor:pointer;width:100%;
-  background:var(--navy);color:#fff;
-  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
-  padding:10px 16px;border-radius:7px;transition:background .15s;
-}
-.sc-btn:hover{background:var(--navy-mid)}
-.sc-btn.gold{background:var(--gold)}
-.sc-btn.gold:hover{background:#7a5208}
+.module-desc{font-size:12px;color:var(--text-muted);line-height:1.4}
 
-/* Cooldown card */
-.cooldown-card{
-  background:var(--amber-light);border:1.5px solid rgba(184,92,0,.2);
-  border-radius:var(--radius);padding:20px;margin-bottom:14px;
-}
-.cooldown-eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
-.cooldown-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--amber);margin-bottom:4px}
-.cooldown-desc{font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.5}
-.cooldown-timer{
-  font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;
-  color:var(--amber);letter-spacing:.04em;
-}
-.cooldown-unit{font-size:11px;color:var(--text-muted);margin-top:2px}
-
-/* Credential card (post pass) */
-.credential-card{
-  background:linear-gradient(135deg,#1a1208 0%,#2c1e0c 100%);
-  border-radius:var(--radius);padding:22px;
-  box-shadow:var(--shadow-md);margin-bottom:28px;
-  position:relative;overflow:hidden;
-}
-.credential-card::before{
-  content:'';position:absolute;top:-40px;right:-40px;
-  width:150px;height:150px;border-radius:50%;
-  background:rgba(200,146,26,.08);pointer-events:none;
-}
-.cred-issuer{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
-.cred-name{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:12px;line-height:1.3}
-.cred-id-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.cred-id{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--gold);letter-spacing:.04em}
-.cred-valid{font-size:11px;color:rgba(255,255,255,.45);margin-bottom:16px}
-.cred-actions{display:flex;gap:8px;flex-wrap:wrap}
-.cred-btn{
-  display:inline-flex;align-items:center;gap:6px;
+.module-action{
   font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
-  padding:8px 14px;border-radius:6px;cursor:pointer;border:none;
-  text-decoration:none;transition:opacity .15s;
+  padding:6px 14px;border-radius:6px;white-space:nowrap;
 }
-.cred-btn:hover{opacity:.85}
-.cred-btn-linkedin{background:#0a66c2;color:#fff}
-.cred-btn-download{background:var(--gold);color:#fff}
-.cred-btn-copy{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.action-review{background:var(--green-light);color:var(--green)}
+.action-start{background:var(--gold-light);color:var(--amber)}
+.action-begin{background:var(--navy);color:#fff}
+.action-locked{background:var(--surface-raised);color:var(--text-muted)}
 
-/* Celebration */
+/* Sidebar */
+.sidebar{}
+
+/* Next step card */
+.next-step-card{
+  background:var(--navy);border-radius:var(--radius);
+  padding:24px;margin-bottom:16px;position:relative;overflow:hidden;
+}
+.next-step-card::before{
+  content:'';position:absolute;bottom:-30px;right:-30px;
+  width:120px;height:120px;border-radius:50%;
+  background:rgba(200,146,26,.08);
+}
+.next-eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.next-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;text-wrap:balance}
+.next-desc{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;margin-bottom:16px}
+.next-btn{
+  display:block;text-align:center;text-decoration:none;
+  background:var(--gold);color:#fff;border:none;
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  padding:11px 20px;border-radius:7px;cursor:pointer;transition:background .2s;
+}
+.next-btn:hover{background:#a97415}
+
+/* Credential card sidebar */
+.cred-sidebar{
+  background:linear-gradient(135deg,var(--navy) 0%,#243460 100%);
+  border-radius:var(--radius);padding:22px;margin-bottom:16px;
+}
+.cred-sb-issuer{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.cred-sb-title{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:12px}
+.cred-sb-id{
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  color:var(--gold);letter-spacing:.04em;margin-bottom:4px;
+}
+.cred-sb-valid{font-size:11px;color:rgba(255,255,255,.35)}
+.cred-sb-status{
+  margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);
+  font-size:12px;color:rgba(255,255,255,.5);
+}
+.cred-sb-status strong{color:#5de68d}
+
+.sidebar-link-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:16px 18px;margin-bottom:12px;
+  text-decoration:none;display:flex;align-items:center;gap:12px;
+  transition:border-color .15s;
+}
+.sidebar-link-card:hover{border-color:var(--navy)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .sidebar-link-card:hover{border-color:var(--gold)}}
+:root[data-theme="dark"] .sidebar-link-card:hover{border-color:var(--gold)}
+.sidebar-link-icon{font-size:20px;flex-shrink:0}
+.sidebar-link-info{}
+.sidebar-link-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
+.sidebar-link-desc{font-size:12px;color:var(--text-muted)}
+.sidebar-link-arrow{font-size:14px;color:var(--text-muted);margin-left:auto;flex-shrink:0}
+
+/* Reset button */
+.reset-link{
+  display:block;text-align:center;
+  font-size:12px;color:var(--text-muted);cursor:pointer;
+  margin-top:20px;padding:8px;text-decoration:underline;
+}
+.reset-link:hover{color:var(--red)}
+
+/* Celebration banner */
 .celebration{
-  background:linear-gradient(135deg,var(--green) 0%,#2ea84a 100%);
-  border-radius:var(--radius);padding:24px 28px;margin-bottom:24px;text-align:center;
+  background:linear-gradient(135deg,var(--green) 0%,#28a745 100%);
+  border-radius:var(--radius);padding:24px 28px;margin-bottom:24px;
+  text-align:center;
 }
-.cel-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:6px}
-.cel-desc{font-size:14px;color:rgba(255,255,255,.8);line-height:1.5}
-
-/* Copied toast */
-.copy-toast{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(12px);
-  background:var(--navy);color:#fff;
-  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;
-  padding:10px 20px;border-radius:8px;opacity:0;
-  transition:opacity .2s,transform .2s;pointer-events:none;z-index:999;
-  box-shadow:var(--shadow-md);
+.celebration-icon{font-size:36px;margin-bottom:10px}
+.celebration-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:6px}
+.celebration-desc{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:16px;line-height:1.5}
+.celebration-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-white{
+  background:#fff;color:var(--green);border:none;
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  padding:10px 20px;border-radius:7px;text-decoration:none;cursor:pointer;
 }
-.copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* Mobile sidebar */
-.mobile-topbar{
-  display:none;position:sticky;top:0;z-index:100;
-  background:var(--sidebar-bg);border-bottom:1px solid var(--border);
-  padding:12px 16px;align-items:center;justify-content:space-between;
-}
-.mobile-logo{
-  font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--navy);
-  display:flex;align-items:center;gap:7px;text-decoration:none;
-}
-
-@media(max-width:680px){
-  .app-sidebar{display:none}
-  .mobile-topbar{display:flex}
-  .app-main{max-height:none;padding:20px 16px 48px}
-  .app-layout{flex-direction:column}
-}
-
-/* Responsive content */
-@media(max-width:820px){
-  .stat-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:480px){
-  .stat-grid{grid-template-columns:1fr 1fr}
-  .cred-actions{flex-direction:column}
+.btn-outline-white{
+  background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  padding:9px 20px;border-radius:7px;text-decoration:none;cursor:pointer;
 }
 </style>
 
-<!-- Auth loading state -->
-<div id="auth-loading">
-  <div class="auth-spinner"></div>
-  <div class="auth-loading-text">Loading your dashboard...</div>
-</div>
-
-<!-- Mobile topbar -->
-<div class="mobile-topbar">
-  <a href="index.html" class="mobile-logo">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    <span>CareGuard</span>
-    <span style="background:var(--gold);color:#fff;font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px;letter-spacing:.05em">CADA</span>
-  </a>
-  <button class="logout-btn" style="width:auto;padding:7px 12px" onclick="doLogout()">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-    Sign out
-  </button>
-</div>
-
-<!-- Main app (hidden until auth check passes) -->
-<div class="app-layout" id="app" hidden>
-
-  <!-- Sidebar -->
-  <aside class="app-sidebar">
-    <a href="index.html" class="sidebar-logo">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span class="sidebar-logo-text">CareGuard</span>
-      <span class="sidebar-logo-badge">CADA</span>
+<div id="app">
+  <header class="topbar">
+    <a href="index.html" class="logo-link">
+      <span class="logo-text">CADA Institute</span>
+      <span class="logo-badge">CADA</span>
     </a>
-
-    <!-- User card -->
-    <div class="sidebar-user">
-      <div class="user-avatar" id="sb-avatar">?</div>
-      <div class="user-info">
-        <div class="user-name" id="sb-name">Loading...</div>
-        <div class="user-email" id="sb-email"></div>
-      </div>
-    </div>
-
-    <!-- Progress ring -->
-    <div class="sidebar-ring-wrap">
-      <div class="ring-label-top">Certification Progress</div>
-      <div class="ring-svg-wrap">
-        <svg class="ring-svg" width="96" height="96" viewBox="0 0 96 96">
-          <circle class="ring-track" cx="48" cy="48" r="40"/>
-          <circle class="ring-fill" id="ring-fill" cx="48" cy="48" r="40"
-            stroke-dasharray="251.3"
-            stroke-dashoffset="251.3"/>
-        </svg>
-        <div class="ring-center">
-          <div class="ring-pct" id="ring-pct">0%</div>
-          <div class="ring-pct-label">complete</div>
-        </div>
-      </div>
-      <div class="ring-steps" id="ring-steps">0 of 8 steps</div>
-    </div>
-
-    <!-- Nav -->
-    <nav class="sidebar-nav">
-      <a class="nav-item active" href="dashboard.html">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        Overview
-      </a>
-      <a class="nav-item" href="module1.html">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        Course Modules
-      </a>
-      <a class="nav-item" href="practice-exam.html">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        Practice Exam
-      </a>
-      <a class="nav-item" href="assessment.html">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Final Assessment
-      </a>
-      <a class="nav-item" id="nav-cert" href="verify.html">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-        My Credential
-      </a>
+    <nav class="topnav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="verify.html" class="nav-link">Verify</a>
     </nav>
+  </header>
 
-    <div class="sidebar-divider"></div>
-    <button class="logout-btn" onclick="doLogout()">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-      Sign out
-    </button>
-  </aside>
-
-  <!-- Main content (rendered by JS) -->
-  <main class="app-main" id="main-content"></main>
+  <div class="page-wrap" id="page-wrap">
+    <!-- Dynamically rendered by JS -->
+  </div>
 </div>
-
-<!-- Copy toast -->
-<div class="copy-toast" id="copy-toast">Link copied to clipboard</div>
 
 <script>
-/* ── Constants ── */
-const KEY_PASS     = 'cada_passed';
-const KEY_FAIL     = 'cada_last_fail';
-const KEY_CRED     = 'cada_credential_id';
+const KEY_PASS   = 'cada_passed';
+const KEY_FAIL   = 'cada_last_fail';
+const KEY_CRED   = 'cada_credential_id';
 const KEY_ENROLLED = 'cada_enrolled';
-const MODULE_KEYS  = ['cada_m1_quiz_done','cada_m2_quiz_done','cada_m3_quiz_done','cada_m4_quiz_done','cada_m5_quiz_done','cada_m6_quiz_done'];
+
+// Module quiz completion keys — set by each module's submitQuiz()
+const MODULE_KEYS = [
+  'cada_m1_quiz_done',
+  'cada_m2_quiz_done',
+  'cada_m3_quiz_done',
+  'cada_m4_quiz_done',
+  'cada_m5_quiz_done',
+  'cada_m6_quiz_done',
+];
 const PRACTICE_KEY = 'cada_practice_done';
-const RETAKE_MS    = 72 * 60 * 60 * 1000;
+const RETAKE_MS = 72 * 60 * 60 * 1000;
 
 const MODULES = [
-  { num:1, file:'module1.html',  title:'The ABA Documentation Standard',                    desc:'Medical necessity, behavioral objectives, session note compliance' },
-  { num:2, file:'module2.html',  title:'Prior Authorization: The Approval Lifecycle',         desc:'Auth submission, unit tracking, expiration management' },
-  { num:3, file:'module3.html',  title:'ABA Billing Fundamentals',                           desc:'CPT codes, place of service, RBT vs BCBA billing distinctions' },
-  { num:4, file:'module4.html',  title:'Medicaid Compliance and Audit Defense',              desc:'RAC audits, statistical extrapolation, appeal rights' },
-  { num:5, file:'module5.html',  title:'The 2027 CPT Code Transition',                       desc:'97155 split, 0362T/0373T deletion, payer-specific timelines' },
-  { num:6, file:'module6.html',  title:'Payer Rules, State Variations, and Real-World Scenarios', desc:'Payer-specific documentation, multi-payer prioritization, capstone' },
+  { num:1, file:'module1.html', title:'The ABA Documentation Standard',           desc:'Medical necessity, behavioral objectives, session note compliance' },
+  { num:2, file:'module2.html', title:'Prior Authorization — The Approval Lifecycle', desc:'Auth submission, unit tracking, expiration management' },
+  { num:3, file:'module3.html', title:'ABA Billing Fundamentals',                 desc:'CPT codes, place of service, RBT vs BCBA billing distinctions' },
+  { num:4, file:'module4.html', title:'Medicaid Compliance and Audit Defense',    desc:'RAC audits, statistical extrapolation, appeal rights' },
+  { num:5, file:'module5.html', title:'The 2027 CPT Code Transition',             desc:'97155 split, 0362T/0373T deletion, payer-specific timelines' },
+  { num:6, file:'module6.html', title:'Payer Rules, State Variations, and Real-World Scenarios', desc:'Payer-specific documentation, multi-payer prioritization, capstone' },
 ];
 
-/* ── localStorage helpers ── */
 function ls(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsDel(k){ try{ localStorage.removeItem(k); }catch(e){} }
 
-/* ── Progress ── */
 function getProgress(){
-  const modulesDone  = MODULE_KEYS.filter(k => ls(k)==='1').length;
-  const practiceDone = ls(PRACTICE_KEY)==='1';
-  const passed       = ls(KEY_PASS)==='1';
-  const enrolled     = ls(KEY_ENROLLED)==='1';
-  const lastFail     = ls(KEY_FAIL);
-  const credId       = ls(KEY_CRED);
-  const inCooldown   = lastFail && !passed && (Date.now()-parseInt(lastFail,10)) < RETAKE_MS;
-  const cooldownMs   = inCooldown ? (RETAKE_MS - (Date.now()-parseInt(lastFail,10))) : 0;
+  const modulesDone = MODULE_KEYS.filter(k => ls(k) === '1').length;
+  const practiceDone = ls(PRACTICE_KEY) === '1';
+  const passed = ls(KEY_PASS) === '1';
+  const enrolled = ls(KEY_ENROLLED) === '1';
+  const lastFail = ls(KEY_FAIL);
+  const credId = ls(KEY_CRED);
+  const inCooldown = lastFail && !passed && (Date.now() - parseInt(lastFail,10)) < RETAKE_MS;
 
-  // Steps: 6 modules + practice + assessment
-  const completedSteps = modulesDone + (practiceDone?1:0) + (passed?1:0);
-  const totalSteps = 8;
-  const pct = Math.round((completedSteps/totalSteps)*100);
+  // Steps: 6 modules + practice + assessment + enrollment = 9 total steps
+  let completedSteps = modulesDone + (practiceDone?1:0) + (passed?1:0) + (enrolled?1:0);
+  const totalSteps = 9;
+  const pct = Math.round((completedSteps / totalSteps) * 100);
 
-  return { modulesDone, practiceDone, passed, enrolled, credId, inCooldown, cooldownMs, lastFail, pct, completedSteps, totalSteps };
+  return { modulesDone, practiceDone, passed, enrolled, credId, inCooldown, lastFail, pct, completedSteps, totalSteps };
 }
 
-/* ── SVG icons ── */
-const ICO_CHECK = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-const ICO_ARROW = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
-const ICO_LOCK  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
-const ICO_CLOCK = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
-const ICO_LI    = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v6.47z"/></svg>`;
-const ICO_COPY  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
-const ICO_DL    = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
-
-/* ── Cooldown countdown ── */
-let _countdownInterval = null;
-function startCooldown(ms){
-  if(_countdownInterval) clearInterval(_countdownInterval);
-  const el = document.getElementById('cooldown-display');
-  if(!el) return;
-  function tick(){
-    const rem = Math.max(0, ms - (Date.now()-parseInt(ls(KEY_FAIL),10)));
-    if(rem<=0){ clearInterval(_countdownInterval); el.textContent='Ready to retake'; return; }
-    const h = Math.floor(rem/3600000);
-    const m = Math.floor((rem%3600000)/60000);
-    const s = Math.floor((rem%60000)/1000);
-    el.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  }
-  tick();
-  _countdownInterval = setInterval(tick, 1000);
-}
-
-/* ── Progress ring ── */
-function updateRing(pct){
-  const circumference = 251.3;
-  const offset = circumference - (circumference * pct/100);
-  const fill = document.getElementById('ring-fill');
-  if(fill){
-    fill.style.strokeDashoffset = offset;
-    if(pct===100) fill.classList.add('complete');
-  }
-  const pctEl = document.getElementById('ring-pct');
-  if(pctEl) pctEl.textContent = pct+'%';
-}
-
-/* ── Copy to clipboard ── */
-function copyVerifyLink(credId){
-  const url = `https://cadahealth.org/verify.html?id=${credId}`;
-  navigator.clipboard.writeText(url).then(()=>{
-    const t = document.getElementById('copy-toast');
-    t.classList.add('show');
-    setTimeout(()=>t.classList.remove('show'),2500);
-  }).catch(()=>{});
-}
-
-/* ── LinkedIn URL ── */
-function linkedinUrl(credId){
-  const params = new URLSearchParams({
-    startTask:'CERTIFICATION_NAME',
-    name:'Certified ABA Documentation Advocate (CADA)',
-    organizationName:'CareGuard Institute',
-    issueYear:'2027',issueMonth:'1',
-    expirationYear:'2027',expirationMonth:'12',
-    certUrl:'https://cadahealth.org/verify.html',
-    certId: credId||''
-  });
-  return 'https://www.linkedin.com/profile/add?'+params.toString();
-}
-
-/* ── Greeting ── */
-function greeting(){
-  const h = new Date().getHours();
-  if(h<12) return 'Good morning';
-  if(h<17) return 'Good afternoon';
-  return 'Good evening';
-}
-function formatDate(){
-  return new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-}
-
-/* ── Render ── */
-function render(user){
-  const p = getProgress();
-
-  // Sidebar user card
-  const rawName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Learner';
-  const initials = rawName.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-  const sbAvatar = document.getElementById('sb-avatar');
-  const sbName   = document.getElementById('sb-name');
-  const sbEmail  = document.getElementById('sb-email');
-  if(sbAvatar) sbAvatar.textContent = initials;
-  if(sbName)   sbName.textContent   = rawName;
-  if(sbEmail)  sbEmail.textContent  = user?.email||'';
-
-  // Ring
-  setTimeout(()=>updateRing(p.pct), 50);
-  const ringsEl = document.getElementById('ring-steps');
-  if(ringsEl) ringsEl.textContent = `${p.completedSteps} of ${p.totalSteps} steps`;
-
-  // Credential nav — unlock after pass
-  const navCert = document.getElementById('nav-cert');
-  if(navCert && !p.passed) navCert.classList.add('locked');
-
-  // Build main
-  const main = document.getElementById('main-content');
-  if(!main) return;
-
-  // ── Next step logic ──
-  let nextHref = '', nextLabel = '', nextDesc = '';
-  if(!p.passed && !p.inCooldown){
-    let firstInc = -1;
-    for(let i=0;i<6;i++){ if(!ls(MODULE_KEYS[i])){ firstInc=i; break; } }
-    if(firstInc>=0){
-      nextHref=MODULES[firstInc].file;
-      nextLabel=`Continue: Module ${firstInc+1}`;
-      nextDesc=MODULES[firstInc].title;
-    } else if(!p.practiceDone){
-      nextHref='practice-exam.html'; nextLabel='Take Practice Exam'; nextDesc='12 questions, unlimited retakes, rationales on submit';
-    } else {
-      nextHref='assessment.html'; nextLabel='Take Final Assessment'; nextDesc='20 questions, 80% required, 72-hour retake wait on fail';
+function nextAction(p){
+  if (!p.passed && !p.inCooldown) {
+    // Find first incomplete module
+    for (let i=0; i<6; i++){
+      if (!ls(MODULE_KEYS[i])){
+        return { label:'Continue Learning', href: MODULES[i].file, desc:`Start Module ${i+1}: ${MODULES[i].title}` };
+      }
     }
-  } else if(p.inCooldown){
-    nextHref='practice-exam.html'; nextLabel='Review Weak Areas'; nextDesc='Reinforce before your retake unlocks';
+    if (!p.practiceDone) return { label:'Take Practice Exam', href:'practice-exam.html', desc:'12-question timed practice across all 6 modules' };
+    return { label:'Take Final Assessment', href:'assessment.html', desc:'15-question CADA Final Assessment — pass at 80% to earn your credential' };
+  }
+  if (p.inCooldown) return { label:'Review Weak Areas', href:'practice-exam.html', desc:'Use the 72-hour wait to review practice questions and reinforce weak areas' };
+  if (p.passed && !p.enrolled) return { label:'Complete Enrollment', href:'enroll.html', desc:'Submit your enrollment to receive your CADA certificate PDF' };
+  if (p.passed && p.enrolled) return { label:'Verify My Credential', href:'verify.html', desc:'Share or confirm your CADA credential with employers and payers' };
+  return null;
+}
+
+function moduleCardHtml(mod, done, isNext, isLocked){
+  const stateClass = done ? 'done' : isNext ? 'in-progress' : isLocked ? 'locked' : '';
+  const iconClass = done ? 'icon-done' : isNext ? 'icon-next' : 'icon-locked';
+  const icon = done ? '✓' : isNext ? '→' : '🔒';
+  const actionClass = done ? 'action-review' : isNext ? 'action-start' : isLocked ? 'action-locked' : 'action-begin';
+  const actionText = done ? 'Review' : isNext ? 'Start' : 'Locked';
+  const href = isLocked ? '#' : mod.file;
+
+  return `
+    <a class="module-card ${stateClass}" href="${href}">
+      <div class="module-card-inner">
+        <div class="module-status-icon ${iconClass}">${icon}</div>
+        <div class="module-info">
+          <div class="module-num">Module ${mod.num}</div>
+          <div class="module-title">${mod.title}</div>
+          <div class="module-desc">${mod.desc}</div>
+        </div>
+        <span class="module-action ${actionClass}">${actionText}</span>
+      </div>
+    </a>`;
+}
+
+function render(){
+  const p = getProgress();
+  const next = nextAction(p);
+  const wrap = document.getElementById('page-wrap');
+
+  // Build module cards
+  let firstIncomplete = -1;
+  for(let i=0; i<6; i++){
+    if(!ls(MODULE_KEYS[i])){ firstIncomplete=i; break; }
   }
 
-  // ── Module rows ──
-  let firstInc2=-1;
-  for(let i=0;i<6;i++){ if(!ls(MODULE_KEYS[i])){ firstInc2=i; break; } }
-
-  const moduleRows = MODULES.map((mod,i)=>{
-    const done   = ls(MODULE_KEYS[i])==='1';
-    const isNext = !done && i===firstInc2;
-    const cls    = done?'done':isNext?'next':'';
-    const iconCls= done?'icon-done':isNext?'icon-next':'icon-locked';
-    const icon   = done?ICO_CHECK:isNext?ICO_ARROW:ICO_LOCK;
-    const badge  = done?'badge-done':isNext?'badge-next':'badge-locked';
-    const badgeTx= done?'Complete':isNext?'Up Next':'Upcoming';
-    return `
-      <a class="module-row ${cls}" href="${mod.file}">
-        <div class="row-icon ${iconCls}">${icon}</div>
-        <div class="row-body">
-          <div class="row-num">Module ${mod.num}</div>
-          <div class="row-title">${mod.title}</div>
-          <div class="row-desc">${mod.desc}</div>
-        </div>
-        <span class="row-badge ${badge}">${badgeTx}</span>
-      </a>`;
+  const moduleCards = MODULES.map((mod,i) => {
+    const done = ls(MODULE_KEYS[i]) === '1';
+    const isNext = !done && i === firstIncomplete;
+    // Lock modules after first incomplete (optional: allow free navigation)
+    const isLocked = false; // Allow open navigation — don't gate modules
+    return moduleCardHtml(mod, done, isNext, isLocked);
   }).join('');
 
-  // ── Practice row ──
-  const pracBadge  = p.practiceDone?'badge-done':'badge-start';
-  const pracBadgeTx= p.practiceDone?'Complete':'Take Exam';
-  const pracRow = `
-    <a class="module-row ${p.practiceDone?'done':''}" href="practice-exam.html">
-      <div class="row-icon ${p.practiceDone?'icon-done':'icon-next'}">${p.practiceDone?ICO_CHECK:ICO_ARROW}</div>
-      <div class="row-body">
-        <div class="row-num">Practice Exam</div>
-        <div class="row-title">Full Practice Assessment</div>
-        <div class="row-desc">12 questions, unlimited retakes, rationales revealed on submit</div>
+  // Practice exam card
+  const pracDone = p.practiceDone;
+  const pracCard = `
+    <a class="module-card ${pracDone?'done':''}" href="practice-exam.html">
+      <div class="module-card-inner">
+        <div class="module-status-icon ${pracDone?'icon-done':'icon-next'}">${pracDone?'✓':'📝'}</div>
+        <div class="module-info">
+          <div class="module-num">Practice Exam</div>
+          <div class="module-title">Full 12-Question Practice</div>
+          <div class="module-desc">2 questions per module, unlimited retakes, rationales revealed on submit</div>
+        </div>
+        <span class="module-action ${pracDone?'action-review':'action-begin'}">${pracDone?'Retake':'Take Exam'}</span>
       </div>
-      <span class="row-badge ${pracBadge}">${pracBadgeTx}</span>
     </a>`;
 
-  // ── Assessment row ──
-  const asmBadge  = p.passed?'badge-passed':p.inCooldown?'badge-cooling':'badge-start';
-  const asmBadgeTx= p.passed?'Passed':p.inCooldown?'Cooling Down':'Take Now';
-  const asmRow = `
-    <a class="module-row ${p.passed?'done':p.inCooldown?'next':''}" href="assessment.html">
-      <div class="row-icon ${p.passed?'icon-done':p.inCooldown?'icon-next':'icon-next'}">${p.passed?ICO_CHECK:p.inCooldown?ICO_CLOCK:ICO_ARROW}</div>
-      <div class="row-body">
-        <div class="row-num">Final Assessment</div>
-        <div class="row-title">CADA Certification Exam</div>
-        <div class="row-desc">20 questions, 80% to pass (16/20), 72-hour retake wait on fail</div>
+  // Assessment card
+  const assessDone = p.passed;
+  const assessCard = `
+    <a class="module-card ${assessDone?'done':p.inCooldown?'in-progress':''}" href="assessment.html">
+      <div class="module-card-inner">
+        <div class="module-status-icon ${assessDone?'icon-done':'icon-next'}">${assessDone?'✓':'🎯'}</div>
+        <div class="module-info">
+          <div class="module-num">Final Assessment</div>
+          <div class="module-title">CADA Certification Exam</div>
+          <div class="module-desc">15 questions, 80% required to pass, 72-hour retake wait on fail${p.inCooldown?' — retake unlocks soon':''}</div>
+        </div>
+        <span class="module-action ${assessDone?'action-review':p.inCooldown?'action-start':'action-begin'}">${assessDone?'Passed':p.inCooldown?'Cooling Down':'Take Assessment'}</span>
       </div>
-      <span class="row-badge ${asmBadge}">${asmBadgeTx}</span>
     </a>`;
 
-  // ── Celebration / credential card ──
-  const credSection = p.passed ? `
+  // Welcome bar
+  const credDisplay = p.credId || 'Not Yet Issued';
+  const credStatusHtml = p.passed && p.enrolled
+    ? '<span class="welcome-cred-status status-active">✓ Active</span>'
+    : p.passed
+    ? '<span class="welcome-cred-status status-pending">Enrollment Pending</span>'
+    : '<span class="welcome-cred-status status-locked">Assessment Incomplete</span>';
+
+  const welcomeBar = `
+    <div class="welcome-bar">
+      <div class="welcome-left">
+        <div class="welcome-eyebrow">CADA Learning Dashboard</div>
+        <div class="welcome-title">Your Path to Certification</div>
+        <div class="welcome-subtitle">Complete all 6 modules, pass the practice exam, then take the final assessment to earn your CADA credential valid for the full 2027 certification year.</div>
+      </div>
+      <div class="welcome-cred">
+        <div class="welcome-cred-label">Credential ID</div>
+        <div class="welcome-cred-id">${p.credId || 'Pending'}</div>
+        ${credStatusHtml}
+      </div>
+    </div>`;
+
+  // Stats
+  const statsRow = `
+    <div class="progress-overview">
+      <div class="stat-card">
+        <div class="stat-label">Modules Done</div>
+        <div class="stat-num">${p.modulesDone}<span style="font-size:16px;color:var(--text-muted)">/6</span></div>
+        <div class="stat-desc">Training modules completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Practice Exam</div>
+        <div class="stat-num">${p.practiceDone?'✓':'—'}</div>
+        <div class="stat-desc">${p.practiceDone?'Completed':'Not yet taken'}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Assessment</div>
+        <div class="stat-num">${p.passed?'✓':p.inCooldown?'⏳':'—'}</div>
+        <div class="stat-desc">${p.passed?'Passed — 2027':'Not yet passed'}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Overall Progress</div>
+        <div class="stat-num">${p.pct}%</div>
+        <div class="stat-desc">${p.completedSteps} of ${p.totalSteps} steps complete</div>
+      </div>
+    </div>`;
+
+  // Progress bar
+  const progressBar = `
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-header">
+        <span class="progress-bar-title">Certification Progress</span>
+        <span class="progress-bar-pct">${p.pct}%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill ${p.pct===100?'complete':''}" style="width:${p.pct}%"></div>
+      </div>
+    </div>`;
+
+  // Celebration banner (shown when fully enrolled)
+  const celebrationBanner = p.passed && p.enrolled ? `
     <div class="celebration">
-      <div class="cel-title">CADA Certified for 2027</div>
-      <div class="cel-desc">Your credential is active through December 31, 2027. Share it with employers and billing teams.</div>
-    </div>
-    <div class="credential-card">
-      <div class="cred-issuer">CareGuard Institute</div>
-      <div class="cred-name">Certified ABA Documentation Advocate</div>
-      <div class="cred-id-row">
-        <span class="cred-id">${p.credId||'CADA-2027-PENDING'}</span>
-      </div>
-      <div class="cred-valid">Valid January 1 through December 31, 2027</div>
-      <div class="cred-actions">
-        <a class="cred-btn cred-btn-linkedin" href="${linkedinUrl(p.credId||'')}" target="_blank" rel="noopener">
-          ${ICO_LI} Add to LinkedIn
-        </a>
-        <a class="cred-btn cred-btn-download" href="verify.html">
-          ${ICO_DL} Download Certificate
-        </a>
-        <button class="cred-btn cred-btn-copy" onclick="copyVerifyLink('${p.credId||''}')">
-          ${ICO_COPY} Copy Verify Link
-        </button>
+      <div class="celebration-icon">🎉</div>
+      <div class="celebration-title">CADA Certified for 2027!</div>
+      <div class="celebration-desc">Your credential is active. Share your Credential ID with employers, billing teams, and payer auditors to demonstrate CADA certification.</div>
+      <div class="celebration-btns">
+        <a href="verify.html" class="btn-white">Verify My Credential</a>
+        <a href="index.html" class="btn-outline-white">Return Home</a>
       </div>
     </div>` : '';
 
-  // ── Stat cards ──
-  const daysLeft = Math.ceil((new Date('2028-01-01')-new Date())/86400000);
-  const statsHtml = `
-    <div class="stat-grid">
-      <div class="stat-card">
-        <div class="stat-eyebrow">Modules</div>
-        <div class="stat-num ${p.modulesDone===6?'green':''}">${p.modulesDone}<span style="font-size:16px;font-weight:500;color:var(--text-muted)">/6</span></div>
-        <div class="stat-sub">modules completed</div>
+  // Sidebar next step card
+  const nextStepCard = next ? `
+    <div class="next-step-card">
+      <div class="next-eyebrow">Up Next</div>
+      <div class="next-title">${next.label}</div>
+      <div class="next-desc">${next.desc}</div>
+      <a href="${next.href}" class="next-btn">${next.label} →</a>
+    </div>` : '';
+
+  // Sidebar credential card
+  const credSidebar = p.passed ? `
+    <div class="cred-sidebar">
+      <div class="cred-sb-issuer">CADA Institute</div>
+      <div class="cred-sb-title">Certified ABA Documentation Advocate</div>
+      <div class="cred-sb-id">${p.credId || 'CADA-2027-PENDING'}</div>
+      <div class="cred-sb-valid">Valid January 1 through December 31, 2027</div>
+      <div class="cred-sb-status">Status: <strong>Active 2027</strong></div>
+    </div>` : '';
+
+  // Sidebar links
+  const sidebarLinks = `
+    <a class="sidebar-link-card" href="practice-exam.html">
+      <span class="sidebar-link-icon">📝</span>
+      <div class="sidebar-link-info">
+        <div class="sidebar-link-title">Practice Exam</div>
+        <div class="sidebar-link-desc">12 questions, unlimited retakes</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-eyebrow">Practice Exam</div>
-        <div class="stat-num ${p.practiceDone?'green':''}">
-          ${p.practiceDone
-            ? ICO_CHECK.replace('width="16"','width="28"').replace('height="16"','height="28"')
-            : '<span style="font-size:16px;color:var(--text-muted)">Not taken</span>'}
-        </div>
-        <div class="stat-sub">${p.practiceDone?'Completed and reviewed':'Complete before final exam'}</div>
+      <span class="sidebar-link-arrow">→</span>
+    </a>
+    <a class="sidebar-link-card" href="assessment.html">
+      <span class="sidebar-link-icon">🎯</span>
+      <div class="sidebar-link-info">
+        <div class="sidebar-link-title">Final Assessment</div>
+        <div class="sidebar-link-desc">15 questions, 80% to pass, CADA credential on pass</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-eyebrow">Assessment</div>
-        <div class="stat-num ${p.passed?'green':p.inCooldown?'gold':''}">
-          ${p.passed?'Passed':p.inCooldown?'Cooldown':'Pending'}
-        </div>
-        <div class="stat-sub">${p.passed?'Credential issued 2027':p.inCooldown?'Retake available soon':'Pass at 80% to earn credential'}</div>
+      <span class="sidebar-link-arrow">→</span>
+    </a>
+    <a class="sidebar-link-card" href="enroll.html">
+      <span class="sidebar-link-icon">🛡️</span>
+      <div class="sidebar-link-info">
+        <div class="sidebar-link-title">Enrollment</div>
+        <div class="sidebar-link-desc">Complete enrollment to receive certificate PDF</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-eyebrow">Days to Expiry</div>
-        <div class="stat-num ${p.passed?'gold':''}">${p.passed?daysLeft:'N/A'}</div>
-        <div class="stat-sub">${p.passed?'days until Dec 31, 2027':'Earn your credential first'}</div>
+      <span class="sidebar-link-arrow">→</span>
+    </a>
+    <a class="sidebar-link-card" href="verify.html">
+      <span class="sidebar-link-icon">🔍</span>
+      <div class="sidebar-link-info">
+        <div class="sidebar-link-title">Credential Verifier</div>
+        <div class="sidebar-link-desc">Public CADA-2027-XXXX ID lookup</div>
+      </div>
+      <span class="sidebar-link-arrow">→</span>
+    </a>`;
+
+  const resetLink = `<div class="reset-link" onclick="confirmReset()">Reset all progress (testing only)</div>`;
+
+  wrap.innerHTML = `
+    ${welcomeBar}
+    ${celebrationBanner}
+    ${statsRow}
+    ${progressBar}
+    <div class="main-cols">
+      <div class="module-list-section">
+        <div class="section-heading">Training Modules</div>
+        ${moduleCards}
+        <div class="section-heading" style="margin-top:20px">Assessments</div>
+        ${pracCard}
+        ${assessCard}
+      </div>
+      <div class="sidebar">
+        ${nextStepCard}
+        ${credSidebar}
+        ${sidebarLinks}
+        ${resetLink}
       </div>
     </div>`;
-
-  // ── Progress bar ──
-  const progBar = `
-    <div class="prog-bar-card">
-      <div class="prog-bar-header">
-        <span class="prog-bar-title">Overall Completion</span>
-        <span class="prog-bar-pct">${p.pct}%</span>
-      </div>
-      <div class="prog-track">
-        <div class="prog-fill ${p.pct===100?'complete':''}" style="width:${p.pct}%"></div>
-      </div>
-    </div>`;
-
-  // ── Sidebar cards ──
-  const cooldownCard = p.inCooldown ? `
-    <div class="cooldown-card">
-      <div class="cooldown-eyebrow">${ICO_CLOCK} Assessment Cooldown</div>
-      <div class="cooldown-title">Retake Unlocks In</div>
-      <div class="cooldown-desc">Use this time to review weak areas in the practice exam before retaking.</div>
-      <div class="cooldown-timer" id="cooldown-display">--:--:--</div>
-      <div class="cooldown-unit">hours : minutes : seconds</div>
-    </div>` : '';
-
-  const nextCard = nextLabel ? `
-    <div class="sidebar-card">
-      <div class="sc-eyebrow">Up Next</div>
-      <div class="sc-title">${nextLabel}</div>
-      <div class="sc-desc">${nextDesc}</div>
-      <a class="sc-btn ${p.inCooldown?'':'gold'}" href="${nextHref}">${nextLabel} &rarr;</a>
-    </div>` : '';
-
-  const verifyCard = p.passed ? `
-    <div class="sidebar-card">
-      <div class="sc-eyebrow">Share Your Credential</div>
-      <div class="sc-title">Verification Page</div>
-      <div class="sc-desc">Anyone with your Credential ID can verify your CADA 2027 status at cadahealth.org/verify.</div>
-      <a class="sc-btn" href="verify.html" target="_blank">Open Verifier &rarr;</a>
-    </div>` : '';
-
-  // ── Full render ──
-  main.innerHTML = `
-    <div class="welcome-row">
-      <div>
-        <div class="welcome-greeting" id="main-greeting">${greeting()}, ${rawName.split(' ')[0]}.</div>
-        <div class="welcome-sub">Here is where you are on your CADA certification path.</div>
-      </div>
-      <div class="welcome-date">${formatDate()}</div>
-    </div>
-
-    ${credSection}
-    ${statsHtml}
-    ${progBar}
-
-    <div class="content-cols">
-      <div>
-        <div class="section-header">Training Modules</div>
-        ${moduleRows}
-        <div class="section-header" style="margin-top:20px">Assessments</div>
-        ${pracRow}
-        ${asmRow}
-      </div>
-      <div>
-        ${cooldownCard}
-        ${nextCard}
-        ${verifyCard}
-        <div class="sidebar-card" style="text-align:center;border-style:dashed">
-          <div style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">Need Help?</div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.5">Questions about your credential or enrollment? <a href="mailto:support@cadahealth.org" style="color:var(--gold);font-weight:600">support@cadahealth.org</a></div>
-        </div>
-      </div>
-    </div>`;
-
-  // Start cooldown timer after render
-  if(p.inCooldown) startCooldown(p.cooldownMs);
 }
 
-/* ── Auth ── */
-function doLogout(){
-  if(window.netlifyIdentity){
-    window.netlifyIdentity.logout();
-  }
+function confirmReset(){
+  if(!confirm('Reset ALL CADA progress? This clears modules, assessment, and credential from this browser. This cannot be undone.')) return;
+  const keys = [...MODULE_KEYS, PRACTICE_KEY, KEY_PASS, KEY_FAIL, KEY_CRED, KEY_ENROLLED];
+  keys.forEach(k => lsDel(k));
+  render();
 }
 
-window.netlifyIdentity = window.netlifyIdentity || {};
-
-function initAuth(){
-  if(!window.netlifyIdentity || typeof window.netlifyIdentity.on !== 'function'){
-    // Widget not loaded yet — wait briefly
-    setTimeout(initAuth, 200);
-    return;
-  }
-
-  window.netlifyIdentity.on('init', user => {
-    if(!user){
-      // Not logged in — send to enroll
-      window.location.href = 'enroll.html';
-      return;
-    }
-    // Logged in — show dashboard
-    document.getElementById('auth-loading').hidden = true;
-    document.getElementById('app').hidden = false;
-    render(user);
-  });
-
-  window.netlifyIdentity.on('logout', () => {
-    window.location.href = 'enroll.html';
-  });
-
-  window.netlifyIdentity.init();
-}
-
-initAuth();
+render();
 </script>

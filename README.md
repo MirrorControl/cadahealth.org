@@ -1,2 +1,2 @@
 # cadahealth.org
-CareGuard CADA credentialing site
+CADA Institute credentialing site

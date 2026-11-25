@@ -1,66 +1,42 @@
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-(function(){
-  function initAuth(){
-    var ni=window.netlifyIdentity;
-    if(!ni||typeof ni.on!=='function'){setTimeout(initAuth,80);return;}
-    ni.on('init',function(u){if(!u){window.location.replace('enroll.html');}});
-    ni.on('logout',function(){window.location.replace('enroll.html');});
-    ni.init();
-  }
-  initAuth();
-})();
-</script>
-<title>Module 4, Medicaid Compliance and Audit Defense | CareGuard CADA</title>
+<title>Module 4 — Medicaid Compliance and Audit Defense | CADA Institute</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
-  --bg:#0d0a06;--surface:#1a1208;--surface-raised:#2c1e0c;
-  --navy:#0d0a06;--navy-mid:#1a1208;
-  --gold:#d4a020;--gold-light:#2a1e0a;
-  --teal:#2dd4bf;--teal-light:#0d3534;
-  --red:#ef4444;--red-light:#450a0a;
-  --green:#22c55e;--green-light:#052e16;
-  --amber:#fb923c;--amber-light:#431407;
-  --text:#f9fafb;--text-secondary:#d1d5db;--text-muted:#9ca3af;
-  --border:#374151;--border-light:#4b5563;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.3);
-  --shadow-md:0 4px 16px rgba(0,0,0,.4);
-  --shadow-nav:0 -4px 24px rgba(0,0,0,.4);
-  --radius-sm:6px;--radius:10px;--radius-lg:16px;
-  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
-  color-scheme:dark;
-}
-@media(prefers-color-scheme:light){
-  :root:not([data-theme="dark"]){
-    --bg:#f8f4ee;--surface:#fffdf9;--surface-raised:#f2ece4;
-    --navy:#0d0a06;--navy-mid:#1a1208;
-    --gold:#9a6e10;--gold-light:#f2e8d4;
-    --teal:#0d7377;--teal-light:#d4f0f1;
-    --red:#c0392b;--red-light:#fcecea;
-    --green:#1e7e34;--green-light:#d4f4dd;
-    --amber:#d35400;--amber-light:#fef0e4;
-    --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
-    --border:#d8d5cf;--border-light:#ebe8e2;
-    --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
-    color-scheme:light;
-  }
-}
-:root[data-theme="light"]{
-  --bg:#f8f4ee;--surface:#fffdf9;--surface-raised:#f2ece4;
-  --navy:#0d0a06;--navy-mid:#1a1208;
-  --gold:#9a6e10;--gold-light:#f2e8d4;
+  --bg:#f8f7f4;--surface:#ffffff;--surface-raised:#f2f0ec;
+  --navy:#1a2744;--navy-mid:#2c3e6b;
+  --gold:#c8921a;--gold-light:#f5e6c3;
   --teal:#0d7377;--teal-light:#d4f0f1;
   --red:#c0392b;--red-light:#fcecea;
   --green:#1e7e34;--green-light:#d4f4dd;
   --amber:#d35400;--amber-light:#fef0e4;
   --text:#1c1c1e;--text-secondary:#4a4a4a;--text-muted:#767676;
   --border:#d8d5cf;--border-light:#ebe8e2;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.10);--shadow-nav:0 -4px 24px rgba(0,0,0,.10);
-  color-scheme:light;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:0 4px 16px rgba(0,0,0,.10);
+  --shadow-nav:0 -4px 24px rgba(0,0,0,.10);
+  --radius-sm:6px;--radius:10px;--radius-lg:16px;
+  --topbar-h:56px;--progress-h:38px;--bottomnav-h:68px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --stage-h:calc(100dvh - var(--topbar-h) - var(--progress-h) - var(--bottomnav-h) - var(--safe-bottom));
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
+    --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
+    --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
+    --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
+    --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
+    --border:#343850;--border-light:#272b3e;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12151f;--surface:#1c2033;--surface-raised:#242840;
+  --navy:#3d5a99;--navy-mid:#5272b0;--gold:#e8a832;--gold-light:#3d2e0a;
+  --teal:#2ab7bb;--teal-light:#0a2d2e;--red:#e05c4d;--red-light:#3d1510;
+  --green:#40c060;--green-light:#0d2a14;--amber:#e87040;--amber-light:#2d1505;
+  --text:#f0ede8;--text-secondary:#c0bdb6;--text-muted:#888480;
+  --border:#343850;--border-light:#272b3e;color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
@@ -266,7 +242,6 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
   <a href="index.html" class="topbar-back">← Home</a>
   <div class="topbar-title">Module 4: Medicaid Compliance and Audit Defense</div>
   <div class="topbar-badge">CADA</div>
-  <a href="dashboard.html" style="font-size:11px;font-weight:700;color:rgba(255,255,255,.85);text-decoration:none;padding:5px 10px;border:1px solid rgba(255,255,255,.22);border-radius:5px;white-space:nowrap;letter-spacing:.02em">My Dashboard</a>
   <button class="theme-btn" onclick="toggleTheme()">◐</button>
 </div>
 
@@ -302,15 +277,15 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-label">CONSEQUENCE HOOK</div>
       <div class="section-title">One letter. 47 days late. $2.1 million owed.</div>
       <div class="hook-box">
-        <div class="hook-eyebrow">WHAT HAPPENED, MAINE, 2023</div>
+        <div class="hook-eyebrow">WHAT HAPPENED — MAINE, 2023</div>
         <div class="hook-stat">$2,100,000</div>
-        <div class="hook-stat-label">in Medicaid recoupment, triggered by a missed records request letter</div>
+        <div class="hook-stat-label">in Medicaid recoupment — triggered by a missed records request letter</div>
         <p style="margin-top:16px">A Maine ABA clinic received a Medicaid RAC audit records request in the mail. The letter went to the billing coordinator's inbox. She was out on medical leave. No one picked it up. By the time the clinic's director discovered the letter, the 45-day response window had closed. The RAC treated the missed deadline as an inability to substantiate the claims. All 847 claims under review were presumed unsubstantiated. The recoupment demand was $2.1 million. The clinic appealed. They won some claims back. They did not get to keep all of them.</p>
-        <p style="margin-top:12px">The documentation for those sessions existed. The clinical work was real. The billing was legitimate. The clinic lost money it had earned, not because the records were wrong, but because no one was watching for the letter.</p>
+        <p style="margin-top:12px">The documentation for those sessions existed. The clinical work was real. The billing was legitimate. The clinic lost money it had earned — not because the records were wrong, but because no one was watching for the letter.</p>
       </div>
       <div class="section-body">
-        <p>Medicaid compliance is not just about filing correct claims. It is about maintaining documentation systems that survive an audit, and responding to audits correctly when they happen. A clinic that bills cleanly but manages its audit response poorly can lose as much as a clinic that bills incorrectly.</p>
-        <p>This module covers how Medicaid audits work, who conducts them, what they look for, and what the documentation coordinator's role is in both prevention and response. By the time you finish this module, you will know exactly what to do when a records request arrives, and what happens when nothing is done.</p>
+        <p>Medicaid compliance is not just about filing correct claims. It is about maintaining documentation systems that survive an audit — and responding to audits correctly when they happen. A clinic that bills cleanly but manages its audit response poorly can lose as much as a clinic that bills incorrectly.</p>
+        <p>This module covers how Medicaid audits work, who conducts them, what they look for, and what the documentation coordinator's role is in both prevention and response. By the time you finish this module, you will know exactly what to do when a records request arrives — and what happens when nothing is done.</p>
       </div>
     </section>
 
@@ -320,10 +295,10 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="section-title">What you will be able to do after this module.</div>
       <div class="section-body">
         <ul class="obj-list">
-          <li><span class="obj-num">1</span>Distinguish between prepayment audits and post-payment audits, explain what each type of audit can result in, and identify the three primary audit entities that conduct Medicaid ABA reviews, and what each one's authority is.</li>
+          <li><span class="obj-num">1</span>Distinguish between prepayment audits and post-payment audits, explain what each type of audit can result in, and identify the three primary audit entities that conduct Medicaid ABA reviews — and what each one's authority is.</li>
           <li><span class="obj-num">2</span>Describe the five most common documentation deficiencies that OIG auditors flag in ABA Medicaid reviews, and explain which of those deficiencies the documentation coordinator can prevent through pre-submission review.</li>
-          <li><span class="obj-num">3</span>Outline the correct protocol for responding to a Medicaid records request, including deadline tracking, document review, internal escalation, and submission, and identify what must never be done when responding to an audit.</li>
-          <li><span class="obj-num">4</span>Describe the components of an audit-ready documentation system, the policies, filing structures, and ongoing quality review processes that allow a clinic to respond to any audit request within 24 to 48 hours.</li>
+          <li><span class="obj-num">3</span>Outline the correct protocol for responding to a Medicaid records request — including deadline tracking, document review, internal escalation, and submission — and identify what must never be done when responding to an audit.</li>
+          <li><span class="obj-num">4</span>Describe the components of an audit-ready documentation system — the policies, filing structures, and ongoing quality review processes that allow a clinic to respond to any audit request within 24 to 48 hours.</li>
         </ul>
       </div>
     </section>
@@ -331,28 +306,28 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 2: HOW MEDICAID AUDITS WORK (KCs 0,1) -->
     <section class="module-section" id="sec-2">
       <div class="section-label">PART 1 OF CORE CONTENT</div>
-      <div class="section-title">How Medicaid ABA audits work, the mechanics that documentation coordinators must understand.</div>
+      <div class="section-title">How Medicaid ABA audits work — the mechanics that documentation coordinators must understand.</div>
       <div class="section-body">
-        <p>Medicaid audits are not random inspections. They are systematic reviews of claims data that identify statistical anomalies, billing patterns, or specific providers for investigation. When a clinic's billing patterns fall outside expected norms, higher unit counts per session than peers, a high proportion of maximum-intensity sessions, geographic concentration of claims, the clinic may be selected for review. That review begins with a records request.</p>
+        <p>Medicaid audits are not random inspections. They are systematic reviews of claims data that identify statistical anomalies, billing patterns, or specific providers for investigation. When a clinic's billing patterns fall outside expected norms — higher unit counts per session than peers, a high proportion of maximum-intensity sessions, geographic concentration of claims — the clinic may be selected for review. That review begins with a records request.</p>
 
         <h3>Prepayment vs post-payment audits</h3>
-        <p>The most consequential distinction in Medicaid auditing is timing. A prepayment audit occurs before the claim is paid. The payer holds payment while it reviews documentation. If the documentation supports the claim, payment is released. If it does not, the claim is denied before any money changes hands. The financial impact of a prepayment audit denial is a lost payment, painful, but limited.</p>
-        <p>A post-payment audit occurs after the claim is paid. The payer has already issued payment. The audit reviews whether the documentation supported that payment. If it did not, the payer issues a recoupment demand, requiring the clinic to return money it has already received. For a clinic with 18 to 24 months of post-payment audit exposure, a large-scale finding can produce a recoupment demand that threatens the clinic's solvency. The Maine clinic lost $2.1 million this way. They had already spent some of that money running their operations.</p>
+        <p>The most consequential distinction in Medicaid auditing is timing. A prepayment audit occurs before the claim is paid. The payer holds payment while it reviews documentation. If the documentation supports the claim, payment is released. If it does not, the claim is denied before any money changes hands. The financial impact of a prepayment audit denial is a lost payment — painful, but limited.</p>
+        <p>A post-payment audit occurs after the claim is paid. The payer has already issued payment. The audit reviews whether the documentation supported that payment. If it did not, the payer issues a recoupment demand — requiring the clinic to return money it has already received. For a clinic with 18 to 24 months of post-payment audit exposure, a large-scale finding can produce a recoupment demand that threatens the clinic's solvency. The Maine clinic lost $2.1 million this way. They had already spent some of that money running their operations.</p>
 
         <h3>How an audit begins</h3>
-        <p>Most audits begin with a records request letter sent by mail and sometimes by email to the billing address on file with the payer. The letter identifies the claims under review (by date, CPT code, or service type), lists the documentation required for each claim, and states a response deadline, typically 30 to 45 days. Missing that deadline, for any reason, is treated as an inability to substantiate the claims. It is not an extension request. It is a default.</p>
+        <p>Most audits begin with a records request letter sent by mail and sometimes by email to the billing address on file with the payer. The letter identifies the claims under review (by date, CPT code, or service type), lists the documentation required for each claim, and states a response deadline — typically 30 to 45 days. Missing that deadline, for any reason, is treated as an inability to substantiate the claims. It is not an extension request. It is a default.</p>
 
         <div class="warn-box">
           <div class="warn-label">NON-NEGOTIABLE DEADLINE RULE</div>
-          <p>Audit response deadlines are real deadlines. They are not approximate dates. A response submitted one day late is a missed response. Build your clinic's internal protocol around receiving and processing records requests on the day they arrive, not when someone gets to them.</p>
+          <p>Audit response deadlines are real deadlines. They are not approximate dates. A response submitted one day late is a missed response. Build your clinic's internal protocol around receiving and processing records requests on the day they arrive — not when someone gets to them.</p>
         </div>
 
         <h3>What happens after a findings letter</h3>
-        <p>When an audit concludes with findings, documentation deficiencies, unsupported claims, or billing errors, the auditor issues a findings letter. The clinic typically has 30 to 60 days to respond with an appeal. Appealing effectively requires the same documentation that the original records request asked for, organized clearly, with a written response addressing each finding. The documentation coordinator's job in this phase is to support the appeal by locating, organizing, and verifying the accuracy of every document in the response package.</p>
+        <p>When an audit concludes with findings — documentation deficiencies, unsupported claims, or billing errors — the auditor issues a findings letter. The clinic typically has 30 to 60 days to respond with an appeal. Appealing effectively requires the same documentation that the original records request asked for, organized clearly, with a written response addressing each finding. The documentation coordinator's job in this phase is to support the appeal by locating, organizing, and verifying the accuracy of every document in the response package.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="0">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">A Medicaid RAC audit requests documentation for 50 claims and sets a 45-day response deadline. The documentation coordinator is out of the office when the letter arrives and does not see it until day 47. What is the most likely outcome?</div>
         <div class="kc-options" id="kc-opts-0"></div>
         <div class="kc-rationale" id="kc-rat-0"></div>
@@ -360,7 +335,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="1">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">What is the key difference between a prepayment audit and a post-payment audit in Medicaid ABA billing?</div>
         <div class="kc-options" id="kc-opts-1"></div>
         <div class="kc-rationale" id="kc-rat-1"></div>
@@ -371,24 +346,24 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 3: OIG vs RAC vs MAC (KCs 2,3) -->
     <section class="module-section" id="sec-3">
       <div class="section-label">PART 2 OF CORE CONTENT</div>
-      <div class="section-title">OIG, RAC, and MAC, the three audit entities and what each one means for your clinic.</div>
+      <div class="section-title">OIG, RAC, and MAC — the three audit entities and what each one means for your clinic.</div>
       <div class="section-body">
         <p>Not all Medicaid auditors are the same entity. The documentation coordinator who understands which organization sent the records request understands the severity of the situation, the authority behind it, and the appropriate internal response. Here are the three primary audit entities in ABA Medicaid billing.</p>
       </div>
 
       <div class="audit-grid">
         <div class="audit-card oig">
-          <div class="audit-card-tag">OIG, HIGHEST SEVERITY</div>
+          <div class="audit-card-tag">OIG — HIGHEST SEVERITY</div>
           <h4>Office of Inspector General</h4>
-          <p>The federal oversight office responsible for detecting fraud, waste, and abuse in federal healthcare programs. An OIG audit is not routine. It indicates a specific concern has been elevated for investigation. OIG findings can result in exclusion from Medicaid and Medicare programs, civil monetary penalties, and referral for criminal prosecution. When the OIG contacts your clinic, the response involves legal counsel, not just documentation retrieval.</p>
+          <p>The federal oversight office responsible for detecting fraud, waste, and abuse in federal healthcare programs. An OIG audit is not routine. It indicates a specific concern has been elevated for investigation. OIG findings can result in exclusion from Medicaid and Medicare programs, civil monetary penalties, and referral for criminal prosecution. When the OIG contacts your clinic, the response involves legal counsel — not just documentation retrieval.</p>
         </div>
         <div class="audit-card rac">
-          <div class="audit-card-tag">RAC, HIGH SEVERITY</div>
+          <div class="audit-card-tag">RAC — HIGH SEVERITY</div>
           <h4>Recovery Audit Contractor</h4>
           <p>Private contractors authorized by CMS to identify and recover improper Medicaid payments. RACs are paid a contingency fee based on overpayments recovered, which creates an incentive to find errors. RAC audits are common, and they target statistical outliers in billing patterns. A RAC finding results in a recoupment demand. Clinics have the right to appeal RAC findings through the Medicaid appeals process.</p>
         </div>
         <div class="audit-card mac">
-          <div class="audit-card-tag">MAC, STANDARD</div>
+          <div class="audit-card-tag">MAC — STANDARD</div>
           <h4>Medicaid Administrative Contractor</h4>
           <p>Medicare Administrative Contractors process claims and conduct routine audits as part of normal claims administration. MAC audits include prepayment reviews, medical review, and focused post-payment reviews. MAC audits are more routine and often narrower in scope than OIG or RAC reviews. A MAC finding typically results in a denial or a focused recoupment demand on the reviewed claims.</p>
         </div>
@@ -396,14 +371,14 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
 
       <div class="section-body">
         <h3>How to tell which entity sent the records request</h3>
-        <p>The letter itself identifies the sender. The letterhead, the organization name, and the specific request language identify whether the contact is from the OIG, a RAC contractor, or a MAC. Any records request from an OIG office should trigger immediate escalation to the clinic director and legal counsel, not a documentation retrieval project. RAC and MAC requests follow the standard protocol this module covers.</p>
+        <p>The letter itself identifies the sender. The letterhead, the organization name, and the specific request language identify whether the contact is from the OIG, a RAC contractor, or a MAC. Any records request from an OIG office should trigger immediate escalation to the clinic director and legal counsel — not a documentation retrieval project. RAC and MAC requests follow the standard protocol this module covers.</p>
 
         <h3>The appeals process</h3>
         <p>Every Medicaid program includes an appeals process for contested audit findings. The specific steps vary by state, but the general structure is: redetermination (reviewed by the same contractor), reconsideration (reviewed by a Qualified Independent Contractor), ALJ hearing, and further escalation to the appeals board and federal courts. Each level has its own deadline. Missing any deadline can waive the right to appeal at that level. The documentation coordinator's job is to ensure the clinic's response packages are complete, accurate, and submitted on time at every level.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="2">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">A clinic receives a letter from the Office of Inspector General requesting documentation for 30 ABA claims filed over the past 18 months. What does this most likely indicate about the nature of the review?</div>
         <div class="kc-options" id="kc-opts-2"></div>
         <div class="kc-rationale" id="kc-rat-2"></div>
@@ -411,7 +386,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="3">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">A Recovery Audit Contractor contacts a clinic with an overpayment finding of $45,000 for 60 ABA claims. The clinic's billing director believes the RAC finding is incorrect. What is the correct first step in challenging it?</div>
         <div class="kc-options" id="kc-opts-3"></div>
         <div class="kc-rationale" id="kc-rat-3"></div>
@@ -422,7 +397,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 4: WHAT AUDITORS LOOK FOR (KCs 4,5) -->
     <section class="module-section" id="sec-4">
       <div class="section-label">PART 3 OF CORE CONTENT</div>
-      <div class="section-title">What ABA Medicaid auditors actually look for, the five most common findings.</div>
+      <div class="section-title">What ABA Medicaid auditors actually look for — the five most common findings.</div>
       <div class="section-body">
         <p>OIG work plans, RAC audit findings, and state Medicaid program integrity reports consistently identify the same documentation deficiencies in ABA billing. The documentation coordinator who understands these five categories can prevent most audit findings through pre-submission review. Each one is preventable before the claim is filed.</p>
 
@@ -430,20 +405,20 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <p>The most common audit finding in ABA Medicaid billing is a session note that does not exist, cannot be located, or does not contain the required elements. Auditors look for: a note for every billed session, a note that documents the specific service billed (not a generic template entry), the client's response and data for the session, the specific targets addressed, the start and end times in units, and the supervising clinician identified by name and NPI.</p>
 
         <h3>2. Provider credential mismatch</h3>
-        <p>Medicaid requires that the provider listed on the claim be credentialed with the payer for the service billed. If a clinic bills 97153 under a BCBA's NPI rather than the delivering RBT's NPI, or vice versa, the credential does not match the service. If the delivering technician's RBT credential was not on file with the payer at the time of service, the claim has no credentialed provider.</p>
+        <p>Medicaid requires that the provider listed on the claim be credentialed with the payer for the service billed. If a clinic bills 97153 under a BCBA's NPI rather than the delivering RBT's NPI — or vice versa — the credential does not match the service. If the delivering technician's RBT credential was not on file with the payer at the time of service, the claim has no credentialed provider.</p>
 
         <h3>3. Authorization boundary violations</h3>
-        <p>Services delivered outside the authorization boundaries, after the authorization expiration date, in excess of authorized units, in a location not covered by the authorization, or by a provider not listed in the authorization, are automatically non-covered regardless of the clinical quality of the service. Auditors cross-reference every session note against the active authorization for that date.</p>
+        <p>Services delivered outside the authorization boundaries — after the authorization expiration date, in excess of authorized units, in a location not covered by the authorization, or by a provider not listed in the authorization — are automatically non-covered regardless of the clinical quality of the service. Auditors cross-reference every session note against the active authorization for that date.</p>
 
         <h3>4. Medical necessity documentation gaps</h3>
-        <p>Medicaid requires that ABA services be medically necessary, meaning they address a documented functional impairment, are delivered at the intensity that the treatment plan supports, and are not duplicating another service. Auditors look for treatment plans that justify the billed intensity and session notes that document progress (or the clinical rationale for continued service) against the treatment plan goals.</p>
+        <p>Medicaid requires that ABA services be medically necessary — meaning they address a documented functional impairment, are delivered at the intensity that the treatment plan supports, and are not duplicating another service. Auditors look for treatment plans that justify the billed intensity and session notes that document progress (or the clinical rationale for continued service) against the treatment plan goals.</p>
 
         <h3>5. Time and unit discrepancies</h3>
         <p>As Module 3 established, session notes that record time in a format that does not match the billed units are documentation discrepancies. Auditors also look for sessions billed for more units than the session note supports (a note documenting 60 minutes but a claim for 8 units), and for sessions billed on dates where the note documents less time than what was claimed.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="4">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">During a Medicaid audit, a reviewer finds that 12 of 40 session notes do not document the specific ABA targets addressed during the session. What finding does this most likely generate?</div>
         <div class="kc-options" id="kc-opts-4"></div>
         <div class="kc-rationale" id="kc-rat-4"></div>
@@ -451,7 +426,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="5">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">An auditor reviews session notes for 97153 services and finds that 8 notes document the supervisor as "BCBA on duty" rather than providing the BCBA's name and NPI. What is the documentation risk?</div>
         <div class="kc-options" id="kc-opts-5"></div>
         <div class="kc-rationale" id="kc-rat-5"></div>
@@ -462,9 +437,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 5: RESPONDING TO RECORDS REQUESTS (KCs 6,7) -->
     <section class="module-section" id="sec-5">
       <div class="section-label">PART 4 OF CORE CONTENT</div>
-      <div class="section-title">Responding to a Medicaid records request, the protocol that keeps a clinic whole.</div>
+      <div class="section-title">Responding to a Medicaid records request — the protocol that keeps a clinic whole.</div>
       <div class="section-body">
-        <p>The documentation coordinator's most critical compliance function is not writing notes, it is managing what happens when an audit begins. A clinic can have excellent documentation and still lose an audit by responding poorly. The following protocol applies to any Medicaid records request from a RAC or MAC. OIG requests require legal counsel involvement from step one.</p>
+        <p>The documentation coordinator's most critical compliance function is not writing notes — it is managing what happens when an audit begins. A clinic can have excellent documentation and still lose an audit by responding poorly. The following protocol applies to any Medicaid records request from a RAC or MAC. OIG requests require legal counsel involvement from step one.</p>
 
         <h3>The records request response protocol</h3>
       </div>
@@ -472,42 +447,42 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="timeline">
         <div class="tl-item urgent">
           <div class="tl-dot"></div>
-          <div class="tl-label">DAY 1, RECEIPT</div>
+          <div class="tl-label">DAY 1 — RECEIPT</div>
           <div class="tl-text">Log the letter's receipt date in a shared audit tracking document. Calculate the exact deadline (count calendar days from the date on the letter, not the date received). Identify every claim listed in the request and every document required. Escalate immediately to the clinic director and billing director. Do not wait.</div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-label">DAYS 2–7, DOCUMENT INVENTORY</div>
-          <div class="tl-text">Pull every document requested: session notes, treatment plans, authorization approvals, supervisor credentials, and progress notes. Create a tracking grid: one row per claim, one column per required document. Mark each cell as present, missing, or deficient. Do not alter any document at this stage, inventory only.</div>
+          <div class="tl-label">DAYS 2–7 — DOCUMENT INVENTORY</div>
+          <div class="tl-text">Pull every document requested: session notes, treatment plans, authorization approvals, supervisor credentials, and progress notes. Create a tracking grid: one row per claim, one column per required document. Mark each cell as present, missing, or deficient. Do not alter any document at this stage — inventory only.</div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-label">DAYS 7–14, INTERNAL REVIEW</div>
+          <div class="tl-label">DAYS 7–14 — INTERNAL REVIEW</div>
           <div class="tl-text">Present the tracking grid to the compliance team. For missing documents: determine if they exist and can be located, or if they were never created. For deficient documents: escalate to the clinical team to determine whether an addendum is appropriate and clinically defensible. Never alter a note to fix a deficiency without clinical team authorization and a proper addendum process.</div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-label">DAYS 14–28, ASSEMBLY</div>
+          <div class="tl-label">DAYS 14–28 — ASSEMBLY</div>
           <div class="tl-text">Assemble the response package: organized by claim, with each required document clearly labeled and cross-referenced to the claim it supports. Include a cover letter that identifies the clinic, the audit reference number, the claims being responded to, and a table of contents. Keep a copy of everything submitted.</div>
         </div>
         <div class="tl-item urgent">
           <div class="tl-dot"></div>
-          <div class="tl-label">BY DAY 30, SUBMISSION</div>
-          <div class="tl-text">Submit 5 to 7 days before the deadline, not on deadline day. Use the submission method specified in the records request (certified mail, secure portal, or fax with confirmation). Get a submission confirmation and retain it. The deadline date is the last acceptable day, not the target day.</div>
+          <div class="tl-label">BY DAY 30 — SUBMISSION</div>
+          <div class="tl-text">Submit 5 to 7 days before the deadline — not on deadline day. Use the submission method specified in the records request (certified mail, secure portal, or fax with confirmation). Get a submission confirmation and retain it. The deadline date is the last acceptable day, not the target day.</div>
         </div>
       </div>
 
       <div class="section-body">
         <h3>What must never happen in audit response</h3>
         <ul>
-          <li><strong>Never alter a session note to fix a deficiency.</strong> Altering a note after a records request has been received, even to correct a genuine error, is evidence alteration. This converts a documentation deficiency into potential fraud. Any note change must go through the proper addendum process with a date stamp and the clinician's signature.</li>
+          <li><strong>Never alter a session note to fix a deficiency.</strong> Altering a note after a records request has been received — even to correct a genuine error — is evidence alteration. This converts a documentation deficiency into potential fraud. Any note change must go through the proper addendum process with a date stamp and the clinician's signature.</li>
           <li><strong>Never submit incomplete documentation without noting what is missing.</strong> A response package that omits requested documents without explanation is treated as a failure to substantiate those claims. If documents are missing, the response letter must acknowledge the gap and explain why.</li>
           <li><strong>Never ignore a records request.</strong> The Maine clinic lost $2.1 million this way. There is no outcome worse than missing a deadline.</li>
         </ul>
       </div>
 
       <div class="knowledge-check" data-kc-idx="6">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">A clinic receives a Medicaid RAC records request on a Monday morning with a 30-day response deadline. What is the documentation coordinator's most critical first action?</div>
         <div class="kc-options" id="kc-opts-6"></div>
         <div class="kc-rationale" id="kc-rat-6"></div>
@@ -515,7 +490,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="7">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">During the document inventory phase of an audit response, the documentation coordinator finds that 5 of the 20 session notes requested contain time recorded in hours rather than units. What is the most appropriate action?</div>
         <div class="kc-options" id="kc-opts-7"></div>
         <div class="kc-rationale" id="kc-rat-7"></div>
@@ -526,9 +501,9 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
     <!-- SECTION 6: AUDIT DEFENSE FILE (KCs 8,9) -->
     <section class="module-section" id="sec-6">
       <div class="section-label">PART 5 OF CORE CONTENT</div>
-      <div class="section-title">Building an audit-ready documentation system, the structure that makes response possible.</div>
+      <div class="section-title">Building an audit-ready documentation system — the structure that makes response possible.</div>
       <div class="section-body">
-        <p>An audit-ready clinic is not one that never gets audited. It is one that can respond to any records request within the timeframe required because its documentation system is organized, complete, and retrievable. Building that system is an ongoing function of the documentation coordinator, not a project that happens after a records request arrives.</p>
+        <p>An audit-ready clinic is not one that never gets audited. It is one that can respond to any records request within the timeframe required because its documentation system is organized, complete, and retrievable. Building that system is an ongoing function of the documentation coordinator — not a project that happens after a records request arrives.</p>
 
         <h3>The five components of an audit-ready documentation system</h3>
 
@@ -546,31 +521,31 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
             <tr>
               <td><strong>Documentation policy</strong></td>
               <td>Written standards for every required element of each CPT code, by provider type and payer</td>
-              <td>Demonstrates that the clinic has an established standard, auditors can see the standard the clinic holds itself to</td>
+              <td>Demonstrates that the clinic has an established standard — auditors can see the standard the clinic holds itself to</td>
               <td><span class="priority-pill crit">Critical</span></td>
             </tr>
             <tr>
               <td><strong>Client file structure</strong></td>
               <td>One file per client containing: referral, diagnosis, treatment plan, authorization approvals, all session notes, progress notes, and discharge summary</td>
-              <td>Allows any session note to be pulled and cross-referenced to its authorization within minutes, not hours</td>
+              <td>Allows any session note to be pulled and cross-referenced to its authorization within minutes — not hours</td>
               <td><span class="priority-pill crit">Critical</span></td>
             </tr>
             <tr>
               <td><strong>Provider credential log</strong></td>
               <td>Current credentials for every billing provider: RBT certificates, BCBA licenses, NPI numbers, and payer credentialing status</td>
-              <td>Auditors verify that every provider was credentialed with the payer at the time of service, the log is what you produce as evidence</td>
+              <td>Auditors verify that every provider was credentialed with the payer at the time of service — the log is what you produce as evidence</td>
               <td><span class="priority-pill crit">Critical</span></td>
             </tr>
             <tr>
               <td><strong>Authorization tracking</strong></td>
               <td>Active authorization records per client, per payer, with approved units, expiration dates, and approved providers</td>
-              <td>Auditors cross-reference every session against the authorization in effect on that date, your tracking must show the authorization was active</td>
+              <td>Auditors cross-reference every session against the authorization in effect on that date — your tracking must show the authorization was active</td>
               <td><span class="priority-pill high">High</span></td>
             </tr>
             <tr>
               <td><strong>Pre-submission QA process</strong></td>
               <td>A defined documentation review step that happens before claims are submitted, checking for the five common deficiency categories from Part 3</td>
-              <td>The documentation coordinator who catches errors before submission creates no audit exposure, the auditor sees clean documentation</td>
+              <td>The documentation coordinator who catches errors before submission creates no audit exposure — the auditor sees clean documentation</td>
               <td><span class="priority-pill high">High</span></td>
             </tr>
           </tbody>
@@ -578,14 +553,14 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         </div>
 
         <h3>The 24-hour retrieval standard</h3>
-        <p>A well-designed documentation system allows any session note, authorization approval, or provider credential to be retrieved within 24 hours of a records request. If your clinic cannot retrieve a specific session note for a specific client on a specific date in that timeframe, your documentation system is not audit-ready. The 24-hour standard is not a regulatory requirement, it is a practical threshold that keeps audit response manageable even on compressed timelines.</p>
+        <p>A well-designed documentation system allows any session note, authorization approval, or provider credential to be retrieved within 24 hours of a records request. If your clinic cannot retrieve a specific session note for a specific client on a specific date in that timeframe, your documentation system is not audit-ready. The 24-hour standard is not a regulatory requirement — it is a practical threshold that keeps audit response manageable even on compressed timelines.</p>
 
         <h3>Ongoing quality review</h3>
         <p>An audit-ready system does not wait for audit exposure to find deficiencies. The documentation coordinator's ongoing quality review function should include: weekly spot checks of session notes against the documentation policy, monthly cross-referencing of billed units against authorization remaining, quarterly review of provider credentialing status, and an annual documentation policy review against updated payer billing guidelines.</p>
       </div>
 
       <div class="knowledge-check" data-kc-idx="8">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">A documentation coordinator is building an audit defense file for a clinic. Which of the following document types is most critical to include alongside session notes?</div>
         <div class="kc-options" id="kc-opts-8"></div>
         <div class="kc-rationale" id="kc-rat-8"></div>
@@ -593,7 +568,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       </div>
 
       <div class="knowledge-check" data-kc-idx="9">
-        <div class="kc-label">KNOWLEDGE CHECK, UNGRADED</div>
+        <div class="kc-label">KNOWLEDGE CHECK — UNGRADED</div>
         <div class="kc-question">A clinic has never been audited but wants to build an audit-ready documentation system before one arrives. What is the most important structural element of that system?</div>
         <div class="kc-options" id="kc-opts-9"></div>
         <div class="kc-rationale" id="kc-rat-9"></div>
@@ -609,33 +584,33 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <p>The following scenario walks through how a documentation coordinator at an audit-ready clinic handles the first 72 hours after a RAC records request arrives. Each action is annotated with the reason it matters.</p>
 
         <h3>The situation</h3>
-        <p>Tuesday, 9:14 AM. A certified mail envelope arrives at the clinic. The documentation coordinator signs for it. It is a Medicaid RAC audit records request for 35 claims filed between January and June of this year. The letter is dated four days ago. The deadline is 45 days from the date of the letter, which means the effective response window is 41 days from today.</p>
+        <p>Tuesday, 9:14 AM. A certified mail envelope arrives at the clinic. The documentation coordinator signs for it. It is a Medicaid RAC audit records request for 35 claims filed between January and June of this year. The letter is dated four days ago. The deadline is 45 days from the date of the letter — which means the effective response window is 41 days from today.</p>
       </div>
 
       <div class="timeline">
         <div class="tl-item urgent">
           <div class="tl-dot"></div>
-          <div class="tl-label">9:14 AM, RECEIPT</div>
+          <div class="tl-label">9:14 AM — RECEIPT</div>
           <div class="tl-text">Log the receipt date and the letter date in the audit tracking log. Calculate the deadline: 45 days from the letter date. Mark "effective days remaining" as 41. Send a same-day email to the clinic director and billing director with the records request attached and the deadline highlighted.</div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-label">DAY 1 AFTERNOON, CLAIM INVENTORY</div>
-          <div class="tl-text">Build a tracking grid in a spreadsheet: one row per claim (35 rows), columns for session note, treatment plan, authorization approval, and provider credential. Begin pulling each document from the client file system. By end of day 1, the grid shows: 33 of 35 session notes located; 2 missing; all 35 authorization approvals present; 1 provider credential expiring next month (not an audit issue, flagged for credential renewal action).</div>
+          <div class="tl-label">DAY 1 AFTERNOON — CLAIM INVENTORY</div>
+          <div class="tl-text">Build a tracking grid in a spreadsheet: one row per claim (35 rows), columns for session note, treatment plan, authorization approval, and provider credential. Begin pulling each document from the client file system. By end of day 1, the grid shows: 33 of 35 session notes located; 2 missing; all 35 authorization approvals present; 1 provider credential expiring next month (not an audit issue — flagged for credential renewal action).</div>
         </div>
         <div class="tl-item urgent">
           <div class="tl-dot"></div>
-          <div class="tl-label">DAY 2, ESCALATION MEETING</div>
-          <div class="tl-text">Present the tracking grid to the clinical and billing teams. The 2 missing session notes are escalated: the clinical director confirms both sessions occurred and believes the notes were filed in PrioraCare but not exported. PrioraCare export is initiated. Notes are located and exported by end of day 2. No documentation has been altered, notes are as originally recorded.</div>
+          <div class="tl-label">DAY 2 — ESCALATION MEETING</div>
+          <div class="tl-text">Present the tracking grid to the clinical and billing teams. The 2 missing session notes are escalated: the clinical director confirms both sessions occurred and believes the notes were filed in PrioraCare but not exported. PrioraCare export is initiated. Notes are located and exported by end of day 2. No documentation has been altered — notes are as originally recorded.</div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-label">DAYS 3–28, REVIEW AND ASSEMBLY</div>
+          <div class="tl-label">DAYS 3–28 — REVIEW AND ASSEMBLY</div>
           <div class="tl-text">All 35 session notes are reviewed against the documentation policy checklist. 3 notes have supervisor listed as "Dr. M" without NPI. Clinical director adds a contemporaneous addendum to each note with the full name and NPI, properly dated and signed. Final tracking grid: 35 of 35 session notes complete, 35 of 35 authorizations present, all provider credentials verified. Response package assembled.</div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-label">DAY 35, SUBMISSION</div>
+          <div class="tl-label">DAY 35 — SUBMISSION</div>
           <div class="tl-text">Response package submitted via the RAC's secure portal with a cover letter, table of contents, and certification from the clinic director. Submission confirmation retained. Deadline was day 41. Submitted 6 days early.</div>
         </div>
       </div>
@@ -643,7 +618,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="annotation">
         <div class="annotation-label">WHAT MADE THIS RESPONSE WORK</div>
         <h4>Four things separated this clinic from the Maine clinic.</h4>
-        <p>First: the records request was identified and logged the day it arrived. Second: the documentation system allowed retrieval of 33 of 35 notes on day one. Third: the 2 missing notes were located in PrioraCare, they existed in the EHR, they were not missing from the clinical record. Fourth: the 3 supervisor documentation issues were resolved through a proper addendum process, not by altering original notes.</p>
+        <p>First: the records request was identified and logged the day it arrived. Second: the documentation system allowed retrieval of 33 of 35 notes on day one. Third: the 2 missing notes were located in PrioraCare — they existed in the EHR, they were not missing from the clinical record. Fourth: the 3 supervisor documentation issues were resolved through a proper addendum process — not by altering original notes.</p>
         <p>An audit-ready clinic does not need every note to be perfect at the time of the records request. It needs a system that can find, review, and correct (through proper addendum) documentation issues within the response window.</p>
       </div>
     </section>
@@ -656,7 +631,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="scenario-box">
         <div class="scenario-label">YOUR ROLE: DOCUMENTATION COORDINATOR</div>
         <h3>The Setup</h3>
-        <p>It is a Thursday. The clinic's billing coordinator, Jared, has been out sick for two weeks. His desk has accumulated mail. The office manager asks you to clear his desk. You find a certified mail envelope, opened but unread. Inside is a Medicaid RAC records request dated 11 days ago. The deadline is 45 days from the letter date, meaning you have 34 days left. The request covers 42 claims across 8 clients.</p>
+        <p>It is a Thursday. The clinic's billing coordinator, Jared, has been out sick for two weeks. His desk has accumulated mail. The office manager asks you to clear his desk. You find a certified mail envelope, opened but unread. Inside is a Medicaid RAC records request dated 11 days ago. The deadline is 45 days from the letter date — meaning you have 34 days left. The request covers 42 claims across 8 clients.</p>
         <p>Your first instinct is to panic. Work through three decisions instead.</p>
       </div>
 
@@ -675,19 +650,19 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
         <div class="decision-label">DECISION POINT 2 OF 3</div>
         <div class="decision-q">The clinic director asks whether you should call the RAC to explain the delay and request more time. What do you advise?</div>
         <div class="decision-choices">
-          <div class="decision-choice" onclick="pickDecision(this, false, 1)">A. Yes, explaining the billing coordinator's absence should earn goodwill and a formal extension.</div>
-          <div class="decision-choice" onclick="pickDecision(this, true, 1)">B. No, the 34 days remaining is a workable window. Calling the RAC draws attention to the delay without guaranteed benefit. Focus resources on the response, not the extension request. If the timeline becomes impossible due to document retrieval issues, then contact the RAC.</div>
-          <div class="decision-choice" onclick="pickDecision(this, false, 1)">C. No, contacting the RAC about an ongoing audit is prohibited under Medicaid program rules.</div>
+          <div class="decision-choice" onclick="pickDecision(this, false, 1)">A. Yes — explaining the billing coordinator's absence should earn goodwill and a formal extension.</div>
+          <div class="decision-choice" onclick="pickDecision(this, true, 1)">B. No — the 34 days remaining is a workable window. Calling the RAC draws attention to the delay without guaranteed benefit. Focus resources on the response, not the extension request. If the timeline becomes impossible due to document retrieval issues, then contact the RAC.</div>
+          <div class="decision-choice" onclick="pickDecision(this, false, 1)">C. No — contacting the RAC about an ongoing audit is prohibited under Medicaid program rules.</div>
         </div>
         <div class="decision-feedback" id="df-1"></div>
       </div>
 
       <div class="decision-point" id="dp-2">
         <div class="decision-label">DECISION POINT 3 OF 3</div>
-        <div class="decision-q">On day 20 of your review, you discover that 6 of the 42 session notes contain a known deficiency, supervisor listed as "clinic BCBA" rather than by name and NPI. The clinical team confirms which BCBA supervised each session. What is the correct documentation action?</div>
+        <div class="decision-q">On day 20 of your review, you discover that 6 of the 42 session notes contain a known deficiency — supervisor listed as "clinic BCBA" rather than by name and NPI. The clinical team confirms which BCBA supervised each session. What is the correct documentation action?</div>
         <div class="decision-choices">
           <div class="decision-choice" onclick="pickDecision(this, false, 2)">A. Update the original session notes to add the BCBA name and NPI with today's date as the edit date.</div>
-          <div class="decision-choice" onclick="pickDecision(this, true, 2)">B. Have the supervising BCBA for each session add a properly dated and signed addendum to each note, identifying themselves by name and NPI and stating the addendum's purpose, without altering the original note content.</div>
+          <div class="decision-choice" onclick="pickDecision(this, true, 2)">B. Have the supervising BCBA for each session add a properly dated and signed addendum to each note — identifying themselves by name and NPI and stating the addendum's purpose — without altering the original note content.</div>
           <div class="decision-choice" onclick="pickDecision(this, false, 2)">C. Submit the 6 deficient notes without addressing the issue and address the finding if the RAC raises it.</div>
         </div>
         <div class="decision-feedback" id="df-2"></div>
@@ -705,7 +680,7 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
       <div class="job-aid">
         <div class="job-aid-header">
           <h3>CADA Pre-Submission Audit Checklist</h3>
-          <p>CareGuard · cadahealth.org · Weekly claims review before submission</p>
+          <p>CADA Institute · cadahealth.org · Weekly claims review before submission</p>
         </div>
         <div class="job-aid-body">
 
@@ -721,11 +696,11 @@ body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--t
             </div>
             <div class="ja-row">
               <div class="ja-num">3</div>
-              <div class="ja-row-text"><strong>Units on note match units on claim.</strong> Compare the units in the session note to the units in the billing system for every claim line. Any discrepancy is a stop, do not submit until resolved.</div>
+              <div class="ja-row-text"><strong>Units on note match units on claim.</strong> Compare the units in the session note to the units in the billing system for every claim line. Any discrepancy is a stop — do not submit until resolved.</div>
             </div>
             <div class="ja-row">
               <div class="ja-num">4</div>
-              <div class="ja-row-text"><strong>Specific targets are documented.</strong> The note identifies the ABA programs or behavioral targets addressed in the session, not "continued ABA therapy" or "skills training." The specific target names appear.</div>
+              <div class="ja-row-text"><strong>Specific targets are documented.</strong> The note identifies the ABA programs or behavioral targets addressed in the session — not "continued ABA therapy" or "skills training." The specific target names appear.</div>
             </div>
             <div class="ja-row">
               <div class="ja-num">5</div>
@@ -804,98 +779,98 @@ const LETTERS = ['A','B','C','D'];
 
 const KC_DATA = [
   /* 0 */ {q:'',answers:[
-    {text:'The RAC grants an automatic extension when the documentation coordinator explains the oversight.',correct:false,rationale:'RAC deadlines are not automatically extended because of internal clinic staffing issues. Extensions may sometimes be granted if requested in advance, but a response submitted after the deadline without prior approval is treated as a default, the same outcome regardless of the reason for the miss.'},
-    {text:'The claims are considered unsubstantiated because the response deadline passed. The RAC issues a recoupment demand for the full amount of the reviewed claims.',correct:true,rationale:'Correct. A missed audit response deadline is treated as an inability to substantiate the reviewed claims. The RAC does not investigate whether the documentation actually existed, the absence of a timely response is itself the finding. The Maine clinic lost $2.1 million this way. The documentation for those sessions existed. The deadline did not wait for the billing coordinator to return from leave.'},
-    {text:'The RAC discards the audit findings since they cannot be enforced after the deadline passes.',correct:false,rationale:'The deadline applies to the clinic\'s response, not to the RAC\'s enforcement authority. When a clinic misses the response deadline, the RAC proceeds to issue findings and a recoupment demand based on the unsubstantiated claims. The deadline is for the clinic, not the auditor.'},
+    {text:'The RAC grants an automatic extension when the documentation coordinator explains the oversight.',correct:false,rationale:'RAC deadlines are not automatically extended because of internal clinic staffing issues. Extensions may sometimes be granted if requested in advance, but a response submitted after the deadline without prior approval is treated as a default — the same outcome regardless of the reason for the miss.'},
+    {text:'The claims are considered unsubstantiated because the response deadline passed. The RAC issues a recoupment demand for the full amount of the reviewed claims.',correct:true,rationale:'Correct. A missed audit response deadline is treated as an inability to substantiate the reviewed claims. The RAC does not investigate whether the documentation actually existed — the absence of a timely response is itself the finding. The Maine clinic lost $2.1 million this way. The documentation for those sessions existed. The deadline did not wait for the billing coordinator to return from leave.'},
+    {text:'The RAC discards the audit findings since they cannot be enforced after the deadline passes.',correct:false,rationale:'The deadline applies to the clinic\'s response — not to the RAC\'s enforcement authority. When a clinic misses the response deadline, the RAC proceeds to issue findings and a recoupment demand based on the unsubstantiated claims. The deadline is for the clinic, not the auditor.'},
     {text:'The clinic can respond to the audit findings at any point within the next 12 months.',correct:false,rationale:'There is no 12-month window for responding to audit records requests. The deadline is stated in the records request letter and is a firm cutoff. After that date, the response window is closed unless the clinic has received a written extension in advance.'}
   ]},
   /* 1 */ {q:'',answers:[
-    {text:'Prepayment audits are conducted by the OIG while post-payment audits are conducted by RACs.',correct:false,rationale:'Both OIG and RAC can conduct post-payment audits. Both MACs and RACs conduct prepayment reviews. The distinction is not about which auditing entity conducts the review, it is about whether the review happens before or after the payment is issued.'},
-    {text:'Prepayment audits review claims before payment is issued and can prevent payment. Post-payment audits review claims after payment and can require recoupment of funds already received.',correct:true,rationale:'Correct. The timing of the audit determines the financial impact. A prepayment denial means the clinic does not receive payment for that claim, a lost receivable. A post-payment recoupment demand means the clinic must return money it has already received and may have already spent on operations. Post-payment audits are generally more financially damaging because the clinic must fund the repayment from current revenue.'},
-    {text:'Prepayment audits only apply to claims over $10,000 while post-payment audits apply to all claims.',correct:false,rationale:'There is no universal dollar threshold that determines whether an audit is prepayment or post-payment. Both audit types can apply to claims of any amount. The selection of claims for review is based on billing pattern analysis, statistical outliers, and program integrity priorities, not a dollar threshold.'},
-    {text:'There is no meaningful difference, both audit types result in immediate recoupment demands.',correct:false,rationale:'There is a significant difference. A prepayment audit denial is a lost payment, the clinic does not receive the denied amount. A post-payment recoupment demand requires the clinic to return money already received. These are different financial situations, and the distinction matters for how the clinic manages its response and its cash flow.'}
+    {text:'Prepayment audits are conducted by the OIG while post-payment audits are conducted by RACs.',correct:false,rationale:'Both OIG and RAC can conduct post-payment audits. Both MACs and RACs conduct prepayment reviews. The distinction is not about which auditing entity conducts the review — it is about whether the review happens before or after the payment is issued.'},
+    {text:'Prepayment audits review claims before payment is issued and can prevent payment. Post-payment audits review claims after payment and can require recoupment of funds already received.',correct:true,rationale:'Correct. The timing of the audit determines the financial impact. A prepayment denial means the clinic does not receive payment for that claim — a lost receivable. A post-payment recoupment demand means the clinic must return money it has already received and may have already spent on operations. Post-payment audits are generally more financially damaging because the clinic must fund the repayment from current revenue.'},
+    {text:'Prepayment audits only apply to claims over $10,000 while post-payment audits apply to all claims.',correct:false,rationale:'There is no universal dollar threshold that determines whether an audit is prepayment or post-payment. Both audit types can apply to claims of any amount. The selection of claims for review is based on billing pattern analysis, statistical outliers, and program integrity priorities — not a dollar threshold.'},
+    {text:'There is no meaningful difference — both audit types result in immediate recoupment demands.',correct:false,rationale:'There is a significant difference. A prepayment audit denial is a lost payment — the clinic does not receive the denied amount. A post-payment recoupment demand requires the clinic to return money already received. These are different financial situations, and the distinction matters for how the clinic manages its response and its cash flow.'}
   ]},
   /* 2 */ {q:'',answers:[
-    {text:'A routine annual review that all Medicaid ABA providers receive.',correct:false,rationale:'OIG audits are not routine annual reviews. All Medicaid providers do not receive OIG contact as a standard process. The OIG investigates specific fraud, waste, and abuse concerns, when the OIG contacts a clinic, it indicates a specific concern about that clinic\'s billing practices has been identified.'},
-    {text:'A targeted investigation, OIG audits typically indicate a specific fraud, waste, or abuse concern has been identified for review.',correct:true,rationale:'Correct. The OIG does not conduct routine billing reviews as part of normal claims administration. When the OIG contacts a clinic, it typically indicates that a specific pattern, complaint, or referral has identified that clinic for investigation. OIG contact should trigger immediate escalation to the clinic director and legal counsel, not a documentation retrieval project managed by the documentation coordinator alone.'},
-    {text:'A billing error that the clinic\'s clearinghouse flagged automatically and referred to the OIG.',correct:false,rationale:'Clearinghouses flag claim format errors and return them to the clinic, they do not refer billing errors to the OIG. OIG investigations arise from program integrity referrals, whistleblower complaints, statistical analysis of billing patterns, or coordination with state Medicaid program integrity units.'},
-    {text:'A request initiated by the client\'s family disputing the services billed.',correct:false,rationale:'Client or family complaints about billed services are handled through the payer\'s grievance process or through state Medicaid program complaint channels, not through the OIG. The OIG investigates systemic fraud, waste, and abuse in federal healthcare programs, not individual billing disputes.'}
+    {text:'A routine annual review that all Medicaid ABA providers receive.',correct:false,rationale:'OIG audits are not routine annual reviews. All Medicaid providers do not receive OIG contact as a standard process. The OIG investigates specific fraud, waste, and abuse concerns — when the OIG contacts a clinic, it indicates a specific concern about that clinic\'s billing practices has been identified.'},
+    {text:'A targeted investigation — OIG audits typically indicate a specific fraud, waste, or abuse concern has been identified for review.',correct:true,rationale:'Correct. The OIG does not conduct routine billing reviews as part of normal claims administration. When the OIG contacts a clinic, it typically indicates that a specific pattern, complaint, or referral has identified that clinic for investigation. OIG contact should trigger immediate escalation to the clinic director and legal counsel — not a documentation retrieval project managed by the documentation coordinator alone.'},
+    {text:'A billing error that the clinic\'s clearinghouse flagged automatically and referred to the OIG.',correct:false,rationale:'Clearinghouses flag claim format errors and return them to the clinic — they do not refer billing errors to the OIG. OIG investigations arise from program integrity referrals, whistleblower complaints, statistical analysis of billing patterns, or coordination with state Medicaid program integrity units.'},
+    {text:'A request initiated by the client\'s family disputing the services billed.',correct:false,rationale:'Client or family complaints about billed services are handled through the payer\'s grievance process or through state Medicaid program complaint channels — not through the OIG. The OIG investigates systemic fraud, waste, and abuse in federal healthcare programs — not individual billing disputes.'}
   ]},
   /* 3 */ {q:'',answers:[
     {text:'File a formal complaint with the state Medicaid office against the RAC for issuing an incorrect finding.',correct:false,rationale:'Filing a complaint against the RAC is not the first step in challenging a finding. The Medicaid appeals process provides a structured mechanism for challenging RAC findings: first a redetermination request, then a reconsideration, then an ALJ hearing. Each step has its own deadline. Skipping to a complaint without initiating the formal appeals process can waive appeal rights.'},
-    {text:'Stop submitting claims to Medicaid while the dispute is pending to avoid generating additional audit exposure.',correct:false,rationale:'Stopping claim submission is not a response to a RAC finding. Doing so would halt the clinic\'s revenue while the appeal is pending, which could threaten the clinic\'s solvency. The clinic continues to submit claims normally while appealing a RAC finding. The finding itself does not affect the clinic\'s right to bill for new services.'},
-    {text:'Request a redetermination through the Medicaid appeals process within the timeframe specified in the RAC\'s overpayment notice.',correct:true,rationale:'Correct. The first step in the Medicaid appeals process is a redetermination request, asking the same contractor to review its own finding. The overpayment notice specifies the timeframe for this request, typically 30 to 60 days. Missing the redetermination deadline can waive the right to appeal at that level. The documentation coordinator\'s role in the appeal is to assemble the supporting documentation, not to file the redetermination, which is typically handled by the billing director or compliance officer.'},
-    {text:'Contact the OIG to report the RAC\'s finding as a billing error that needs federal correction.',correct:false,rationale:'The OIG does not adjudicate disputes between providers and RAC contractors. The appeals process for RAC findings is a structured Medicaid administrative process, redetermination, reconsideration, ALJ hearing, and further escalation, not an OIG complaint. The OIG investigates fraud and program abuse, not billing disputes.'}
+    {text:'Stop submitting claims to Medicaid while the dispute is pending to avoid generating additional audit exposure.',correct:false,rationale:'Stopping claim submission is not a response to a RAC finding. Doing so would halt the clinic\'s revenue while the appeal is pending — which could threaten the clinic\'s solvency. The clinic continues to submit claims normally while appealing a RAC finding. The finding itself does not affect the clinic\'s right to bill for new services.'},
+    {text:'Request a redetermination through the Medicaid appeals process within the timeframe specified in the RAC\'s overpayment notice.',correct:true,rationale:'Correct. The first step in the Medicaid appeals process is a redetermination request — asking the same contractor to review its own finding. The overpayment notice specifies the timeframe for this request, typically 30 to 60 days. Missing the redetermination deadline can waive the right to appeal at that level. The documentation coordinator\'s role in the appeal is to assemble the supporting documentation — not to file the redetermination, which is typically handled by the billing director or compliance officer.'},
+    {text:'Contact the OIG to report the RAC\'s finding as a billing error that needs federal correction.',correct:false,rationale:'The OIG does not adjudicate disputes between providers and RAC contractors. The appeals process for RAC findings is a structured Medicaid administrative process — redetermination, reconsideration, ALJ hearing, and further escalation — not an OIG complaint. The OIG investigates fraud and program abuse, not billing disputes.'}
   ]},
   /* 4 */ {q:'',answers:[
-    {text:'No finding, session notes are not required to list specific ABA targets as long as the CPT code and time are correct.',correct:false,rationale:'Session notes are required to document the specific clinical services delivered, which for ABA includes the specific behavioral targets addressed. A note that records only the CPT code and time is not sufficient documentation to support the medical necessity of the service billed. Medicaid requires notes that demonstrate what was done and why it was clinically appropriate.'},
-    {text:'A documentation deficiency finding, Medicaid requires that session notes support the medical necessity and specificity of the service billed, including the clinical targets addressed.',correct:true,rationale:'Correct. OIG work plans and state Medicaid audit findings consistently identify missing or generic target documentation as a primary deficiency in ABA session notes. A note that says "provided ABA services" without naming the specific behavioral targets addressed does not support the medical necessity of the service. The auditor cannot determine from the note whether the service was clinically appropriate or distinct from previous sessions. That lack of specificity is a documentation deficiency that supports a denial.'},
-    {text:'A fraud finding, missing targets on a note is automatically classified as intentional billing fraud.',correct:false,rationale:'Missing documentation is typically classified as a documentation deficiency, not automatic fraud. Fraud requires evidence of intentional misrepresentation. A documentation deficiency finding results in a claim denial or recoupment demand. If a pattern of documentation deficiencies is found across many claims, it may be escalated for a program integrity review, but missing targets alone is not classified as fraud.'},
-    {text:'A credential finding, missing targets indicate the RBT was not qualified to deliver the service.',correct:false,rationale:'Credential findings arise from issues with provider credentials, expired RBT certificates, unlicensed practitioners, or providers not credentialed with the specific payer. Missing target documentation is a session note completeness issue, a documentation deficiency, not a credential finding.'}
+    {text:'No finding — session notes are not required to list specific ABA targets as long as the CPT code and time are correct.',correct:false,rationale:'Session notes are required to document the specific clinical services delivered — which for ABA includes the specific behavioral targets addressed. A note that records only the CPT code and time is not sufficient documentation to support the medical necessity of the service billed. Medicaid requires notes that demonstrate what was done and why it was clinically appropriate.'},
+    {text:'A documentation deficiency finding — Medicaid requires that session notes support the medical necessity and specificity of the service billed, including the clinical targets addressed.',correct:true,rationale:'Correct. OIG work plans and state Medicaid audit findings consistently identify missing or generic target documentation as a primary deficiency in ABA session notes. A note that says "provided ABA services" without naming the specific behavioral targets addressed does not support the medical necessity of the service. The auditor cannot determine from the note whether the service was clinically appropriate or distinct from previous sessions. That lack of specificity is a documentation deficiency that supports a denial.'},
+    {text:'A fraud finding — missing targets on a note is automatically classified as intentional billing fraud.',correct:false,rationale:'Missing documentation is typically classified as a documentation deficiency, not automatic fraud. Fraud requires evidence of intentional misrepresentation. A documentation deficiency finding results in a claim denial or recoupment demand. If a pattern of documentation deficiencies is found across many claims, it may be escalated for a program integrity review — but missing targets alone is not classified as fraud.'},
+    {text:'A credential finding — missing targets indicate the RBT was not qualified to deliver the service.',correct:false,rationale:'Credential findings arise from issues with provider credentials — expired RBT certificates, unlicensed practitioners, or providers not credentialed with the specific payer. Missing target documentation is a session note completeness issue — a documentation deficiency — not a credential finding.'}
   ]},
   /* 5 */ {q:'',answers:[
-    {text:'No risk, "BCBA on duty" is an acceptable reference to the supervising clinician under most Medicaid billing guidelines.',correct:false,rationale:'"BCBA on duty" does not identify a specific person. Medicaid requires that the supervising clinician be identifiable by name and NPI so the payer can verify that person\'s credentials and billing relationship. A generic role reference does not allow that verification. It is a documentation deficiency.'},
-    {text:'Most Medicaid payers require the supervising BCBA to be identified by name and NPI on each session note. "BCBA on duty" does not meet that standard and is a documentation deficiency that can support a denial.',correct:true,rationale:'Correct. The supervising clinician identification requirement exists so the payer can verify that the supervision was provided by a credentialed and enrolled clinician. "BCBA on duty" does not allow that verification. An auditor reviewing 8 notes with this documentation pattern will flag all 8 as deficient, resulting in 8 potential denials or recoupment demands.'},
+    {text:'No risk — "BCBA on duty" is an acceptable reference to the supervising clinician under most Medicaid billing guidelines.',correct:false,rationale:'"BCBA on duty" does not identify a specific person. Medicaid requires that the supervising clinician be identifiable by name and NPI so the payer can verify that person\'s credentials and billing relationship. A generic role reference does not allow that verification. It is a documentation deficiency.'},
+    {text:'Most Medicaid payers require the supervising BCBA to be identified by name and NPI on each session note. "BCBA on duty" does not meet that standard and is a documentation deficiency that can support a denial.',correct:true,rationale:'Correct. The supervising clinician identification requirement exists so the payer can verify that the supervision was provided by a credentialed and enrolled clinician. "BCBA on duty" does not allow that verification. An auditor reviewing 8 notes with this documentation pattern will flag all 8 as deficient — resulting in 8 potential denials or recoupment demands.'},
     {text:'This is only a risk if the clinic has fewer than 3 BCBAs on staff, making "BCBA on duty" ambiguous.',correct:false,rationale:'The number of BCBAs on staff does not change the documentation requirement. Even at a clinic with one BCBA, "BCBA on duty" is not an acceptable substitute for the clinician\'s name and NPI. The requirement exists for verification purposes, not for disambiguation.'},
-    {text:'The risk applies only if the BCBA identified as "on duty" was not credentialed with the specific Medicaid MCO.',correct:false,rationale:'The credential issue is a separate but related concern. The documentation deficiency, not identifying the BCBA by name and NPI, exists regardless of that BCBA\'s credentialing status. Even a fully credentialed BCBA is not properly documented on a note that says "BCBA on duty."'}
+    {text:'The risk applies only if the BCBA identified as "on duty" was not credentialed with the specific Medicaid MCO.',correct:false,rationale:'The credential issue is a separate but related concern. The documentation deficiency — not identifying the BCBA by name and NPI — exists regardless of that BCBA\'s credentialing status. Even a fully credentialed BCBA is not properly documented on a note that says "BCBA on duty."'}
   ]},
   /* 6 */ {q:'',answers:[
-    {text:'Pull all session notes first so the response package is as far along as possible before the team meeting.',correct:false,rationale:'Beginning document retrieval without first logging the receipt, calculating the deadline, and escalating to leadership is working without a plan. If the documentation coordinator pulls notes and assembles a response without leadership involvement, decisions about deficient documentation, whether to submit as-is, seek addendums, or address issues in the response letter, are being made without the authority to make them.'},
-    {text:'Wait until day 10 to begin work so there is a full picture of which documents are easiest to retrieve.',correct:false,rationale:'Waiting to begin work after a records request arrives is the behavior that produced the Maine outcome. 34 days feels like a long time until document retrieval reveals missing or deficient records, at which point every day spent waiting becomes a day that cannot be used for remediation.'},
-    {text:'Log the receipt date and the letter date, calculate the exact deadline, and immediately escalate to the clinic director and billing director with the full letter attached.',correct:true,rationale:'Correct. The first action after receiving a records request is to establish the timeline and loop in leadership, that day, not the next day. The 11-day gap between the letter date and the receipt date means the effective window is 34 days, not 45. Leadership needs to know that immediately so resources can be directed appropriately and the response protocol can begin.'},
-    {text:'Call the RAC to report the delay in receiving the letter and request a formal extension before beginning any internal review.',correct:false,rationale:'Calling the RAC before beginning internal work is not the first priority with 34 days remaining. With 34 days available, the clinic has a workable response window. Calling the RAC draws attention to the delay and may not result in an extension. If document retrieval reveals that the response cannot be completed in time, then contacting the RAC about a possible extension is appropriate, not as the first step.'}
+    {text:'Pull all session notes first so the response package is as far along as possible before the team meeting.',correct:false,rationale:'Beginning document retrieval without first logging the receipt, calculating the deadline, and escalating to leadership is working without a plan. If the documentation coordinator pulls notes and assembles a response without leadership involvement, decisions about deficient documentation — whether to submit as-is, seek addendums, or address issues in the response letter — are being made without the authority to make them.'},
+    {text:'Wait until day 10 to begin work so there is a full picture of which documents are easiest to retrieve.',correct:false,rationale:'Waiting to begin work after a records request arrives is the behavior that produced the Maine outcome. 34 days feels like a long time until document retrieval reveals missing or deficient records — at which point every day spent waiting becomes a day that cannot be used for remediation.'},
+    {text:'Log the receipt date and the letter date, calculate the exact deadline, and immediately escalate to the clinic director and billing director with the full letter attached.',correct:true,rationale:'Correct. The first action after receiving a records request is to establish the timeline and loop in leadership — that day, not the next day. The 11-day gap between the letter date and the receipt date means the effective window is 34 days, not 45. Leadership needs to know that immediately so resources can be directed appropriately and the response protocol can begin.'},
+    {text:'Call the RAC to report the delay in receiving the letter and request a formal extension before beginning any internal review.',correct:false,rationale:'Calling the RAC before beginning internal work is not the first priority with 34 days remaining. With 34 days available, the clinic has a workable response window. Calling the RAC draws attention to the delay and may not result in an extension. If document retrieval reveals that the response cannot be completed in time, then contacting the RAC about a possible extension is appropriate — not as the first step.'}
   ]},
   /* 7 */ {q:'',answers:[
-    {text:'Correct the 5 notes by overwriting the hours with units before submitting the documents to the auditor.',correct:false,rationale:'Altering session notes after a records request has been received is evidence alteration. Even correcting a genuine documentation error after an audit begins is a serious compliance violation. The original note must be preserved. Any correction must go through a proper addendum process, a separate entry that corrects the record, dated and signed by the clinician, that does not modify the original note.'},
-    {text:'Submit all 20 notes as-is and separately address the deficiencies in the written response letter.',correct:false,rationale:'Submitting known deficiencies without attempting to address them through proper documentation channels first is not the documentation coordinator\'s call to make alone. The compliance team needs to review the deficiencies and determine the appropriate response strategy, which may include clinician addendums, a written explanation, or submitting the notes with an acknowledged deficiency. The documentation coordinator surfaces the issue; the compliance team decides the response.'},
-    {text:'Flag the 5 deficient notes to the clinical and compliance team, do not alter them, and document the internal review finding, the response strategy is a compliance decision, not a documentation coordinator decision alone.',correct:true,rationale:'Correct. The documentation coordinator\'s role in audit response is to inventory, identify deficiencies, and escalate, not to decide how to handle them. Deficient notes are flagged to the clinical and compliance team, who can determine whether addendums are appropriate, clinically defensible, and properly executed. The documentation coordinator documents the finding in the internal tracking grid. The coordinator does not alter notes, remove notes from the submission, or decide unilaterally how to respond.'},
-    {text:'Remove the 5 deficient notes from the submission and submit only the 15 clean notes to avoid the auditor seeing the deficiencies.',correct:false,rationale:'Submitting incomplete documentation in response to a records request is a serious compliance violation. The records request specifically identifies which claims and documents are under review. Submitting only 15 of 20 requested notes without explanation treats the 5 missing notes as though those sessions did not occur, which may be worse than submitting deficient notes with an explanation.'}
+    {text:'Correct the 5 notes by overwriting the hours with units before submitting the documents to the auditor.',correct:false,rationale:'Altering session notes after a records request has been received is evidence alteration. Even correcting a genuine documentation error after an audit begins is a serious compliance violation. The original note must be preserved. Any correction must go through a proper addendum process — a separate entry that corrects the record, dated and signed by the clinician, that does not modify the original note.'},
+    {text:'Submit all 20 notes as-is and separately address the deficiencies in the written response letter.',correct:false,rationale:'Submitting known deficiencies without attempting to address them through proper documentation channels first is not the documentation coordinator\'s call to make alone. The compliance team needs to review the deficiencies and determine the appropriate response strategy — which may include clinician addendums, a written explanation, or submitting the notes with an acknowledged deficiency. The documentation coordinator surfaces the issue; the compliance team decides the response.'},
+    {text:'Flag the 5 deficient notes to the clinical and compliance team, do not alter them, and document the internal review finding — the response strategy is a compliance decision, not a documentation coordinator decision alone.',correct:true,rationale:'Correct. The documentation coordinator\'s role in audit response is to inventory, identify deficiencies, and escalate — not to decide how to handle them. Deficient notes are flagged to the clinical and compliance team, who can determine whether addendums are appropriate, clinically defensible, and properly executed. The documentation coordinator documents the finding in the internal tracking grid. The coordinator does not alter notes, remove notes from the submission, or decide unilaterally how to respond.'},
+    {text:'Remove the 5 deficient notes from the submission and submit only the 15 clean notes to avoid the auditor seeing the deficiencies.',correct:false,rationale:'Submitting incomplete documentation in response to a records request is a serious compliance violation. The records request specifically identifies which claims and documents are under review. Submitting only 15 of 20 requested notes without explanation treats the 5 missing notes as though those sessions did not occur — which may be worse than submitting deficient notes with an explanation.'}
   ]},
   /* 8 */ {q:'',answers:[
-    {text:'A list of the clinic\'s billing staff with their job titles and years of experience.',correct:false,rationale:'Billing staff credentials are not a primary audit document. Auditors review whether the services billed were delivered by credentialed clinical providers, not whether the billing team has the right resumes. The billing staff list does not support any of the five audit finding categories.'},
-    {text:'The treatment authorization approval letters from the payer for each client, documenting that the payer approved the specific services billed.',correct:true,rationale:'Correct. The authorization approval letters are the most critical supporting documents alongside session notes because they demonstrate that the payer itself approved the services before they were delivered. An auditor reviewing claims without authorization approval letters has no way to confirm that the services were within covered boundaries. Without them, claims can be denied even when session notes are complete, because the authorization boundary is unverifiable.'},
-    {text:'The clinic\'s marketing materials showing the range of ABA services offered.',correct:false,rationale:'Marketing materials are not audit defense documents. Auditors review clinical and billing documentation, not what services the clinic advertises. Marketing materials have no bearing on whether a specific claim is substantiated.'},
-    {text:'The BCBA\'s academic transcripts confirming their graduate education.',correct:false,rationale:'Academic transcripts are not the credential document auditors review. Auditors verify that providers were credentialed with the payer for the service type at the time of service, which is confirmed through the payer\'s credentialing records and the clinic\'s provider credential log, not through academic transcripts.'}
+    {text:'A list of the clinic\'s billing staff with their job titles and years of experience.',correct:false,rationale:'Billing staff credentials are not a primary audit document. Auditors review whether the services billed were delivered by credentialed clinical providers — not whether the billing team has the right resumes. The billing staff list does not support any of the five audit finding categories.'},
+    {text:'The treatment authorization approval letters from the payer for each client, documenting that the payer approved the specific services billed.',correct:true,rationale:'Correct. The authorization approval letters are the most critical supporting documents alongside session notes because they demonstrate that the payer itself approved the services before they were delivered. An auditor reviewing claims without authorization approval letters has no way to confirm that the services were within covered boundaries. Without them, claims can be denied even when session notes are complete — because the authorization boundary is unverifiable.'},
+    {text:'The clinic\'s marketing materials showing the range of ABA services offered.',correct:false,rationale:'Marketing materials are not audit defense documents. Auditors review clinical and billing documentation — not what services the clinic advertises. Marketing materials have no bearing on whether a specific claim is substantiated.'},
+    {text:'The BCBA\'s academic transcripts confirming their graduate education.',correct:false,rationale:'Academic transcripts are not the credential document auditors review. Auditors verify that providers were credentialed with the payer for the service type at the time of service — which is confirmed through the payer\'s credentialing records and the clinic\'s provider credential log, not through academic transcripts.'}
   ]},
   /* 9 */ {q:'',answers:[
     {text:'Storing all session notes in a single folder organized by date of service rather than by client.',correct:false,rationale:'Organizing notes by date rather than by client makes individual claim retrieval much harder. An audit records request identifies specific clients and service dates. A date-based filing system requires searching by date across all clients to find a specific note. A client-based filing system allows immediate retrieval of all documentation for a specific client.'},
     {text:'A documentation policy, an ongoing quality review process, and a client-based filing system that allows any session note to be retrieved and cross-referenced to its authorization within 24 hours.',correct:true,rationale:'Correct. An audit-ready documentation system requires three things working together: a policy that defines the standard, a process that checks compliance with that standard before exposure occurs, and a file structure that makes retrieval fast enough to work within audit response timelines. Any one of these alone is insufficient. Without the policy, there is no standard to check against. Without the ongoing review, deficiencies accumulate silently. Without the file structure, retrieval becomes a crisis when the response deadline is running.'},
-    {text:'Having the BCBA sign every session note personally, regardless of whether the technician signature is present.',correct:false,rationale:'BCBA signatures on session notes are required based on the service delivered and the payer\'s requirements, not as a universal practice for all notes. 97153 notes require the technician\'s documentation and supervisor identification, not necessarily a BCBA signature on every technician note. The supervision note or the BCBA\'s co-signature requirements vary by payer.'},
-    {text:'Keeping paper copies of all session notes even when the clinic uses an electronic health record.',correct:false,rationale:'Paper backups of EHR records are not an audit-readiness strategy. If PrioraCare or another EHR is functioning properly, the records exist in the EHR. The audit-ready requirement is that records are retrievable within the response window, which an EHR satisfies if it is properly used and backed up.'}
+    {text:'Having the BCBA sign every session note personally, regardless of whether the technician signature is present.',correct:false,rationale:'BCBA signatures on session notes are required based on the service delivered and the payer\'s requirements — not as a universal practice for all notes. 97153 notes require the technician\'s documentation and supervisor identification, not necessarily a BCBA signature on every technician note. The supervision note or the BCBA\'s co-signature requirements vary by payer.'},
+    {text:'Keeping paper copies of all session notes even when the clinic uses an electronic health record.',correct:false,rationale:'Paper backups of EHR records are not an audit-readiness strategy. If PrioraCare or another EHR is functioning properly, the records exist in the EHR. The audit-ready requirement is that records are retrievable within the response window — which an EHR satisfies if it is properly used and backed up.'}
   ]}
 ];
 
 const QUIZ_DATA = [
   {text:'A clinic receives a Medicaid RAC records request dated November 1st. The letter arrives at the clinic on November 8th. The deadline stated in the letter is 45 days from the date of the letter. The documentation coordinator does not see the letter until November 15th. How many effective days remain to respond?',answers:[
-    {text:'38 days, counting from November 8th, when the letter arrived.',correct:false},
-    {text:'31 days, counting from November 15th, when the documentation coordinator saw it.',correct:true},
-    {text:'45 days, the deadline resets from the date the letter was read.',correct:false},
-    {text:'30 days, the standard Medicaid extension applies automatically.',correct:false}
-  ],rationale:'The deadline is 45 days from November 1st, the date on the letter, which is December 16th. From November 15th, that is 31 days remaining. The deadline does not reset based on when the letter was received or read. This is why the response protocol begins on the day the records request is first identified, regardless of when it arrived.',reviewSection:2},
+    {text:'38 days — counting from November 8th, when the letter arrived.',correct:false},
+    {text:'31 days — counting from November 15th, when the documentation coordinator saw it.',correct:true},
+    {text:'45 days — the deadline resets from the date the letter was read.',correct:false},
+    {text:'30 days — the standard Medicaid extension applies automatically.',correct:false}
+  ],rationale:'The deadline is 45 days from November 1st — the date on the letter — which is December 16th. From November 15th, that is 31 days remaining. The deadline does not reset based on when the letter was received or read. This is why the response protocol begins on the day the records request is first identified, regardless of when it arrived.',reviewSection:2},
   {text:'Which of the following describes an OIG records request most accurately?',answers:[
     {text:'A routine annual billing review that all Medicaid ABA providers receive to confirm compliance.',correct:false},
-    {text:'A targeted investigation indicating a specific fraud, waste, or abuse concern has been identified, requiring immediate escalation to clinic leadership and legal counsel.',correct:true},
+    {text:'A targeted investigation indicating a specific fraud, waste, or abuse concern has been identified — requiring immediate escalation to clinic leadership and legal counsel.',correct:true},
     {text:'A prepayment review conducted before claims can be paid for the current billing period.',correct:false},
     {text:'A claim format verification that the clinic\'s clearinghouse referred for federal review.',correct:false}
-  ],rationale:'OIG audits are not routine. When the OIG contacts a clinic, it indicates a specific fraud, waste, or abuse concern has been elevated for investigation. The documentation coordinator\'s response to an OIG records request begins with immediate escalation to the clinic director and legal counsel, not documentation retrieval. OIG findings can result in Medicaid and Medicare exclusion, civil monetary penalties, and referral for criminal prosecution.',reviewSection:3},
-  {text:'A documentation coordinator is reviewing session notes before submitting the week\'s claims batch. She finds that one session note documents the supervising BCBA as "supervisor, credentials on file." The session was billed under 97153. What action should she take?',answers:[
-    {text:'Submit the claim, "credentials on file" is an acceptable supervisor reference.',correct:false},
+  ],rationale:'OIG audits are not routine. When the OIG contacts a clinic, it indicates a specific fraud, waste, or abuse concern has been elevated for investigation. The documentation coordinator\'s response to an OIG records request begins with immediate escalation to the clinic director and legal counsel — not documentation retrieval. OIG findings can result in Medicaid and Medicare exclusion, civil monetary penalties, and referral for criminal prosecution.',reviewSection:3},
+  {text:'A documentation coordinator is reviewing session notes before submitting the week\'s claims batch. She finds that one session note documents the supervising BCBA as "supervisor — credentials on file." The session was billed under 97153. What action should she take?',answers:[
+    {text:'Submit the claim — "credentials on file" is an acceptable supervisor reference.',correct:false},
     {text:'Hold the claim and return the note to the clinical team for a proper addendum identifying the supervising BCBA by name and NPI before submitting.',correct:true},
     {text:'Remove the supervisor reference from the note to avoid documentation inconsistencies.',correct:false},
     {text:'Submit the claim and note the supervisor issue in the billing records as a known exception.',correct:false}
-  ],rationale:'The session note must identify the supervising BCBA by name and NPI, not by a generic reference to credentials on file. This is exactly the type of documentation deficiency the pre-submission checklist is designed to catch. Holding the claim and requesting a proper addendum before submission creates zero audit exposure. Submitting the claim with the deficiency and noting it as a "known exception" creates an audit finding that the clinic knew about and submitted anyway.',reviewSection:4},
+  ],rationale:'The session note must identify the supervising BCBA by name and NPI — not by a generic reference to credentials on file. This is exactly the type of documentation deficiency the pre-submission checklist is designed to catch. Holding the claim and requesting a proper addendum before submission creates zero audit exposure. Submitting the claim with the deficiency and noting it as a "known exception" creates an audit finding that the clinic knew about and submitted anyway.',reviewSection:4},
   {text:'A documentation coordinator receives a Medicaid RAC records request and discovers during the document inventory phase that one of the requested session notes was never entered into PrioraCare. The RBT confirms the session occurred and says the note is in a paper notebook. What is the correct action?',answers:[
     {text:'Reconstruct the session note from memory based on the RBT\'s description of the session.',correct:false},
-    {text:'Retrieve the original paper note, include it in the response package, and flag to the compliance team that the note was not entered into the EHR, which is a documentation process gap to correct going forward.',correct:true},
-    {text:'Do not submit any documentation for that claim, it was never formally recorded in the EHR.',correct:false},
+    {text:'Retrieve the original paper note, include it in the response package, and flag to the compliance team that the note was not entered into the EHR — which is a documentation process gap to correct going forward.',correct:true},
+    {text:'Do not submit any documentation for that claim — it was never formally recorded in the EHR.',correct:false},
     {text:'Ask the RBT to write a new note today describing what happened in the session.',correct:false}
-  ],rationale:'The original paper note is the clinical record for that session. It should be included in the response package as the documentation for that claim. The compliance team should be informed that the note was never entered into PrioraCare, that is a documentation process gap requiring correction. Reconstructing a note from memory creates a new document that is not the original clinical record. Writing a new note today misrepresents when it was created. Never fabricate or reconstruct documentation, always locate and submit the original.',reviewSection:5},
-  {text:'A clinic\'s pre-submission audit checklist review catches that two CPT codes, 97151 and 97155, were billed for the same client during overlapping time windows on the same day, and the payer\'s billing guidelines prohibit this concurrent billing combination. The billing director says to submit both claims and address any denial when it comes. What is the documentation coordinator\'s correct response?',answers:[
+  ],rationale:'The original paper note is the clinical record for that session. It should be included in the response package as the documentation for that claim. The compliance team should be informed that the note was never entered into PrioraCare — that is a documentation process gap requiring correction. Reconstructing a note from memory creates a new document that is not the original clinical record. Writing a new note today misrepresents when it was created. Never fabricate or reconstruct documentation — always locate and submit the original.',reviewSection:5},
+  {text:'A clinic\'s pre-submission audit checklist review catches that two CPT codes — 97151 and 97155 — were billed for the same client during overlapping time windows on the same day, and the payer\'s billing guidelines prohibit this concurrent billing combination. The billing director says to submit both claims and address any denial when it comes. What is the documentation coordinator\'s correct response?',answers:[
     {text:'Follow the billing director\'s instruction and submit both claims.',correct:false},
     {text:'Refuse to submit either claim and document the disagreement in writing.',correct:false},
-    {text:'Escalate the concurrent billing concern to the clinic director or compliance officer before submission, document the escalation, and do not submit the claims until a resolution is determined, the billing director alone should not override a known payer billing guideline violation.',correct:true},
+    {text:'Escalate the concurrent billing concern to the clinic director or compliance officer before submission, document the escalation, and do not submit the claims until a resolution is determined — the billing director alone should not override a known payer billing guideline violation.',correct:true},
     {text:'Submit only the higher-paying code and discard the other.',correct:false}
-  ],rationale:'The documentation coordinator\'s pre-submission review exists specifically to catch billing errors before submission, not to defer to the billing director\'s preference to submit and address later. When a known payer billing guideline prohibits a concurrent billing combination and that combination is present in the claims batch, the correct action is escalation, not submission. The documentation coordinator escalates to the compliance officer or clinic director. Submitting a claim the coordinator knows violates payer guidelines is not an instruction the billing director can authorize unilaterally. Document the escalation so the decision-making trail is clear.',reviewSection:6}
+  ],rationale:'The documentation coordinator\'s pre-submission review exists specifically to catch billing errors before submission — not to defer to the billing director\'s preference to submit and address later. When a known payer billing guideline prohibits a concurrent billing combination and that combination is present in the claims batch, the correct action is escalation — not submission. The documentation coordinator escalates to the compliance officer or clinic director. Submitting a claim the coordinator knows violates payer guidelines is not an instruction the billing director can authorize unilaterally. Document the escalation so the decision-making trail is clear.',reviewSection:6}
 ];
 
 let cur = 0;
@@ -1022,9 +997,9 @@ function submitQuiz(){
 }
 
 const decisionFeedback = [
-  {correct:'Exactly right. Escalation before action. The deadline calculation and leadership notification are the two most critical actions in the first hour of an audit response, not document retrieval. Without leadership involvement, decisions about deficient documentation are made without authority.',wrong:'Document retrieval is the second step, not the first. Before pulling a single note, the receipt date must be logged, the deadline must be calculated, and leadership must be notified. The documentation coordinator who starts pulling notes before escalating is working without authority on decisions that require leadership input.'},
-  {correct:'Correct instinct. With 34 days remaining, the clinic has a workable response window. Contacting the RAC draws attention to the delay and may not produce an extension. Reserve that option for situations where the document retrieval reveals the timeline cannot be met.',wrong:'RAC contacts about delays do not automatically produce extensions, and they signal to the auditor that the clinic had trouble managing the response. With 34 days available, the clinic has a workable window. Focus on the response, not the extension request.'},
-  {correct:'Correct. A proper addendum, dated, signed, and explaining its purpose, corrects the record without altering the original note. The original note is preserved exactly as written. The addendum adds the missing information as a separate entry. This is the only defensible way to correct a documentation deficiency after an audit has begun.',wrong:'Altering the original session note after an audit records request has been received, even to add missing information, is evidence alteration. It converts a documentation deficiency into a potential fraud finding. The original note must remain unchanged. Any correction is added as a dated, signed addendum by the clinician.'}
+  {correct:'Exactly right. Escalation before action. The deadline calculation and leadership notification are the two most critical actions in the first hour of an audit response — not document retrieval. Without leadership involvement, decisions about deficient documentation are made without authority.',wrong:'Document retrieval is the second step — not the first. Before pulling a single note, the receipt date must be logged, the deadline must be calculated, and leadership must be notified. The documentation coordinator who starts pulling notes before escalating is working without authority on decisions that require leadership input.'},
+  {correct:'Correct instinct. With 34 days remaining, the clinic has a workable response window. Contacting the RAC draws attention to the delay and may not produce an extension. Reserve that option for situations where the document retrieval reveals the timeline cannot be met.',wrong:'RAC contacts about delays do not automatically produce extensions — and they signal to the auditor that the clinic had trouble managing the response. With 34 days available, the clinic has a workable window. Focus on the response, not the extension request.'},
+  {correct:'Correct. A proper addendum — dated, signed, and explaining its purpose — corrects the record without altering the original note. The original note is preserved exactly as written. The addendum adds the missing information as a separate entry. This is the only defensible way to correct a documentation deficiency after an audit has begun.',wrong:'Altering the original session note after an audit records request has been received — even to add missing information — is evidence alteration. It converts a documentation deficiency into a potential fraud finding. The original note must remain unchanged. Any correction is added as a dated, signed addendum by the clinician.'}
 ];
 
 function pickDecision(el, isCorrect, dpIdx){
